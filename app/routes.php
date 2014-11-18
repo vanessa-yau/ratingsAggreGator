@@ -20,6 +20,8 @@ Route::get('profile', function() {
 	return View::make('player-profile');
 });
 
+Route::resource('players', 'PlayerController');
+
 Route::get('player/{id}/img', 
 	[
 		"uses" => "PlayerController@getImg",

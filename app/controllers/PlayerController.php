@@ -31,7 +31,43 @@ class PlayerController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		// get all inputs from form
+		$playerData = Input::only(
+			'player_id',
+			'originating_ip'
+		);
+
+		$ratingsData = Input::only(
+			'shooting',
+			'passing',
+			'dribbling',
+			'speed',
+			'tackling'
+		);
+
+
+        $validator = Validator::make($ratingsData, [
+            'shooting' => 'required|numeric|digits_between:1,5',
+            'passing'  => 'required|numeric|digits_between:1,5',
+            'dribbling'  => 'required|numeric|digits_between:1,5',
+            'speed'  => 'required|numeric|digits_between:1,5',
+            'tackling'  => 'required|numeric|digits_between:1,5'
+        ]);
+
+        if ($validator->fails()) {
+            return Response::json( $validator->messages(), 400);
+        } else {
+        	foreach ($ratingsData as $skill => $value) {
+	            $rating = DB::table('ratings')->insert([
+		            'originating_ip'     => $_SERVER['REMOTE_ADDR'],
+		            'player_id'     => $playerData['player_id'],
+		            'attribute' => $skill,
+		            'value' => $value,
+		            'game_id' => 1
+		        ]);
+        	}
+        	return Redirect::to('/');
+        }
 	}
 
 
