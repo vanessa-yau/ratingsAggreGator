@@ -37,6 +37,8 @@
 		      novalidate
 		    >
 		    	<div class="row">
+		    		<input type="hidden" name="player_id" value="1">
+		    		
 		    		<h4>Match info</h4>
 						
 						<!-- enter/select match -->
