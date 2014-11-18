@@ -23,10 +23,54 @@
 			</div>
 		</div>
 
-		<!-- button to show the rate modal -->
-		<div class="row">
+		<!-- ratings form -->
+		<div class="row well">
 			<div class="col-md-12">
-				<button class="btn btn-large default-btn" id="ratePlayer">RATE THIS PLAYER</button>
+				<div class="h4">RATE THIS PLAYER</div>
+				<form 
+		      class="form-horizontal" 
+		      id="rate-player-form"
+		      role="form"
+		      method="POST" 
+		      action=""
+		      novalidate
+		    >
+		    	<!-- different attributes to rate a player on -->
+		    	@foreach( $attributes as $attr )
+			    	<div class="form-group">
+			        <label for="{{{ $attr }}}" class="col-sm-2 control-label">{{{ $attr }}}</label>
+			        <div class="col-sm-10">
+
+								<div class="btn-group">
+									<button 
+						  			type="button" 
+						  			class="btn btn-primary dropdown-toggle attr-selection {{{ $attr }}}" 
+						  			data-toggle="dropdown"
+						  		>
+						  			<i class="selected-rating">Please select a rating </i>
+										<span class="caret"></span>
+										<span class="sr-only">Toggle Dropdown</span>
+									</button>
+								  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+								  	<li><a href="#">Rubbish!</a></li>
+			              <li><a href="#">Poor</a></li>
+			              <li><a href="#">Average</a></li>
+			              <li><a href="#">Good</a></li>
+			              <li><a href="#">Sublime!</a></li>
+								  </ul>
+								</div>
+			          <label class="email-help" for="loginEmailAddress"></label>
+			        </div>
+			      </div>
+		      @endforeach
+
+		      <div class="form-group">
+		        <div class="col-sm-12">
+		          <input id="login-btn" type="submit" value="Submit My Ratings" class="btn login-btn btn-primary pull-right">
+		        </div>
+		      </div>
+
+		    </form>
 			</div>
 		</div>
 
@@ -40,18 +84,13 @@
 	</div>
 @stop
 
-@section('modals')
-	@include('modals/rate-player')
-@stop
-
 @section('js')
 	<script>
-    $(document).ready(function(){
-    	$('#ratePlayer').click(function(e){
-    		e.preventDefault();
-
-    		$('.modal').modal('show');
-    	})
-    });
-  </script>
+		$(function(){
+			$('.dropdown-menu li').click(function(e){
+				e.preventDefault();
+				$('.selected-rating').text($(e.target).text());
+			});
+		});
+	</script>
 @stop

@@ -8,40 +8,9 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{ URL::to('/') }}">Newport County A.F.C.</a>
+        <a class="navbar-brand" href="{{ URL::to('/') }}">
+          <img src="/images/gator.jpg" alt="..." class="logo">
+          Ratings AggreGator
+        </a>
       </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class="active">
-          <li class="dropdown">
-            <a href="21" class="dropdown-toggle" data-toggle="dropdown">U21 <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="/u21/defender">Defenders</a></li>
-              <li><a href="/u21/midfielder">Midfielders</a></li>
-              <li><a href="/u21/striker">Strikers</a></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a href="u18" class="dropdown-toggle" data-toggle="dropdown">U18 <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="/u18/defender">Defenders</a></li>
-              <li><a href="/u18/midfielder">Midfielders</a></li>
-              <li><a href="/u18/striker">Strikers</a></li>
-            </ul>
-          </li>
-
-          <li class="dropdown">
-            <a href="16" class="dropdown-toggle" data-toggle="dropdown">U16 <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="/u16/defender">Defenders</a></li>
-              <li><a href="/u16/midfielder">Midfielders</a></li>
-              <li><a href="/u16/striker">Strikers</a></li>
-            </ul>
-          </li>
-
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
   </nav>

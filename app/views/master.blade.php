@@ -3,6 +3,7 @@
 	<head>
 		<title>Rating AggreGator</title>
 		{{ HTML::style("/css/bootstrap.min.css") }}
+		{{ HTML::style("/css/navbar.css") }}
 		@yield('style')	
 	</head>
 	<body>
