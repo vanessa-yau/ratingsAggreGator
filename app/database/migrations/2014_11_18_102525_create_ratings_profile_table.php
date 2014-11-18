@@ -15,7 +15,7 @@ class CreateRatingsProfileTable extends Migration {
 		 Schema::create('ratings_profile', function($table)
 	    {
 	        $table->increments('id');
-	        $table->string('name', 100);
+	        $table->string('position', 100);
 	        $table->integer('sport');
 	        $table->timestamps();
 	    });
