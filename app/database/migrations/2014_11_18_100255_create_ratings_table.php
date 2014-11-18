@@ -15,10 +15,11 @@ class CreateRatingsTable extends Migration {
 	    Schema::create('ratings', function($table)
 	    {
 	        $table->increments('id');
+	        $table->string('originating_ip', 15);
 	        $table->integer('player_id');
 	        $table->string('attribute', 100);
-	        $table->integer('game_id');
 	        $table->integer('value');
+	        $table->integer('game_id');
 	        $table->timestamps();
 	    });
 	}
