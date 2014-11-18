@@ -41,17 +41,6 @@
               <li><a href="/u16/striker">Strikers</a></li>
             </ul>
           </li>
-        
-          {--
-          <!-- search form -->
-          @include('layouts.searchPlayers.searchPlayer')
-          <!-- login form -->
-          <!-- Registration Button-->
-          @include('layouts.forms.registration-form')
-          <!-- login form -->
-          @include('layouts.forms.login-form')
-          <!-- login form -->
-          --}
 
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

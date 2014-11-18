@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <hmtl>
 	<head>
-		<title>The Perfect Wish</title>
+		<title>Rating AggreGator</title>
 		{{ HTML::style("/css/bootstrap.min.css") }}
-		@yield('style')
+		@yield('style')	
 	</head>
 	<body>
 		@include('navbar')
@@ -15,7 +15,7 @@
 		@yield('modals')
 
 		<!-- scripts -->
-		<script src="/js/jquery.min.js"></script>
+		<script src="/js/jquery.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
 		@yield('js')
 	</body>
