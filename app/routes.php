@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::post('/',  [
+    'as' => 'home',
+    'uses' => 'AttributeController@getAttributes'
+]);
