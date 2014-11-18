@@ -136,14 +136,13 @@
 
 			$('#submit-ratings-btn').click(function(e){
 				e.preventDefault();
-				if( $('.selected-rating').text() == 'Please select a rating ' ){
+				if( $('.skills').find('select').val() == "6" ){
 					alert('Please select a rating for all the categories.');
 				}
 				else{
 					$.ajax({
 						type: "POST",
 						url: $('#rate-player-form').attr('action')
-						dataType: 'json',
 						success: function(json){
 							alert('Thanks for rating!');
 						},
