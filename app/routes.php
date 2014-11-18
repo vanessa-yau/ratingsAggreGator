@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/',  [
+    'as' => 'home',
+    'uses' => 'AttributeController@getAttributes'
+]);
 
 Route::get('profile', function() {
 	return View::make('player-profile');
