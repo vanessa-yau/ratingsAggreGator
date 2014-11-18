@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGameTable extends Migration {
+class CreateAttributesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,10 @@ class CreateGameTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('game', function($table)
+		Schema::create('attributes', function($table)
 	    {
 	        $table->increments('id');
-	        $table->string('team1', 100);
-	        $table->string('team2', 100);
-	        $table->date('date');
+	        $table->string('skill', 100);
 	        $table->timestamps();
 	    });
 	}
@@ -29,7 +27,7 @@ class CreateGameTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('game');
+		Schema::drop('attributes');
 	}
 
 }

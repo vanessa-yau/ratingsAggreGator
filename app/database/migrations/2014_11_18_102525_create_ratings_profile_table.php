@@ -28,7 +28,7 @@ class CreateRatingsProfileTable extends Migration {
 	 */
 	public function down()
 	{
-		Scheme::drop('ratings_profile');
+		Schema::drop('ratings_profile');
 	}
 
 }
