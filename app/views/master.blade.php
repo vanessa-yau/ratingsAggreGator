@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <hmtl>
 	<head>
-		<title>Rating AggreGator</title>
+		<title>Ratings AggreGator</title>
 		{{ HTML::style("/css/bootstrap.min.css") }}
 		{{ HTML::style("/css/navbar.css") }}
 		@yield('style')	

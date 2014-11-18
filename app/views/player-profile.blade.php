@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="col-md-3">
 				{{ HTML::image(
-		  		'/images/Koala.jpg',	
+		  		'/images/profile_images/gerrard_steven.jpg',	
 		  		'image not found', ['class' => 'profile-img']) 
 		  	}}
 			</div>
@@ -26,47 +26,84 @@
 		<!-- ratings form -->
 		<div class="row well">
 			<div class="col-md-12">
-				<div class="h4">RATE THIS PLAYER</div>
+				<h4>RATE THIS PLAYER</h4>
+				
 				<form 
 		      class="form-horizontal" 
 		      id="rate-player-form"
 		      role="form"
 		      method="POST" 
-		      action=""
+		      action="{{ URL::route('players.store') }}"
 		      novalidate
 		    >
-		    	<!-- different attributes to rate a player on -->
-		    	@foreach( $attributes as $attr )
-			    	<div class="form-group">
-			        <label for="{{{ $attr }}}" class="col-sm-2 control-label">{{{ $attr }}}</label>
+		    	<div class="row">
+		    		<h4>Match info</h4>
+						
+						<!-- enter/select match -->
+						<div class="form-group match">
+			        <!-- select teams -->
 			        <div class="col-sm-10">
+			        	<input 
+			        		id="team_1" 
+			        		type="text" 
+			        		name="team_1" 
+			        		placeholder="Enter a team" 
+			        		class="pull-right"
+			        	>
+								
+								<p> vs </p>
+								
+								<input 
+			        		id="team_2" 
+			        		type="text" 
+			        		name="team_2" 
+			        		placeholder="Enter a team" 
+			        		class="pull-left"
+			        	>
+							</div>
 
-								<div class="btn-group">
-									<button 
-						  			type="button" 
-						  			class="btn btn-primary dropdown-toggle attr-selection {{{ $attr }}}" 
-						  			data-toggle="dropdown"
-						  		>
-						  			<i class="selected-rating">Please select a rating </i>
-										<span class="caret"></span>
-										<span class="sr-only">Toggle Dropdown</span>
-									</button>
-								  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-								  	<li><a href="#">Rubbish!</a></li>
-			              <li><a href="#">Poor</a></li>
-			              <li><a href="#">Average</a></li>
-			              <li><a href="#">Good</a></li>
-			              <li><a href="#">Sublime!</a></li>
-								  </ul>
-								</div>
-			          <label class="email-help" for="loginEmailAddress"></label>
-			        </div>
+							<!-- select match date -->
+							<input 
+								id="match_date"
+								name="match_date"
+								type="datetime"
+								placeholder="Enter a date"
+								class="form-control datepicker"
+							>
 			      </div>
-		      @endforeach
+		    	</div>
 
-		      <div class="form-group">
+					<div class="row skills">
+						<!-- different attributes to rate a player on -->
+			    	@foreach( $attributes as $attr )
+				    	<div class="form-group">
+				        <label for="{{{ $attr }}}" class="col-sm-2 control-label">{{{ $attr }}}</label>
+				        
+				        <div class="col-sm-10">
+								 	<select name="{{{ $attr }}}" id="{{ $attr }}">
+								 		<option value="6">Please select</option>
+								 		<option value="1">Rubbish!</option>
+								 		<option value="2">Poor</option>
+								 		<option value="3">Average</option>
+								 		<option value="4">Good</option>
+								 		<option value="5">Sublime!</option>
+								 	</select>
+								</div>
+
+				      </div>
+			      @endforeach
+					</div>
+
+					<input type="hidden" id="player_id" value="1">
+
+					<div class="form-group">
 		        <div class="col-sm-12">
-		          <input id="login-btn" type="submit" value="Submit My Ratings" class="btn login-btn btn-primary pull-right">
+		          <input 
+		          	id="submit-ratings-btn" 
+		          	type="submit" 
+		          	value="Submit My Ratings" 
+		          	class="btn login-btn btn-primary pull-right"
+		          >
 		        </div>
 		      </div>
 
@@ -85,11 +122,36 @@
 @stop
 
 @section('js')
+	<script src="/js/jquery-ui.js"></script>
 	<script>
 		$(function(){
 			$('.dropdown-menu li').click(function(e){
 				e.preventDefault();
-				$('.selected-rating').text($(e.target).text());
+				$this = $(e.target);
+				$this
+					.parents('.btn-group')
+					.find('.selected-rating')
+					.text($this.text());
+			});
+
+			$('#submit-ratings-btn').click(function(e){
+				e.preventDefault();
+				if( $('.selected-rating').text() == 'Please select a rating ' ){
+					alert('Please select a rating for all the categories.');
+				}
+				else{
+					$.ajax({
+						type: "POST",
+						url: $('#rate-player-form').attr('action')
+						dataType: 'json',
+						success: function(json){
+							alert('Thanks for rating!');
+						},
+						error: function(e){
+							console.log(e);
+						}
+					});
+				}
 			});
 		});
 	</script>
