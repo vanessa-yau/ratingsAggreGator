@@ -19,3 +19,10 @@ Route::get('/',  [
 Route::get('profile', function() {
 	return View::make('player-profile');
 });
+
+Route::get('player/{id}/img', 
+	[
+		"uses" => "PlayerController@getImg",
+		"as" => "player.image"
+	]
+);

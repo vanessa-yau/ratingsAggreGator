@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="col-md-3">
 				{{ HTML::image(
-		  		'/images/Koala.jpg',	
+		  		'{{ URL::route('player.image', $player->id) }}',	
 		  		'image not found', ['class' => 'profile-img']) 
 		  	}}
 			</div>
