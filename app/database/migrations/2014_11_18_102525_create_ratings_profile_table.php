@@ -16,7 +16,7 @@ class CreateRatingsProfileTable extends Migration {
 	    {
 	        $table->increments('id');
 	        $table->string('name', 100);
-	        $table->string('sport', 100);
+	        $table->integer('sport');
 	        $table->timestamps();
 	    });
 	}
