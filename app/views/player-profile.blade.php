@@ -44,7 +44,7 @@
 								<div class="btn-group">
 									<button 
 						  			type="button" 
-						  			class="btn btn-primary dropdown-toggle attr-selection {{{ $attr }}}" 
+						  			class="btn btn-primary dropdown-toggle rating-selection {{{ $attr }}}" 
 						  			data-toggle="dropdown"
 						  		>
 						  			<i class="selected-rating">Please select a rating </i>
@@ -89,7 +89,11 @@
 		$(function(){
 			$('.dropdown-menu li').click(function(e){
 				e.preventDefault();
-				$('.selected-rating').text($(e.target).text());
+				$this = $(e.target);
+				$this
+					.parents('.btn-group')
+					.find('.rating-selection i')
+					.text($this.text());
 			});
 		});
 	</script>
