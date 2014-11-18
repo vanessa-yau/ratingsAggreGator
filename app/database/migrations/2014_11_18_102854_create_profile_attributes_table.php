@@ -15,8 +15,7 @@ class CreateProfileAttributesTable extends Migration {
 		 Schema::create('profile_attributes', function($table)
 	    {
 	        $table->increments('id');
-	        $table->integer('rating');
-	        $table->integer('profile');
+	        $table->integer('rating_profile');
 	        $table->integer('attributes');
 	        $table->timestamps();
 	    });
