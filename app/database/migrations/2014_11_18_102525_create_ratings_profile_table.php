@@ -12,7 +12,7 @@ class CreateRatingsProfileTable extends Migration {
 	 */
 	public function up()
 	{
-		 Schema::create('ratings-profile', function($table)
+		 Schema::create('ratings_profile', function($table)
 	    {
 	        $table->increments('id');
 	        $table->string('name', 100);

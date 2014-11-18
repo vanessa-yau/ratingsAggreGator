@@ -12,10 +12,10 @@ class CreateSportsTable extends Migration {
 	 */
 	public function up()
 	{
-	    Schema::create('ratings', function($table)
+	    Schema::create('sports', function($table)
 	    {
 	        $table->increments('id');
-	        $table->string('name', 100)
+	        $table->string('name', 100);
 	        $table->timestamps();
 	    });
 	}

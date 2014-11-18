@@ -12,7 +12,7 @@ class CreateGamePlayersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('game-players', function($table)
+		Schema::create('game_players', function($table)
 	    {
 	        $table->increments('id');
 	        $table->integer('game_id');
@@ -28,7 +28,7 @@ class CreateGamePlayersTable extends Migration {
 	 */
 	public function down()
 	{
-		Scheme::drop('game-players');
+		Scheme::drop('game_players');
 	}
 
 }
