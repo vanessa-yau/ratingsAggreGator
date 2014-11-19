@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddRememberTokenColumn extends Migration {
+class RemoveImgPathColumnFromPlayers extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,9 @@ class AddRememberTokenColumn extends Migration {
 	 */
 	public function up()
 	{
-		//
-		Schema::table('users', function($table)
+		Schema::table('players', function($table)
 		{
-		    $table->string('remember_token', 100);
+	    $table->dropColumn('profile_image_path');
 		});
 	}
 
@@ -26,7 +25,7 @@ class AddRememberTokenColumn extends Migration {
 	 */
 	public function down()
 	{
-		$table->dropColumn('remember_token');
+	  $table->string('profile_image_path');
 	}
 
 }
