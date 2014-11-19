@@ -11,7 +11,6 @@
       <span class="sr-only">Close</span>
     </button>
 	  <strong id="message-type"></strong>
-    <i>$message</i>
     <span id="message-text"></span>
 	</div>
 
@@ -67,7 +66,7 @@
             <!-- select match date,
             to be replaced by interactive calendar 
             -->
-              <input 
+            	<input 
                 id="match_date"
                 name="match_date"
                 type="datetime"
