@@ -12,8 +12,7 @@
 */
 
 Route::get('/',  [
-    'as' => 'home',
-    'uses' => 'AttributeController@getAttributes'
+    'as' => 'home'
 ]);
 
 Route::get('profile', function() {
@@ -21,3 +20,10 @@ Route::get('profile', function() {
 });
 
 Route::resource('players', 'PlayerController');
+
+Route::resource('ratings', 'RatingController');
+
+Route::get('player/{id}', [
+	"as" => "player.profile",
+	"uses" => "PlayerController@show"
+]);

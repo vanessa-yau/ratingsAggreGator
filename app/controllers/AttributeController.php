@@ -84,8 +84,7 @@ class AttributeController extends \BaseController {
 
 	public function getAttributes() {
 		$attributes = Attribute::getAttributesArray();
-
-		return View::make('player-profile', compact('attributes'));
+		return $attributes;
 	}
 
 

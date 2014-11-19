@@ -31,7 +31,46 @@ class RatingController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		// get player info inputs from form
+		$playerData = Input::only(
+			'player_id'
+		);
+
+		// get user submitted ratings.
+		$ratingsData = Input::only(
+			'shooting',
+			'passing',
+			'dribbling',
+			'speed',
+			'tackling'
+		);
+
+		// validate inputs
+        $validator = Validator::make($ratingsData, [
+            'shooting' => 'required|numeric|digits_between:1,5',
+            'passing'  => 'required|numeric|digits_between:1,5',
+            'dribbling'  => 'required|numeric|digits_between:1,5',
+            'speed'  => 'required|numeric|digits_between:1,5',
+            'tackling'  => 'required|numeric|digits_between:1,5'
+        ]);
+
+        // if validation passes, run query to insert and return newly created rating.
+        if ($validator->fails()) {
+            return Response::json( $validator->messages(), 400);
+        } else {
+        	$ratingsArray = [];
+        	foreach ($ratingsData as $skill => $value) {
+	            $rating = DB::table('ratings')->insert([
+		            'originating_ip'     => $_SERVER['REMOTE_ADDR'],
+		            'player_id'     => $playerData['player_id'],
+		            'attribute' => $skill,
+		            'value' => $value,
+		            'game_id' => 1
+		        ]);
+		        array_push($ratingsArray, $rating);
+        	}
+        	return $ratingsArray;
+        }
 	}
 
 
