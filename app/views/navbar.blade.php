@@ -24,7 +24,7 @@
                 >
                     <input name="username" type="text" placeholder="username">
                     <input name="password" type="password" placeholder="password">
-                    <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-user"></i>Login</button>
+                    <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-user"></i> Login</button>
                 </form>
             </div>
         </div>

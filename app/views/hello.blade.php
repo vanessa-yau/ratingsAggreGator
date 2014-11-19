@@ -37,6 +37,8 @@
 	<div class="welcome">
 		<img src="/images/gator.jpg" alt="..." class="logo">
 		<h1>You have arrived.</h1>
+
+		{{ Hash::make("pass1") }}
 	</div>
 </body>
 </html>
