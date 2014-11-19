@@ -161,7 +161,6 @@
 						tackling 		:  $('.skills').find('#tackling').val()
 					},
 					success: function(json){
-						//alert('Thanks for rating!');
 						// display success message.
             var message = "Your rating has been submitted, Thanks!"
             showSuccessMessage(message);
