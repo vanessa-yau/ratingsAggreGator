@@ -22,6 +22,9 @@
     <div class="col-md-10">
       <?php $player = Player::find($id) ?>
       <p><strong>Name: </strong>{{ $player->name }}</p>
+      <p><strong>Nationality: </strong>{{ $player->nationality }}</p>
+      <p><strong>Height: </strong>{{ $player->height }}</p>
+      <p><strong>Weight: </strong>{{ $player->weight }}</p>
     </div>
 	</div>
 
