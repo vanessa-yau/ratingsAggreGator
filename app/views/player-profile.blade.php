@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-	<!-- dynamically populated response message -->
+  <!-- dynamically populated response message -->
   <div class="alert alert-dismissible" id="response-message" role="alert">
     <button type="button" class="close" >
       <span aria-hidden="true">&times;</span>
@@ -17,16 +17,13 @@
 
   <div class="row well">
     <div class="col-md-2"> 
-	  	<img id="profile-image" src="/images/profile_images/{{ $id }}.jpg" alt="Image of player">
+      <img id="profile-image" src="/images/profile_images/{{ $id }}.jpg" alt="Image of player">
     </div>
     <div class="col-md-10">
       <?php $player = Player::find($id) ?>
       <p><strong>Name: </strong>{{ $player->name }}</p>
-      <p><strong>Nationality: </strong>{{ $player->nationality }}</p>
-      <p><strong>Height: </strong>{{ $player->height }}</p>
-      <p><strong>Weight: </strong>{{ $player->weight }}</p>
     </div>
-	</div>
+  </div>
 
   <!-- ratings form -->
   <div class="row well">
@@ -72,7 +69,7 @@
             <!-- select match date,
             to be replaced by interactive calendar 
             -->
-            	<input 
+              <input 
                 id="match_date"
                 name="match_date"
                 type="datetime"
@@ -86,8 +83,7 @@
           <!-- different attributes to rate a player on -->
           @foreach( $attributes as $attr )
             <div class="form-group">
-              <label for="{{{ $attr }}}" class="col-sm-2 control-label">{{{ $attr }}}</label>
-              
+              <label>{{$attr}}</label>
               <div class="col-sm-10">
                 <select name="{{{ $attr }}}" id="{{ $attr }}">
                   <option value="3">Average</option>
@@ -120,14 +116,14 @@
 @stop
 
 @section('js')
-	<script src="/js/jquery-ui.js"></script>
-	<script>
-		// hide ajax response message ASAP.
+  <script src="/js/jquery-ui.js"></script>
+  <script>
+    // hide ajax response message ASAP.
         $('#response-message').hide();
 
-		$(function(){
+    $(function(){
 
-			// hide the response message when user clicks close button.
+      // hide the response message when user clicks close button.
       $('.alert .close').on('click', function(e) {
           $(this).parent().hide();
       });
@@ -154,29 +150,39 @@
           $('#response-message').show();
       }
 
-			$('#submit-ratings-btn').click(function(e){
-				e.preventDefault();
-				console.log(decodeURI("{{ URL::route('ratings.store') }}"));
+      $('#submit-ratings-btn').click(function(e){
+        e.preventDefault();
+        console.log(decodeURI("{{ URL::route('ratings.store') }}"));
 
-				$.ajax({
-					type: "POST",
-					//url: $('#rate-player-form').attr('action'),
-					url: decodeURI("{{ URL::route('ratings.store') }}"),
-					data: { 
-						player_id 	:  $('#player_id').val(),
-						shooting 		:  $('.skills').find('#shooting').val(),
-						passing 		:  $('.skills').find('#passing').val(),
-						dribbling 	:  $('.skills').find('#dribbling').val(),
-						speed 			:  $('.skills').find('#speed').val(),
-						tackling 		:  $('.skills').find('#tackling').val()
-					},
-					success: function(json){
-						// display success message.
+        $.ajax({
+          type: "POST",
+          //url: $('#rate-player-form').attr('action'),
+          url: decodeURI("{{ URL::route('ratings.store') }}"),
+          data: { 
+            player_id   :  $('#player_id').val(),
+            shooting    :  $('.skills').find('#shooting').val(),
+            passing     :  $('.skills').find('#passing').val(),
+            dribbling   :  $('.skills').find('#dribbling').val(),
+            speed       :  $('.skills').find('#speed').val(),
+            tackling    :  $('.skills').find('#tackling').val()
+          },
+          success: function(json){
+            // display success message.
             var message = "Your rating has been submitted, Thanks!"
             showSuccessMessage(message);
-					},
-					error: function(e){
-						// display error message.
+          },
+          error: function(e){
+            // display error message.
+            var responseText = $.parseJSON(e.responseText);
+            showErrorMessage(responseText);
+          }
+        }); // end of ajax request
+      }); // end of submit event handler
+
+    }); // end document function script
+  </script>
+@stop
+ display error message.
             var responseText = $.parseJSON(e.responseText);
             showErrorMessage(responseText);
 					}
