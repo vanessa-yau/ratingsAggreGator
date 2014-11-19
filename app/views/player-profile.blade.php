@@ -123,15 +123,6 @@
 	<script src="/js/jquery-ui.js"></script>
 	<script>
 		$(function(){
-			$('.dropdown-menu li').click(function(e){
-				e.preventDefault();
-				$this = $(e.target);
-				$this
-					.parents('.btn-group')
-					.find('.selected-rating')
-					.text($this.text());
-			});
-
 			$('#submit-ratings-btn').click(function(e){
 				e.preventDefault();
 				if( $('.skills').find('select').val() == "6" ){
