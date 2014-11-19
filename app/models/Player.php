@@ -9,7 +9,7 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
-	protected $fillable = array('id', 'name', 'created_at', 'updated_at');
+	protected $guarded = array('id');
 
 	/**
 	 * The database table used by the model.
