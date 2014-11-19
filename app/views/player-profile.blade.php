@@ -8,10 +8,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3">
-				{{ HTML::image(
-		  		'/images/profile_images/gerrard_steven.jpg',	
-		  		'image not found', ['class' => 'profile-img']) 
-		  	}}
+		  		<img src="{{ URL::route('player.image', 1) }}" alt="Image of player">
 			</div>
 		</div>
 

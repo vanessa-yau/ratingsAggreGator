@@ -21,3 +21,10 @@ Route::get('profile', function() {
 });
 
 Route::resource('players', 'PlayerController');
+
+Route::get('player/{id}/img', 
+	[
+		"uses" => "PlayerController@getImg",
+		"as" => "player.image"
+	]
+);

@@ -118,5 +118,17 @@ class PlayerController extends \BaseController {
 		//
 	}
 
+	// Method to serve the image relating to the sports player
+	public function getImg($id) {
+		$player = Player::find($id);
+
+		return Response::make(
+			File::get($player->profile_image_path), 	// the bytes read from the PDF
+			200, 						// the HTTP status code
+			['Content-Type' => 'image/jpg']  // an array of HTTP headers - cause the browser to interpret the file as jpg
+			);
+
+	}
+
 
 }
