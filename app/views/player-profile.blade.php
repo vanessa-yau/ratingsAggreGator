@@ -6,9 +6,15 @@
 
 @section('content')
 	<div class="container">
+		<!-- dynamically populated response message -->
+		<div class="alert alert-dismissible" id="response-message" role="alert">
+		  <button type="button" class="close" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		  <strong id="message-type"></strong><span id="message-text"></span>
+		</div>
+
 		<div class="row">
 			<div class="col-md-3">
-		  		<img src="{{ URL::route('player.image', 1) }}" alt="Image of player">
+		  		<img src="/images/profile_images/{{ $id }}.jpg" alt="Image of player">
 			</div>
 		</div>
 
@@ -30,11 +36,12 @@
 		      id="rate-player-form"
 		      role="form"
 		      method="POST" 
-		      action="{{ URL::route('players.store') }}"
+		      action="{{ URL::route('ratings.store') }}"
 		      novalidate
 		    >
 		    	<div class="row">
-		    		<input type="hidden" name="player_id" value="1">
+		    		<!-- pass player id to controller for storage. -->
+		    		<input type="hidden" name="player_id" value="{{ $id }}">
 		    		
 		    		<h4>Match info</h4>
 						
@@ -92,7 +99,6 @@
 				      </div>
 			      @endforeach
 					</div>
-					<input type="hidden" id="player_id" value="1">
 
 					<div class="form-group">
 		        <div class="col-sm-12">
@@ -122,7 +128,37 @@
 @section('js')
 	<script src="/js/jquery-ui.js"></script>
 	<script>
+		// hide ajax response message ASAP.
+        $('#response-message').hide();
+
 		$(function(){
+			// hide the response message when user clicks close button.
+            $('.alert .close').on('click', function(e) {
+                $(this).parent().hide();
+            });
+
+			// function to show error response message.
+            function showErrorMessage(error){
+                $('#response-message').removeClass();
+                $('#response-message').addClass('alert alert-dismissible alert-danger');
+                $('#message-type').text('Error: ');
+                var message = "";
+                for (var key in error) {
+                    message += ("<p>" + error[key] + "</p>");
+                };
+                $('#message-text').html(message);
+                $('#response-message').show();
+            }
+
+            // function to show success response message.
+            function showSuccessMessage(message) {
+                $('#response-message').removeClass();
+                $('#response-message').addClass('alert alert-dismissible alert-success');
+                $('#message-type').text('Success: ');
+                $('#message-text').html(message);
+                $('#response-message').show();
+            }
+
 			$('#submit-ratings-btn').click(function(e){
 				e.preventDefault();
 				if( $('.skills').find('select').val() == "6" ){
@@ -131,12 +167,18 @@
 				else{
 					$.ajax({
 						type: "POST",
-						url: $('#rate-player-form').attr('action')
+						url: $('#rate-player-form').attr('action'),
 						success: function(json){
-							alert('Thanks for rating!');
+							//alert('Thanks for rating!');
+							// display success message.
+	                        var message = "Your rating has been submitted, Thanks!"
+	                        showSuccessMessage(message);
 						},
 						error: function(e){
 							console.log(e);
+							// display error message.
+	                        var responseText = $.parseJSON(e.responseText);
+	                        showErrorMessage(responseText);
 						}
 					});
 				}
