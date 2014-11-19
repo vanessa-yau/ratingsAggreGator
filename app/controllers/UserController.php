@@ -86,11 +86,12 @@ class UserController extends \BaseController {
 	{
 		$values = Input::only('username','password');
 		
-		Auth::attempt([
+		return( Auth::attempt([
 			'username'=>$values['username'],
 			'password'=>$values['password']
-		]);
-
-		return $this->index();
+		]) 
+			? Redirect::back()
+			: 'auth fails'
+		);
 	}
 }

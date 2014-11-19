@@ -20,10 +20,15 @@ Route::get('profile', function() {
 	return View::make('player-profile');
 });
 
-// Auto generate all CRUD routes to your model controller
+// Auto generate all CRUD routes to your controllers
 Route::resource('players', 'PlayerController');
 
 Route::resource('ratings', 'RatingController');
+
+Route::post('login', [
+	'as' => 'user.login',
+	'uses' => 'UserController@login'
+]);
 
 Route::get('player/{id}', [
 	"as" => "player.profile",

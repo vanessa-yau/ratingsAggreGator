@@ -12,5 +12,21 @@
           <img src="/images/gator.jpg" alt="..." class="logo">
           Ratings AggreGator
         </a>
+
+        <div class="pull-right">
+            <p>{{ Auth::check() }}</p>
+            <div class="form-group">
+                <form 
+                    id="login-form"
+                    role="form"
+                    method="POST" 
+                    action="{{ URL::route('user.login') }}"
+                >
+                    <input name="username" type="text" placeholder="username">
+                    <input name="password" type="password" placeholder="password">
+                    <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-user"></i>Login</button>
+                </form>
+            </div>
+        </div>
       </div>
   </nav>

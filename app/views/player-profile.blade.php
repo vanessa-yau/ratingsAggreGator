@@ -6,8 +6,13 @@
 
 @section('content')
 	<div class="alert alert-dismissible" id="response-message" role="alert">
-	  <button type="button" class="close" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	  <strong id="message-type"></strong><span id="message-text"></span>
+	  <button type="button" class="close" >
+      <span aria-hidden="true">&times;</span>
+      <span class="sr-only">Close</span>
+    </button>
+	  <strong id="message-type"></strong>
+    <i>$message</i>
+    <span id="message-text"></span>
 	</div>
 
   <div class="row well">
