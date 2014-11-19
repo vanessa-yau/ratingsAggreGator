@@ -29,8 +29,3 @@ Route::post('login', [
 	'as' => 'user.login',
 	'uses' => 'UserController@login'
 ]);
-
-Route::get('player/{id}', [
-	"as" => "player.profile",
-	"uses" => "PlayerController@show"
-]);
