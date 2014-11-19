@@ -25,7 +25,15 @@ Route::resource('players', 'PlayerController');
 
 Route::resource('ratings', 'RatingController');
 
+Route::resource('users', 'UserController');
+
 Route::post('login', [
-	'as' => 'user.login',
+	'as' => 'users.login',
 	'uses' => 'UserController@login'
 ]);
+
+Route::post('logout', [
+	'as' => 'users.logout',
+	'uses' => 'UserController@logout'
+]);
+

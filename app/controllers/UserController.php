@@ -91,7 +91,13 @@ class UserController extends \BaseController {
 			'password'=>$values['password']
 		]) 
 			? Redirect::back()
-			: 'auth fails'
+			: Redirect::back()->with('message', 'Authentication failed, bad username or password.')
 		);
+	}
+
+	public function logout()
+	{
+		Auth::logout();
+		return Redirect::back();
 	}
 }
