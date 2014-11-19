@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RemoveImgPathColumnFromPlayers extends Migration {
+class AddPlayerInfoColumnsToPlayerTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -14,7 +14,10 @@ class RemoveImgPathColumnFromPlayers extends Migration {
 	{
 		Schema::table('players', function($table)
 		{
-		    $table->dropColumn('profile_image_path');
+		    $table->string('nationality');
+		    $table->date('dob');
+		    $table->integer('height');
+		    $table->integer('weight');
 		});
 	}
 
@@ -25,7 +28,10 @@ class RemoveImgPathColumnFromPlayers extends Migration {
 	 */
 	public function down()
 	{
-	  $table->string('profile_image_path');
+	  $table->dropColumn('nationality');
+	  $table->dropColumn('dob');
+	  $table->dropColumn('height');
+	  $table->dropColumn('weight');
 	}
 
 }
