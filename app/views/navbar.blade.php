@@ -20,7 +20,7 @@
               id="logout-form"
               role="form"
               method="POST" 
-              action="{{ URL::route('users.logout') }}"
+              action="{{ URL::route('user.logout') }}"
           >
             <strong>Hello, {{ Auth::user()->username }}</strong>
             <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-user"></i> Logout</button>
@@ -32,7 +32,7 @@
               id="login-form"
               role="form"
               method="POST" 
-              action="{{ URL::route('users.login') }}"
+              action="{{ URL::route('user.login') }}"
           >
               <input name="username" type="text" placeholder="username">
               <input name="password" type="password" placeholder="password">

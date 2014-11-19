@@ -22,6 +22,9 @@
     <div class="col-md-10">
       <?php $player = Player::find($id) ?>
       <p><strong>Name: </strong>{{ $player->name }}</p>
+      <p><strong>Nationality: </strong>{{ $player->nationality }}</p>
+      <p><strong>Height: </strong>{{ $player->height }}</p>
+      <p><strong>Weight: </strong>{{ $player->weight }}</p>
     </div>
   </div>
 
@@ -34,7 +37,7 @@
           id="rate-player-form"
           role="form"
           method="POST" 
-          action="{{ URL::route('ratings.store') }}"
+          action="{{ URL::route('rating.store') }}"
           novalidate
         >
 
@@ -152,12 +155,12 @@
 
       $('#submit-ratings-btn').click(function(e){
         e.preventDefault();
-        console.log(decodeURI("{{ URL::route('ratings.store') }}"));
+        console.log(decodeURI("{{ URL::route('rating.store') }}"));
 
         $.ajax({
           type: "POST",
           //url: $('#rate-player-form').attr('action'),
-          url: decodeURI("{{ URL::route('ratings.store') }}"),
+          url: decodeURI("{{ URL::route('rating.store') }}"),
           data: { 
             player_id   :  $('#player_id').val(),
             shooting    :  $('.skills').find('#shooting').val(),
