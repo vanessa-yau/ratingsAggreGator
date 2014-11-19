@@ -5,22 +5,23 @@
 @stop
 
 @section('content')
-	<div class="alert alert-dismissible" id="response-message" role="alert">
-	  <button type="button" class="close" >
+	<!-- dynamically populated response message -->
+  <div class="alert alert-dismissible" id="response-message" role="alert">
+    <button type="button" class="close" >
       <span aria-hidden="true">&times;</span>
       <span class="sr-only">Close</span>
     </button>
-	  <strong id="message-type"></strong>
+    <strong id="message-type"></strong>
     <span id="message-text"></span>
-	</div>
+  </div>
 
   <div class="row well">
-		<!-- dynamically populated response message -->
-
-		<div class="col-md-12">
+    <div class="col-md-2"> 
 	  	<img id="profile-image" src="/images/profile_images/{{ $id }}.jpg" alt="Image of player">
+    </div>
+    <div class="col-md-10">
       <p><strong>Name: </strong>{{ Player::find($id)->name }}</p>
-		</div>
+    </div>
 	</div>
 
   <!-- ratings form -->
