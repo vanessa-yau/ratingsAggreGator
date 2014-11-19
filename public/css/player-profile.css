@@ -2,3 +2,9 @@
 	max-width: 150px;
 	max-height: 150px;
 }
+label {
+    float: left;
+    width: 150px;
+    text-align: right;
+    margin-right: 0.5em;
+}
