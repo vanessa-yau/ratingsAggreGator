@@ -18,7 +18,8 @@
 		<!-- dynamically populated response message -->
 
 		<div class="col-md-12">
-	  	<img src="/images/profile_images/{{ $id }}.jpg" alt="Image of player">
+	  	<img id="profile-image" src="/images/profile_images/{{ $id }}.jpg" alt="Image of player">
+      <p><strong>Name: </strong>{{ Player::find($id)->name }}</p>
 		</div>
 	</div>
 

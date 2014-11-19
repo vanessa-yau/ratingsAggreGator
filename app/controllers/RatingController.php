@@ -65,7 +65,9 @@ class RatingController extends \BaseController {
 		            'player_id'     => $playerData['player_id'],
 		            'attribute' => $skill,
 		            'value' => $value,
-		            'game_id' => 1
+		            'game_id' => 1,
+		            'created_at' => new DateTime,
+		            'updated_at' => new DateTime
 		        ]);
 		        array_push($ratingsArray, $rating);
         	}
