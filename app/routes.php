@@ -12,7 +12,8 @@
 */
 
 Route::get('/',  [
-    'as' => 'home'
+    'as' => 'home',
+    'uses' => 'HomeController@index'
 ]);
 
 Route::get('profile', function() {
