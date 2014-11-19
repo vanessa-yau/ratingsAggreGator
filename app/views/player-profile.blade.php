@@ -20,7 +20,8 @@
 	  	<img id="profile-image" src="/images/profile_images/{{ $id }}.jpg" alt="Image of player">
     </div>
     <div class="col-md-10">
-      <p><strong>Name: </strong>{{ Player::find($id)->name }}</p>
+      <?php $player = Player::find($id) ?>
+      <p><strong>Name: </strong>{{ $player->name }}</p>
     </div>
 	</div>
 
