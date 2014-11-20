@@ -18,4 +18,8 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $table = 'players';
 
+    public function ratings() {
+        return $this->hasMany('Rating');
+    }
+
 }
