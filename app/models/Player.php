@@ -18,26 +18,63 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $table = 'players';
 
-<<<<<<< HEAD
     public function ratings() {
         return $this->hasMany('Rating');
     }
-=======
+
+    public function rate($attribute = null) {
+    	return $attribute
+    		? $this
+    			->ratings()
+    			->whereAttribute($attribute)
+    			->avg('value')
+    		: $this
+    			->ratings()
+    			->avg('value');
+    }
+
+    public function getRatedAttributes() {
+    	return $this
+    		->ratings()
+    		->distinct('attribute')
+    		->orderBy('attribute')
+    		->get(['attribute']);
+    }
+
+    public function getRatedAttributesAsArray() {
+    	$atts = $this->getRatedAttributes();
+    	$attributesArray = [];
+    	foreach ($atts as $att) {
+    		$attributesArray[] = $att->attribute;
+    	}
+
+    	return $attributesArray;
+    }
+
+    public function getRatingSummary() {
+    	$ratedAttributes = $this->getRatedAttributesAsArray();
+
+		$averages = [];
+		foreach ($ratedAttributes as $attribute) {
+			$averages[$attribute] = $this->rate($attribute);
+		}
+
+		return $averages;
+    }
+
+
 	public static function search($searchQuery) {
 
 		$criteria = preg_split("/[\s,]+/", $searchQuery);
 		
-		$query = DB::table('players');
+		
+		$query = Player::query();
 
 		foreach($criteria as $criterion)
 		{	
-			$query=$query->orWhere('name', 'LIKE', '%'. $criterion .'%');
-			$query=$query->orWhere('name', 'LIKE', '%'. $criterion .'%');
-
+			$query->orWhere('name', 'LIKE', '%' . $criterion .'%');
 		}    
 		return $query->get();
 			
 	}
->>>>>>> 3cbb328bd1937f14d8f69ee41635f70f65ee44d5
-
 }

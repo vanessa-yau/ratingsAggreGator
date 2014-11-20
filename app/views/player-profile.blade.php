@@ -5,6 +5,13 @@
 @stop
 
 @section('content')
+
+    <ul>
+        @foreach($player->getRatingSummary() as $name => $stat)
+            <li>{{{ $name }}} : {{ $stat }}</li>
+        @endforeach
+    </ul>
+
     <!-- dynamically populated response message -->
     <div class="alert alert-dismissible" id="response-message" role="alert">
         <button type="button" class="close" >

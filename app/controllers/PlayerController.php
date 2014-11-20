@@ -44,10 +44,10 @@ class PlayerController extends \BaseController {
 	public function show($id)
 	{
 		$player = Player::find($id);
-		// find all previous ratings for that player in the ratings table.  Uses Laravel magic methods.
-		$ratings = Rating::playerId($id)->get();
+		
+
 		$attributes = ['shooting', 'passing', 'dribbling', 'speed', 'tackling'];
-		return View::make('player-profile', compact('attributes', 'player', 'ratings' ));
+		return View::make('player-profile', compact('attributes', 'player' ));
 	}
 
 
