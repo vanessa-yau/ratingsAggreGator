@@ -37,3 +37,11 @@ Route::post('logout', [
 	'uses' => 'UserController@logout'
 ]);
 
+Route::post(
+    'players/search',
+    array(
+        'as' => 'players.search',
+        'uses' => 'PlayerController@search'
+    )
+);
+

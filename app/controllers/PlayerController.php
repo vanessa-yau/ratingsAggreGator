@@ -84,4 +84,22 @@ class PlayerController extends \BaseController {
 		//
 	}
 
+	/**
+	 * Find all players whose name matches a specific search query
+	 *
+	 * 
+	 * @return Response
+	 *
+	 */
+	public function search() {
+
+		//Retrieve user input
+		$searchQuery = Input::get('search-box');
+
+		//Call the search function in the Player model
+		$results = Player::search($searchQuery);
+
+		return View::make('searchResults', compact('results'));
+		//return $results;
+	}
 }
