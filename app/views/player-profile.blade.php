@@ -37,7 +37,7 @@
           id="rate-player-form"
           role="form"
           method="POST" 
-          action="{{ URL::route('rating.store') }}"
+          action="{{ URL::route('ratings.store') }}"
           novalidate
         >
 
@@ -155,12 +155,12 @@
 
       $('#submit-ratings-btn').click(function(e){
         e.preventDefault();
-        console.log(decodeURI("{{ URL::route('rating.store') }}"));
+        console.log(decodeURI("{{ URL::route('ratings.store') }}"));
 
         $.ajax({
           type: "POST",
           //url: $('#rate-player-form').attr('action'),
-          url: decodeURI("{{ URL::route('rating.store') }}"),
+          url: decodeURI("{{ URL::route('ratings.store') }}"),
           data: { 
             player_id   :  $('#player_id').val(),
             shooting    :  $('.skills').find('#shooting').val(),

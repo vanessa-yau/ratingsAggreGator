@@ -21,19 +21,19 @@ Route::get('profile', function() {
 });
 
 // Auto generate all CRUD routes to your controllers
-Route::resource('player', 'PlayerController');
+Route::resource('players', 'PlayerController');
 
-Route::resource('rating', 'RatingController');
+Route::resource('ratings', 'RatingController');
 
-Route::resource('user', 'UserController');
+Route::resource('users', 'UserController');
 
 Route::post('login', [
-	'as' => 'user.login',
+	'as' => 'users.login',
 	'uses' => 'UserController@login'
 ]);
 
 Route::post('logout', [
-	'as' => 'user.logout',
+	'as' => 'users.logout',
 	'uses' => 'UserController@logout'
 ]);
 
