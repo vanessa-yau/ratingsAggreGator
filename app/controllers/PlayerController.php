@@ -45,7 +45,6 @@ class PlayerController extends \BaseController {
 	{
 		$player = Player::find($id);
 		
-
 		$attributes = ['shooting', 'passing', 'dribbling', 'speed', 'tackling'];
 		return View::make('player-profile', compact('attributes', 'player' ));
 	}

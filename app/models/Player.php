@@ -33,6 +33,19 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
     			->avg('value');
     }
 
+    public function ratePerGame($attribute = null, $game_id) {
+    	return $attribute
+    		? $this
+    			->ratings()
+    			->whereAttribute($attribute)
+    			->whereGameId($game_id)
+    			->avg('value')
+    		: $this
+    			->ratings()
+    			->whereGameId($game_id)
+    			->avg('value');
+    }
+
     public function getRatedAttributes() {
     	return $this
     		->ratings()
@@ -68,13 +81,12 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 		$criteria = preg_split("/[\s,]+/", $searchQuery);
 		
 		
-		$query = Player::query();
+		$query = players::query();
 
 		foreach($criteria as $criterion)
 		{	
 			$query->orWhere('name', 'LIKE', '%' . $criterion .'%');
 		}    
-		return $query->get();
-			
+		return $query->get();	
 	}
 }
