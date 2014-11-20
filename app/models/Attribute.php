@@ -16,8 +16,5 @@ class Attribute extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $table = 'attributes';
 
-	public static function getAttributesArray (){
-        return ['shooting', 'passing', 'dribbling', 'speed', 'tackling'];
-    }
-
+	protected $guarded = array('id');
 }
