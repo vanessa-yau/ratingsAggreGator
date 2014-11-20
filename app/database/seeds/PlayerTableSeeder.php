@@ -16,7 +16,7 @@ class PlayerTableSeeder extends Seeder {
                 'created_at' => new DateTime,
                 'updated_at' => new DateTime,
                 'image_url' => '/images/profile_images/1.jpg'
-        );
+        ));
  
     }
 }

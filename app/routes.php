@@ -21,6 +21,8 @@ Route::get('profile', function() {
 });
 
 // Auto generate all CRUD routes to your controllers
+Route::resource('attributes', 'AttributeController');
+
 Route::resource('players', 'PlayerController');
 
 Route::resource('ratings', 'RatingController');
