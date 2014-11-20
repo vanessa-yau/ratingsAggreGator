@@ -4,7 +4,7 @@ class UserTableSeeder extends Seeder {
     public function run()
     {
         //Delete table content
-        DB::table('users')->delete();
+        DB::table('users')->truncate();
 
         //Create new user
         User::create(array(

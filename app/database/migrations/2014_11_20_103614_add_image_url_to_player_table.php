@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RemoveImgPathColumnFromPlayers extends Migration {
+class AddImageUrlToPlayerTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -14,7 +14,7 @@ class RemoveImgPathColumnFromPlayers extends Migration {
 	{
 		Schema::table('players', function($table)
 		{
-		    $table->dropColumn('profile_image_path');
+		    $table->string('image_url');
 		});
 	}
 
@@ -25,9 +25,9 @@ class RemoveImgPathColumnFromPlayers extends Migration {
 	 */
 	public function down()
 	{
-	  Schema::table('players', function($table)
+		Schema::table('players', function($table)
 		{
-			$table->string('profile_image_path');
+		    $table->dropColumn('image_url');
 		});
 	}
 

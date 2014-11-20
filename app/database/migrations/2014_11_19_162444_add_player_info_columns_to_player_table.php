@@ -28,10 +28,13 @@ class AddPlayerInfoColumnsToPlayerTable extends Migration {
 	 */
 	public function down()
 	{
-	  $table->dropColumn('nationality');
-	  $table->dropColumn('dob');
-	  $table->dropColumn('height');
-	  $table->dropColumn('weight');
+	  Schema::table('players', function($table)
+		{
+		  $table->dropColumn('nationality');
+		  $table->dropColumn('dob');
+		  $table->dropColumn('height');
+		  $table->dropColumn('weight');
+		});
 	}
 
 }
