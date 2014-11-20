@@ -12,6 +12,18 @@
         <img src="/images/gator.jpg" alt="..." class="logo">
         Ratings AggreGator
       </a>
+
+      <form action ="{{ URL::route('players.search') }}" class="navbar-form navbar-left" role="search" style="max-width:47%" id="search-form" method="post">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Enter Player Name here" id="search-box">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit" id="search-button">&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;</button>
+            </span>
+          </div>
+        </div>
+      </form>
+
     </div>
     <div class="pull-right">
       @if(Auth::user())

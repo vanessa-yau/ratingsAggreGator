@@ -18,4 +18,20 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $table = 'players';
 
+	public static function search($searchQuery) {
+
+		$criteria = preg_split("/[\s,]+/", $searchQuery);
+		
+		$query = DB::table('players');
+
+		foreach($criteria as $criterion)
+		{	
+			$query=$query->orWhere('name', 'LIKE', '%'. $criterion .'%');
+			$query=$query->orWhere('name', 'LIKE', '%'. $criterion .'%');
+
+		}    
+		return $query->get();
+			
+	}
+
 }
