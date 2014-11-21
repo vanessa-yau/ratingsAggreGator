@@ -9,7 +9,7 @@ class DatabaseSeeder extends Seeder {
      */
     public function run()
     {
-        $this->call('AttributeTableSeeder');
+        $this->call('SkillTableSeeder');
         $this->call('PlayerTableSeeder');
         $this->call('SportTableSeeder');
         $this->call('UserTableSeeder');
