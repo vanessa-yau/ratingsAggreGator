@@ -19,7 +19,7 @@
         <h3>Player Information</h3>
         <div class="row">
             <div class="col-sm-2"> 
-                <img id="profile-image" src="{{{ $player->image_url }}}" alt="Image of player">
+                <p><img id="profile-image" src="{{{ $player->image_url }}}" alt="Image of player"></p>
             </div>
             <div class="col-sm-10">
                 <p><strong>Name: </strong>{{ $player->name }}</p>
