@@ -9,7 +9,7 @@ class SkillTableSeeder extends Seeder {
         //Insert new attributes listed below in alphabetic order
         // attributes for football
 
-        $skills = array(
+        $name = array(
             'agility',
             'composure',
             'dribbling',

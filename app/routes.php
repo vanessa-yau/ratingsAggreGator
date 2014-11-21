@@ -39,8 +39,8 @@ Route::post('logout', [
 	'uses' => 'UserController@logout'
 ]);
 
-Route::post(
-    'players/search',
+Route::get(
+    'search/{query}',
     array(
         'as' => 'players.search',
         'uses' => 'PlayerController@search'

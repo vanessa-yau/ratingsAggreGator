@@ -22,6 +22,10 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
         return $this->hasMany('Rating');
     }
 
+    public function getUrlAttribute() {
+        return URL::route('players.show', $this->id);
+    }
+
     public function rate($attribute = null) {
     	return $attribute
     		? $this
@@ -78,8 +82,7 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 
 	public static function search($searchQuery) {
 
-		$criteria = preg_split("/[\s,]+/", $searchQuery);
-		
+        $criteria = explode('+', $searchQuery);		
 		
 		$query = Player::orderBy('name');
 
@@ -87,6 +90,6 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 		{	
 			$query->orWhere('name', 'LIKE', '%' . $criterion .'%');
 		}    
-        return $query->get();
+        return $query->paginate(5);
 	}
 }
