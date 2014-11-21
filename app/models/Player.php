@@ -33,7 +33,7 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
     			->avg('value');
     }
 
-    public function ratePerGame($attribute = null, $game_id) {
+    public function ratePerGame($game_id, $attribute = null) {
     	return $attribute
     		? $this
     			->ratings()
@@ -79,7 +79,6 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 	public static function search($searchQuery) {
 
 		$criteria = preg_split("/[\s,]+/", $searchQuery);
-		
 		
 		$query = Player::orderBy('name');
 
