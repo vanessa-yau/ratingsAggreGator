@@ -47,10 +47,10 @@ class RatingController extends \BaseController {
 
 		// validate inputs
         $validator = Validator::make($ratingsData, [
-            'shooting' => 'required|numeric|digits_between:1,5',
-            'passing'  => 'required|numeric|digits_between:1,5',
-            'dribbling'  => 'required|numeric|digits_between:1,5',
-            'speed'  => 'required|numeric|digits_between:1,5',
+            'shooting' 	=> 'required|numeric|digits_between:1,5',
+            'passing'  	=> 'required|numeric|digits_between:1,5',
+            'dribbling' => 'required|numeric|digits_between:1,5',
+            'speed'  	=> 'required|numeric|digits_between:1,5',
             'tackling'  => 'required|numeric|digits_between:1,5'
         ]);
 
@@ -58,20 +58,18 @@ class RatingController extends \BaseController {
         if ($validator->fails()) {
             return Response::json( $validator->messages(), 400);
         } else {
-        	$ratingsArray = [];
         	foreach ($ratingsData as $skill => $value) {
 	            $rating = DB::table('ratings')->insert([
-		            'originating_ip'     => $_SERVER['REMOTE_ADDR'],
-		            'player_id'     => $playerData['player_id'],
-		            'attribute' => $skill,
-		            'value' => $value,
-		            'game_id' => 1,
-		            'created_at' => new DateTime,
-		            'updated_at' => new DateTime
+		            'originating_ip'    => $_SERVER['REMOTE_ADDR'],
+		            'player_id'     	=> $playerData['player_id'],
+		            'attribute' 		=> $skill,
+		            'value' 			=> $value,
+		            'game_id' 			=> 1,
+		            'created_at' 		=> new DateTime,
+		            'updated_at' 		=> new DateTime
 		        ]);
-		        array_push($ratingsArray, $rating);
         	}
-        	return $ratingsArray;
+        	return Player::find($playerData['player_id'])->getRatingSummary();
         }
 	}
 
