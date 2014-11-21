@@ -152,6 +152,7 @@
                 // convert the string to number
                 var roundedStat = Number(roundedStat);
                 
+                // if statement adds approprate class to panels depending on value of skill.
                 if(roundedStat <= 2){
                     $(stats[stat]).removeClass().addClass('stat-panel panel status panel-danger');
                 } else if( 2 < roundedStat && roundedStat < 4){
@@ -162,7 +163,7 @@
             });
         }
 
-        // run stat colouring function.
+        // run stat colouring function on page load
         colourStatPanels();
         
         // hide the response message when user clicks close button.
@@ -212,7 +213,8 @@
                     // display success message.
                     var message = "Your rating has been submitted, Thanks!"
                     showSuccessMessage(message);
-                    $('.stat-panel').removeClass();
+                    
+                    // recolour panels if stats change averages.
                     colourStatPanels();
 
                     // reset all rating dropdowns to show 'Average' after submission.
