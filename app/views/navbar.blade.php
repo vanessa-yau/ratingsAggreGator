@@ -13,7 +13,7 @@
         Ratings AggreGator
       </a>
 
-      <form action ="{{ URL::route('players.search') }}" class="navbar-form navbar-left" role="search" style="max-width:100%" id="search-form" method="post">
+      <form action ="{{ URL::route('players.search') }}" class="navbar-form navbar-left" role="search" style="max-width:100%" id="search-form" method="get">
         <div class="form-group">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Enter Player Name here" id="search-box" name="search-box">

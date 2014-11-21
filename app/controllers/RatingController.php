@@ -36,7 +36,7 @@ class RatingController extends \BaseController {
 			'player_id'
 		);
 
-		// get user submitted ratings.
+		// get user submitted ratings. hard coded skills not good for other sports.
 		$ratingsData = Input::only(
 			'shooting',
 			'passing',

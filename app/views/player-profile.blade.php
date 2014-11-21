@@ -35,8 +35,8 @@
         <div class="row">
             @foreach($player->getRatingSummary() as $name => $stat)
                 <div class="col-xs-2">
-                    <div class="panel status panel-success">
-                        <div class="panel-heading" id="stat-value">
+                    <div class="stat-panel panel status">
+                        <div class="panel-heading stat-value" >
                             <h3 class="{{ $name }}">{{ round($stat, 1) }}/5</h3>
                         </div>
                         <div class="panel-body" id="stat-name">
@@ -141,7 +141,29 @@
     $('#response-message').hide();
 
     $(function(){
+        // when page is loaded, change colours of skill rating boxes as apt.
+        function colourStatPanels() {
+            var stats = $('.stat-value').children('h3');
+            $.each( stats, function(stat){
+                var stat = $(stats[stat]);
+                stat = stat.text();
+                stat = stat.substring(0, stat.length - 2);
+                stat = Number(stat);
+                console.log($(this));
 
+                if(stat <= 2){
+                    $(stats[stat]).parents('stat-panel').removeClass().addClass('stat-panel panel status panel-danger');
+                } else if( 2 < stat && stat < 4){
+                    $(stats[stat]).parents('stat-panel').removeClass().addClass('stat-panel panel status panel-warning');
+                } else {
+                    $(stats[stat]).parents('stat-panel').removeClass().addClass('stat-panel panel status panel-success');
+                }
+            });
+        }
+
+        // run stat colouring function.
+        colourStatPanels();
+        
         // hide the response message when user clicks close button.
         $('.alert .close').on('click', function(e) {
             $(this).parent().hide();
@@ -189,6 +211,8 @@
                     // display success message.
                     var message = "Your rating has been submitted, Thanks!"
                     showSuccessMessage(message);
+                    $('.stat-panel').removeClass();
+                    colourStatPanels();
 
                     // reset all rating dropdowns to show 'Average' after submission.
                     $('.skills').find('select').val(3);

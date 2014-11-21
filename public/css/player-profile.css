@@ -6,8 +6,7 @@
 #stat-name {
     text-align: center;
 }
-
-#stat-value {
+.stat-value {
     text-align: center;
 }
 
