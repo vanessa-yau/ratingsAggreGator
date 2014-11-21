@@ -82,11 +82,7 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 
 	public static function search($searchQuery) {
 
-<<<<<<< HEAD
-		$criteria = preg_split("/[\s,]+/", $searchQuery);
-=======
         $criteria = explode('+', $searchQuery);		
->>>>>>> 1fbe31f8a3fc30dd2751368dd8f0c8fb3e328148
 		
 		$query = Player::orderBy('name');
 
