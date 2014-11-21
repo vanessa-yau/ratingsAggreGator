@@ -2,6 +2,17 @@
 
 class UserController extends \BaseController {
 
+	public __construct() {
+		$this->beforeFilter('auth', [
+			'except' => [
+				'store',
+				'show',
+				'create',
+				'login'
+			]
+		]);
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *

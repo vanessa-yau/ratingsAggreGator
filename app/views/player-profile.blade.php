@@ -24,8 +24,8 @@
             <div class="col-sm-10">
                 <p><strong>Name: </strong>{{ $player->name }}</p>
                 <p><strong>Nationality: </strong>{{ $player->nationality }}</p>
-                <p><strong>Height: </strong>{{ $player->height }}</p>
-                <p><strong>Weight: </strong>{{ $player->weight }}</p>
+                <p><strong>Height: </strong>{{ $player->height }}cm</p>
+                <p><strong>Weight: </strong>{{ $player->weight }}kg</p>
             </div>
         </div>
     </div>
@@ -213,7 +213,7 @@
                     // display success message.
                     var message = "Your rating has been submitted, Thanks!"
                     showSuccessMessage(message);
-                    
+
                     // recolour panels if stats change averages.
                     colourStatPanels();
 
