@@ -143,20 +143,21 @@
     $(function(){
         // when page is loaded, change colours of skill rating boxes as apt.
         function colourStatPanels() {
-            var stats = $('.stat-value').children('h3');
+            var stats = $('.stat-panel');
             $.each( stats, function(stat){
-                var stat = $(stats[stat]);
-                stat = stat.text();
-                stat = stat.substring(0, stat.length - 2);
-                stat = Number(stat);
-                console.log($(this));
-
-                if(stat <= 2){
-                    $(stats[stat]).parents('stat-panel').removeClass().addClass('stat-panel panel status panel-danger');
-                } else if( 2 < stat && stat < 4){
-                    $(stats[stat]).parents('stat-panel').removeClass().addClass('stat-panel panel status panel-warning');
+                // get numerical statistic as text
+                var statVal = $(stats[stat]).find('h3').text();
+                // get the correct substring not '/5'
+                var roundedStat = statVal.substring(0, statVal.length-2);
+                // convert the string to number
+                var roundedStat = Number(roundedStat);
+                
+                if(roundedStat <= 2){
+                    $(stats[stat]).removeClass().addClass('stat-panel panel status panel-danger');
+                } else if( 2 < roundedStat && roundedStat < 4){
+                    $(stats[stat]).removeClass().addClass('stat-panel panel status panel-warning');
                 } else {
-                    $(stats[stat]).parents('stat-panel').removeClass().addClass('stat-panel panel status panel-success');
+                    $(stats[stat]).removeClass().addClass('stat-panel panel status panel-success');
                 }
             });
         }
