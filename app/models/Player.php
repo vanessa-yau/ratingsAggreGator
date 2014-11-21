@@ -81,12 +81,12 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 		$criteria = preg_split("/[\s,]+/", $searchQuery);
 		
 		
-		$query = players::query();
+		$query = Player::orderBy('name');
 
 		foreach($criteria as $criterion)
 		{	
 			$query->orWhere('name', 'LIKE', '%' . $criterion .'%');
 		}    
-		return $query->get();	
+        return $query->get();
 	}
 }

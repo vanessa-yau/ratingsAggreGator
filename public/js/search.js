@@ -9,7 +9,7 @@ function search(e) {
 	var formObj = $(this);
 	var formURL = formObj.attr("action");
 	$.ajax({
-		url: "players/search",
+		url: "/players/search",
 		type: 'POST',
 		data: { 'search-box': $('#search-box').val() },
 

@@ -12,7 +12,9 @@
             	<img id="profile-image" src="{{{ $result->image_url }}}" alt="Image of player">
         	</div>
 			@endforeach
-			<p>hi</p>
+			<div>
+				<p>S O M E  R A N D O M   G A R B L E  H E R E</p>
+			</div>
 		</div>
 	</div>
 </div>
