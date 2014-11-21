@@ -1,15 +1,15 @@
 <?php
-class AttributeTableSeeder extends Seeder {
+class SkillTableSeeder extends Seeder {
 
     public function run()
     {
         //Delete table content and reset auto increment id to 1
-        DB::table('attributes')->truncate();
+        DB::table('skills')->truncate();
 
         //Insert new attributes listed below in alphabetic order
         // attributes for football
 
-        $attributes = array(
+        $skills = array(
             'agility',
             'composure',
             'dribbling',
@@ -22,9 +22,9 @@ class AttributeTableSeeder extends Seeder {
             'tackling'
         );
 
-        foreach( $attributes as $attribute){
-            Attribute::insert(array(
-                'skill'         => $attribute,
+        foreach( $skills as $skill){
+            Skill::insert(array(
+                'skill'         => $skill,
                 'created_at'    => new DateTime,
                 'updated_at'    => new DateTime
             ));
