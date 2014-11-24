@@ -17,4 +17,8 @@ class Skill extends Eloquent implements UserInterface, RemindableInterface {
 	protected $table = 'skills';
 
 	protected $guarded = array('id');
+
+    public function profiles() {
+        return $this->belongsToMany('RatingProfile');
+    }
 }

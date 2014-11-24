@@ -59,10 +59,11 @@ class RatingController extends \BaseController {
             return Response::json( $validator->messages(), 400);
         } else {
         	foreach ($ratingsData as $skill => $value) {
+        		$thing = Skill::where('name', '=', $skill)->get()->first()->id;
 	            $rating = DB::table('ratings')->insert([
 		            'originating_ip'    => $_SERVER['REMOTE_ADDR'],
 		            'player_id'     	=> $playerData['player_id'],
-		            'attribute' 		=> $skill,
+		            'skill_id'	 		=> $thing,
 		            'value' 			=> $value,
 		            'game_id' 			=> 1,
 		            'created_at' 		=> new DateTime,

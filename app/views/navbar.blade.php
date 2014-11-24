@@ -19,7 +19,13 @@
             <div class="visible-xs-inline">
                 <ul class="collapsed-options nav navbar-nav">
                     <li>@include("/forms/search")</li>
-                    <li class="col-xs-12">@include("/forms/login")</li>
+                    <li><a href="#">Profile</a></li>
+                    <li class="divider"></li>
+                    @if( Auth::user() )
+                        <li><a href="{{ URL::route('users.logout')}}" class="login-button">Logout</a></li>
+                    @else
+                        <li>@include("/forms/login")</li>
+                    @endif
                 </ul>
             </div>
             <div class="hidden-xs">
