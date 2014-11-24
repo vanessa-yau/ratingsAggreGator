@@ -97,11 +97,21 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 
     public static function byPopularity() {
 
+        $doCaching = Config::get('app.caching');
+
         //Retrieve all players and sort by the number of ratings(descending) and cache the results for an hour
-        $players = Player::with('ratings')->remember(60)->get()->sortBy(function ($player) {
+        
+        $query = Player::with('ratings');
+
+        if ($doCaching) {
+            $query = $query->remember(60);
+        }
+
+        $players = $query->get()->sortBy(function ($player) {
             return $player->ratings->count();
         }, SORT_REGULAR, true);
 
         return $players;
     }
 }
+ 
