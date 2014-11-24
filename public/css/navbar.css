@@ -1,4 +1,18 @@
 .logo	{
-	max-width: 70px;
-	max-height: 70px;
+	max-width: 150%;
+	max-height: 150%;
+}
+
+.navbar-brand {
+    padding-top: 5px;
+}
+
+#login-form {
+    padding-top: 0.5em;
+}
+
+#search-form {
+    margin-right: 0;
+    margin-left: 0;
+    border: 0;
 }

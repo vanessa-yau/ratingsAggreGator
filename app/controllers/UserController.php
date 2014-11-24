@@ -2,7 +2,7 @@
 
 class UserController extends \BaseController {
 
-	public __construct() {
+	public function __construct() {
 		$this->beforeFilter('auth', [
 			'except' => [
 				'store',
