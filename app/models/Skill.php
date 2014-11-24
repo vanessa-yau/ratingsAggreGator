@@ -5,7 +5,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Attribute extends Eloquent implements UserInterface, RemindableInterface {
+class Skill extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
@@ -14,7 +14,7 @@ class Attribute extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var string
 	 */
-	protected $table = 'attributes';
+	protected $table = 'skills';
 
 	protected $guarded = array('id');
 }
