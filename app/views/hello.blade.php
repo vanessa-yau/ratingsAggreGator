@@ -38,7 +38,11 @@
 		<img src="/images/gator.jpg" alt="..." class="logo">
 		<h1>You have arrived.</h1>
 
-		{{ Hash::make("pass1") }}
+		<p>
+			@foreach($selection as $player)
+				{{{ $player->id }}}
+			@endforeach
+		</p>
 	</div>
 </body>
 </html>
