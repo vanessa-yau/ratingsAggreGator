@@ -11,10 +11,10 @@
 	</div>
 	<div align="center">
 	@foreach($players as $player)
-		<div class="col-sm-4">
-					<img src="{{{ $player->image_url }}}" alt="Image of player">
-			<p>Joe Bloggs</p>
-			<p>Chelsea FC</p>
+		<div class="col-xs-12 col-sm-6 col-lg-4">
+			<img class="thumbnail" src="{{{ $player->image_url }}}" alt="Image of player">
+			<span class="name">"{{{ $player-> name }}}"</span>
+			
 		</div>
 	@endforeach
 	</div>
