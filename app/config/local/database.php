@@ -2,6 +2,9 @@
 
 return array(
 
+// Turn off caching, because it is a nuisance for debugging.
+	'caching' => false,
+
 	/*
 	|--------------------------------------------------------------------------
 	| Database Connections
