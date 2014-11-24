@@ -165,7 +165,7 @@
                 label: "Yellow"
             },
             {
-                value: 40,
+                value: 100,
                 color: "#949FB1",
                 highlight: "#A8B3C5",
                 label: "Grey"
@@ -186,6 +186,7 @@
         var myNewChart = new Chart(ctx).PolarArea(data);
         
         // creates the new chart on the canvas supplied in the ctx.
+        // options array as second argument.  see chartjs docs.
         new Chart(ctx).PolarArea(data);
 
         // when page is loaded, change colours of skill rating boxes as apt.
