@@ -12,9 +12,10 @@
 	<div align="center">
 	@foreach($players as $player)
 		<div class="col-xs-12 col-sm-6 col-lg-4">
+			<span class="name">{{ $player-> name }}</span>
 			<img class="thumbnail" src="{{{ $player->image_url }}}" alt="Image of player">
-			<span class="name">"{{{ $player-> name }}}"</span>
 			
+
 		</div>
 	@endforeach
 	</div>
