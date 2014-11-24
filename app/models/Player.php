@@ -11,6 +11,8 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 
 	protected $guarded = array('id');
 
+    protected $hidden = ['ratings'];
+
 	/**
 	 * The database table used by the model.
 	 *
@@ -92,4 +94,14 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 		}    
         return $query->paginate(5);
 	}
+
+    public static function byPopularity() {
+
+        //Retrieve all players and sort by the number of ratings(descending) and cache the results for an hour
+        $players = Player::with('ratings')->remember(60)->get()->sortBy(function ($player) {
+            return $player->ratings->count();
+        }, SORT_REGULAR, true);
+
+        return $players;
+    }
 }
