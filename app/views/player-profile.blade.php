@@ -5,13 +5,6 @@
 @stop
 
 @section('content')
-
-    <ul>
-        @foreach($player->getRatingSummary() as $name => $stat)
-            <li>{{{ $name }}} : {{ $stat }}</li>
-        @endforeach
-    </ul>
-
     <!-- dynamically populated response message -->
     <div class="alert alert-dismissible" id="response-message" role="alert">
         <button type="button" class="close" >
@@ -23,14 +16,35 @@
     </div>
 
     <div class="row well">
-        <div class="col-sm-2"> 
-            <img id="profile-image" src="{{{ $player->image_url }}}" alt="Image of player">
+        <h3>Player Information</h3>
+        <div class="row">
+            <div class="col-sm-2"> 
+                <p><img id="profile-image" src="{{{ $player->image_url }}}" alt="Image of player"></p>
+            </div>
+            <div class="col-sm-10">
+                <p><strong>Name: </strong>{{ $player->name }}</p>
+                <p><strong>Nationality: </strong>{{ $player->nationality }}</p>
+                <p><strong>Height: </strong>{{ $player->height }}cm</p>
+                <p><strong>Weight: </strong>{{ $player->weight }}kg</p>
+            </div>
         </div>
-        <div class="col-sm-10">
-            <p><strong>Name: </strong>{{ $player->name }}</p>
-            <p><strong>Nationality: </strong>{{ $player->nationality }}</p>
-            <p><strong>Height: </strong>{{ $player->height }}</p>
-            <p><strong>Weight: </strong>{{ $player->weight }}</p>
+    </div>
+
+    <div class="row well">
+        <h3>Average Rating by Skill</h3>
+        <div class="row">
+            @foreach($player->getRatingSummary() as $name => $stat)
+                <div class="col-xs-2">
+                    <div class="stat-panel panel status">
+                        <div class="panel-heading stat-value" >
+                            <h3 class="{{ $name }}">{{ round($stat, 1) }}/5</h3>
+                        </div>
+                        <div class="panel-body" id="stat-name">
+                            <strong>{{ ucfirst($name) }}</strong>
+                        </div>
+                    </div>
+                </div>
+            @endforeach 
         </div>
     </div>
 
@@ -51,7 +65,7 @@
               
                 <!-- row for team y vs team x -->  
                 <div class="row">    
-                    <h4>Match info</h4>
+                    <h3>Match info</h3>
                     <!-- enter/select match -->
                     <div class="form-group match">
                         <!-- select teams -->
@@ -118,6 +132,9 @@
             </form>
         </div>
     </div> <!-- end row well div -->
+
+    <canvas id="myChart" width="400" height="400"></canvas>
+
 @stop
 
 @section('js')
@@ -127,7 +144,75 @@
     $('#response-message').hide();
 
     $(function(){
+      
+        var data = [
+            {
+                value: 300,
+                color:"#F7464A",
+                highlight: "#FF5A5E",
+                label: "Red"
+            },
+            {
+                value: 50,
+                color: "#46BFBD",
+                highlight: "#5AD3D1",
+                label: "Green"
+            },
+            {
+                value: 100,
+                color: "#FDB45C",
+                highlight: "#FFC870",
+                label: "Yellow"
+            },
+            {
+                value: 40,
+                color: "#949FB1",
+                highlight: "#A8B3C5",
+                label: "Grey"
+            },
+            {
+                value: 120,
+                color: "#4D5360",
+                highlight: "#616774",
+                label: "Dark Grey"
+            }
 
+        ];
+
+        // <!> this part needs to go before the new chart statement below <!>
+
+        // Get the context of the canvas element we want to select
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var myNewChart = new Chart(ctx).PolarArea(data);
+        
+        // creates the new chart on the canvas supplied in the ctx.
+        new Chart(ctx).PolarArea(data);
+
+        // when page is loaded, change colours of skill rating boxes as apt.
+        function colourStatPanels() {
+            var stats = $('.stat-panel');
+            $.each( stats, function(stat){
+                // get numerical statistic as text
+                var statVal = $(stats[stat]).find('h3').text();
+                // get the correct substring not '/5'
+                var roundedStat = statVal.substring(0, statVal.length-2);
+                // convert the string to number
+                var roundedStat = Number(roundedStat);
+                
+                // if statement adds approprate class to panels depending on value of skill.
+                if(roundedStat <= 2){
+                    $(stats[stat]).removeClass().addClass('stat-panel panel status panel-danger');
+                } else if( 2 < roundedStat && roundedStat < 4){
+                    $(stats[stat]).removeClass().addClass('stat-panel panel status panel-warning');
+                } else {
+                    $(stats[stat]).removeClass().addClass('stat-panel panel status panel-success');
+                }
+            });
+        }
+
+        // run stat colouring function on page load
+        colourStatPanels();
+        
         // hide the response message when user clicks close button.
         $('.alert .close').on('click', function(e) {
             $(this).parent().hide();
@@ -175,6 +260,17 @@
                     // display success message.
                     var message = "Your rating has been submitted, Thanks!"
                     showSuccessMessage(message);
+
+                    // recolour panels if stats change averages.
+                    colourStatPanels();
+
+                    // reset all rating dropdowns to show 'Average' after submission.
+                    $('.skills').find('select').val(3);
+
+                    // change rating values on page to new values.
+                    $.each(json, function(skill, value) {
+                        $('.' + skill).text(Number(value).toFixed(1) + '/5');
+                    });
                 },
                 error: function(e){
                     // display error message.

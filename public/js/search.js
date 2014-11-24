@@ -1,5 +1,18 @@
 $(function () { 
-	$("#search-form").submit(search);
+	// For the moment - get a good, un-ajax search working,
+	// then worry about building in the ajax search
+	// 2014-11-21
+	// $("#search-form").submit(search);
+	$("#search-form").submit(function (e) {
+		e.preventDefault();
+
+		// turn spaces into + for lovely URLs
+		var query = $(this).find('#search-box').val();
+		query = query.replace(' ', '+');
+
+		// transition to the required page
+		window.location = ('/search/' + query);
+	});
 });
 
 function search(e) {
@@ -10,7 +23,7 @@ function search(e) {
 	var formURL = formObj.attr("action");
 	$.ajax({
 		url: "/players/search",
-		type: 'POST',
+		type: 'GET',
 		data: { 'search-box': $('#search-box').val() },
 
 		success: function(data, textStatus, jqXHR) {
@@ -40,5 +53,4 @@ function search(e) {
 			}
 		}  
 	});
-	e.preventDefault();
 };

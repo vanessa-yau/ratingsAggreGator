@@ -1,22 +1,30 @@
 @extends('master')
 
+@section('style')
+    {{ HTML::style("/css/player-profile.css") }}
+@stop
+
 @section('content')
-<div class="search-results">
-	<div class="row">
-		<div class="col-md-11">
+	
+		@foreach ($results as $result)
 
-			@foreach ($results as $result)
-
-			<!-- Make a thumbnail for each of the users -->
-			<div class="col-sm-2"> 
-            	<img id="profile-image" src="{{{ $result->image_url }}}" alt="Image of player">
-        	</div>
-			@endforeach
-			<div>
-				<p>S O M E  R A N D O M   G A R B L E  H E R E</p>
+		<div class="row well">
+			<div class="row">
+				<div class="col-sm-2"> 
+					<img id="profile-image" src="{{{ $result->image_url }}}" alt="Image of player">
+				</div>
+				<div class="col-sm-10">
+					<strong> <p> {{ $result->name }} </p> </strong>
+					<strong> <p> {{ $result->nationality }} </p> </strong>
+					<strong> <p> Football Player </p> </strong>
+					<strong> <p> Plays For Liverpool </p> </strong>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
+
+
+		@endforeach
+
+	<?php echo $results->links(); ?>
 @stop
 
