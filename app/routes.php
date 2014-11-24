@@ -13,7 +13,7 @@
 
 Route::get('/',  [
     'as' => 'home',
-    'uses' => 'HomeController@index'
+    'uses' => 'RatingController@mostPopular'
 ]);
 
 Route::get('profile', function() {

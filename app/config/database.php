@@ -2,6 +2,9 @@
 
 return array(
 
+	// Whether to use caching for player ratings and other queries.
+	'caching' => true,
+
 	/*
 	|--------------------------------------------------------------------------
 	| PDO Fetch Style
