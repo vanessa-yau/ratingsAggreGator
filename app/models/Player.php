@@ -4,6 +4,7 @@ use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
+use Illuminate\Database\Eloquent\Collection;
 
 class Player extends Eloquent implements UserInterface, RemindableInterface {
 
@@ -78,7 +79,9 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
             $skillIds[] = $skillsId->skill_id;
         }
 
-        return Skill::whereIn('id', $skillIds)->orderBy('name')->get();
+        return count($skillIds) 
+            ? Skill::whereIn('id', $skillIds)->orderBy('name')->get()
+            : new Collection;
     }
 
     // returns an array of averages for all skills a player is rated on
