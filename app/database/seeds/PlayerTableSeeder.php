@@ -21,7 +21,7 @@ class PlayerTableSeeder extends Seeder {
                 "height" => "9001",
                 "weight" => "9001",
                 "dob" => "1989-02-07",
-                'image_url' => '/images/profile_images/2.jpg'
+                'image_url' => ''
             ],
             [   
                 "name" => "Érik Lamela",

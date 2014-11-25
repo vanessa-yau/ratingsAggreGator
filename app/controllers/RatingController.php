@@ -48,7 +48,7 @@ class RatingController extends \BaseController {
             return Response::json( $validator->messages(), 400);
         } else {
         	foreach ($ratings as $skill_id => $value) {
-        		if (!Session::has('rated' . $player->id))
+        		//if (!Session::has('rated' . $player->id))
 	        		$player->ratings()->create([
 			            'originating_ip'    => $_SERVER['REMOTE_ADDR'],
 			            'skill_id'	 		=> $skill_id,
@@ -61,7 +61,7 @@ class RatingController extends \BaseController {
         	}
 
         	// remember that this session has already had a rating
-        	Session::put('rated' . $player->id, true);
+        	// Session::put('rated' . $player->id, true);
 
         	return $player->getRatingSummary();
         }
