@@ -90,7 +90,7 @@
                             to be replaced by interactive calendar 
                             -->
                             <input 
-                                id="match_date"
+                                id="datepicker"
                                 name="match_date"
                                 type="datetime"
                                 placeholder="Enter a date: dd/mm/yyyy"
