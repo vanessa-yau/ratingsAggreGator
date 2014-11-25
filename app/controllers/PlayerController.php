@@ -46,7 +46,8 @@ class PlayerController extends \BaseController {
 		$player = Player::find($id);
 		
 		$attributes = ['shooting', 'passing', 'dribbling', 'speed', 'tackling'];
-		return View::make('player-profile', compact('attributes', 'player' ));
+		$selection =  $this->getRandomPlayers();
+		return View::make('player-profile', compact('attributes', 'player', 'selection' ));
 	}
 
 
@@ -102,7 +103,7 @@ class PlayerController extends \BaseController {
 	}
 
 	// returns a random selection of players
-	public function getRandomPlayers() {
+	public function getRandomPlayers($id) {
 		$totalNumPlayers = Player::all()->count();
 		$randomPlayerIds = [];
 
@@ -110,7 +111,6 @@ class PlayerController extends \BaseController {
 			array_push( $randomPlayerIds, rand(1, $totalNumPlayers) );
 		}
 
-		$selection = Player::whereIn('id', $randomPlayerIds)->get();
-		return View::make('hello', compact('selection', 'randomPlayerIds'));
+		return Player::whereIn('id', $randomPlayerIds)->get();
 	}
 }
