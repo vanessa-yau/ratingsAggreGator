@@ -16,7 +16,9 @@
 			<span class="name">{{ $player->name }}</span>
 
 			@if( $player->image_url )
-				<img class="thumbnail" src="{{ $player->image_url }}" alt="Profile Image">
+				<a href="{{ $player->url }}">
+					<img class="thumbnail" src="{{ $player->image_url }}" alt="Profile Image">
+				</a>
 			@else
 				<img class="thumbnail" src="/images/profile_images/placeholder.png" alt="Profile Image">
 			@endif
