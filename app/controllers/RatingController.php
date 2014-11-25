@@ -36,34 +36,36 @@ class RatingController extends \BaseController {
 			'player_id'
 		);
 
-		// get user submitted ratings. hard coded skills not good for other sports.
-		$ratingsData = Input::only(
-			'shooting',
-			'passing',
-			'dribbling',
-			'speed',
-			'tackling'
-		);
 
-		// validate inputs
-        $validator = Validator::make($ratingsData, [
-            'shooting' 	=> 'required|numeric|digits_between:1,5',
-            'passing'  	=> 'required|numeric|digits_between:1,5',
-            'dribbling' => 'required|numeric|digits_between:1,5',
-            'speed'  	=> 'required|numeric|digits_between:1,5',
-            'tackling'  => 'required|numeric|digits_between:1,5'
-        ]);
+
+		// $ratingProfileId = Input::get('rating_profile_id');
+		// $ratingProfile = RatingProfile::find($ratingProfileId);
+		// $skillsToPull = [];
+		// foreach ($ratingProfile->skills as $skill) {
+		// 	$skillsToPull[] = $skill->name;
+		// }
+	
+		// get user submitted ratings. hard coded skills not good for other sports.
+		$ratedSkills = Player::find($playerData['player_id'])->getRatedSkills();
+		$ratings = [];
+
+		// gets all skills the player can be rated on and gets their values from the input array
+		foreach ($ratedSkills as $skill) {
+			$ratings[$skill->id] = Input::get($skill->id);
+		}
+
+		//validator here
+
 
         // if validation passes, run query to insert and return newly created rating.
         if ($validator->fails()) {
             return Response::json( $validator->messages(), 400);
         } else {
-        	foreach ($ratingsData as $skill => $value) {
-        		$thing = Skill::where('name', '=', $skill)->get()->first()->id;
+        	foreach ($ratings as $skill_id => $value) {
 	            $rating = DB::table('ratings')->insert([
 		            'originating_ip'    => $_SERVER['REMOTE_ADDR'],
 		            'player_id'     	=> $playerData['player_id'],
-		            'skill_id'	 		=> $thing,
+		            'skill_id'	 		=> $skill_id,
 		            'value' 			=> $value,
 		            'game_id' 			=> 1,
 		            'created_at' 		=> new DateTime,
@@ -73,6 +75,7 @@ class RatingController extends \BaseController {
         	return Player::find($playerData['player_id'])->getRatingSummary();
         }
 	}
+
 
 
 	/**
@@ -138,4 +141,9 @@ class RatingController extends \BaseController {
 		return View::make('home', compact('players'));
 	}
 
+	public function validateSkillValue($value){
+		$validator = Validator::make($value, [
+		    '' => 'required|unique:modules,module_name'
+		]);
+	}
 }
