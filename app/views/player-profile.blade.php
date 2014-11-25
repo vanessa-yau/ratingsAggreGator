@@ -89,7 +89,7 @@
                             to be replaced by interactive calendar 
                             -->
                             <input 
-                                id="match_date"
+                                id="datepicker"
                                 name="match_date"
                                 type="datetime"
                                 placeholder="Enter a date: dd/mm/yyyy"
@@ -242,7 +242,6 @@
 
         $('.rate-player-form').submit(function(e) {
             e.preventDefault();
-            console.log(decodeURI("{{ URL::route('ratings.store') }}"));
             var data = getRating();
             var $this = $(this);
             var $submitButton = $this.find('[type=submit]');
@@ -280,6 +279,10 @@
             })
             .always(function () {
                 $submitButton.removeAttr('disabled');
+                setTimeout(function(){
+                    resetForm();
+                    $this.parents('.row').slideDown(300);
+                }, 30000);
             }); // end of ajax request
         }); // end of submit event handler
 
