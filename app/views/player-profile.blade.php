@@ -130,10 +130,14 @@
         </div>
     </div> <!-- end row well div -->
 
-    <canvas id="myChart" width="400" height="400"></canvas>
+    <div class="row well">
+        <h3>Statistics</h3>
+        <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
 
     <div class="player-thumbnails">
         <div class="row well">
+            <h3>Other Team Members</h3>
             @foreach($selection as $teamMate)
                 @if( $player->id != $teamMate->id )
                     <div class="col-sm-4 col-md-2">
@@ -162,7 +166,7 @@
 
 @section('js')
   <script src="/js/jquery-ui.js"></script>
-  <script src="/js/charts/sample.js"></script>
+  <script src="/js/charts/yourRatingVsAverageRating.js"></script>
   <script>
     // hide ajax response message ASAP.
     $('#response-message').hide();
@@ -203,6 +207,27 @@
             return ajaxData;
         }
 
+        // when page is loaded, change colours of skill rating boxes as apt.
+        function colourStatPanels() {
+            var stats = $('.stat-panel');
+            $.each( stats, function(stat){
+                // get numerical statistic as text
+                var statVal = $(stats[stat]).find('h3').text();
+                // get the correct substring not '/5'
+                var roundedStat = statVal.substring(0, statVal.length-2);
+                // convert the string to number
+                var roundedStat = Number(roundedStat);
+                
+                // if statement adds approprate class to panels depending on value of skill.
+                if(roundedStat <= 2){
+                    $(stats[stat]).removeClass().addClass('stat-panel panel status panel-danger');
+                } else if( 2 < roundedStat && roundedStat < 4){
+                    $(stats[stat]).removeClass().addClass('stat-panel panel status panel-warning');
+                } else {
+                    $(stats[stat]).removeClass().addClass('stat-panel panel status panel-success');
+                }
+            });
+        }
 
         // run stat colouring function on page load
         colourStatPanels();
