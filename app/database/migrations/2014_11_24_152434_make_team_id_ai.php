@@ -44,6 +44,7 @@ class MakeTeamIdAi extends Migration {
 		});	
 
 		Schema::table('teams', function($table)
+		{
 			// create col as it was, non-ai
 			$table->integer('id');
 		});	
