@@ -19,11 +19,15 @@ class Rating extends Eloquent implements UserInterface, RemindableInterface {
     protected $table = 'ratings';
 
     public function player() {
-        return $this->belongsTo('player');
+        return $this->belongsTo('Player');
     }
 
     public function game() {
-        return $this->belongsTo('game');
+        return $this->belongsTo('Game');
+    }
+
+    public function skill() {
+        return $this->belongsTo('Skill');
     }
 
 }

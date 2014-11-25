@@ -59,10 +59,11 @@ class RatingController extends \BaseController {
             return Response::json( $validator->messages(), 400);
         } else {
         	foreach ($ratingsData as $skill => $value) {
+        		$thing = Skill::where('name', '=', $skill)->get()->first()->id;
 	            $rating = DB::table('ratings')->insert([
 		            'originating_ip'    => $_SERVER['REMOTE_ADDR'],
 		            'player_id'     	=> $playerData['player_id'],
-		            'attribute' 		=> $skill,
+		            'skill_id'	 		=> $thing,
 		            'value' 			=> $value,
 		            'game_id' 			=> 1,
 		            'created_at' 		=> new DateTime,
@@ -121,5 +122,20 @@ class RatingController extends \BaseController {
 		//
 	}
 
+	/**
+	 * Returns the 10 most popularly voted players on the current date
+	 *
+	 * @return Response
+	 */
+	public function mostPopular()
+	{	
+		// retrieve all players and sort by the number of ratings
+		$players = Player::byPopularity();
+
+		// restrict the list to the top 10
+		$players = $players->slice(0,10);
+ 		//return $players->count();
+		return View::make('home', compact('players'));
+	}
 
 }

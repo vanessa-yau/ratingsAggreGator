@@ -9,22 +9,37 @@ class SkillTableSeeder extends Seeder {
         //Insert new attributes listed below in alphabetic order
         // attributes for football
 
-        $name = array(
+        $names = array(
+            'aggression',
             'agility',
             'composure',
+            'corners',
+            'creativity',
+            'crossing',
             'dribbling',
+            'finishing',
+            'first Touch',
+            'free Kicks',
+            'heading',
             'kicking',
+            'marking',
+            'pace',
             'passing',
+            'preferred Foot',
             'saving',
             'shooting',
             'speed',
+            'stamina',
             'strength',
-            'tackling'
+            'tackling',
+            'technique',
+            'throwing',
+            'work Rate',
         );
 
-        foreach( $skills as $skill){
-            Skill::insert(array(
-                'skill'         => $skill,
+        foreach( $names as $name ){
+            Skill::create(array(
+                'name'         => $name,
                 'created_at'    => new DateTime,
                 'updated_at'    => new DateTime
             ));

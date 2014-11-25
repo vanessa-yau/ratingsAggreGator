@@ -13,7 +13,7 @@
 
 Route::get('/',  [
     'as' => 'home',
-    'uses' => 'HomeController@index'
+    'uses' => 'RatingController@mostPopular'
 ]);
 
 Route::get('profile', function() {
@@ -34,7 +34,7 @@ Route::post('login', [
 	'uses' => 'UserController@login'
 ]);
 
-Route::post('logout', [
+Route::get('logout', [
 	'as' => 'users.logout',
 	'uses' => 'UserController@logout'
 ]);
