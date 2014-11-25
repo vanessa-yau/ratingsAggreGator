@@ -1,25 +1,8 @@
 .thumbnail {
-    position: relative;
-    float: lef;t
-    width:  224px;
-    height: 142px;
-    background-position: 50% 50%;
-    background-repeat:   no-repeat;
-    background-size:     cover;
+    max-height: 125px;
 }
 
 .Name {
 	text-align: center;
     /*width: 50px;*/
-}
-
-.Name {
-	text-align: center;
-    /*width: 224px;*/
-
-}
-
-.Name {
-	text-align: center;
-    /*width: 224px;*/
 }

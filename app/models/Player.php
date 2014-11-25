@@ -37,6 +37,12 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
         return URL::route('players.show', $this->id);
     }
 
+    public function getImageUrlAttribute($url = null) {
+        return $url 
+            ? $url
+            : "/images/profile_images/placeholder.png";
+    }
+
     // finds the average for a particular skill if given
     // otherwise finds average for all skills
     public function rate($skill_id = null) {
@@ -116,8 +122,6 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
     public static function byPopularity() {
         $doCaching = Config::get('app.caching');
 
-        //Retrieve all players and sort by the number of ratings(descending) and cache the results for an hour
-        
         $query = Player::with('ratings');
         if ($doCaching) {
             $query = $query->remember(60);

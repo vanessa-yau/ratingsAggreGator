@@ -27,6 +27,12 @@ canvas {
 
 /* Other players images */
 .thumbnail {
-    max-height: 100%;
-    max-width: 100%;
+    text-align: center;
+}
+.thumbnail img {
+    max-height: 116px;
+}
+
+@media (max-width: 768px) {
+    text-align: center;
 }

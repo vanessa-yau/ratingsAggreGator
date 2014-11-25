@@ -12,13 +12,10 @@
 	<div align="center">
 	@foreach($players as $player)
 		<div class="col-xs-12 col-sm-6 col-lg-4">
-			<span class="name">{{ $player->name }}</span>
-
-			@if( $player->image_url )
+			<a href="/players/{{ $player->id }}">
+				<span class="name">{{ $player->name }}</span>
 				<img class="thumbnail" src="{{ $player->image_url }}" alt="Profile Image">
-			@else
-				<img class="thumbnail" src="/images/profile_images/placeholder.png" alt="Profile Image">
-			@endif
+			</a>
 		</div>
 	@endforeach
 	</div>

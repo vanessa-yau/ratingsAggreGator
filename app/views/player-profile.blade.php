@@ -19,7 +19,7 @@
         <h3>Player Information</h3>
         <div class="row">
             <div class="col-sm-2"> 
-                <p><img id="profile-image" src="{{{ $player->image_url }}}" alt="Image of player"></p>
+                <p><img id="profile-image" src="{{{ $player->image_url }}}" alt="Profile Image"></p>
             </div>
             <div class="col-sm-10">
                 <p><strong>Name: </strong>{{ $player->name }}</p>
@@ -34,7 +34,7 @@
         <h3>Average Rating by Skill</h3>
         <div class="row">
             @foreach($player->getRatingSummary() as $name => $stat)
-                <div class="col-xs-2">
+                <div class="col-sm-2">
                     <div class="stat-panel panel status">
                         <div class="panel-heading stat-value" >
                             <h3 class="{{ $name }}">{{ round($stat, 1) }}/5</h3>
@@ -101,17 +101,15 @@
 
                 <div class="row skills">
                     <!-- different attributes to rate a player on -->
-                    @foreach( $attributes as $attr )
+                    @foreach( $player->getRatedSkills() as $skill)
                         <div class="form-group">
-                            <label>{{$attr}}</label>
-                            <div class="col-sm-10">
-                                <select name="{{{ $attr }}}" id="{{ $attr }}">
-                                    <option value="3">Average</option>
-                                    <option value="1">Rubbish!</option>
-                                    <option value="2">Poor</option>
-                                    <option value="4">Good</option>
-                                    <option value="5">Sublime!</option>
-                                </select>
+                            <label>{{ ucfirst($skill->name) }}</label>
+                            <div class="col-sm-10 rating-stars" data-skill={{ $skill->id }}>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
                             </div>
                         </div>
                     @endforeach
@@ -141,17 +139,20 @@
                 @if( $player->id != $teamMate->id )
                     <div class="col-sm-4 col-md-2">
                         <a href="{{ URL::route('players.show', $player->id) }}"></a>
-                        <div class="thumbnail">
-                            <strong>{{{ $teamMate->name }}}</strong><br />
+                        <a href="/players/{{ $teamMate->id }}">
+                            <div class="thumbnail">
+                                <strong>
+                                    @if( strlen($teamMate->name) > 15 )
+                                        {{{ substr($teamMate->name, 0, 12).'...' }}}
+                                    @else
+                                        {{{ $teamMate->name }}}
+                                    @endif
+                                </strong><br />
+                                <img class="thumbnail" src="{{ $teamMate->image_url }}" alt="Profile Image">
                         
-                            @if( $teamMate->image_url )
-                                <img class="thumbnail" src="{{ $player->image_url }}" alt="Profile Image">
-                            @else
-                                <img class="thumbnail" src="/images/profile_images/placeholder.png" alt="Profile Image">
-                            @endif
-                        
-                            <p>{{{ 'TEAM NAME GOES HERE' }}}</p>
-                        </div>
+                                <p>{{{ 'TEAM NAME GOES HERE' }}}</p>
+                            </div>
+                        </a>
                     </div>
                 @endif
             @endforeach
@@ -168,6 +169,40 @@
     $('#response-message').hide();
 
     $(function(){
+
+        $('.rating-stars span').click(function(){
+            // add stars to star-icon clicked
+            $(this)
+                .removeClass('glyphicon-star-empty')
+                .addClass('glyphicon-star');
+
+            // add stars to previous star-icons clicked (on left)
+            $(this).prevAll()
+                .addClass('glyphicon-star')
+                .removeClass('glyphicon-star-empty');
+
+            // add stars to previous star-icons clicked (on left)
+            $(this).nextAll()
+                .addClass('glyphicon-star-empty')
+                .removeClass('glyphicon-star');
+        });
+
+        function getRating() {
+            $ajaxData = {
+                player_id   :  $('#player_id').val()
+            };
+
+            $('.rating-stars').each(function () {
+               var $this = $(this);
+               var starCount = $this.find('.glyphicon-star').length;
+               var skill = $this.data('skill');
+               console.log(skill + ' = ' + starCount);
+               $ajaxData[skill] = starCount;
+            });
+            console.log($ajaxData);
+        }
+
+
         // run stat colouring function on page load
         colourStatPanels();
         
@@ -201,19 +236,13 @@
         $('#submit-ratings-btn').click(function(e){
             e.preventDefault();
             console.log(decodeURI("{{ URL::route('ratings.store') }}"));
+            getRating();
 
             $.ajax({
                 type: "POST",
                 //url: $('#rate-player-form').attr('action'),
                 url: decodeURI("{{ URL::route('ratings.store') }}"),
-                data: { 
-                    player_id   :  $('#player_id').val(),
-                    shooting    :  $('.skills').find('#shooting').val(),
-                    passing     :  $('.skills').find('#passing').val(),
-                    dribbling   :  $('.skills').find('#dribbling').val(),
-                    speed       :  $('.skills').find('#speed').val(),
-                    tackling    :  $('.skills').find('#tackling').val()
-                },
+                data: $ajaxData,
                 success: function(json){
                     // display success message.
                     var message = "Your rating has been submitted, Thanks!"
