@@ -234,9 +234,14 @@
             $('#response-message').show();
         }
 
+        function resetForm() {
+            $('.rating-stars span')
+                .removeClass()
+                .addClass('glyphicon glyphicon-star-empty');
+        }
+
         $('.rate-player-form').submit(function(e) {
             e.preventDefault();
-            console.log(decodeURI("{{ URL::route('ratings.store') }}"));
             var data = getRating();
             var $this = $(this);
             var $submitButton = $this.find('[type=submit]');
@@ -274,6 +279,10 @@
             })
             .always(function () {
                 $submitButton.removeAttr('disabled');
+                setTimeout(function(){
+                    resetForm();
+                    $this.parents('.row').slideDown(300);
+                }, 30000);
             }); // end of ajax request
         }); // end of submit event handler
 
