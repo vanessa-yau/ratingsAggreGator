@@ -21,16 +21,13 @@ h3 {
     margin-top: 0;
 }
 
-canvas {
-    visibility: hidden;
-}
-
 /* Other players images */
 .thumbnail {
     text-align: center;
 }
 .thumbnail img {
     max-height: 116px;
+    min-height: 116px;
 }
 
 @media (max-width: 768px) {
