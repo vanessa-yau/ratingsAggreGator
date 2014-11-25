@@ -104,7 +104,7 @@
                     @foreach( $player->getRatedSkills() as $skill)
                         <div class="form-group">
                             <label>{{ ucfirst($skill->name) }}</label>
-                            <div class="col-sm-10 rating-stars" data-skill={{ $skill->id }}>
+                            <div class="col-sm-10 rating-stars" data-skill="{{ $skill->id }}">
                                 <span class="glyphicon glyphicon-star-empty"></span>
                                 <span class="glyphicon glyphicon-star-empty"></span>
                                 <span class="glyphicon glyphicon-star-empty"></span>
