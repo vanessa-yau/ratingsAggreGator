@@ -100,7 +100,7 @@
 
                 <div class="row skills">
                     <!-- different attributes to rate a player on -->
-                    @foreach( $player->getRatedSkills() as $skill)
+                    @foreach( $skills as $skill)
                         <div class="form-group">
                             <label>{{ ucfirst($skill->name) }}</label>
                             <div class="col-sm-10 rating-stars" data-skill="{{ $skill->id }}">
@@ -235,6 +235,7 @@
         }
 
         function resetForm() {
+            $('.match input').val('');
             $('.rating-stars span')
                 .removeClass()
                 .addClass('glyphicon glyphicon-star-empty');
