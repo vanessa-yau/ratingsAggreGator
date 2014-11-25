@@ -47,3 +47,8 @@ Route::get(
     )
 );
 
+Route::get('hello', array(
+        'as' => 'hello',
+        'uses' => 'PlayerController@getRandomPlayers'
+    )
+);
