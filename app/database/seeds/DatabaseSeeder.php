@@ -3,15 +3,14 @@
 class DatabaseSeeder extends Seeder {
 
     /**
-     * Run the database seeds.
-     *
-     * @return void
+     * The order of these seeders is important.
+     * A sport must be seeded before the player seeder can be called
      */
     public function run()
     {
         $this->call('SkillTableSeeder');
-        $this->call('PlayerTableSeeder');
         $this->call('SportTableSeeder');
+        $this->call('PlayerTableSeeder');
         $this->call('UserTableSeeder');
     }
 

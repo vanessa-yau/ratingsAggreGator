@@ -37,8 +37,22 @@
 	<div class="welcome">
 		<img src="/images/gator.jpg" alt="..." class="logo">
 		<h1>You have arrived.</h1>
-
-		{{ Hash::make("pass1") }}
+	</div>
+	<div class="player-thumbnails">
+		<div class="row">
+			@foreach($selection as $player)
+				<div class="col-sm-6 col-md-4">
+					<a href="{{ URL::route('players.show', $player->id) }}"></a>
+				    <div class="thumbnail">
+				    	<img src="{{{ $player->image_url }}}" alt="...">
+				    	<div class="caption">
+					        <h3>{{{ $player->name }}}</h3>
+					        <p>{{{ 'TEAM NAME GOES HERE' }}}</p>
+					    </div>
+				    </div>
+				</div>
+			@endforeach
+		</div>
 	</div>
 </body>
 </html>

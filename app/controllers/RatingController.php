@@ -32,47 +32,41 @@ class RatingController extends \BaseController {
 	public function store()
 	{
 		// get player info inputs from form
-		$playerData = Input::only(
-			'player_id'
-		);
+		$player = Player::find( Input::get('player_id') );
+		$ratings = Input::get('ratings');
+		$ratingIds = array_keys($ratings);
 
-		// get user submitted ratings. hard coded skills not good for other sports.
-		$ratingsData = Input::only(
-			'shooting',
-			'passing',
-			'dribbling',
-			'speed',
-			'tackling'
-		);
+		$validationRulesArray = [];
+		foreach ($ratingIds as $ratingId) {
+			$validationRulesArray[$ratingId] = 'required|numeric|digits_between:1,5';
+		}
 
-		// validate inputs
-        $validator = Validator::make($ratingsData, [
-            'shooting' 	=> 'required|numeric|digits_between:1,5',
-            'passing'  	=> 'required|numeric|digits_between:1,5',
-            'dribbling' => 'required|numeric|digits_between:1,5',
-            'speed'  	=> 'required|numeric|digits_between:1,5',
-            'tackling'  => 'required|numeric|digits_between:1,5'
-        ]);
+		$validator = Validator::make($ratings, $validationRulesArray);
 
         // if validation passes, run query to insert and return newly created rating.
         if ($validator->fails()) {
             return Response::json( $validator->messages(), 400);
         } else {
-        	foreach ($ratingsData as $skill => $value) {
-        		$thing = Skill::where('name', '=', $skill)->get()->first()->id;
-	            $rating = DB::table('ratings')->insert([
-		            'originating_ip'    => $_SERVER['REMOTE_ADDR'],
-		            'player_id'     	=> $playerData['player_id'],
-		            'skill_id'	 		=> $thing,
-		            'value' 			=> $value,
-		            'game_id' 			=> 1,
-		            'created_at' 		=> new DateTime,
-		            'updated_at' 		=> new DateTime
-		        ]);
+        	foreach ($ratings as $skill_id => $value) {
+        		if (!Session::has('rated' . $player->id))
+	        		$player->ratings()->create([
+			            'originating_ip'    => $_SERVER['REMOTE_ADDR'],
+			            'skill_id'	 		=> $skill_id,
+			            'value' 			=> $value,
+			            'game_id' 			=> 1,
+			            'user_id'			=> Auth::check()
+			            							? Auth::id()
+			            							: -1
+			        ]);
         	}
-        	return Player::find($playerData['player_id'])->getRatingSummary();
+
+        	// remember that this session has already had a rating
+        	Session::put('rated' . $player->id, true);
+
+        	return $player->getRatingSummary();
         }
 	}
+
 
 
 	/**
@@ -137,5 +131,4 @@ class RatingController extends \BaseController {
  		//return $players->count();
 		return View::make('home', compact('players'));
 	}
-
 }

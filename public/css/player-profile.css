@@ -24,3 +24,15 @@ h3 {
 canvas {
     visibility: hidden;
 }
+
+/* Other players images */
+.thumbnail {
+    text-align: center;
+}
+.thumbnail img {
+    max-height: 116px;
+}
+
+@media (max-width: 768px) {
+    text-align: center;
+}

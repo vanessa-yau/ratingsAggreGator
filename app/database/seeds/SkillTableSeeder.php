@@ -18,14 +18,14 @@ class SkillTableSeeder extends Seeder {
             'crossing',
             'dribbling',
             'finishing',
-            'firstTouch',
-            'freeKicks',
+            'first Touch',
+            'free Kicks',
             'heading',
             'kicking',
             'marking',
             'pace',
             'passing',
-            'preferredFoot',
+            'preferred Foot',
             'saving',
             'shooting',
             'speed',
@@ -34,7 +34,7 @@ class SkillTableSeeder extends Seeder {
             'tackling',
             'technique',
             'throwing',
-            'workRate',
+            'work Rate',
         );
 
         foreach( $names as $name ){
