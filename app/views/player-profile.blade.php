@@ -135,6 +135,29 @@
 
     <canvas id="myChart" width="400" height="400"></canvas>
 
+    <div class="player-thumbnails">
+        <div class="row">
+            @foreach($selection as $teamMate)
+                @if( $player->id != $teamMate->id )
+                    <div class="col-sm-4 col-md-2">
+                        <a href="{{ URL::route('players.show', $player->id) }}"></a>
+                        <div class="thumbnail">
+                            <strong>{{{ $teamMate->name }}}</strong><br />
+                        
+                            @if( $teamMate->image_url )
+                                <img class="thumbnail" src="{{ $player->image_url }}" alt="Profile Image">
+                            @else
+                                <img class="thumbnail" src="/images/profile_images/placeholder.png" alt="Profile Image">
+                            @endif
+                        
+                            <p>{{{ 'TEAM NAME GOES HERE' }}}</p>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+        </div>
+    </div>
+
 @stop
 
 @section('js')
