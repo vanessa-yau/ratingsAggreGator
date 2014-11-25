@@ -53,8 +53,7 @@
         <div class="col-md-12">
       
             <form 
-                class="form-horizontal" 
-                id="rate-player-form"
+                class="form-horizontal rate-player-form" 
                 role="form"
                 method="POST" 
                 action="{{ URL::route('ratings.store') }}"
@@ -134,7 +133,7 @@
     <canvas id="myChart" width="400" height="400"></canvas>
 
     <div class="player-thumbnails">
-        <div class="row">
+        <div class="row well">
             @foreach($selection as $teamMate)
                 @if( $player->id != $teamMate->id )
                     <div class="col-sm-4 col-md-2">
@@ -188,8 +187,9 @@
         });
 
         function getRating() {
-            $ajaxData = {
-                player_id   :  $('#player_id').val()
+            var ajaxData = {
+                player_id   :  $('#player_id').val(),
+                ratings: {}
             };
 
             $('.rating-stars').each(function () {
@@ -197,9 +197,10 @@
                var starCount = $this.find('.glyphicon-star').length;
                var skill = $this.data('skill');
                console.log(skill + ' = ' + starCount);
-               $ajaxData[skill] = starCount;
+               ajaxData.ratings[skill] = starCount;
             });
-            console.log($ajaxData);
+            
+            return ajaxData;
         }
 
 
@@ -233,16 +234,19 @@
             $('#response-message').show();
         }
 
-        $('#submit-ratings-btn').click(function(e){
+        $('.rate-player-form').submit(function(e) {
             e.preventDefault();
             console.log(decodeURI("{{ URL::route('ratings.store') }}"));
-            getRating();
+            var data = getRating();
+            var $this = $(this);
+            var $submitButton = $this.find('[type=submit]');
+            $submitButton.attr('disabled', true);
 
             $.ajax({
                 type: "POST",
                 //url: $('#rate-player-form').attr('action'),
                 url: decodeURI("{{ URL::route('ratings.store') }}"),
-                data: $ajaxData,
+                data: data,
                 success: function(json){
                     // display success message.
                     var message = "Your rating has been submitted, Thanks!"
@@ -258,12 +262,18 @@
                     $.each(json, function(skill, value) {
                         $('.' + skill).text(Number(value).toFixed(1) + '/5');
                     });
+
+                    // hide the form
+                    $this.parents('.row').slideUp(300);
                 },
                 error: function(e){
                     // display error message.
                     var responseText = $.parseJSON(e.responseText);
                     showErrorMessage(responseText);
                 }
+            })
+            .always(function () {
+                $submitButton.removeAttr('disabled');
             }); // end of ajax request
         }); // end of submit event handler
 
