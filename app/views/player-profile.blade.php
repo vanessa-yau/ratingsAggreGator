@@ -234,6 +234,12 @@
             $('#response-message').show();
         }
 
+        function resetForm() {
+            $('.rating-stars span')
+                .removeClass()
+                .addClass('glyphicon glyphicon-star-empty');
+        }
+
         $('.rate-player-form').submit(function(e) {
             e.preventDefault();
             console.log(decodeURI("{{ URL::route('ratings.store') }}"));
