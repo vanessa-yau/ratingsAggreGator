@@ -1,4 +1,10 @@
-<form action ="{{ URL::route('players.search') }}" class="navbar-form navbar-left search-form" role="search" style="max-width:100%" name="search-form" method="get">
+<form 
+    name="search-form" 
+    role="search" 
+    class="navbar-form navbar-left search-form" 
+    method="get"
+    action ="{{ URL::route('players.search') }}" 
+>
     <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Players by Name" name="search-box">
         <span class="input-group-btn">
