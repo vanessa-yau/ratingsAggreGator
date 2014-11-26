@@ -60,7 +60,7 @@ function createRadarChart(labelArray, averageData, yourData, canvas) {
         pointLabelFontStyle : "bold",
 
         //Number - Point label font size in pixels
-        pointLabelFontSize : 16,
+        pointLabelFontSize : 12,
 
         //String - Point label font colour
         pointLabelFontColor : "#666",
@@ -90,7 +90,7 @@ function createRadarChart(labelArray, averageData, yourData, canvas) {
         legendTemplate :    '<ul>'
                             +'<% for (var i=0; i<datasets.length; i++) { %>'
                                 +'<li>'
-                                    +'<span style=\"background-color:<%=datasets[i].strokeColor%>\">'
+                                    +'<span style=\"color:<%=datasets[i].strokeColor%>\">'
                                         +'<% if (datasets[i].label) { %><%= datasets[i].label %><% } %>'
                                     +'</span>'
                                 +'</li>'
