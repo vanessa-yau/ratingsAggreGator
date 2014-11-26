@@ -10,7 +10,7 @@
             </button>
             <a class="navbar-brand" href="{{ URL::to('/') }}">
                 <img src="/images/gator.jpg" alt="..." class="logo">
-                Ratings AggreGator
+                ratingator
             </a>
         </div>
 
