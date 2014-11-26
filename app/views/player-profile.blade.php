@@ -62,10 +62,10 @@
                 <input type="hidden" name="player_id" id="player_id" value="{{ $player->id }}">
               
                 <!-- row for team y vs team x -->  
-                <div class="row">    
-                    <h3>Match info</h3>
+                <div class="row">
                     <!-- enter/select match -->
                     <div class="form-group match">
+                        <h4>Match info</h4>
                         <!-- select teams -->
                         <div class="col-sm-10">
                             <input 
@@ -98,6 +98,7 @@
                 </div> <!-- end row div -->
 
                 <div class="row skills">
+                    <h4>Rate this player's by skill</h4>
                     <!-- different attributes to rate a player on -->
                     @foreach( $skills as $skill)
                         <div class="form-group">
