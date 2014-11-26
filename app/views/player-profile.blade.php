@@ -131,8 +131,9 @@
 
     <div class="row well chart-section">
         <h3>Statistics</h3>
+        <h5><strong>Your Rating vs The Average</strong></h5>
         <canvas id="yourRating" width="400" height="400"></canvas>
-        <div id="legendDiv"></div>
+        <strong><div id="legendDiv"></div></strong>
     </div>
 
     <div class="player-thumbnails">
