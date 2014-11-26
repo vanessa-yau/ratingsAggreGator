@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <div class="row well">
+    <div class="row well existing-ratings">
         <h3>Average Rating by Skill</h3>
         <div class="row">
             @foreach($player->getRatingSummary() as $name => $stat)
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-            @endforeach 
+            @endforeach
         </div>
     </div>
 
@@ -129,7 +129,7 @@
         </div>
     </div> <!-- end row well div -->
 
-    <div class="row well">
+    <div class="row well chart-section">
         <h3>Statistics</h3>
         <canvas id="yourRating" width="400" height="400"></canvas>
         <div id="legendDiv"></div>
@@ -172,6 +172,11 @@
     $('#response-message').hide();
 
     $(function(){
+        if($('.stat-panel').length == 0){
+            $('.chart-section').hide();
+            $('.existing-ratings').hide();
+        }
+
         function radarChart() {
             var chartLabels = [];
             var averageData = [];
