@@ -14,7 +14,6 @@
         <strong id="message-type"></strong>
         <span id="message-text"></span>
     </div>
-
     <div class="row well">
         <h3>Player Information</h3>
         <div class="row">
