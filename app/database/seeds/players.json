@@ -40,6 +40,14 @@
 			"nationality":"French"
 		}
 		{
+			"name":"Federico Fazio",
+			"nationality":"Argentinian"
+		}
+		{
+			"name":"Benjamnic Stambouli",
+			"nationality":"French"
+		}
+		{
 			"name":"Jan Vertonghen",
 			"nationality":"Belgian"
 		}
@@ -49,7 +57,27 @@
 		}
 		{
 			"name":"Harry Kane",
-			"nationality":"Enligh"
+			"nationality":"English"
+		}
+		{
+			"name":"Ben Davies",
+			"nationality":"Welsh"
+		}
+		{
+			"name":"Aaron Lennon",
+			"nationality":"English"
+		}
+		{
+			"name":"Younes Kaboul",
+			"nationality":"French"
+		}
+		{
+			"name":"Kyle Walker",
+			"nationality":"English"
+		}
+		{
+			"name":"Mousa Dembele",
+			"nationality":"Belgian"
 		}
 	]
 }
