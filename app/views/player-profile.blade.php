@@ -40,7 +40,7 @@
                             <h3 class="{{ $name }}">{{ round($stat, 1) }}/5</h3>
                         </div>
                         <div class="panel-body" id="stat-name">
-                            <strong>{{ ucfirst($name) }}</strong>
+                            <strong class="stat-name">{{ ucfirst($name) }}</strong>
                         </div>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
 
     <div class="row well">
         <h3>Statistics</h3>
-        <canvas id="myChart" width="400" height="400"></canvas>
+        <canvas id="yourRating" width="400" height="400"></canvas>
     </div>
 
     <div class="player-thumbnails">
@@ -172,6 +172,36 @@
     $('#response-message').hide();
 
     $(function(){
+        function radarChart() {
+            var chartLabels = [];
+            var averageData = [];
+            var userData = [];
+            $('.stat-panel').each(function(index) {
+                // get array of stat names for chart labels.
+                chartLabels.push($(this).find('.stat-name').text());
+
+                // get the stat value, remove '/5' and turn into number.
+                var statVal = $(this).find('h3').text();
+                var statVal = statVal.substring(0, statVal.length-2);
+                var statVal = Number(statVal);
+                averageData.push(statVal);
+
+                // get the rating the user just submitted.
+
+            });
+            
+            ajaxData = getRating();
+            $.each(ajaxData.ratings, function(index) {
+                userData.push(ajaxData.ratings[index]);
+            });
+
+            // create new chart on canvas with id "yourRating".
+            console.log(chartLabels);
+            console.log(averageData);
+            console.log(userData);
+            createRadarChart(chartLabels, averageData, userData, "yourRating");
+        }
+
 
         $('.rating-stars span').click(function(){
             // add stars to star-icon clicked
@@ -200,7 +230,6 @@
                var $this = $(this);
                var starCount = $this.find('.glyphicon-star').length;
                var skill = $this.data('skill');
-               console.log(skill + ' = ' + starCount);
                ajaxData.ratings[skill] = starCount;
             });
             
@@ -283,9 +312,6 @@
                     var message = "Your rating has been submitted, Thanks!"
                     showSuccessMessage(message);
 
-                    // recolour panels if stats change averages.
-                    colourStatPanels();
-
                     // reset all rating dropdowns to show 'Average' after submission.
                     $('.skills').find('select').val(3);
 
@@ -293,6 +319,9 @@
                     $.each(json, function(skill, value) {
                         $('.' + skill).text(Number(value).toFixed(1) + '/5');
                     });
+
+                    // recolour panels if stats change averages.
+                    colourStatPanels();
 
                     // hide the form
                     $this.parents('.row').slideUp(300);
@@ -309,6 +338,7 @@
                     resetForm();
                     $this.parents('.row').slideDown(300);
                 }, 30000);
+                radarChart();
             }); // end of ajax request
         }); // end of submit event handler
 
