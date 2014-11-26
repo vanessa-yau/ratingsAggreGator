@@ -1,6 +1,10 @@
 function createRadarChart(labelArray, averageData, yourData, canvas) {
     // this function takes an array of strings for labels, two arrays of numbers for
     // values the user entered and average values, and an id of the canvas.
+
+    // the data array is set based on whether or not the user has rated,
+    // or just wnats to see the average.
+
     var data = {
         labels: labelArray,
         datasets: [
@@ -13,19 +17,22 @@ function createRadarChart(labelArray, averageData, yourData, canvas) {
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(220,220,220,1)",
                 data: averageData
-            },
-            {
-                label: "Your Rating",
-                fillColor: "rgba(255,0,0,0.2)",
-                strokeColor: "rgba(255,0,0,0.5)",
-                pointColor: "rgba(255,0,0,0.5)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: yourData
             }
         ]
     };
+
+    if(yourData[0] != 0){
+        data.datasets.push({
+            label: "Your Rating",
+            fillColor: "rgba(255,0,0,0.2)",
+            strokeColor: "rgba(255,0,0,0.5)",
+            pointColor: "rgba(255,0,0,0.5)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            data: yourData
+        });
+    }
 
     var options = {
         //Boolean - Whether to show lines for each scale point
@@ -53,7 +60,7 @@ function createRadarChart(labelArray, averageData, yourData, canvas) {
         pointLabelFontStyle : "bold",
 
         //Number - Point label font size in pixels
-        pointLabelFontSize : 10,
+        pointLabelFontSize : 12,
 
         //String - Point label font colour
         pointLabelFontColor : "#666",
@@ -83,7 +90,7 @@ function createRadarChart(labelArray, averageData, yourData, canvas) {
         legendTemplate :    '<ul>'
                             +'<% for (var i=0; i<datasets.length; i++) { %>'
                                 +'<li>'
-                                    +'<span style=\"background-color:<%=datasets[i].strokeColor%>\">'
+                                    +'<span style=\"color:<%=datasets[i].strokeColor%>\">'
                                         +'<% if (datasets[i].label) { %><%= datasets[i].label %><% } %>'
                                     +'</span>'
                                 +'</li>'

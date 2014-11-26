@@ -7,12 +7,19 @@
     padding-top: 5px;
 }
 
-#login-form {
-    padding-top: 0.5em;
-}
-
 #search-form {
     margin-right: 0;
     margin-left: 0;
     border: 0;
+}
+
+#account {
+    background-color: darkgreen;
+    color: white;
+    margin-bottom: 2px;
+}
+
+#logout {
+    background-color: red;
+    color: white;
 }
