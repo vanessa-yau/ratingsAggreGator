@@ -59,7 +59,7 @@
                 novalidate
             >
 
-                <input type="hidden" name="player_id" value="{{$player->id}}">
+                <input type="hidden" name="player_id" id="player_id" value="{{ $player->id }}">
               
                 <!-- row for team y vs team x -->  
                 <div class="row">    
@@ -132,6 +132,7 @@
     <div class="row well">
         <h3>Statistics</h3>
         <canvas id="yourRating" width="400" height="400"></canvas>
+        <div id="legendDiv"></div>
     </div>
 
     <div class="player-thumbnails">
@@ -171,6 +172,9 @@
     $('#response-message').hide();
 
     $(function(){
+        var ctx = document.getElementById('yourRating').getContext("2d");
+        ctx.fillText("We need your rating to make this chart...",200,200);
+
         function radarChart() {
             var chartLabels = [];
             var averageData = [];
