@@ -195,7 +195,6 @@
 
             // create new chart on canvas with id "yourRating".
             createRadarChart(chartLabels, averageData, userData, "yourRating");
-            console.log(userData);
         }
 
         // create initial chart without user ratings
