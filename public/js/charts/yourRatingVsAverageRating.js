@@ -1,6 +1,9 @@
 function createRadarChart(labelArray, averageData, yourData, canvas) {
     // this function takes an array of strings for labels, two arrays of numbers for
     // values the user entered and average values, and an id of the canvas.
+
+    // the data array is set based on whether or not the user has rated,
+    // or just wnats to see the average.
     if(yourData[0] != 0){
         var data = {
             labels: labelArray,
@@ -71,7 +74,7 @@ function createRadarChart(labelArray, averageData, yourData, canvas) {
         pointLabelFontStyle : "bold",
 
         //Number - Point label font size in pixels
-        pointLabelFontSize : 10,
+        pointLabelFontSize : 16,
 
         //String - Point label font colour
         pointLabelFontColor : "#666",
