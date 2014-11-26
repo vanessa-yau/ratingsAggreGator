@@ -113,7 +113,7 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 		{	
 			$query->orWhere('name', 'LIKE', '%' . $criterion .'%');
 		}    
-        return $query->paginate(5);
+        return $query->paginate(6);
 	}
 
 
