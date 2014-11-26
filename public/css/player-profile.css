@@ -1,6 +1,6 @@
 #profile-image {
-	max-width: 100%;
-	max-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 #stat-name {
@@ -30,6 +30,6 @@ h3 {
     min-height: 116px;
 }
 
-@media (max-width: 768px) {
-    text-align: center;
+.rating-stars span {
+    font-size: 1.5em;
 }

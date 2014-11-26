@@ -14,7 +14,6 @@
         <strong id="message-type"></strong>
         <span id="message-text"></span>
     </div>
-
     <div class="row well">
         <h3>Player Information</h3>
         <div class="row">
@@ -30,7 +29,7 @@
         </div>
     </div>
 
-    <div class="row well">
+    <div class="row well existing-ratings">
         <h3>Average Rating by Skill</h3>
         <div class="row">
             @foreach($player->getRatingSummary() as $name => $stat)
@@ -40,11 +39,11 @@
                             <h3 class="{{ $name }}">{{ round($stat, 1) }}/5</h3>
                         </div>
                         <div class="panel-body" id="stat-name">
-                            <strong>{{ ucfirst($name) }}</strong>
+                            <strong class="stat-name">{{ ucfirst($name) }}</strong>
                         </div>
                     </div>
                 </div>
-            @endforeach 
+            @endforeach
         </div>
     </div>
 
@@ -60,7 +59,7 @@
                 novalidate
             >
 
-                <input type="hidden" name="player_id" value="{{$player->id}}">
+                <input type="hidden" name="player_id" id="player_id" value="{{ $player->id }}">
               
                 <!-- row for team y vs team x -->  
                 <div class="row">    
@@ -130,9 +129,11 @@
         </div>
     </div> <!-- end row well div -->
 
-    <div class="row well">
+    <div class="row well chart-section">
         <h3>Statistics</h3>
-        <canvas id="myChart" width="400" height="400"></canvas>
+        <h5><strong>Your Rating vs The Average</strong></h5>
+        <canvas id="yourRating" width="400" height="400"></canvas>
+        <strong><div id="legendDiv"></div></strong>
     </div>
 
     <div class="player-thumbnails">
@@ -172,6 +173,38 @@
     $('#response-message').hide();
 
     $(function(){
+        if($('.stat-panel').length == 0){
+            $('.chart-section').hide();
+            $('.existing-ratings').hide();
+        }
+
+        function radarChart() {
+            var chartLabels = [];
+            var averageData = [];
+            var userData = [];
+            $('.stat-panel').each(function(index) {
+                // get array of stat names for chart labels.
+                chartLabels.push($(this).find('.stat-name').text());
+
+                // get the average stat value, remove '/5' and turn into number.
+                var statVal = $(this).find('h3').text();
+                var statVal = statVal.substring(0, statVal.length-2);
+                var statVal = Number(statVal);
+                averageData.push(statVal);
+            });
+            
+            // get the rating the user just submitted.
+            ajaxData = getRating();
+            $.each(ajaxData.ratings, function(index) {
+                userData.push(ajaxData.ratings[index]);
+            });
+
+            // create new chart on canvas with id "yourRating".
+            createRadarChart(chartLabels, averageData, userData, "yourRating");
+        }
+
+        // create initial chart without user ratings
+        radarChart();
 
         $('.rating-stars span').click(function(){
             // add stars to star-icon clicked
@@ -191,7 +224,7 @@
         });
 
         function getRating() {
-            var ajaxData = {
+            ajaxData = {
                 player_id   :  $('#player_id').val(),
                 ratings: {}
             };
@@ -200,7 +233,6 @@
                var $this = $(this);
                var starCount = $this.find('.glyphicon-star').length;
                var skill = $this.data('skill');
-               console.log(skill + ' = ' + starCount);
                ajaxData.ratings[skill] = starCount;
             });
             
@@ -283,9 +315,6 @@
                     var message = "Your rating has been submitted, Thanks!"
                     showSuccessMessage(message);
 
-                    // recolour panels if stats change averages.
-                    colourStatPanels();
-
                     // reset all rating dropdowns to show 'Average' after submission.
                     $('.skills').find('select').val(3);
 
@@ -293,6 +322,9 @@
                     $.each(json, function(skill, value) {
                         $('.' + skill).text(Number(value).toFixed(1) + '/5');
                     });
+
+                    // recolour panels if stats change averages.
+                    colourStatPanels();
 
                     // hide the form
                     $this.parents('.row').slideUp(300);
@@ -309,6 +341,8 @@
                     resetForm();
                     $this.parents('.row').slideDown(300);
                 }, 30000);
+                // recreate chart to take into account user ratings.
+                radarChart();
             }); // end of ajax request
         }); // end of submit event handler
 
