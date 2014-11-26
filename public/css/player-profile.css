@@ -29,3 +29,7 @@ h3 {
     max-height: 116px;
     min-height: 116px;
 }
+
+.rating-stars span {
+    font-size: 1.5em;
+}
