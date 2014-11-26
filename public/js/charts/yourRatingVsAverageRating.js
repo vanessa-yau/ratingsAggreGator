@@ -6,8 +6,8 @@ function createRadarChart(labelArray, averageData, yourData, canvas) {
         datasets: [
             {
                 label: "Average Rating",
-                fillColor: "rgba(100,100,200,0.2)",
-                strokeColor: "rgba(100,100,255,0.5)",
+                fillColor: "rgba(0,0,255,0.2)",
+                strokeColor: "rgba(0,0,255,0.5)",
                 pointColor: "rgba(0,0,255,0.5)",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
@@ -16,8 +16,8 @@ function createRadarChart(labelArray, averageData, yourData, canvas) {
             },
             {
                 label: "Your Rating",
-                fillColor: "rgba(200,100,100,0.2)",
-                strokeColor: "rgba(250,100,100,0.5)",
+                fillColor: "rgba(255,0,0,0.2)",
+                strokeColor: "rgba(255,0,0,0.5)",
                 pointColor: "rgba(255,0,0,0.5)",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
@@ -80,7 +80,15 @@ function createRadarChart(labelArray, averageData, yourData, canvas) {
         datasetFill : true,
 
         //String - A legend template
-        legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].lineColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+        legendTemplate :    '<ul>'
+                            +'<% for (var i=0; i<datasets.length; i++) { %>'
+                                +'<li>'
+                                    +'<span style=\"background-color:<%=datasets[i].strokeColor%>\">'
+                                        +'<% if (datasets[i].label) { %><%= datasets[i].label %><% } %>'
+                                    +'</span>'
+                                +'</li>'
+                            +'<% } %>'
+                            +'</ul>'
     }
 
     // <!> this part needs to go before the new chart statement below <!>
@@ -89,5 +97,6 @@ function createRadarChart(labelArray, averageData, yourData, canvas) {
 
     // creates the new chart on the canvas supplied in the ctx.
     // options array as second argument.  see chartjs docs.
-    new Chart(ctx).Radar(data, options);
+    var radar = new Chart(ctx).Radar(data, options);
+    document.getElementById("legendDiv").innerHTML = radar.generateLegend();
 }
