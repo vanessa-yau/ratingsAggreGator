@@ -172,9 +172,6 @@
     $('#response-message').hide();
 
     $(function(){
-        var ctx = document.getElementById('yourRating').getContext("2d");
-        ctx.fillText("We need your rating to make this chart...",200,200);
-
         function radarChart() {
             var chartLabels = [];
             var averageData = [];
@@ -183,28 +180,26 @@
                 // get array of stat names for chart labels.
                 chartLabels.push($(this).find('.stat-name').text());
 
-                // get the stat value, remove '/5' and turn into number.
+                // get the average stat value, remove '/5' and turn into number.
                 var statVal = $(this).find('h3').text();
                 var statVal = statVal.substring(0, statVal.length-2);
                 var statVal = Number(statVal);
                 averageData.push(statVal);
-
-                // get the rating the user just submitted.
-
             });
             
+            // get the rating the user just submitted.
             ajaxData = getRating();
             $.each(ajaxData.ratings, function(index) {
                 userData.push(ajaxData.ratings[index]);
             });
 
             // create new chart on canvas with id "yourRating".
-            console.log(chartLabels);
-            console.log(averageData);
-            console.log(userData);
             createRadarChart(chartLabels, averageData, userData, "yourRating");
+            console.log(userData);
         }
 
+        // create initial chart without user ratings
+        radarChart();
 
         $('.rating-stars span').click(function(){
             // add stars to star-icon clicked
@@ -224,7 +219,7 @@
         });
 
         function getRating() {
-            var ajaxData = {
+            ajaxData = {
                 player_id   :  $('#player_id').val(),
                 ratings: {}
             };
@@ -341,6 +336,7 @@
                     resetForm();
                     $this.parents('.row').slideDown(300);
                 }, 30000);
+                // recreate chart to take into account user ratings.
                 radarChart();
             }); // end of ajax request
         }); // end of submit event handler

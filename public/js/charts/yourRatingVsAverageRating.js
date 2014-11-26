@@ -1,31 +1,49 @@
 function createRadarChart(labelArray, averageData, yourData, canvas) {
     // this function takes an array of strings for labels, two arrays of numbers for
     // values the user entered and average values, and an id of the canvas.
-    var data = {
-        labels: labelArray,
-        datasets: [
-            {
-                label: "Average Rating",
-                fillColor: "rgba(0,0,255,0.2)",
-                strokeColor: "rgba(0,0,255,0.5)",
-                pointColor: "rgba(0,0,255,0.5)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
-                data: averageData
-            },
-            {
-                label: "Your Rating",
-                fillColor: "rgba(255,0,0,0.2)",
-                strokeColor: "rgba(255,0,0,0.5)",
-                pointColor: "rgba(255,0,0,0.5)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: yourData
-            }
-        ]
-    };
+    if(yourData[0] != 0){
+        var data = {
+            labels: labelArray,
+            datasets: [
+                {
+                    label: "Average Rating",
+                    fillColor: "rgba(0,0,255,0.2)",
+                    strokeColor: "rgba(0,0,255,0.5)",
+                    pointColor: "rgba(0,0,255,0.5)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: averageData
+                },
+                {
+                    label: "Your Rating",
+                    fillColor: "rgba(255,0,0,0.2)",
+                    strokeColor: "rgba(255,0,0,0.5)",
+                    pointColor: "rgba(255,0,0,0.5)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: yourData
+                }
+            ]
+        };
+    } else {
+        var data = {
+            labels: labelArray,
+            datasets: [
+                {
+                    label: "Average Rating",
+                    fillColor: "rgba(0,0,255,0.2)",
+                    strokeColor: "rgba(0,0,255,0.5)",
+                    pointColor: "rgba(0,0,255,0.5)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: averageData
+                }
+            ]
+        };
+    }
 
     var options = {
         //Boolean - Whether to show lines for each scale point
