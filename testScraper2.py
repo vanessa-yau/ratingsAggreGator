@@ -13,105 +13,74 @@ def specialPrint(str):
 	print str.encode(sys.stdout.encoding, errors='replace')
 
 # names of the team in Premier League
-teamName = [
-"Arsenal",
-"Aston Villa",
-"Burnley",
-"Chelsea",
-"Crystal Palace",
-"Everton",
-"Hull City",
-"Leicester City",
-"Liverpool",
-"Manchester City",
-"Manchester United",
-"Newcastle United",
-"Queens Park Rangers",
-"Southampton",
-"Stoke City",
-"Sunderland",
-"Swansea City",
-"Tottenham Hotspur",
-"West Bromwich Albion",
-"West Ham United",
-]
 
-# URLs to scrape player data from
-teamsToScrape = [
-# Arsenal
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/arsenal.htm",
-# Aston Villa
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/avilla.htm",
-# Burnley
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/burnley.htm",
-# Chelsea
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/chelsea.htm",
-# Crystal Palace
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/cpalace.htm",
-# Everton
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/everton.htm",
-# Hull City
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/hullc.htm",
-# Leicester City
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/leicester.htm",
-# Liverpool
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/liverpool.htm",
-# Manchester City
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/mancity.htm",
-# Manchester United
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/manutd.htm",
-# Newcastle United
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/newcas.htm",
-# Queens Park Rangers
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/qpr.htm",
-# Southampton
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/southam.htm",
-# Stoke City
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/stoke.htm",
-# Sunderland
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/sunder.htm",
-# Swansea City
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/swansea.htm",
-# Tottenham Hotspur
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/tottenha.htm",
-# West Bromwich Albion
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/wba.htm",
-# West Ham United
-"http://www.footballsquads.co.uk/eng/2014-2015/faprem/westham.htm"
-]
+teamToFetch = {
+	"Arsenal":"arsenal",
+	"Aston Villa": "avilla",
+	"Burnley":"burnley",
+	"Chelsea":"chelsea",
+	"Crystal Palace":"cpalace",
+	"Everton":"everton",
+	"Hull City":"hullc",
+	"Leicester City":"leiceste",
+	"Liverpool":"liverpoo",
+	"Manchester City":"mancity",
+	"Manchester United":"manutd",
+	"Queens Park Rangers":"qpr",
+	"Southampton":"southam",
+	"Stoke City":"stoke",
+	"Sunderland":"sunder",
+	"Swansea City":"swansea",
+	"Tottenham Hotspur":"tottenha",
+	"West Bromwich Albion":"wba",
+	"West Ham United":"westham"
+}
 
-for teamName in teamsToScrape:
-	scrapeIndex = 0
-	# fetches next URL to scrape via scrapeIndex
-	url = teamsToScrape[scrapeIndex]
+for key in teamToFetch:	
+	# fetches next URL to scrape via teamToFetch dictionary
+	url = "http://www.footballsquads.co.uk/eng/2014-2015/faprem/" + teamToFetch[1] + ".htm"
 	r = requests.get(url)
 	soup = BeautifulSoup(r.content)
 	rows = soup.find_all("tr")
 
+	# naming cols from the page, for a player
 	cols = ["number", "name", "nat", "pos", 
 	"height", "weight", "dob", "birth", "prevClub"]
 
+	# holds player dictionaries 
+	# i.e. list of player dicts
 	players = []
 
 	for row in rows:
 		player = {}
 		colIndex = 0
 
+		# find all td elements
 		for cell in row.find_all("td"):
 			#row = [row.text.encode(sys.stdout.encoding, errors='replace')]
+			# each column in row, add data to player dict
 			player[cols[colIndex]] = cell.text  	
-			specialPrint(cell.text)
+			# use the function to print utf-8 chars in names
+			#specialPrint(cell.text)
+			# increment colIndex so we can iterate through
+			# my named columns in cols
 			colIndex+=1
 
-		scrapeIndex+=1	
+		# increment, scrape the next team URL	
+		scrapeIndex+=1
+		# add player object into players array
+		# (players array of objects player)	
 		players.append(player)
 
-allPlayers = []
-allPlayers[teamName] = players
+allTeams = {}
+#allTeams{teamToFetch} = players
 
-jsonPlayers = json.dumps(allPlayers)
-#print jsonPlayers
+# dump the arrays into json format
+# to be used for seeding
+jsonPlayers = json.dumps(allTeams)
+print jsonPlayers
 
-with open('players.txt', 'w') as outfile:
-	json.dump(players, outfile)
+# write the json into a .txt file
+#with open('players.txt', 'w') as outfile:
+#	json.dump(players, outfile)
 
