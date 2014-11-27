@@ -31,7 +31,8 @@ class UserController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		// $countries = User::getCountryList();
+		return View::make('register',compact('countries'));
 	}
 
 
@@ -42,7 +43,16 @@ class UserController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$user = User::create(array(
+			'first_name' 		=> Input::get('first_name'),
+			'surname' 			=> Input::get('surname'),
+			'username' 			=> Input::get('username'),
+			'password' 			=> Input::get('password'),
+			'dob' 				=> Input::get('dob'),
+			'email_address' 	=> Input::get('email_address'),
+			'country_code' 		=> Input::get('country'),
+			'town/city' 		=> Input::get('town-city'),
+		));
 	}
 
 

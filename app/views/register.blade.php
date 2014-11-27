@@ -2,7 +2,7 @@
 {{ HTML::style("/css/bootstrap.min.css") }}
 
 @section('content')
-
+<form action="{{ URL::route('user.store') }}" method="post" id="registration_form">
     <div class="form-control-group">
         <label class="control-label" for="first_name">First Name</label>
         <input type="text" class="form-control" id="first_name" name="first_name">
@@ -34,12 +34,12 @@
         <p class ="user_help" id="password_help"></p>
     </div>
 
-   <div class="form-control-group">
+    <div class="form-control-group">
         <label class="control-label" for="dob">Date of birth</label>
         <input id="datepicker" name="dob" type="datetime">
         <p class ="user_help" id="password_help"></p>
     </div>
-    
+
     <div class="form-control-group">
         <label class="control-label" for="email_address">Email Address</label>
         <input type="email" class="form-control" id="email_address" name="email_address" placeholder="someone@somewhere.com">
@@ -48,40 +48,24 @@
 
     <div class="form-control-group">
         <label class="control-label" for="country">Country</label>
-        <select class="form-control" id = "country" name="country">
-            <option value="Doctor">Fill This List With Countries Plawks</option>
+        <select id="country" name ="country">
+
+            @foreach(Countries::getList('en', 'php', 'cldr') as $countryId => $countryName)
+                <option value="{{{ $countryId }}}">{{{$countryName}}}</option>
+            @endforeach
+
         </select>
     </div>
 
-    <div class="form-control-group">
-        <label class="control-label" for="town-city">Town/City</label>
-        <input type="text" class="form-control" id="town-city" name="town-city">
-        <p class ="user_help" id="password_help"></p>
-    </div>
+        <div class="form-control-group">
+            <label class="control-label" for="town-city">Town/City</label>
+            <input type="text" class="form-control" id="town-city" name="town-city">
+            <p class ="user_help" id="password_help"></p>
+        </div>
 
-    <div class="form-actions">
-        <button type ="submit" class="btn btn-success btn-large">Register</button>
-    </div>
+        <div class="form-actions">
+            <button type ="submit" class="btn btn-success btn-large">Register</button>
+        </div>
 
 </form>
 @stop
-
-<!-- scripts -->
-        <script src="/js/jquery.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/search.js"></script>
-        <script src="/js/Chart.js"></script>
-
-        <!-- Load jQuery from Google's CDN -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"> </script>
-        
-        <!-- Load slightly customised version of jQuery UI CSS  -->
-        <link rel="stylesheet" href="/css/jquery-ui.css" />
-         
-        <!-- Load jQuery UI Main JS  -->
-        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-        
-        <!-- Load SCRIPT.JS which will create datepicker for input field -->
-        <script src="/js/datepicker.js"></script>
-        
-        @yield('js')
