@@ -20,7 +20,7 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		return ( Auth::check() ? View::make('player-profile') : View::make('hello'));
+		//
 	}
 
 
