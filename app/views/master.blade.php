@@ -11,6 +11,8 @@
 		
 		<div class="container">
 			@yield('content')
+
+			@include('footer')
 		</div>
 
 		@yield('modals')
