@@ -34,14 +34,14 @@ class RatingController extends \BaseController {
 		// get player info inputs from form
 		$player = Player::find( Input::get('player_id') );
 		$ratings = Input::get('ratings');
-		$ratingIds = array_keys($ratings);
 
 		$validationRulesArray = [];
-		foreach ($ratingIds as $ratingId) {
-			$validationRulesArray[$ratingId] = 'required|numeric|digits_between:1,5';
+		foreach ($ratings as $ratingId => $rating) {
+			$validationRulesArray[$ratingId] = 'required|numeric|between:1,5';
 		}
 
 		$validator = Validator::make($ratings, $validationRulesArray);
+
 
         // if validation passes, run query to insert and return newly created rating.
         if ($validator->fails()) {

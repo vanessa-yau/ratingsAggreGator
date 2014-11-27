@@ -1,0 +1,5 @@
+/* css styling to override bootstrap navbar settings */
+footer .navbar {
+    background-color: transparent;
+    border-bottom-color: transparent;
+}

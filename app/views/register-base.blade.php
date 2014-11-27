@@ -17,8 +17,6 @@
 		<!-- scripts -->
 		<script src="/js/jquery.js"></script>
 		<script src="/js/bootstrap.min.js"></script>
-		<script src="/js/search.js"></script>
-		<script src="/js/Chart.js"></script>
 
 		<!-- Load jQuery from Google's CDN -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"> </script>
