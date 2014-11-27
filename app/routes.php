@@ -62,3 +62,8 @@ Route::get('/countries', function()
 {
    print_r( ( json_decode( Countries::getList('en', 'json', 'cldr')) ) );
 });
+
+Route::post('register', [
+    'as' => 'user.store',
+    'uses' => 'UserController@store'
+]);
