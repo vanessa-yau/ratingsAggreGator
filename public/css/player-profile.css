@@ -46,8 +46,18 @@ h3 {
 .thumbnail {
     text-align: center;
 }
+
+.team-mate-image {
+    height: 125px;
+}
+
 .thumbnail img {
-    height: 116px;
+    max-height: 125px;
+    max-width: 100%;
+    vertical-align: middle;
+    /* little hack to make images horizontal center aligned */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .rating-stars span {

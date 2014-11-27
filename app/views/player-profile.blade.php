@@ -156,8 +156,9 @@
                                 <p class="team-mate-name">
                                     {{{$teamMate->name}}}
                                 </p>
-                                <img class="thumbnail" src="{{ $teamMate->image_url }}" alt="Profile Image">
-                        
+                                <div class="team-mate-image">
+                                    <img class="thumbnail" src="{{ $teamMate->image_url }}" alt="Profile Image">
+                                </div>
                                 <p>{{{ 'TEAM NAME GOES HERE' }}}</p>
                             </div>
                         </a>
