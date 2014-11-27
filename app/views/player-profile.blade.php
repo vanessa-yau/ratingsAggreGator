@@ -316,9 +316,6 @@
                     var message = "Your rating has been submitted, Thanks!"
                     showSuccessMessage(message);
 
-                    // reset all rating dropdowns to show 'Average' after submission.
-                    $('.skills').find('select').val(3);
-
                     // change rating values on page to new values.
                     $.each(json, function(skill, value) {
                         $('.' + skill).text(Number(value).toFixed(1) + '/5');
@@ -329,6 +326,9 @@
 
                     // hide the form
                     $this.parents('.row').slideUp(300);
+
+                    // recreate chart to take into account user ratings.
+                    radarChart();
                 },
                 error: function(e){
                     // display error message.
@@ -342,8 +342,6 @@
                     resetForm();
                     $this.parents('.row').slideDown(300);
                 }, 30000);
-                // recreate chart to take into account user ratings.
-                radarChart();
             }); // end of ajax request
         }); // end of submit event handler
 
