@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import sys
 import json
+import io
 
 def specialPrint(str):
 	'''
@@ -70,5 +71,6 @@ for key in teamToFetch:
 		# (players array of objects player)	
 		players.append(player)
 
-with open('playersEnglishPremierLeague.txt', 'w') as outfile:
-	json.dumps(players, outfile)
+# nb: utf-8 support
+with io.open('data.txt', 'w', encoding='utf-8') as f:
+  f.write(unicode(json.dumps(players, ensure_ascii=False)))
