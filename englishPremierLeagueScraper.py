@@ -45,10 +45,11 @@ for key in teamToFetch:
 	r = requests.get(url)
 	soup = BeautifulSoup(r.content)
 	rows = soup.find_all("tr")
+	team = teamToFetch[key]
 
 	# naming cols from the page, for a player
 	cols = ["number", "name", "nat", "pos", 
-	"height", "weight", "dob", "birth", "prevClub"]
+	"height", "weight", "dob", "birth", "prevClub", "team"]
 
 	# holds player dictionaries 
 	# i.e. list of player dicts
@@ -62,7 +63,8 @@ for key in teamToFetch:
 		for cell in row.find_all("td"):
 			#row = [row.text.encode(sys.stdout.encoding, errors='replace')]
 			# each column in row, add data to player dict
-			player[cols[colIndex]] = cell.text  	
+			player[cols[colIndex]] = cell.text
+			player[cols[9]] = teamToFetch[key]  	
 			# use the function to print utf-8 chars in names
 			#specialPrint(cell.text)
 			# increment colIndex so we can iterate through
