@@ -14,7 +14,7 @@
             <div class="col-xs-6 col-sm-3 placeholder">
                 <img src="https://avatars0.githubusercontent.com/u/310636?v=3&s=460" class="img-responsive" alt="Generic placeholder thumbnail">
                 <h4>Jake</h4>
-                <span class="text-muted">an organism that converts caffeine to code</span>
+                <span class="text-muted">an organism that converts caffeine to code. also sysadmin.</span>
                 <div class="connect-icons">
                     <a 
                         target="_blank" 
@@ -72,7 +72,7 @@
             <div class="col-xs-6 col-sm-3 placeholder">
                 <img src="https://avatars0.githubusercontent.com/u/9447746?v=3&s=460" class="img-responsive" alt="Generic placeholder thumbnail">
                 <h4>Sam</h4>
-                <span class="text-muted">will code for new laptop</span>
+                <span class="text-muted">will code for new laptop.</span>
                 <div class="connect-icons">
                     <a 
                         target="_blank" 
@@ -93,7 +93,7 @@
             <div class="col-xs-6 col-sm-3 placeholder">
                 <img src="https://avatars0.githubusercontent.com/u/5989435?v=3&s=460" class="img-responsive" alt="Generic placeholder thumbnail">
                 <h4>Vanessa</h4>
-                <span class="text-muted">bakes cakes and codes. mainly the latter</span>
+                <span class="text-muted">bakes cakes and codes. mainly the latter.</span>
                 <div class="connect-icons">
                     <a 
                         target="_blank" 
