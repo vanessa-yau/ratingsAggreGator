@@ -37,6 +37,8 @@ teamToFetch = {
 	"West Ham United":"westham"
 }
 
+data = []
+
 for key in teamToFetch:	
 	# fetches next URL to scrape via teamToFetch dictionary
 	url = "http://www.footballsquads.co.uk/eng/2014-2015/faprem/" + teamToFetch[key] + ".htm"
@@ -71,6 +73,9 @@ for key in teamToFetch:
 		# (players array of objects player)	
 		players.append(player)
 
+	team = {"name":key,"players":players}
+	data.append(team)	
+
 # nb: utf-8 support
 with io.open('data.txt', 'w', encoding='utf-8') as f:
-  f.write(unicode(json.dumps(players, ensure_ascii=False)))
+  f.write(unicode(json.dumps(data, ensure_ascii=False)))
