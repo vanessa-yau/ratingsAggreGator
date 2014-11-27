@@ -16,14 +16,6 @@ function scrapePage($image_url){
         curl_close($ch);
 
         return $output;
-
-        // find the div containing the image link...
-        // $src = $hostInfo['img_src'];
-        // $start = strpos($output, $src) + strlen($src);
-        // $end = strpos($output, $hostInfo['img_end'], $start);
-
-        // $imgPath = substr($output, $start, $end - $start);
-        // return $imgPath;
 }
 
 function getImgSource($name){
@@ -44,9 +36,9 @@ function getImgSource($name){
     }
 }
 
-function downloadImgFromSource($name, $id, $url) {
-    $fp = fopen($id.'.jpg', 'wb');
-    echo $url;
+function downloadImgFromSource($name, $id) {
+    $fp = fopen(public_path().'/images/profile_images'.$id.'.jpg', 'wb');
+    $url = getImgSource($name);
 
     $ch = curl_init();
     $timeout = 5;
@@ -54,15 +46,27 @@ function downloadImgFromSource($name, $id, $url) {
     curl_setopt($ch, CURLOPT_FILE, $fp);
     curl_setopt($ch, CURLOPT_HEADER, false);
     $data = curl_exec($ch);
-    var_dump($data);
     curl_close($ch);
     fclose($fp);
 }
 
-// echo downloadImgFromSource("thing", 1, "http://news.bbcimg.co.uk/media/images/79309000/jpg/_79309867_ccb0d2b1-a311-473b-8309-6a5bea083204.jpg");
+function getImagesForPlayers($players){
+    foreach ($players as $key => $value) {
+        echo( $key." ".$value."\n");
+        downloadImgFromSource($value, $key);
+    }
+}
 
-echo downloadImgFromSource('Steven Gerrard', 1) . "\n";
-echo downloadImgFromSource('Roberto Soldado', 1) . "\n";
-echo downloadImgFromSource('Hugo Lloris', 1) . "\n";
-echo downloadImgFromSource('Harry Kane', 1) . "\n";
+$players = [
+    '1' => 'Steven Gerrard',
+    '2' => 'Roberto Soldado',
+    '3' => 'Hugo Lloris',
+    '4' => 'Harry Kane'
+];
 
+getImagesForPlayers($players);
+
+// echo downloadImgFromSource('Steven Gerrard', 1) . "\n";
+// echo downloadImgFromSource('Roberto Soldado',2) . "\n";
+// echo downloadImgFromSource('Hugo Lloris', 3) . "\n";
+// echo downloadImgFromSource('Harry Kane', 4) . "\n";
