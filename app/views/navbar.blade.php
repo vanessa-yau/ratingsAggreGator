@@ -29,7 +29,7 @@
                                 </li>
                             </button>
                         </a>
-                        <a href="{{ URL::route('users.logout')}}" class="login-button">
+                        <a href="{{ URL::route('users.logout') }}" class="login-button">
                             <button class="btn btn-block" id="logout">
                                 <li>
                                     Logout

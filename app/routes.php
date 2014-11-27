@@ -67,3 +67,18 @@ Route::post('register', [
     'as' => 'user.store',
     'uses' => 'UserController@store'
 ]);
+
+// navbar footer routes
+Route::get('/about/meet-the-team', [
+    'as' => 'meet-the-team',
+    function(){
+        return View::make('meet-the-team');
+    }
+]);
+
+Route::get('/help/contact-us', [
+    'as' => 'contact-us',
+    function(){
+        return View::make('contact-us');
+    }
+]);
