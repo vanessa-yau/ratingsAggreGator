@@ -6,8 +6,16 @@
 #stat-name {
     text-align: center;
 }
+
 .stat-value {
     text-align: center;
+}
+
+.team-mate-name {
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 label {
@@ -21,13 +29,25 @@ h3 {
     margin-top: 0;
 }
 
+.chart {
+    text-align: center;
+}
+
+.legend {
+    text-align: center;
+}
+
+.legend ul{
+    padding-left: 0;
+    list-style-type: none;
+}
+
 /* Other players images */
 .thumbnail {
     text-align: center;
 }
 .thumbnail img {
-    max-height: 116px;
-    min-height: 116px;
+    height: 116px;
 }
 
 .rating-stars span {

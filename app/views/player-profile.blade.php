@@ -49,6 +49,8 @@
 
     <!-- ratings form -->
     <div class="row well">
+        <h3>Rate {{ $player->name }}</h3>
+        <h5>In the this game:</h5>
         <div class="col-md-12">
       
             <form 
@@ -65,7 +67,6 @@
                 <div class="row">
                     <!-- enter/select match -->
                     <div class="form-group match">
-                        <h4>Match info</h4>
                         <!-- select teams -->
                         <div class="col-sm-10">
                             <input 
@@ -98,7 +99,7 @@
                 </div> <!-- end row div -->
 
                 <div class="row skills">
-                    <h4>Rate this player's by skill</h4>
+                    <h5>Using these criteria:</h5>
                     <!-- different attributes to rate a player on -->
                     @foreach( $skills as $skill)
                         <div class="form-group">
@@ -132,9 +133,15 @@
 
     <div class="row well chart-section">
         <h3>Statistics</h3>
-        <h5><strong>Your Rating vs The Average</strong></h5>
-        <canvas id="yourRating" width="400" height="400"></canvas>
-        <strong><div id="legendDiv"></div></strong>
+        <div class="col-sm-6">
+            <div class="col-sm-8 chart">
+                <canvas id="yourRating"></canvas>
+            </div>
+            <div class="col-sm-4 legend">
+                <h5><strong>Your Rating vs The Average</strong></h5>
+                <strong><div id="legendDiv"></div></strong>
+            </div>
+        </div>
     </div>
 
     <div class="player-thumbnails">
@@ -146,13 +153,9 @@
                         <a href="{{ URL::route('players.show', $player->id) }}"></a>
                         <a href="/players/{{ $teamMate->id }}">
                             <div class="thumbnail">
-                                <strong>
-                                    @if( strlen($teamMate->name) > 15 )
-                                        {{{ substr($teamMate->name, 0, 12).'...' }}}
-                                    @else
-                                        {{{ $teamMate->name }}}
-                                    @endif
-                                </strong><br />
+                                <p class="team-mate-name">
+                                    {{{$teamMate->name}}}
+                                </p>
                                 <img class="thumbnail" src="{{ $teamMate->image_url }}" alt="Profile Image">
                         
                                 <p>{{{ 'TEAM NAME GOES HERE' }}}</p>
