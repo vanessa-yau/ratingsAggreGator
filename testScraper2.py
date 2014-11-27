@@ -38,7 +38,7 @@ teamToFetch = {
 
 for key in teamToFetch:	
 	# fetches next URL to scrape via teamToFetch dictionary
-	url = "http://www.footballsquads.co.uk/eng/2014-2015/faprem/" + teamToFetch[1] + ".htm"
+	url = "http://www.footballsquads.co.uk/eng/2014-2015/faprem/" + teamToFetch[key] + ".htm"
 	r = requests.get(url)
 	soup = BeautifulSoup(r.content)
 	rows = soup.find_all("tr")
@@ -66,21 +66,9 @@ for key in teamToFetch:
 			# my named columns in cols
 			colIndex+=1
 
-		# increment, scrape the next team URL	
-		scrapeIndex+=1
 		# add player object into players array
 		# (players array of objects player)	
 		players.append(player)
 
-allTeams = {}
-#allTeams{teamToFetch} = players
-
-# dump the arrays into json format
-# to be used for seeding
-jsonPlayers = json.dumps(allTeams)
-print jsonPlayers
-
-# write the json into a .txt file
-#with open('players.txt', 'w') as outfile:
-#	json.dump(players, outfile)
-
+with open('playersEnglishPremierLeague.txt', 'w') as outfile:
+	json.dumps(players, outfile)
