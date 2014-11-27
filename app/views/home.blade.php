@@ -7,6 +7,10 @@
 @section('content')
 
 	<div>
+		<center><h2><a href="http://www.bbc.co.uk/sport/0/cricket/30219440">RIP Phillip Hughes</a></h2>
+		<br>
+		<p>Australian batsman dies, aged 25</p>
+		</center>
 		<h3>Most Rated - Today's most commonly rated players</h3>
 	</div>
 	<div align="center">
