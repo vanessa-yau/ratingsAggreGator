@@ -31,7 +31,8 @@ class UserController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		// $countries = User::getCountryList();
+		return View::make('register',compact('countries'));
 	}
 
 

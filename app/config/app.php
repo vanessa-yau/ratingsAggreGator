@@ -121,7 +121,8 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-		'Clockwork\Support\Laravel\ClockworkServiceProvider'
+		'Clockwork\Support\Laravel\ClockworkServiceProvider',
+		'Monarobase\CountryList\CountryListServiceProvider',
 	),
 
 	/*
@@ -189,6 +190,7 @@ return array(
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
 		'Clockwork' 		=> 'Clockwork\Support\Laravel\Facade',
+		'Countries' 		=> 'Monarobase\CountryList\CountryListFacade',
 
 	),
 

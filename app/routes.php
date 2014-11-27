@@ -16,6 +16,11 @@ Route::get('/',  [
     'uses' => 'RatingController@mostPopular'
 ]);
 
+Route::get('/register', [
+    'as' => 'users.create',
+    'uses' => 'UserController@create'
+]);
+
 Route::get('profile', function() {
 	return View::make('player-profile');
 });
@@ -52,3 +57,8 @@ Route::get('hello', array(
         'uses' => 'PlayerController@getRandomPlayers'
     )
 );
+
+Route::get('/countries', function()
+{
+   print_r( ( json_decode( Countries::getList('en', 'json', 'cldr')) ) );
+});
