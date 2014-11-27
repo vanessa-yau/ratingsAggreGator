@@ -1,3 +1,5 @@
 <footer class="footer">
-    <p>YOLO YOU CAN CONTACT US HERE, FEATURES COMING SOON</p>
+    <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+    </div>
 </footer>
