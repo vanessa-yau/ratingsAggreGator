@@ -83,13 +83,6 @@
                     </a>
                     <a 
                         target="_blank" 
-                        href="#" 
-                        class="btn btn-social-icon btn-linkedin"
-                    >
-                      <i class="fa fa-linkedin"></i>
-                    </a>
-                    <a 
-                        target="_blank" 
                         href="https://github.com/sreilly1" 
                         class="btn btn-social-icon btn-github"
                     >
