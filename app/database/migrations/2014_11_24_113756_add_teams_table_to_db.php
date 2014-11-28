@@ -15,7 +15,7 @@ class AddTeamsTableToDb extends Migration {
 		// add teams table to database
 		Schema::create('teams', function($table)
 		{
-			$table->integer('id');
+			$table->increments('id');
 			// name of the team
 			$table->string('name');
 		});
