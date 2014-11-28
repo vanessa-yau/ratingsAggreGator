@@ -117,6 +117,13 @@
                     @endforeach
                 </div> <!-- end row skills row -->
 
+                @if(Auth::check())
+                    <div class="row comment">
+                        <label>Tweet Comment:</label>
+                        <input type="text" id="comment" name="comment" placeholder="Comment to add to tweet">
+                    </div>
+                @endif
+
                 <input type="hidden" id="player_id" value="1">
                 <div class="form-group">
                     <div class="col-sm-12">
