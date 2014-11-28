@@ -63,3 +63,8 @@ h3 {
 .rating-stars span {
     font-size: 1.5em;
 }
+
+/* override other input settings */
+.comment label {
+    text-align: left;
+}
