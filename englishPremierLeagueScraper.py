@@ -85,9 +85,9 @@ for key in teamToFetch:
 # write all the data to json and out to file
 # nb: utf-8 support
 with io.open('data.txt', 'w', encoding='utf-8') as f:
-	f.write(unicode(json.dumps(data, ensure_ascii=False)))
+	f.write(unicode(json.dumps(data, ensure_ascii=False, sort_keys=True, indent=4)))
 
-# read the json/txt file, pprint for console output
+# read the json/txt file, pprint (pretty print) for console output
 json_data=open('data.txt')
 
 data = json.load(json_data)
