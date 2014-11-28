@@ -3,6 +3,7 @@
 	<head>
 		<title>Ratings AggreGator</title>
 		{{ HTML::style("/css/bootstrap.min.css") }}
+		{{ HTML::style("/css/font-awesome.min.css") }}
 		{{ HTML::style("/css/navbar.css") }}
 		<style>
 			body {
@@ -53,7 +54,7 @@
 
 			// Set colors
 			UserVoice.push(['set', {
-			  accent_color: '#6aba2e',
+			  accent_color: '#448dd6',
 			  trigger_color: 'white',
 			  trigger_background_color: '#448dd6'
 			}]);

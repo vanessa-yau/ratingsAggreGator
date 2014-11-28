@@ -18,6 +18,25 @@
                     <li><a href="{{ URL::route('meet-the-team') }}">Meet the Team</a></li>
                     <li><a href="{{ URL::route('contact-us') }}">Contact Us</a></li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a 
+                            target="_blank" 
+                            href="https://www.facebook.com/pages/Ratingator/1418546275032761?ref=br_rs" 
+                        >
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a 
+                            target="_blank" 
+                            href="https://twitter.com/ratingator" 
+                        >
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li><a href="#"><span class="glyphicon glyphicon-chevron-up"></span> Back to Top</a></li>
+                </ul>
             </div><!--/.nav-collapse -->
         </nav>
     </div>

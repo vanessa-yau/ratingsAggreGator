@@ -3,3 +3,9 @@ footer .navbar {
     background-color: transparent;
     border-bottom-color: transparent;
 }
+footer .fa-twitter {
+    color: #55acee;
+}
+footer .fa-facebook {
+    color: #3b5998;
+}

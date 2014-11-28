@@ -5,6 +5,7 @@
 @stop
 
 @section('content')
+    <div id="error-pointer"></div>
     <!-- dynamically populated response message -->
     <div class="alert alert-dismissible" id="response-message" role="alert">
         <button type="button" class="close" >
@@ -338,6 +339,7 @@
                     // display error message.
                     var responseText = $.parseJSON(e.responseText);
                     showErrorMessage(responseText);
+                    $('body').scrollTop(0);
                 }
             })
             .always(function () {

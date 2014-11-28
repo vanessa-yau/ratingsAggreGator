@@ -1,0 +1,35 @@
+.thumbnail {
+    text-align: center;
+}
+
+.contact-us {
+    background-color: #278ADF;
+}
+.contact-us h4 {
+    color: white;
+}
+.contact-us p {
+    color: white;
+}
+.fa-envelope-o {
+    font-size: 150px;
+    color: white;
+}
+
+.report-issue {
+    background-color: #DB322D;
+}
+.report-issue h4 {
+    color: white;
+}
+.report-issue p {
+    color: white;
+}
+.fa-exclamation-circle {
+    font-size: 150px;
+    color: white;
+}
+
+a:link {
+    text-decoration: none;
+}

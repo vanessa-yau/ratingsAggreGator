@@ -2,8 +2,8 @@
 
 @section('style')
     {{ HTML::style( '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' ) }}
-    {{ HTML::style( '/css/bootstrap-social.css' ) }}
     {{ HTML::style("/css/meet-the-team.css") }}
+    {{ HTML::style( '/css/bootstrap-social.css' ) }}
 @stop
 
 @section('content')
