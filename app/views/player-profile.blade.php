@@ -6,15 +6,6 @@
 
 @section('content')
     <div id="error-pointer"></div>
-    <!-- dynamically populated response message -->
-    <div class="alert alert-dismissible" id="response-message" role="alert">
-        <button type="button" class="close" >
-        <span aria-hidden="true">&times;</span>
-        <span class="sr-only">Close</span>
-        </button>
-        <strong id="message-type"></strong>
-        <span id="message-text"></span>
-    </div>
     <div class="row well">
         <h3>Player Information</h3>
         <div class="row">
@@ -48,6 +39,16 @@
         </div>
     </div>
 
+    <!-- dynamically populated response message -->
+    <div class="alert alert-dismissible" id="response-message" role="alert">
+        <button type="button" class="close" >
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+        </button>
+        <strong id="message-type"></strong>
+        <span id="message-text"></span>
+    </div>
+    
     <!-- ratings form -->
     <div class="row well">
         <h3>Rate {{ $player->name }}</h3>
