@@ -120,7 +120,6 @@ class PlayerTableSeeder extends Seeder {
             $football
                 ->players()
                 ->create($datum);
-        }
-
-    }
-}
+        } // end for
+    } // end func
+} // end class

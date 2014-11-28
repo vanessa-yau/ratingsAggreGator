@@ -1,9 +1,15 @@
+# both for scraping
 import requests
 from bs4 import BeautifulSoup
+# just for console output - not needed in production
 import sys
 import json
+# outputs the json to a txt file
 import io
+# pretty prints out json
+from pprint import pprint
 
+# some players have unicode chars in names
 def specialPrint(str):
 	'''
 	Function written because of
@@ -14,7 +20,6 @@ def specialPrint(str):
 	print str.encode(sys.stdout.encoding, errors='replace')
 
 # names of the team in Premier League
-
 teamToFetch = {
 	"Arsenal":"arsenal",
 	"Aston Villa": "avilla",
@@ -65,8 +70,6 @@ for key in teamToFetch:
 			# each column in row, add data to player dict
 			player[cols[colIndex]] = cell.text
 			player[cols[9]] = teamToFetch[key]  	
-			# use the function to print utf-8 chars in names
-			#specialPrint(cell.text)
 			# increment colIndex so we can iterate through
 			# my named columns in cols
 			colIndex+=1
@@ -75,9 +78,18 @@ for key in teamToFetch:
 		# (players array of objects player)	
 		players.append(player)
 
+	# add team to json, perhaps not needed in our data structure
 	team = {"name":key,"players":players}
 	data.append(team)	
 
+# write all the data to json and out to file
 # nb: utf-8 support
 with io.open('data.txt', 'w', encoding='utf-8') as f:
-  f.write(unicode(json.dumps(data, ensure_ascii=False)))
+	f.write(unicode(json.dumps(data, ensure_ascii=False)))
+
+# read the json/txt file, pprint for console output
+json_data=open('data.txt')
+
+data = json.load(json_data)
+pprint(data)
+json_data.close()
