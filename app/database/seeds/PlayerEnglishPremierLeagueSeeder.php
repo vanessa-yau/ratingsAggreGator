@@ -16,6 +16,8 @@ class PlayerEnglishPremierLeagueSeeder extends Seeder {
                 // create team model
                 if (! Team::whereName($team['name'])->count() )
                     $teamModel = Team::create(['name' => $team['name']]);
+                else
+                    $teamModel = Team::whereName($team['name'])->first();
 
                 // uncomment for viewing teams inserted via a route
                 //echo $team['name'] . "<br>";
@@ -25,7 +27,7 @@ class PlayerEnglishPremierLeagueSeeder extends Seeder {
                     if ( array_key_exists('name', $values) && $values['name']) {
                         $playerModel = $football->players()->create([
                             'name' => $player['name'],
-                            'last_known_team' => $player['team']
+                            'last_known_team' => $teamModel->name
                         ]);
                     } // end if
                 } // end foreach
