@@ -123,6 +123,9 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Clockwork\Support\Laravel\ClockworkServiceProvider',
 		'Monarobase\CountryList\CountryListServiceProvider',
+		'Thujohn\Twitter\TwitterServiceProvider',
+		'Way\Generators\GeneratorsServiceProvider'
+
 	),
 
 	/*
@@ -191,6 +194,7 @@ return array(
 		'View'              => 'Illuminate\Support\Facades\View',
 		'Clockwork' 		=> 'Clockwork\Support\Laravel\Facade',
 		'Countries' 		=> 'Monarobase\CountryList\CountryListFacade',
+		'Twitter' 			=> 'Thujohn\Twitter\TwitterFacade',
 
 	),
 
