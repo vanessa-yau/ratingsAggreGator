@@ -34,6 +34,34 @@ Route::resource('ratings', 'RatingController');
 
 Route::resource('users', 'UserController');
 
+//Returns a collection of the most recent Tweets posted by the user indicated by the screen_name or user_id parameters.
+Route::get('/userTimeLine', function()
+{
+    return Twitter::getUserTimeline(array('screen_name' => 'screen_name', 'count' => 20, 'format' => 'html'));
+});
+
+
+//Returns a collection of the most recent Tweets and retweets posted by the authenticating user and the users they follow.
+
+Route::get('/homeTimeLine', function()
+{
+    return Twitter::getHomeTimeline(array('count' => 20, 'format' => 'json'));
+});
+
+//Returns the X most recent mentions (tweets containing a users's @screen_name) for the authenticating user.
+
+Route::get('/mentionsTimeLine', function()
+{
+    return Twitter::getMentionsTimeline(array('count' => 20, 'format' => 'json'));
+});
+
+//Updates the authenticating user's current status, also known as tweeting.
+Route::get('/postTweet', function()
+{
+    return Twitter::postTweet(array('status' => 'Laravel is beautiful', 'format' => 'json'));
+});
+
+
 Route::post('login', [
 	'as' => 'users.login',
 	'uses' => 'UserController@login'
