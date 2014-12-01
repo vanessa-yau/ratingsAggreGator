@@ -22,12 +22,10 @@
                         <li>@include('/forms/search')</li>
                     </a>
                     @if( Auth::user() )
-                        <a href="#">
-                            <button class="btn btn-block" id="account">
-                                <li>
-                                    My Account <span class="glyphicon glyphicon-cog"></span>
-                                </li>
-                            </button>
+                        <a type="button" class="btn btn-block account-link" href="Auth::user()->url">
+                            <li>
+                                My Account <span class="glyphicon glyphicon-cog"></span>
+                            </li>
                         </a>
                         <a href="{{ URL::route('users.logout') }}" class="login-button">
                             <button class="btn btn-block" id="logout">

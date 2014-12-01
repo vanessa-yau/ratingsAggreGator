@@ -9,6 +9,7 @@ import io
 # pretty prints out json
 from pprint import pprint
 
+
 # some players have unicode chars in names
 def specialPrint(str):
 	'''
@@ -28,10 +29,11 @@ teamToFetch = {
 	"Crystal Palace":"cpalace",
 	"Everton":"everton",
 	"Hull City":"hullc",
-	"Leicester City":"leiceste",
-	"Liverpool":"liverpoo",
+	"Leicester City":"leicester",
+	"Liverpool":"liverpool",
 	"Manchester City":"mancity",
 	"Manchester United":"manutd",
+	"Newcastle United":"newcas",
 	"Queens Park Rangers":"qpr",
 	"Southampton":"southam",
 	"Stoke City":"stoke",
@@ -84,11 +86,12 @@ for key in teamToFetch:
 
 # write all the data to json and out to file
 # nb: utf-8 support
-with io.open('data.txt', 'w', encoding='utf-8') as f:
+with io.open('app/storage/PlayerEnglishPremierLeagueSeeder.json', 'w', encoding='utf-8') as f:
 	f.write(unicode(json.dumps(data, ensure_ascii=False, sort_keys=True, indent=4)))
 
 # read the json/txt file, pprint (pretty print) for console output
-json_data=open('data.txt')
+json_data=open('app/storage/PlayerEnglishPremierLeagueSeeder.json')
+
 
 data = json.load(json_data)
 pprint(data)
