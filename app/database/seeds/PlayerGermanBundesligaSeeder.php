@@ -1,5 +1,5 @@
 <?php
-class PlayerEnglishPremierLeagueSeeder extends Seeder {
+class PlayerGermanBundesligaSeeder extends Seeder {
 
     public function run()
     {
@@ -7,7 +7,7 @@ class PlayerEnglishPremierLeagueSeeder extends Seeder {
         DB::table('players')->truncate();
         $football = Sport::whereName('football')->first();
 
-        $raw = File::get(storage_path() . 'PlayerEnglishPremierLeagueSeeder.json');
+        $raw = File::get(storage_path() . 'PlayerGermanBundesligaSeeder.json');
         $json = json_decode($raw, true);
 
         if ($json) {
@@ -34,5 +34,3 @@ class PlayerEnglishPremierLeagueSeeder extends Seeder {
         } // end if
     } // end func
 } // end class
-
-

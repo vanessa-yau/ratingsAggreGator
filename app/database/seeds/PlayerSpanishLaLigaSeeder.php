@@ -7,7 +7,7 @@ class PlayerSpanishLaLigaSeeder extends Seeder {
         DB::table('players')->truncate();
         $football = Sport::whereName('football')->first();
 
-        $raw = File::get(storage_path() . '\spanishLaLigaScraper.json');
+        $raw = File::get(storage_path() . 'spanishLaLigaScraper.json');
         $json = json_decode($raw, true);
 
         if ($json) {
