@@ -4,12 +4,10 @@
             <strong>{{ Auth::user()->username }}</strong> <span class="caret"></span>
         </a>
         <ul class="dropdown-menu" role="menu">
-            <a href="#">
-                <button class="btn btn-block" id="account">
-                    <li>
-                        My Account <span class="glyphicon glyphicon-cog"></span>
-                    </li>
-                </button>
+            <a href="{{ Auth::user()->url }}" class="btn btn-block account-link">
+                <li>
+                    My Account <span class="glyphicon glyphicon-cog"></span>
+                </li>
             </a>
             <a href="{{ URL::route('users.logout')}}" class="login-button">
                 <button class="btn btn-block" id="logout">
