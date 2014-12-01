@@ -48,7 +48,6 @@ class UserController extends \BaseController {
 			'surname' 			=> Input::get('surname'),
 			'username' 			=> Input::get('username'),
 			'password' 			=> Input::get('password'),
-			'dob' 				=> Input::get('dob'),
 			'email_address' 	=> Input::get('email_address'),
 			'country_code' 		=> Input::get('country'),
 			'town/city' 		=> Input::get('town-city'),
