@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder {
         $this->call('RatingsProfileTableSeeder');
         $this->call('ProfileSkillTableSeeder');
         $this->call('TeamTableSeeder');
+        // for when moved player populater into a seeder...
+        // $this->call('englishPremierLeagueSeeder');
     }
 
 }
