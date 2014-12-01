@@ -91,5 +91,8 @@ with io.open('data.txt', 'w', encoding='utf-8') as f:
 json_data=open('data.txt')
 
 data = json.load(json_data)
-pprint(data)
+# print all of the output
+#pprint(data)
+print data['swansea']['players']
+
 json_data.close()
