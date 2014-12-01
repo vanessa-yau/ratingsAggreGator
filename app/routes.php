@@ -50,7 +50,7 @@ Route::get('/register', [
 ]);
 
 Route::get('profile', function() {
-	return View::make('player-profile');
+    return View::make('player-profile');
 });
 
 // Auto generate all CRUD routes to your controllers
@@ -63,14 +63,15 @@ Route::resource('ratings', 'RatingController');
 Route::resource('users', 'UserController');
 
 Route::post('login', [
-	'as' => 'users.login',
-	'uses' => 'UserController@login'
+    'as' => 'users.login',
+    'uses' => 'UserController@login'
 ]);
 
 Route::get('logout', [
-	'as' => 'users.logout',
-	'uses' => 'UserController@logout'
+    'as' => 'users.logout',
+    'uses' => 'UserController@logout'
 ]);
+
 
 Route::get(
     'search/{query}',

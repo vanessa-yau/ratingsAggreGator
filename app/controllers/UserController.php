@@ -64,6 +64,22 @@ class UserController extends \BaseController {
 	public function show($id)
 	{
 		//
+		$user = User::find($id);
+
+		$userData = [
+		    'id' => $user->id,
+		    'username' => $user->username,
+		    'name' => $user->first_name,
+		    'surname' => $user->surname,
+		    'email' => $user->email_address,
+		    'country' => $user->country_code
+		];
+
+		$ratings = Rating::where('user_id', '=', $id)
+		                ->orderBy('updated_at', 'DESC')
+		                ->get();
+
+		return View::make('user-profile', compact('userData', 'ratings'));
 	}
 
 
@@ -120,4 +136,5 @@ class UserController extends \BaseController {
 		Auth::logout();
 		return Redirect::back();
 	}
+		
 }

@@ -15,4 +15,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	protected $table = 'users';
 
+    public function getUrlAttribute() {
+        return URL::route('users.show',  Auth::user()->id);
+    }
+
 }
