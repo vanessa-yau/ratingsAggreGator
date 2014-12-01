@@ -1,6 +1,7 @@
 <?php
 class PlayerTableSeeder extends Seeder {
 
+    // this is an old file, marked for deletion
     public function run()
     {
         //Delete table content

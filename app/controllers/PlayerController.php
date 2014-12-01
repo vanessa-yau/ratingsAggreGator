@@ -43,16 +43,18 @@ class PlayerController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$player = Player::find($id);
-		$selection =  $this->getRandomPlayers();
+		$player = Player::with('lastKnownTeam.lastKnownPlayers.lastKnownTeam')->find($id);
+		
 		$ratingProfile = RatingProfile::whereSportId($player->sport_id)
 							->whereName('defender')
 							->get()
 							->first();
+
 		$skills = $ratingProfile
 							->skills()
 							->get();
-		return View::make('player-profile', compact('player', 'selection', 'skills' ));
+
+		return View::make('player-profile', compact('player', 'skills' ));
 	}
 
 

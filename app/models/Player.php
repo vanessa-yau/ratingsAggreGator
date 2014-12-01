@@ -33,6 +33,10 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
         return $this->belongsToMany('Game');
     }
 
+    public function lastKnownTeam() {
+        return $this->belongsTo('Team', 'last_known_team');
+    }
+
     public function getUrlAttribute() {
         return URL::route('players.show', $this->id);
     }

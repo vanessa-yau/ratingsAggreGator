@@ -7,13 +7,14 @@ class TeamTableSeeder extends Seeder {
         DB::table('teams')->truncate();
 
         //Open the file from the 'storage' subfolder in 'app' 
-        $jSon = File::get(storage_path() . "/data.txt");
-        $team = json_decode($jSon);
+        $json = File::get(storage_path() . "\PlayerEnglishPremierLeagueSeeder.json");
+        $data = json_decode($json);
         //Loop through all jSON objects and treat the name of each as a team
-        foreach ($team as $object) {
+        foreach ($data as $object) {
+            
             //Add the team into database
             Team::create(array ( 
-                'name' => $object->name,
+                'name' => $object->name
             ));
         }
     }

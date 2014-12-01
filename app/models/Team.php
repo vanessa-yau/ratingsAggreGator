@@ -8,4 +8,8 @@ class Team extends Eloquent {
 	public function games() {
 		return $this->belongsToMany('Game', 'game_player');
 	} 
+
+	public function lastKnownPlayers() {
+		return $this->hasMany('Player', 'last_known_team');
+	}
 }

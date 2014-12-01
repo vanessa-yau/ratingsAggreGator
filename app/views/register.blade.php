@@ -29,6 +29,7 @@
     </div>
 
     <div class="form-control-group">
+
         <label class="control-label" for="password">Confirm password</label>
         <input  type="password" 
                 class="form-control" 
@@ -49,6 +50,7 @@
                 placeholder="Email Address"
         >
         <p class ="user_help" id="email_address_help"></p>
+
     </div>
 
     <div class="form-control-group">
@@ -68,14 +70,14 @@
         <label class="control-label" for="country">Country</label>
         <select id="country" name ="country">
 
+            <!--make "choose here" the default option -->
+            <option selected disabled style="display:none;">Choose here</option>
             @foreach(Countries::getList('en', 'php', 'cldr') as $countryId => $countryName)
                 <option value="{{{ $countryId }}}">{{{$countryName}}}</option>
             @endforeach
-
+            <p class="country_help" id="country_help"></p>
         </select>
     </div>
-
-    <br />
 
     <div class="form-control-group">
         <label class="control-label" for="town-city">Town/City</label>
@@ -86,7 +88,6 @@
     <div class="form-actions">
         <button type ="submit" class="btn btn-success btn-large">Register</button>
     </div>
-
 
 </form>
 @stop
