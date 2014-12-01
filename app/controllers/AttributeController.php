@@ -86,6 +86,4 @@ class AttributeController extends \BaseController {
 		$attributes = Attribute::getAttributesArray();
 		return $attributes;
 	}
-
-
 }

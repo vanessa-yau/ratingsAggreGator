@@ -36,16 +36,28 @@ class RatingController extends \BaseController {
 		$ratings = Input::get('ratings');
 
 		$validationRulesArray = [];
+        $ratingsMappedAgainstSkillName = [];
+        $ratingNames = Skill::whereIn('id', array_keys($ratings))->get();
+
 		foreach ($ratings as $ratingId => $rating) {
-			$validationRulesArray[$ratingId] = 'required|numeric|between:1,5';
+
+			// determine the name of the skill
+			$skillName = $ratingNames->find($ratingId)->name;
+
+			// create a rule that will ensure that the named skill meets requirements
+			$validationRulesArray[$skillName] = 'required|numeric|between:1,5';
+        	
+        	// map the skill value across to the skill name so that it may be validated
+			$ratingsMappedAgainstSkillName[$skillName] = $rating;
 		}
 
-		$validator = Validator::make($ratings, $validationRulesArray);
-
+		$validator = Validator::make($ratingsMappedAgainstSkillName
+			, $validationRulesArray);
 
         // if validation passes, run query to insert and return newly created rating.
         if ($validator->fails()) {
-            return Response::json( $validator->messages(), 400);
+        	// $validator = $validator->setAttributeNames($skillNames);
+        	return Response::json( $validator->messages(), 400);
         } else {
         	foreach ($ratings as $skill_id => $value) {
         		//if (!Session::has('rated' . $player->id))
