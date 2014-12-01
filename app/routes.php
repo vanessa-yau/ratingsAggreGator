@@ -30,7 +30,8 @@ Route::get('tinker', function () {
                 $values = array_only($player, ['name']);
                 if ( array_key_exists('name', $values) && $values['name']) {
                     $playerModel = Player::create([
-                        'name' => $player['name']
+                        'name' => $player['name'],
+                        'last_known_team' => $player['team']
                     ]);
 
                 }
