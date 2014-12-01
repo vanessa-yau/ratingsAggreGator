@@ -7,7 +7,7 @@ class PlayerGermanBundesligaSeeder extends Seeder {
         DB::table('players')->truncate();
         $football = Sport::whereName('football')->first();
 
-        $raw = File::get(storage_path() . 'PlayerGermanBundesligaSeeder.json');
+        $raw = File::get(storage_path() . '/PlayerGermanBundesligaSeeder.json');
         $json = json_decode($raw, true);
 
         if ($json) {

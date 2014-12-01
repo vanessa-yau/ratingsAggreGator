@@ -7,7 +7,7 @@ class PlayerEnglishPremierLeagueSeeder extends Seeder {
         DB::table('players')->truncate();
         $football = Sport::whereName('football')->first();
 
-        $raw = File::get(storage_path() . 'PlayerEnglishPremierLeagueSeeder.json');
+        $raw = File::get(storage_path() . '/PlayerEnglishPremierLeagueSeeder.json');
         $json = json_decode($raw, true);
 
         if ($json) {
