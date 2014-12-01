@@ -59,6 +59,12 @@ Route::get('hello', array(
     )
 );
 
+// Route::get('test', array(
+//         'as' => 'test',
+//         'uses' => 'ImageController@go'
+//     )
+// );
+
 Route::get('/countries', function()
 {
    print_r( ( json_decode( Countries::getList('en', 'json', 'cldr')) ) );
