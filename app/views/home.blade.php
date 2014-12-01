@@ -25,6 +25,4 @@
 			@endforeach
 		</div> <!-- close row -->
 	</div>
-
-	</div>
 @stop

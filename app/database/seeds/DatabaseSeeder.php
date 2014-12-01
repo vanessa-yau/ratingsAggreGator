@@ -10,13 +10,12 @@ class DatabaseSeeder extends Seeder {
     {
         $this->call('SkillTableSeeder');
         $this->call('SportTableSeeder');
+        $this->call('PlayerTableSeeder');
         $this->call('UserTableSeeder');
         $this->call('RatingsTableSeeder');
         $this->call('RatingsProfileTableSeeder');
         $this->call('ProfileSkillTableSeeder');
-        $this->call('PlayerEnglishPremierLeagueSeeder');
-        // for when moved player populater into a seeder...
-        // $this->call('englishPremierLeagueSeeder');
+        $this->call('TeamTableSeeder');
     }
 
 }

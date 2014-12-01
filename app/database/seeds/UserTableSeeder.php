@@ -8,11 +8,11 @@ class UserTableSeeder extends Seeder {
 
         //Create new user
         User::create(array(
-           // don't expose these values
-            'username' => 'scrubwatch',
-            'password' => Hash::make('pass1'),
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime
+                'username' => 'scrubwatch',
+                'password' => Hash::make('pass1'),
+                'created_at' => new DateTime,
+                'updated_at' => new DateTime
         ));
+ 
     }
 }
