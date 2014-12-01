@@ -7,11 +7,11 @@ class PlayerEnglishPremierLeagueSeeder extends Seeder {
         DB::table('players')->truncate();
         $football = Sport::whereName('football')->first();
 
-        $raw = File::get('simple.json');
+        $raw = File::get(storage_path() . '/PlayerEnglishPremierLeagueSeeder.json');
         $json = json_decode($raw, true);
 
         if ($json) {
-            foreach ($json['teams'] as $team) {
+            foreach ($json as $team) {
 
                 // create team model
                 if (! Team::whereName($team['name'])->count() )
@@ -22,7 +22,6 @@ class PlayerEnglishPremierLeagueSeeder extends Seeder {
                 // uncomment for viewing teams inserted via a route
                 //echo $team['name'] . "<br>";
                 foreach ($team['players'] as $player) {
-
                     $values = array_only($player, ['name']);
                     if ( array_key_exists('name', $values) && $values['name']) {
                         $playerModel = $football->players()->create([

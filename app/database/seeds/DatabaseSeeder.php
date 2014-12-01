@@ -10,12 +10,14 @@ class DatabaseSeeder extends Seeder {
     {
         $this->call('SkillTableSeeder');
         $this->call('SportTableSeeder');
-        $this->call('PlayerTableSeeder');
+        // the old player seedle, only a few hard-coded players in here
+        //$this->call('PlayerTableSeeder');
         $this->call('UserTableSeeder');
         $this->call('RatingsTableSeeder');
         $this->call('RatingsProfileTableSeeder');
         $this->call('ProfileSkillTableSeeder');
         $this->call('TeamTableSeeder');
+        $this->call('PlayerEnglishPremierLeagueSeeder');
     }
 
 }
