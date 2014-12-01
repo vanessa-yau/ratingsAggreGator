@@ -29,7 +29,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'mysql_live',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -55,12 +55,34 @@ return array(
 			'prefix'   => '',
 		),
 
-		'mysql' => array(
+		'mysql_live' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'ratingsaggregator',
 			'username'  => 'root',
 			'password'  => '$crubw@tch',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+		),
+
+		'mysql_local' => array(
+			'driver'    => 'mysql',
+			'host'      => 'localhost',
+			'database'  => 'ratingsaggregator',
+			'username'  => 'root',
+			'password'  => '',
+			'charset'   => 'utf8',
+			'collation' => 'utf8_unicode_ci',
+			'prefix'    => '',
+		),
+
+		'mysql_test' => array(
+			'driver'    => 'mysql',
+			'host'      => 'localhost',
+			'database'  => 'test',
+			'username'  => 'test',
+			'password'  => 'test',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
