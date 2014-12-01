@@ -31,13 +31,13 @@
     <div class="form-control-group">
         <label class="control-label" for="password">Re-enter password</label>
         <input type="text" class="form-control" id="confirm-password" name="confirm-password">
-        <p class ="user_help" id="password_help"></p>
+        <p class ="user_help" id="confirm-password_help"></p>
     </div>
 
     <div class="form-control-group">
         <label class="control-label" for="dob">Date of birth</label>
         <input id="datepicker" name="dob" type="datetime">
-        <p class ="user_help" id="password_help"></p>
+        <p class ="dob_help" id="dob_help"></p>
     </div>
 
     <div class="form-control-group">
@@ -50,17 +50,19 @@
         <label class="control-label" for="country">Country</label>
         <select id="country" name ="country">
 
+            <!--make "choose here" the default option -->
+            <option selected disabled style="display:none;">Choose here</option>
             @foreach(Countries::getList('en', 'php', 'cldr') as $countryId => $countryName)
                 <option value="{{{ $countryId }}}">{{{$countryName}}}</option>
             @endforeach
-
+            <p class="country_help" id="country_help"></p>
         </select>
     </div>
 
         <div class="form-control-group">
             <label class="control-label" for="town-city">Town/City</label>
             <input type="text" class="form-control" id="town-city" name="town-city">
-            <p class ="user_help" id="password_help"></p>
+            <p class ="town_city_help" id="town_city_help"></p>
         </div>
 
         <div class="form-actions">

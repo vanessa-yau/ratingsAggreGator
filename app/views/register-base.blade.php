@@ -29,6 +29,7 @@
 	    
 	    <!-- Load SCRIPT.JS which will create datepicker for input field -->
 	    <script src="/js/datepicker.js"></script>
+	    <script src="/js/validation.js"></script>
 		
 		@yield('js')
 	</body>
