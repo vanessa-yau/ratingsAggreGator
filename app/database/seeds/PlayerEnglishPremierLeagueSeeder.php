@@ -27,7 +27,7 @@ class PlayerEnglishPremierLeagueSeeder extends Seeder {
                     if ( array_key_exists('name', $values) && $values['name']) {
                         $playerModel = $football->players()->create([
                             'name' => $player['name'],
-                            'last_known_team' => $teamModel->name
+                            'last_known_team' => $teamModel->id
                         ]);
                     } // end if
                 } // end foreach

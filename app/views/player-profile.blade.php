@@ -156,19 +156,19 @@
     <div class="player-thumbnails">
         <div class="row well">
             <h3>Other Team Members</h3>
-            @foreach($selection as $teamMate)
+            @foreach($player->lastKnownTeam->lastKnownPlayers as $teamMate)
                 @if( $player->id != $teamMate->id )
                     <div class="col-sm-4 col-md-2">
                         <a href="{{ URL::route('players.show', $player->id) }}"></a>
                         <a href="/players/{{ $teamMate->id }}">
                             <div class="thumbnail">
                                 <p class="team-mate-name">
-                                    {{{$teamMate->name}}}
+                                    {{{ $teamMate->name }}}
                                 </p>
                                 <div class="team-mate-image">
                                     <img class="thumbnail" src="{{ $teamMate->image_url }}" alt="Profile Image">
                                 </div>
-                                <p>{{{ 'TEAM NAME GOES HERE' }}}</p>
+                                <p>{{{ $teamMate->lastKnownTeam->name }}}</p>
                             </div>
                         </a>
                     </div>

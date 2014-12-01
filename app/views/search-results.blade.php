@@ -21,7 +21,7 @@
 	                    	</h4>
 	                    	<p>
             					{{{ $result->nationality }}}<br />
-	                    		{{{ 'TEAM NAME GOES HERE' }}}
+	                    		{{{ $result->lastKnownTeam->name }}}
 	                    	</p>
 	        			</div>
 	                </div>
