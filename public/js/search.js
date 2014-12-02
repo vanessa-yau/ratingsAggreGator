@@ -5,6 +5,7 @@ $(function () {
 	// $("#search-form").submit(search);
 	$(".search-form").submit(function (e) {
 		e.preventDefault();
+		$('#search-icon').removeClass().addClass("fa fa-circle-o-notch fa-spin");
 
 		// turn spaces into + for lovely URLs
 		var query = $(this).find('[name=search-box]').val();

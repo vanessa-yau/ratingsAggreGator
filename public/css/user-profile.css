@@ -3,6 +3,14 @@
 }
 
 .profile-image {
-    width: 64px;
-    height: 64px;
+    width: 96px;
+    height: 96px;
+}
+
+.input-group-addon {
+    min-width: 7em;
+}
+
+h2 {
+    margin-top: 0;
 }

@@ -15,8 +15,10 @@
     <div>
         <ul class="nav nav-tabs" role="tablist" id="tab-list">
             <li class="active"><a href="#overview" role="tab" data-toggle="tab">Details <i class="fa fa-user"></i></a></li>
-            <li><a href="#ratings" role="tab" data-toggle="tab">Ratings <i class="fa fa-bar-chart"></i></a></li>
-            <li><a href="#settings" role="tab" data-toggle="tab">Settings <i class="fa fa-cog"></i></a></li>
+            <li><a href="#ratings" role="tab" data-toggle="tab">Stats <i class="fa fa-bar-chart"></i></a></li>
+            @if(Auth::user()->id == $user->id)
+                <li><a href="#settings" role="tab" data-toggle="tab">Settings <i class="fa fa-cog"></i></a></li>
+            @endif
         </ul>
         <br />
         <div class="tab-content">
@@ -26,9 +28,11 @@
             <div class="tab-pane" id="ratings">
                 @include('userProfile.userRatings')
             </div>
-            <div class="tab-pane" id="settings">
-                @include('userProfile.userSettings')
-            </div>
+            @if(Auth::user()->id == $user->id)
+                <div class="tab-pane" id="settings">
+                    @include('userProfile.userSettings')
+                </div>
+            @endif
         </div>
     </div>
 @stop
@@ -41,49 +45,88 @@
 
     <script>
     $(function(){
+        // hide response message on load
         $('#response-message').hide();
 
-        // rating collapse body on load
-        $('.rating-body').hide();
+        // hide the response message when user clicks close button.
+        $('.alert .close').on('click', function(e) {
+            $(this).parent().hide();
+        });
+
+        // function to show response message.
+        function showErrorMessage(error){
+            var $responseMessage = $('#response-message')
+                .removeClass()
+                .addClass('alert alert-dismissible alert-danger');
+            $('#message-type').text('Error: ');
+            var message = "";
+            for (var key in error) {
+                message += ("<p>" + error[key] + "</p>");
+            };
+            $('#message-text').html(message);
+            $responseMessage.show();
+        }
+
+        function showSuccessMessage(message) {
+            var $responseMessage = $('#response-message')
+                .removeClass()
+                .addClass('alert alert-dismissible alert-success');
+            $('#message-type').text('Success: ');
+            $('#message-text').html(message);
+            $('#response-message').show();
+        }
+
+        // disable form inputs on load
+        $('input:not(input[name="search-box"])').attr('disabled', true);
 
         // icon generator
-        var email = "{{ $userData['email']}}";
+        var email = "{{ $user->email_address }}";
         var data = new Identicon(email, 128).toString();
         // insert into image
         $('.profile-image').attr("src", 'data:image/png;base64,'+data);
 
-        // expands rating to show body
-        $('.rating-container').on('click', '.rating-head', function(e) {
-            $('.rating-head').each(function() {
-                var desiredVisible;
-                var isHidden = $(this).siblings().is( ":hidden" );
-
-                // removing || ($(this).has($(e.target)).size()>0) makes it kind of work better but less places to click
-                if ($(this).is(e.target) || ($(this).has($(e.target)).size()>0)) {
-                    if (isHidden) {
-                      showRating($(this));
-                    } else {
-                      hideRatings($(this));
+        // when edit button is clicked, make user settings fields editable and change button
+        $('#edit-button').click(function() {
+            if($('#edit-button').hasClass('saving')){
+                $.ajax({
+                    type: "PUT",
+                    url: decodeURI("{{ URL::route('users.update', $user->id) }}"),
+                    data: {
+                        first_name: $('input[name="name"]').val(),
+                        surname: $('input[name="surname"]').val(),
+                        username: $('input[name="username"]').val(),
+                        email_address: $('input[name="email"]').val(),
+                        password: $('input[name="passcheck"]').val()
+                    },
+                    success: function(json){
+                        // display success message and update form values.
+                        var message = "Your settings have been saved!";
+                        showSuccessMessage(message);
+                        $('input[name="name"]').val(json['first_name']);
+                        $('input[name="surname"]').val(json['surname']);
+                        $('input[name="username"]').val(json['username']);
+                        $('input[name="email"]').val(json['email_address']);
+                        $('input[name="passcheck"]').val("");
+                        $('.user-username').text(json['username']);
+                        $('.user-country').text(json['country_code']);
+                        $('.user-name').text(" "+json['first_name']+" "+json['surname']);
+                        $('.user-email').html(' <a href="mailto:"'+json["email_address"]+'">'+json["email_address"]+'</a>');
+                    },
+                    error: function(e){
+                        // display error message.
+                        var responseText = $.parseJSON(e.responseText);
+                        showErrorMessage(responseText);
+                        $('body').scrollTop(0);
                     }
-                } else {
-                  hideRatings($(this));
-                }
-            });
+                }); // end of ajax request
+            } else {
+                $('input:not(input[name="search-box"])').attr('disabled', false);
+                $('#edit-icon').removeClass().addClass('fa fa-save');
+                $(this).removeClass()
+                       .addClass('btn btn-primary pull-right saving')
+                       .html('<i class="fa fa-save"></i> Save');
+            }
         });
-
-        function hideRatings(elem) {
-            elem.siblings().slideUp(400, function() {
-              $('.rating-icon').removeClass('glyphicon-chevron-up')
-                  .addClass('glyphicon-chevron-down');
-            });
-        }
-
-        function showRating(elem) {
-          elem.siblings().slideDown(400, function() {
-              $(elem).find('.rating-icon').removeClass('glyphicon-chevron-down')
-                  .addClass('glyphicon-chevron-up');
-          });
-        }
     });
     </script>
 @stop
