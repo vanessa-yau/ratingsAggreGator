@@ -21,6 +21,11 @@ Route::get('/register', [
     'uses' => 'UserController@create'
 ]);
 
+Route::get('/admin', [
+    'as' => 'admin',
+    'uses' => 'PlayerController@showAnomalousNames'
+]);
+
 Route::get('profile', function() {
     return View::make('player-profile');
 });
