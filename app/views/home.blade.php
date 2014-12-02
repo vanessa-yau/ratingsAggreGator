@@ -11,7 +11,7 @@
 		<br>
 		<p>Australian batsman dies, aged 25</p>
 		</center>
-		<h3>Most Rated - Today's most commonly rated players</h3>
+		<h3>Most Rated Players</h3>
 	</div>
 	<div align="center">
 		<div class="row">
