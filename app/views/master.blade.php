@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<hmtl>
+<html>
 	<head>
 		<title>Ratings AggreGator</title>
 		{{ HTML::style("/css/bootstrap.min.css") }}
@@ -97,4 +97,4 @@
 		@yield('js')
 
 	</body>
-</hmtl>
+</html>

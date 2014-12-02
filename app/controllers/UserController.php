@@ -3,6 +3,14 @@
 class UserController extends \BaseController {
 
 	public function __construct() {
+		Validator::extend('username', function($attribute, $value, $parameters){
+			$users = User::whereUsername($value);
+			return 
+				$users->count() == 0 ||
+				$users->first()->id == Auth::id();
+				
+		}, "The username you have chosen already exists.");
+
 		$this->beforeFilter('auth', [
 			'except' => [
 				'store',
@@ -47,11 +55,11 @@ class UserController extends \BaseController {
 			'first_name' 		=> Input::get('first_name'),
 			'surname' 			=> Input::get('surname'),
 			'username' 			=> Input::get('username'),
-			'password' 			=> Input::get('password'),
+			'password' 			=> Hash::make(Input::get('password')),
 			'dob' 				=> Input::get('dob'),
 			'email_address' 	=> Input::get('email_address'),
 			'country_code' 		=> Input::get('country'),
-			'town/city' 		=> Input::get('town-city'),
+			'city' 		=> Input::get('town-city'),
 		));
 	}
 
@@ -66,21 +74,7 @@ class UserController extends \BaseController {
 	{
 		//
 		$user = User::find($id);
-
-		$userData = [
-		    'id' => $user->id,
-		    'username' => $user->username,
-		    'name' => $user->first_name,
-		    'surname' => $user->surname,
-		    'email' => $user->email_address,
-		    'country' => $user->country_code
-		];
-
-		$ratings = Rating::where('user_id', '=', $id)
-		                ->orderBy('updated_at', 'DESC')
-		                ->get();
-
-		return View::make('user-profile', compact('userData', 'ratings'));
+		return View::make('user-profile', compact('user'));
 	}
 
 
@@ -93,6 +87,7 @@ class UserController extends \BaseController {
 	public function edit($id)
 	{
 		//
+		
 	}
 
 
@@ -104,7 +99,36 @@ class UserController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$user = User::find($id);
+
+		$userData = Input::only(
+			'first_name',
+			'surname',
+			'username',
+			'email_address',
+			'password'
+		);
+
+		$validator = Validator::make($userData, [
+			'first_name' => 'required',
+			'surname' => 'required',
+			'username' => 'required|username',
+			'email_address' => 'required|email',
+			'password' => 'required'
+		]);
+
+		if ($validator->fails()) {
+		    return Response::json( $validator->messages(), 400);
+		} elseif (Hash::check($userData['password'], Auth::user()->password)) {
+		    $user->first_name = $userData['first_name'];
+		    $user->surname = $userData['surname'];
+		    $user->username = $userData['username'];
+		    $user->email_address = $userData['email_address'];
+		    $user->save();
+		    return $user;
+		} else {
+			return Response::json(["The password you entered does not match our records.  Sorry about that."], 400);
+		}
 	}
 
 

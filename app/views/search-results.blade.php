@@ -37,3 +37,11 @@
 	</div>
 @stop
 
+@section('js')
+	<script>
+		$(function() {
+			$('#search-icon').removeClass().addClass("glyphicon glyphicon-search");
+		});
+	</script>
+@stop
+

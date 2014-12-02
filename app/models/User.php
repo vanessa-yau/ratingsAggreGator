@@ -19,4 +19,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return URL::route('users.show',  Auth::user()->id);
     }
 
+    public function ratings() {
+        return $this
+            ->hasMany('Rating')
+            ->orderBy('updated_at', 'DESC')
+            ->get();
+    }
 }

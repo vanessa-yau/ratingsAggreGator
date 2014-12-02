@@ -17,7 +17,7 @@ class CreateUserTable extends Migration {
 	        $table->date('dob');
 	        $table->string('email_address');
 	        $table->string('country_code');
-	        $table->string('town/city');
+	        $table->string('city');
 	        $table->timestamps();
 	    });
 	}
