@@ -7,10 +7,6 @@
 @section('content')
 
 	<div>
-		<center><h2><a href="http://www.bbc.co.uk/sport/0/cricket/30219440">RIP Phillip Hughes</a></h2>
-		<br>
-		<p>Australian batsman dies, aged 25</p>
-		</center>
 		<h3>Most Rated Players</h3>
 	</div>
 	<div align="center">
@@ -24,5 +20,18 @@
 				</div>
 			@endforeach
 		</div> <!-- close row -->
+	</div> <!-- close most rated players div -->
+	<div>
+		<h3>All Teams</h3>
 	</div>
+	<div align="center">
+		<div class="row">
+			@foreach($teams as $team)
+				<div class="col-xs-12 col-sm-6 col-lg-4">
+					<p>{{ $team->name }}</p>
+				</div>
+			@endforeach
+		</div> <!-- close row -->
+	</div> <!-- close most rated players div -->
+
 @stop

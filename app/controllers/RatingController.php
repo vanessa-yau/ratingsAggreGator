@@ -56,7 +56,6 @@ class RatingController extends \BaseController {
 
         // if validation passes, run query to insert and return newly created rating.
         if ($validator->fails()) {
-        	// $validator = $validator->setAttributeNames($skillNames);
         	return Response::json( $validator->messages(), 400);
         } else {
         	foreach ($ratings as $skill_id => $value) {
@@ -133,7 +132,7 @@ class RatingController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function mostPopular()
+	public function mostPopularPlayers()
 	{	
 		// retrieve all players and sort by the number of ratings
 		$players = Player::byPopularity();
