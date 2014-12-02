@@ -57,6 +57,13 @@ class PlayerController extends \BaseController {
 		return View::make('player-profile', compact('player', 'skills' ));
 	}
 
+	public function showAnomalousNames()
+	{
+		$anomalousNames = DB::table('players')->where('name','=','Name')->get();
+
+		return View::make('show-anomalous-names', compact('anomalousNames'));
+	}
+
 
 	/**
 	 * Show the form for editing the specified resource.

@@ -4,7 +4,6 @@ class PlayerSpanishLaLigaSeeder extends Seeder {
     public function run()
     {
         //Delete table content
-        DB::table('players')->truncate();
         $football = Sport::whereName('football')->first();
 
         $raw = File::get(storage_path() . '/spanishLaLigaScraper.json');
