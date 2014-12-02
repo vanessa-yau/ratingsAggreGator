@@ -12,4 +12,8 @@ class Team extends Eloquent {
 	public function lastKnownPlayers() {
 		return $this->hasMany('Player', 'last_known_team');
 	}
+
+    public function leagues() {
+        return $this->belongsTo('League');
+    }
 }

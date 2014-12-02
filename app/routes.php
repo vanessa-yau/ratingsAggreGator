@@ -13,33 +13,29 @@
 
 Route::get('/',  [
     'as' => 'home',
-    'uses' => 'RatingController@mostPopular'
+    'uses' => 'RatingController@mostPopularPlayers'
 ]);
+
+Route::get('/landing', function() {
+    return View::make('home', [
+        'players' => Player::mostPopular(),
+        'teams' => Team::all()
+    ]);
+});
 
 Route::get('/register', [
     'as' => 'users.create',
     'uses' => 'UserController@create'
 ]);
 
-
+Route::get('/admin', [
+    'as' => 'admin',
+    'uses' => 'PlayerController@showAnomalousNames'
+]);
 
 Route::get('profile', function() {
     return View::make('player-profile');
 });
-
-Route::group(array('before' => 'env'), function()
-{
-    Route::get('/admin/{anomaly}', [
-        'as' => 'admin',
-        'uses' => 'PlayerController@showAnomalousNames'
-    ]);
-
-    Route::get('/admin/{anomaly}/delete', [
-        'as' => 'anomalousPlayers.delete',
-        'uses' => 'PlayerController@deleteAnomalousNames'
-    ]);
-});
-
 
 // Auto generate all CRUD routes to your controllers
 Route::resource('attributes', 'AttributeController');

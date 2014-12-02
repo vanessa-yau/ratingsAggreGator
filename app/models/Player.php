@@ -138,5 +138,14 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 
         return $players;
     }
+
+    public static function mostPopular() {
+        // retrieve all players and sort by the number of ratings
+        $players = Player::byPopularity();
+
+        // restrict the list to the top 10
+        $players = $players->slice(0,9);
+        return $players;
+    }
 }
  

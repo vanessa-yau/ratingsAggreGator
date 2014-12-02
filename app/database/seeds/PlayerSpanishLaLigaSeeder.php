@@ -9,14 +9,33 @@ class PlayerSpanishLaLigaSeeder extends Seeder {
         $raw = File::get(storage_path() . '/spanishLaLigaScraper.json');
         $json = json_decode($raw, true);
 
+
         if ($json) {
+            // add new league to league table
+            if (! League::whereName('Spanish La Liga')->count() ) {
+                $league = League::create([
+                    'name' => 'Spanish La Liga',
+                    'sport_id' => $football->id
+                ]);
+            }
+            else {
+                $league = League::whereName('Spanish La Liga')->first();
+            }
+
             foreach ($json as $team) {
 
                 // create team model
-                if (! Team::whereName($team['name'])->count() )
-                    $teamModel = Team::create(['name' => $team['name']]);
-                else
+                if (! Team::whereName($team['name'])->count() ) {
+                    $teamModel = Team::create([
+                        'name' => $team['name'],
+                        'last_known_league_id' => $league->id
+                    ]);
+                }
+                else {
                     $teamModel = Team::whereName($team['name'])->first();
+                    $teamModel->last_known_league_id = $league->id;
+                    $teamModel->save();
+                }
 
                 // uncomment for viewing teams inserted via a route
                 //echo $team['name'] . "<br>";

@@ -10,13 +10,30 @@ class PlayerGermanBundesligaSeeder extends Seeder {
         $json = json_decode($raw, true);
 
         if ($json) {
+            // add new league to league table
+            if (! League::whereName('German Bundesliga')->count() ) {
+                $league = League::create([
+                    'name' => 'German Bundesliga',
+                    'sport_id' => $football->id
+                ]);
+            }
+            else {
+                $league = League::whereName('German Bundesliga')->first();
+            }
+
             foreach ($json as $team) {
 
                 // create team model
                 if (! Team::whereName($team['name'])->count() )
-                    $teamModel = Team::create(['name' => $team['name']]);
-                else
+                    $teamModel = Team::create([
+                        'name' => $team['name'],
+                        'last_known_league_id' => $league->id
+                    ]);
+                else {
                     $teamModel = Team::whereName($team['name'])->first();
+                    $teamModel->last_known_league_id = $league->id;
+                    $teamModel->save();
+                }
 
                 // uncomment for viewing teams inserted via a route
                 //echo $team['name'] . "<br>";
