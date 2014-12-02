@@ -29,6 +29,7 @@
 		<script src="/js/search.js"></script>
 		<script src="/js/Chart.js"></script>
 		<script src="/js/google-analytics.js"></script>
+		<script src="/js/validation.js"></script>
 
 		<!-- Load jQuery from Google's CDN -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"> </script>
