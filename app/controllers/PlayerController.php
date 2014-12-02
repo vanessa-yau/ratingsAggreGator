@@ -57,11 +57,20 @@ class PlayerController extends \BaseController {
 		return View::make('player-profile', compact('player', 'skills' ));
 	}
 
-	public function showAnomalousNames()
+	public function showAnomalousNames($anomaly)
 	{
-		$anomalousNames = DB::table('players')->where('name','=','Name')->get();
+		$anomalousNames = DB::table('players')->where('name', 'LIKE', '%' . $anomaly . '%')->get();
 
-		return View::make('show-anomalous-names', compact('anomalousNames'));
+		//			$query->orWhere('name', 'LIKE', '%' . $criterion .'%');
+
+		return View::make('show-anomalous-names', compact('anomalousNames', 'anomaly'));
+	}
+
+	public function deleteAnomalousNames($anomaly)
+	{
+		$anomalousNames = DB::table('players')->where('name', '=', $anomaly)->delete();
+
+		return "$anomaly delorted";
 	}
 
 
