@@ -139,7 +139,7 @@ class RatingController extends \BaseController {
 		$players = Player::byPopularity();
 
 		// restrict the list to the top 10
-		$players = $players->slice(0,10);
+		$players = $players->slice(0,9);
  		//return $players->count();
 		return View::make('home', compact('players'));
 	}
