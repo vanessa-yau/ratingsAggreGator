@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder {
         $this->call('PlayerEnglishPremierLeagueSeeder');
         $this->call('PlayerSpanishLaLigaSeeder');
         $this->call('PlayerGermanBundesligaSeeder');
+        // $this->call('TestingPlayerTableSeeder');
     }
 }
