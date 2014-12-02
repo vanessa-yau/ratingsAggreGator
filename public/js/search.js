@@ -9,10 +9,15 @@ $(function () {
 
 		// turn spaces into + for lovely URLs
 		var query = $(this).find('[name=search-box]').val();
-		query = query.replace(' ', '+');
+		if (query != "" && query != null) {
+			query = query.replace(' ', '+');
+			window.location = ('/search/' + query);
 
+		}
+		else {
+			return false;
+		}
 		// transition to the required page
-		window.location = ('/search/' + query);
 	});
 });
 
