@@ -4,7 +4,7 @@
 
 <form action="{{ URL::route('users.store') }}" method="post" id="registration_form">
     <div class="form-control-group">
-        <label class="control-label" for="first_name">Name</label>
+        <label class="control-label" for="first_name">First Name</label>
         <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Name">
         <p class ="user_help" id="first_name_help"></p>
     </div>
@@ -68,7 +68,7 @@
 
     <div class="form-control-group">
         <label class="control-label" for="country">Country</label>
-        <select id="country" name ="country">
+        <select id="country" name ="country" class="form-control">
 
             <!--make "choose here" the default option -->
             <option selected disabled style="display:none;">Choose here</option>
