@@ -2,8 +2,8 @@
     <div class="col-sm-12">
         <h2>Settings</h2>
         <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group settings">
+            <div class="form-group settings">
+                <div class="col-sm-6">
                     <div class="input-group">
                         <span class="input-group-addon">Name</span>
                         <input type="text" name="name" class="form-control" placeholder="name" value="{{ Auth::user()->first_name }}">
@@ -23,7 +23,10 @@
                         <span class="input-group-addon">Email</i></span>
                         <input type="text" name="email" class="form-control" placeholder="email address" value="{{ Auth::user()->email_address }}">
                     </div>
-                </div>                
+                </div>
+                <div class="col-sm-6 well">
+                    <p>Some more settings are coming soon.  Patience is a virtue.</p>
+                </div>
             </div>
         </div>
         <div class="row">

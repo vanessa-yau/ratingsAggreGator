@@ -107,10 +107,14 @@
                         $('input[name="username"]').val(json['username']);
                         $('input[name="email"]').val(json['email_address']);
                         $('input[name="passcheck"]').val("");
-                        $('.user-username').text(json['username']);
-                        $('.user-country').text(json['country_code']);
+                        $('.user-username').text(" "+json['username']);
+                        $('.user-country').text(" "+json['country_code']);
                         $('.user-name').text(" "+json['first_name']+" "+json['surname']);
                         $('.user-email').html(' <a href="mailto:"'+json["email_address"]+'">'+json["email_address"]+'</a>');
+                        $('input:not(input[name="search-box"])').attr('disabled', true);
+                        $(this).removeClass()
+                               .addClass('btn btn-warning pull-right')
+                               .html('<i class="fa fa-pencil"></i> Edit');
                     },
                     error: function(e){
                         // display error message.
