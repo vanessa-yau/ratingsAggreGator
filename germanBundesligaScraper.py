@@ -24,33 +24,34 @@ def specialPrint(str):
 
 # names of the team in Premier League
 teamToFetch = {
-	"Arsenal":"arsenal",
-	"Aston Villa": "avilla",
-	"Burnley":"burnley",
-	"Chelsea":"chelsea",
-	"Crystal Palace":"cpalace",
-	"Everton":"everton",
-	"Hull City":"hullc",
-	"Leicester City":"leicester",
-	"Liverpool":"liverpool",
-	"Manchester City":"mancity",
-	"Manchester United":"manutd",
-	"Newcastle United":"newcas",
-	"Queens Park Rangers":"qpr",
-	"Southampton":"southam",
-	"Stoke City":"stoke",
-	"Sunderland":"sunder",
-	"Swansea City":"swansea",
-	"Tottenham Hotspur":"tottenha",
-	"West Bromwich Albion":"wba",
-	"West Ham United":"westham"
+	"Augsburg":"augsburg",
+	"Bayer Leverkusen":"bayerlev",
+	"Bayern Munich":"bayern",
+	"Borussia Dortmund":"dortmund",
+	u"Borussia Mönchengladbach":"monchen",
+	"Eintracht Frankfurt":"einfrank",
+	"SC Freiburg":"freiburg",
+	"Hamburger SV":"hamburg",
+	"Hannover 96":"hannover",
+	"Hertha Berlin":"hberlin",
+	"1899 Hoffenheim":"hoffen",
+	u"FC Köln":"koln",
+	"FSV Mainz 05":"mainz",
+	"SC Paderborn":"paderbo",
+	"Schalke 04":"schalke",
+	"VfB Stuttgart":"stuttg",
+	"Werder Bremen":"wbremen",
+	"VfL Wolfsburg":"wolfsburg"
 }
+
+
+
 
 data = []
 
 for key in teamToFetch:	
 	# fetches next URL to scrape via teamToFetch dictionary
-	url = "http://www.footballsquads.co.uk/eng/2014-2015/faprem/" + teamToFetch[key] + ".htm"
+	url = "http://www.footballsquads.co.uk/ger/2014-2015/bundes/" + teamToFetch[key] + ".htm"
 	r = requests.get(url)
 	soup = BeautifulSoup(r.content)
 	rows = soup.find_all("tr")
@@ -88,11 +89,11 @@ for key in teamToFetch:
 
 # write all the data to json and out to file
 # nb: utf-8 support
-with io.open('app/storage/PlayerEnglishPremierLeagueSeeder.json', 'w', encoding='utf-8') as f:
+with io.open('app/storage/PlayerGermanBundesligaSeeder.json', 'w', encoding='utf-8') as f:
 	f.write(unicode(json.dumps(data, ensure_ascii=False, sort_keys=True, indent=4)))
 
 # read the json/txt file, pprint (pretty print) for console output
-json_data=open('app/storage/PlayerEnglishPremierLeagueSeeder.json')
+json_data=open('app/storage/PlayerGermanBundesligaSeeder.json')
 
 data = json.load(json_data)
 pprint(data)

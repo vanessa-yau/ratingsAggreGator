@@ -8,7 +8,12 @@
         "laravel/framework": "4.2.*",
         "itsgoingd/clockwork": "1.*",
         "doctrine/dbal": "2.5.*@dev",
-        "monarobase/country-list": "dev-master"
+        "monarobase/country-list": "dev-master",
+        "thujohn/twitter": "dev-master",
+        "way/generators": "~2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*"
     },
     "autoload": {
         "classmap": [
