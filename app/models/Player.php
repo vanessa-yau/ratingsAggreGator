@@ -131,10 +131,8 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
             $query = $query->remember(60);
         }
 
-        $players = $query->get()->sortBy(function ($player) {
-            if (!$player->ratings->count() == 0) {
-                return $player->ratings->count();
-            }
+        $players = $query->has('ratings', '>', 0)->get()->sortBy(function ($player) {
+            return $player->ratings->count();
 
         }, SORT_REGULAR, true);
 

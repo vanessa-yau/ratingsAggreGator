@@ -28,7 +28,6 @@ function register(e) {
 					'surname'		: $('#surname').val(),
 					'username'		: $('#username').val(), 
 					'password' 		: $('#password').val(),
-					'dob'			: $('#datepicker').val(),
 					'email_address' : $('#email_address').val(),
 					'country' 		: $('#country').val(),
 					'town/city'		: $('#town-city').val(),
@@ -60,7 +59,7 @@ function register(e) {
 
 //Event handler
 $(function () {
-	$('#registration_form').on('propertychange keyup input paste', function (e)  {
+	$('#registration_form').on('propertychange keyup input paste change', function (e)  {
 		console.log("in registration validation function..");
 		validateRegistrationForm();
 	});
@@ -81,7 +80,6 @@ function validateRegistrationForm() {
 	var username		= $('#username').val(); 
 	var password 		= $('#password').val();
 	var retypePassword 	= $('#confirm-password').val();
-	var dob				= $('#datepicker').val();
 	var email			= $('#email_address').val();	
 	var country			= $('#country').val();
 	var townCity		= $('#town-city').val();
@@ -197,19 +195,6 @@ function validateRegistrationForm() {
 
 	}
 
-	//Validate DOB field
-
-	if (dob != "") {
-			$('#datepicker').parent().removeClass('has-error');
-			$('#datepicker').parent().addClass('has-success');
-			$('#dob_help').text('');
-	}
-	else {
-		$('#datepicker').parent().removeClass('has-success');
-		$('#datepicker').parent().addClass('has-error');
-		$('#dob_help').text('You must choose a date of birth');
-	}
-
 	//Validate email address field
 	if (email != "") {
 		if (validateEmail(email) ) {
@@ -230,7 +215,7 @@ function validateRegistrationForm() {
 	}
 
 	//Validate country field
-	if (country != "" && country != "Choose here") {
+	if (country != "" && country != "Choose here" && country != null) {
 			$('#country').parent().removeClass('has-error');
 			$('#country').parent().addClass('has-success');
 			$('#country_help').text("");
@@ -248,6 +233,7 @@ function validateRegistrationForm() {
 			$('#town_city_help').text("");
 	}
 	else {
+	
 		$('#town-city').parent().removeClass('has-success');
 		$('#town-city').parent().addClass('has-error');
 		$('#town_city_help').text("Please enter a town or city");

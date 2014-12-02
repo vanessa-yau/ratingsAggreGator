@@ -119,10 +119,15 @@ class PlayerController extends \BaseController {
 	public function search($searchQuery) {
 
 		//Call the search function in the Player model
-		$results = Player::search($searchQuery);
 
-		return View::make('search-results', compact('results'));
-		//return $results;
+		// if ($searchQuery == null || $searchQuery =="") {
+		// 	return Redirect::back();
+		// }
+		// else {
+			$results = Player::search($searchQuery);
+			return View::make('search-results', compact('results'));
+		// }
+		
 	}
 
 	// returns a random selection of players
