@@ -88,3 +88,14 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+// stops admin feature being accessed outside of local env
+// see route group in routes.php
+Route::filter('env', function () {
+	// remove ! to test if working in local env
+    if (!App::environment('local')) {
+        return Redirect::to('/')
+        // message var needs to be set in master view
+        ->with('message', 'Admin only feature');
+	}
+});

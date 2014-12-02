@@ -3,13 +3,13 @@
 class UserController extends \BaseController {
 
 	public function __construct() {
-		Validator::extend('username', function($attribute, $value, $parameters){
-			$users = User::whereUsername($value);
-			return 
-				$users->count() == 0 ||
-				$users->first()->id == Auth::id();
+		// Validator::extend('username', function($attribute, $value, $parameters){
+		// 	$users = User::whereUsername($value);
+		// 	return 
+		// 		$users->count() == 0 ||
+		// 		$users->first()->id == Auth::id();
 				
-		}, "The username you have chosen already exists.");
+		// }, "The username you have chosen already exists.");
 
 		$this->beforeFilter('auth', [
 			'except' => [
@@ -112,7 +112,7 @@ class UserController extends \BaseController {
 		$validator = Validator::make($userData, [
 			'first_name' => 'required',
 			'surname' => 'required',
-			'username' => 'required|username',
+			'username' => 'required|unique:users,username,'.Auth::id(),
 			'email_address' => 'required|email',
 			'password' => 'required'
 		]);
