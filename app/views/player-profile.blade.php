@@ -184,9 +184,9 @@
 @stop
 
 @section('js')
-  <script src="/js/jquery-ui.js"></script>
-  <script src="/js/charts/yourRatingVsAverageRating.js"></script>
-  <script>
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/charts/yourRatingVsAverageRating.js"></script>
+    <script>
     // hide ajax response message ASAP.
     $('#response-message').hide();
 
