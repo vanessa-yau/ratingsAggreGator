@@ -16,4 +16,8 @@ class Team extends Eloquent {
     public function leagues() {
         return $this->belongsTo('League');
     }
+
+    public function getUrlAttribute() {
+        return URL::route('teams.show', $this->id);
+    }
 }
