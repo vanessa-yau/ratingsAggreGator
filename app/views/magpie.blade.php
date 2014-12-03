@@ -9,6 +9,6 @@ function getRss($sport){
     foreach ($rss->items as $item ) {
         $title = $item['title'];
         $url   = $item['link'];
-        echo "<a href=$url>$title</a>&nbsp&nbsp|&nbsp&nbsp";
+        echo "<a href=$url target='_blank'>$title</a>&nbsp&nbsp|&nbsp&nbsp";
     }
 }
