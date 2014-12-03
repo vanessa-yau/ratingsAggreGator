@@ -38,6 +38,13 @@ class PlayerItalianSerieaSeeder extends Seeder {
                     if ( array_key_exists('name', $values) && $values['name']) {
                         $playerModel = $football->players()->create([
                             'name' => $player['name'],
+                            'nationality' => $player['nat'],
+                            'height' => $player['height'],
+                            'weight' => $player['weight'],
+                            // carbon can convert this to
+                            // yyyy-mm-dd 
+                            // currently is dd-mm-yyyy   
+                            //'dob' => $player['dob'],
                             'last_known_team' => $teamModel->id
                         ]);
                     } // end if
