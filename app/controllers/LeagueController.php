@@ -44,7 +44,14 @@ class LeagueController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$league = League::with('teams')->find($id);
+
+		if( $league ){
+			return View::make('league-profile', compact('league'));
+		}
+		else {
+			return View::make('search-results', [ 'results' => null ]);
+		}
 	}
 
 

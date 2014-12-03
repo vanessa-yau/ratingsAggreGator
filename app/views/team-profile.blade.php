@@ -27,13 +27,13 @@
     <!-- general team info -->
     <div class="row team-info">
         <div class="col-sm-10">
-            <h2><strong>{{ $team->name }}</strong></h2>
+            <h2><strong>{{{ $team->name }}}</strong></h2>
             <h3>
                 Currently in: <a href="{{ $league->url }}">{{{ $league->name }}}</a>
             </h3>
         </div>
         <div class="col-sm-2">
-            <img class="team-badge pull-right" src="/images/gator.jpg" alt="">
+            <img class="team-badge pull-right" src="/images/gator.jpg" alt="{{{ $team->name }}} badge missing.">
             <button class="hide-players btn btn-large btn-primary pull-right">Hide Players</button>
         </div>
     </div>
@@ -46,7 +46,7 @@
         @foreach( $team->last_known_players as $player )
             <div class="col-sm-3 player-thumbnail">
                 <a href="{{ $player->url }}">
-                    <img class="player-image" src="{{{ $player->image_url }}}" alt="...">
+                    <img class="player-image" src="{{{ $player->image_url }}}" alt="{{{ $player->name }}} profile image missing.">
                     <p class="name">{{{ $player->name }}}</p>
                 </a>
             </div>
