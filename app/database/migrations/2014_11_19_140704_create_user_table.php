@@ -14,7 +14,6 @@ class CreateUserTable extends Migration {
 	        $table->string('surname', 40);
 	        $table->string('username', 100);
 	        $table->string('password');
-	        $table->date('dob');
 	        $table->string('email_address');
 	        $table->string('country_code');
 	        $table->string('city');

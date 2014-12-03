@@ -22,7 +22,7 @@ function register(e) {
 	var valid = validateRegistrationForm();
 	if (valid) { 
 		$.ajax({
-			url: "/register",
+			url: "register",
 			type: 'POST',
 			data: { 'first_name'	: $('#first_name').val(),
 					'surname'		: $('#surname').val(),
@@ -30,29 +30,16 @@ function register(e) {
 					'password' 		: $('#password').val(),
 					'email_address' : $('#email_address').val(),
 					'country' 		: $('#country').val(),
-					'town/city'		: $('#town-city').val(),
+					'city'			: $('#city').val(),
 			},		
 
 			success: function(data, textStatus, jqXHR) {
 				console.log('success');
 				window.location = '/';
 			},
-			error:function(x,e) {
-				console.log(x);
-				if(x.status==0){
-					alert('You are offline!!\n Please Check Your Network.');
-				}else if(x.status==404){
-					alert('Requested URL not found.');
-				}else if(x.status==500){
-					alert('Internel Server Error.');
-				}else if(e=='parsererror'){
-					alert('Error.\nParsing JSON Request failed.');
-				}else if(e=='timeout'){
-					alert('Request Time out.');
-				}else {
-					alert('Unknow Error.\n'+x.responseText);
-				}
-			}  
+			error: function(jqXHR, textStatus, errorThrown) {
+			  console.log(textStatus, errorThrown);
+			}
 		});
 	}
 }
@@ -81,8 +68,10 @@ function validateRegistrationForm() {
 	var password 		= $('#password').val();
 	var retypePassword 	= $('#confirm-password').val();
 	var email			= $('#email_address').val();	
+	var retypeEmail 	= $('#confirm_email_address')
 	var country			= $('#country').val();
 	var townCity		= $('#town-city').val();
+
 	
 	//Validate first name field
 	if (firstName != "") {
@@ -141,6 +130,7 @@ function validateRegistrationForm() {
 		$('#username_help').text("Please enter a username");
 	}
 
+	//Validate that the 'password' and 'confirm password' fields are the same
 	if ( ( password !="" ) && ( retypePassword !="" ) ) {
 		console.log("both fields filled in");
 		$('#confirm-password_help').text('');
@@ -225,6 +215,7 @@ function validateRegistrationForm() {
 		$('#country').parent().addClass('has-error');
 		$('#country_help').text("Please select a country");
 	}
+
 
 	//Validate town/city field
 	if (townCity != "") {

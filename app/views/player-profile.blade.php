@@ -117,13 +117,17 @@
                     @endforeach
                 </div> <!-- end row skills row -->
 
-                <div class="share button">
-                    <a 
-                        href="https://twitter.com/share" 
-                        class="twitter-share-button" data-text="I just rated someone on ratingator.com" 
-                        data-via="ratingator">
-                        Tweet 
-                    </a>
+                <div class="share buttons">
+                    
+                    <ul>
+                        
+                        <li> <a 
+                            href="https://twitter.com/share" 
+                            class="twitter-share-button" data-text="I just rated someone on ratingator.com" 
+                            data-via="ratingator">
+                            Tweet 
+                        </a> </li>
+                    </ul>
                 </div>
 
                 <input type="hidden" id="player_id" value="1">
@@ -377,6 +381,18 @@
         }
         (document, 'script', 'twitter-wjs');
     </script>
+
+    <script type="text/javascript">
+        /*<![CDATA[*/
+        gloader.load(["glow","1","glow.dom"],{onLoad:function(glow){glow.dom.get("html").addClass("blq-js")}});
+        gloader.load(["glow","1","glow.dom"],{onLoad:function(glow){glow.ready(function(){if (glow.env.gecko){var gv = glow.env.version.split(".");for (var i=gv.length;i<4;i++){gv[i]=0;}if((gv[0]==1 && gv[1]==9 && gv[2]==0)||(gv[0]==1 && gv[1]<9)||(gv[0]<1)){glow.dom.get("body").addClass("firefox-older-than-3-5");}}});}});
+
+        window.disableFacebookSDK=true;
+        if (window.location.pathname.indexOf('+')>=0){window.disableFacebookSDK=true;}
+
+        /*]]>*/
+    </script>
+
 
 
 @stop
