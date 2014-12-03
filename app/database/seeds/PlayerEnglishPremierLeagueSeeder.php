@@ -4,7 +4,7 @@ class PlayerEnglishPremierLeagueSeeder extends Seeder {
     public function run()
     {
         // Truncate table content, removes duplicate entries
--       //DB::table('players')->truncate();
+       //DB::table('players')->truncate();
 
         $football = Sport::whereName('football')->first();
 
@@ -53,5 +53,3 @@ class PlayerEnglishPremierLeagueSeeder extends Seeder {
         } // end if
     } // end func
 } // end class
-
-
