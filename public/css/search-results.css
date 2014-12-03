@@ -6,3 +6,12 @@
 .pagination-links {
     text-align: center;
 }
+
+.message {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    text-align: center;
+    color: #AAA;
+    font-weight: bold;
+}
