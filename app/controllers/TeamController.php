@@ -44,7 +44,16 @@ class TeamController extends \BaseController {
 	public function show($id)
 	{
 		$team = Team::find($id);
-		return View::make('team-profile', compact('team'));
+		if( $team ){
+			( $team->last_known_league_id != 0 )
+				?	$league = League::find($team->last_known_league_id)
+				: 	$league = null;
+			return View::make('team-profile', compact('team', 'league'));
+		} 
+		else {
+			return View::make('search-results', [ 'results' => null ]);
+		}
+
 	}
 
 

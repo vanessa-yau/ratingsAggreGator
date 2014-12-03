@@ -6,13 +6,13 @@
 
 @section('content')
 
-	<div>
+	<div class="row">
 		@include('magpie')
-		<marquee>{{ getRss("football") }}</marquee>
-		<h3>Most Rated Players</h3>
+		<marquee class="ticker">{{ getRss("football") }}</marquee>
 	</div>
-	<div align="center">
-		<div class="row">
+	<div class="row">
+		<h3>Most Rated Players</h3>
+		<div align="center">
 			@foreach($players as $player)
 				<div class="col-xs-12 col-sm-6 col-lg-4">
 					<a href="{{ $player->url }}">
@@ -21,7 +21,31 @@
 					</a>
 				</div>
 			@endforeach
-		</div> <!-- close row -->
-	</div> <!-- close most rated players div -->
+		</div> <!-- close most rated players div -->
+	</div> <!-- close row -->
 	
+	<!-- leagues -->
+	<div class="row">
+		<h3>We are following:</h3>
+		@foreach( $leagues as $league )
+		<div class="col-sm-3 league">
+			<a href="{{{ $league->url }}}">
+				<p>
+					{{{ $league->name }}}
+					<img class="league-badge" src="/images/leagues/englishpremier.jpg" alt="img not found">
+				</p>
+			</a>
+		</div>
+		@endforeach
+	</div>
+@stop
+
+@section('js')
+	<script>
+		$('.ticker').hover(function () { 
+		    this.stop();
+		}, function () {
+		    this.start();
+		});
+	</script>
 @stop

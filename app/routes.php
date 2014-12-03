@@ -12,8 +12,12 @@
 */
 
 Route::get('/', function() {
+    ( League::count() > 0 ) 
+        ? $leagues = League::all() 
+        : $leagues = null;
     return View::make('home', [
-        'players' => Player::mostPopular()
+        'players' => Player::mostPopular(),
+        'leagues' => $leagues
     ]);
 });
 
@@ -23,10 +27,18 @@ Route::get('/register', [
     'uses' => 'UserController@create'
 ]);
 
-Route::get('/admin', [
-    'as' => 'admin',
-    'uses' => 'PlayerController@showAnomalousNames'
-]);
+Route::group(array('before' => 'env'), function()
+{
+    Route::get('/admin/{anomaly}', [
+        'as' => 'admin',
+        'uses' => 'PlayerController@showAnomalousNames'
+    ]);
+
+    Route::get('/admin/{anomaly}/delete', [
+        'as' => 'anomalousPlayers.delete',
+        'uses' => 'PlayerController@deleteAnomalousNames'
+    ]);
+});
 
 Route::get('profile', function() {
     return View::make('player-profile');

@@ -53,14 +53,12 @@
 
     </div>
 
-    <br />
-
     <div class="form-control-group">
         <label class="control-label" for="country">Country</label>
         <select id="country" name ="country" class="form-control">
 
             <!--make "choose here" the default option -->
-            <option selected disabled style="display:none;">Choose here</option>
+            <option selected disabled style="display:none;">Select...</option>
             @foreach(Countries::getList('en', 'php', 'cldr') as $countryId => $countryName)
                 <option value="{{{ $countryId }}}">{{{$countryName}}}</option>
             @endforeach
@@ -81,5 +79,5 @@
 @stop
 
 @section('js')
-
+    <script src="/js/validation.js"></script>
 @stop

@@ -15,7 +15,7 @@
             <div class="col-sm-10">
                 <p><strong>Name: </strong>{{ $player->name }}</p>
                 <p><strong>Nationality: </strong>{{ $player->nationality }}</p>
-                <p><strong>Height: </strong>{{ $player->height }}cm</p>
+                <p><strong>Height: </strong>{{ $player->height }}m</p>
                 <p><strong>Weight: </strong>{{ $player->weight }}kg</p>
             </div>
         </div>
