@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form action="{{ URL::route('users.store') }}" method="post" id="registration_form">
+<form action="{{ URL::route('user.store') }}" method="post" id="registration_form">
     <div class="form-control-group">
         <label class="control-label" for="first_name">First Name</label>
         <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Name">
@@ -80,8 +80,8 @@
     </div>
 
     <div class="form-control-group">
-        <label class="control-label" for="town-city">Town/City</label>
-        <input type="text" class="form-control" id="town-city" name="town-city" placeholder="City">
+        <label class="control-label" for="city">Town/City</label>
+        <input type="text" class="form-control" id="city" name="city" placeholder="City">
         <p class ="user_help" id="password_help"></p>
     </div>
 
