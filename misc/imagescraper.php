@@ -1,21 +1,21 @@
 <?php
 function scrapePage($image_url){
-        // create curl resource 
-        $ch = curl_init(); 
+    // create curl resource 
+    $ch = curl_init(); 
 
-        // set url 
-        curl_setopt($ch, CURLOPT_URL, $image_url); 
+    // set url 
+    curl_setopt($ch, CURLOPT_URL, $image_url); 
 
-        //return the transfer as a string 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+    //return the transfer as a string 
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
 
-        // $output contains the output string 
-        $output = curl_exec($ch); 
+    // $output contains the output string 
+    $output = curl_exec($ch); 
 
-        // close curl resource to free up system resources 
-        curl_close($ch);
+    // close curl resource to free up system resources 
+    curl_close($ch);
 
-        return $output;
+    return $output;
 }
 
 function getImgSource($name){
