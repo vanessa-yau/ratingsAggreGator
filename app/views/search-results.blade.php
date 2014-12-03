@@ -5,9 +5,10 @@
 @stop
 
 @section('content')
-	<div class="search-results">
+<div class="search-results">
+	@if($results->count() > 0)
+    	@foreach ($results as $result)
     	<div class="row">
-        	@foreach ($results as $result)
             <a href="{{ $result->url }}">
 	        	<div class="col-sm-6">
 	        		<div class="row well">
@@ -27,14 +28,19 @@
 	                </div>
 	        	</div>
             </a>
-        	@endforeach
-	    </div>
-	    <div class="row">
-	    	<div class="col-sm-12 pagination-links">
-	    		{{ $results->links() }}
-	    	</div>
-	    </div>
-	</div>
+        </div>
+        <div class="row">
+        	<div class="col-sm-12 pagination-links">
+        		{{ $results->links() }}
+        	</div>
+        </div>
+    	@endforeach
+    @else
+    	<div class="row well message">
+    		There are no results for your search.  Sorry about that.
+    	</div>
+    @endif
+</div>
 @stop
 
 @section('js')
