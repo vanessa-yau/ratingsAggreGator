@@ -7,6 +7,8 @@
 @section('content')
 
 	<div>
+		@include('magpie')
+		<marquee>{{ getRss("football") }}</marquee>
 		<h3>Most Rated Players</h3>
 	</div>
 	<div align="center">
