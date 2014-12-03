@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="google-site-verification" content="eWX91WMfaSNh4VZ96tjKofyVpthPLTm-5hB2NWL_nu8" />
-		<title>Ratings AggreGator</title>
+		<title>Ratingator</title>
 		{{ HTML::style("/css/bootstrap.min.css") }}
 		{{ HTML::style("/css/font-awesome.min.css") }}
 		{{ HTML::style("/css/navbar.css") }}
