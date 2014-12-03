@@ -53,8 +53,6 @@
 
     </div>
 
-    <br />
-
     <div class="form-control-group">
         <label class="control-label" for="country">Country</label>
         <select id="country" name ="country" class="form-control">
@@ -82,5 +80,5 @@
 @stop
 
 @section('js')
-
+    <script src="/js/validation.js"></script>
 @stop

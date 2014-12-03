@@ -55,7 +55,7 @@ $(function () {
 //Event handler
 $(function () { 
 	$("#registration_form").submit(register); 
-	console.log('hooked up to validation');
+	// console.log('hooked up to validation');
 
 });
 
