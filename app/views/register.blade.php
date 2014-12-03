@@ -58,7 +58,7 @@
         <select id="country" name ="country" class="form-control">
 
             <!--make "choose here" the default option -->
-            <option selected disabled style="display:none;">Choose here</option>
+            <option selected disabled style="display:none;">Select...</option>
             @foreach(Countries::getList('en', 'php', 'cldr') as $countryId => $countryName)
                 <option value="{{{ $countryId }}}">{{{$countryName}}}</option>
             @endforeach
