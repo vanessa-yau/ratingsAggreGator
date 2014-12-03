@@ -27,10 +27,16 @@ class PlayerItalianSerieaSeeder extends Seeder {
             foreach ($json as $team) {
                 // create team model
                 if (! Team::whereName($team['name'])->count() )
-                    $teamModel = Team::create(['name' => $team['name']]);
-                else
+                    $teamModel = Team::create([
+                        'name' => $team['name'],
+                        'last_known_league_id' => $league->id
+                    ]);
+                else {
                     $teamModel = Team::whereName($team['name'])->first();
-
+                    $teamModel->last_known_league_id = $league->id;
+                    $teamModel->save();
+                }
+                
                 // uncomment for viewing teams inserted via a route
                 //echo $team['name'] . "<br>";
                 foreach ($team['players'] as $player) {

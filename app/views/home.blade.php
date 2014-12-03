@@ -31,8 +31,8 @@
 		<div class="col-sm-3 league">
 			<a href="{{{ $league->url }}}">
 				<p>
-					{{{ $league->name }}}
 					<img class="league-badge" src="/images/leagues/englishpremier.jpg" alt="img not found">
+					{{{ $league->name }}}
 				</p>
 			</a>
 		</div>
