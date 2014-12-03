@@ -8,7 +8,7 @@
     <div id="error-pointer"></div>
     <div class="row well">
         <h3>Player Information</h3>
-        <div class="row" data-player-id="{{{$player->id}}}" data-player-name="{{{$player->name}}} id="player">
+        <div class="row" data-player-id="{{{$player->id}}}" data-player-name="{{{$player->name}}}" id="player">
             <div class="col-sm-2"> 
                 <p><img id="profile-image" src="{{{ $player->image_url }}}" alt="Profile Image"></p>
             </div>
