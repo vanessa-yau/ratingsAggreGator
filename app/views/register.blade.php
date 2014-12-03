@@ -64,7 +64,6 @@
             @foreach(Countries::getList('en', 'php', 'cldr') as $countryId => $countryName)
                 <option value="{{{ $countryId }}}">{{{$countryName}}}</option>
             @endforeach
-            <p class="user_help" id="country_help">Bring it on bitch</p>
         </select>
     </div>
 
