@@ -8,7 +8,7 @@
 
 	<div>
 		@include('magpie')
-		<marquee>{{ getRss("football") }}</marquee>
+		<marquee class="ticker">{{ getRss("football") }}</marquee>
 		<h3>Most Rated Players</h3>
 	</div>
 	<div align="center">
@@ -24,4 +24,14 @@
 		</div> <!-- close row -->
 	</div> <!-- close most rated players div -->
 	
+@stop
+
+@section('js')
+	<script>
+		$('.ticker').hover(function () { 
+		    this.stop();
+		}, function () {
+		    this.start();
+		});
+	</script>
 @stop
