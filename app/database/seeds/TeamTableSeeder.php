@@ -3,8 +3,8 @@ class TeamTableSeeder extends Seeder {
 
     public function run()
     {
-        //Delete table content
-        DB::table('teams')->truncate();
+        // Delete table content
+        //DB::table('teams')->truncate();
 
         //Open the file from the 'storage' subfolder in 'app' 
         $json = File::get(storage_path() . "/PlayerEnglishPremierLeagueSeeder.json");

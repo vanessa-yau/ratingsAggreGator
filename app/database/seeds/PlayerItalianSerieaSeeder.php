@@ -4,7 +4,7 @@ class PlayerItalianSerieaSeeder extends Seeder {
     public function run()
     {
         // Truncate table content, removes duplicate entries
--       DB::table('players')->truncate();
+-       //DB::table('players')->truncate();
 
         $football = Sport::whereName('football')->first();
 
