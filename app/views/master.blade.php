@@ -4,9 +4,9 @@
 		<meta name="google-site-verification" content="eWX91WMfaSNh4VZ96tjKofyVpthPLTm-5hB2NWL_nu8" />
 		<title>Ratingator</title>
 		<!-- changed script and stylesheet sources to use CDNs, also available in /public -->
+		{{ HTML::style("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css") }}
 		{{ HTML::style("http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css") }}
 		{{ HTML::style("http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css") }}
-		{{ HTML::style("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css") }}
 		{{ HTML::style("/css/navbar.css") }}
 		{{ HTML::style("/css/main.css") }}
 		<style>
@@ -28,10 +28,10 @@
 		@yield('modals')
 
 		<!-- scripts -->
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"> </script>
 	    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js"></script>
 	    
 		<script src="/js/search.js"></script>
 		<script src="/js/google-analytics.js"></script>
