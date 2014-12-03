@@ -9,7 +9,3 @@ Documentation for the project can be found on our [Wiki](https://github.com/vyau
 ### Contributing To Ratingator
 
 **All issues and pull requests should be filed on the [vyau987/ratingsAggreGator](https://github.com/vyau987/ratingsAggreGator) repository.**
-
-### License
-
-The ratingsAggreGator project is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
