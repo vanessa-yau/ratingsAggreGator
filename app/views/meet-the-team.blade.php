@@ -14,7 +14,7 @@
             <div class="col-xs-6 col-sm-3 placeholder">
                 <img src="https://avatars0.githubusercontent.com/u/310636?v=3&s=460" class="img-responsive" alt="Generic placeholder thumbnail">
                 <h4>Jake</h4>
-                <span class="text-muted">an organism that converts caffeine to code. also sysadmin.</span>
+                <p class="text-muted">an organism that converts caffeine to code. also sysadmin.</p>
                 <div class="connect-icons">
                     <a 
                         target="_blank" 
@@ -43,7 +43,7 @@
             <div class="col-xs-6 col-sm-3 placeholder">
                 <img src="https://avatars0.githubusercontent.com/u/5638316?v=3&s=460" class="img-responsive" alt="Generic placeholder thumbnail">
                 <h4>Ryan</h4>
-                <span class="text-muted">makes things pretty. powered by biscuits.</span>
+                <p class="text-muted">makes things pretty. powered by biscuits.</p>
                 <div class="connect-icons" align="center">
                     <a 
                         target="_blank" 
@@ -72,7 +72,7 @@
             <div class="col-xs-6 col-sm-3 placeholder">
                 <img src="https://avatars0.githubusercontent.com/u/9447746?v=3&s=460" class="img-responsive" alt="Generic placeholder thumbnail">
                 <h4>Sam</h4>
-                <span class="text-muted">will code for new laptop.</span>
+                <p class="text-muted">will code for new laptop.</p>
                 <div class="connect-icons">
                     <a 
                         target="_blank" 
@@ -93,7 +93,7 @@
             <div class="col-xs-6 col-sm-3 placeholder">
                 <img src="https://avatars0.githubusercontent.com/u/5989435?v=3&s=460" class="img-responsive" alt="Generic placeholder thumbnail">
                 <h4>Vanessa</h4>
-                <span class="text-muted">bakes cakes and codes. mainly the latter.</span>
+                <p class="text-muted">bakes and codes. mainly the latter.</p>
                 <div class="connect-icons">
                     <a 
                         target="_blank" 

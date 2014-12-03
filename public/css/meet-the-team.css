@@ -12,7 +12,9 @@
   display: inline-block;
   border-radius: 50%;
 }
-
+.text-muted {
+    min-height: 3em;
+}
 .connect-icons {
     margin-left: auto;
     margin-right: auto;
