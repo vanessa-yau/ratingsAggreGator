@@ -27,9 +27,9 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"> </script>
 	    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js"></script>
 	    
 		<script src="/js/search.js"></script>
+		<script src="/js/Chart.min.js"></script>
 		<script src="/js/google-analytics.js"></script>
 	    <script src="/js/datepicker.js"></script>
 		
@@ -88,4 +88,4 @@
 		@yield('js')
 
 	</body>
-</html>
+<!-- </html> -->
