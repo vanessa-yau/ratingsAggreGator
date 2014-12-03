@@ -3,7 +3,9 @@ class PlayerSpanishLaLigaSeeder extends Seeder {
 
     public function run()
     {
-        //Delete table content
+        // Truncate table content, removes duplicate entries
+// -       DB::table('players')->truncate();
+
         $football = Sport::whereName('football')->first();
 
         $raw = File::get(storage_path() . '/spanishLaLigaScraper.json');
