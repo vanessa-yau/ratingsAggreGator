@@ -10,6 +10,14 @@
             max-width: 50px;
             max-height: 50px;
         }
+
+        .panel .glyphicon-chevron-down{
+            padding-top: 1em;
+        }
+        .panel .glyphicon-chevron-up {
+            padding-top: 1em;
+        }
+
     </style>
 @stop
 
@@ -23,14 +31,16 @@
                         <div class="panel panel-default" data-id="{{{ $league->id }}}">
                             <div class="panel-heading league">
                                 <img src="/images/leagues/englishpremier.jpg" alt="...">
-                                {{{ $league->name }}}
-                                <i class="glyphicon glyphicon-chevron-down pull-right"></i>
+                                <span>
+                                    <strong class="league-name">{{{ $league->name }}}</strong> 
+                                    <i class="glyphicon glyphicon-chevron-down pull-right"></i>
+                                </span>
                             </div>
                             <div class="panel-body league-teams">
                                 <div class="row">
                                     @foreach( $league->teams as $team )
                                         <div class="col-xs-12 col-sm-6 col-lg-4">
-                                            <p>{{ $team->name }}</p>
+                                            <a href="{{ $team->url }}"><p>{{ $team->name }}</p></a>
                                         </div>
                                     @endforeach
                                 </div> <!-- close row -->
@@ -38,7 +48,6 @@
                         </div>
                     </div>
                 </div>
-
             @endforeach
         @endif
     </div>
@@ -52,14 +61,14 @@
                 e.preventDefault();
                 var isHidden = $this.siblings().is( ":hidden" );
                 if( isHidden ){
-                    $this.siblings().slideDown(400, function() {
+                    $this.siblings().not('.league-name').slideDown(400, function() {
                         $this.find('i').removeClass('glyphicon-chevron-down')
                             .addClass('glyphicon-chevron-up');
                         }
                     );
                 }
                 else{
-                    $this.siblings().slideUp(400, function() {
+                    $this.siblings().not('.league-name').slideUp(400, function() {
                         $this.find('i').removeClass('glyphicon-chevron-up')
                             .addClass('glyphicon-chevron-down');
                         }
