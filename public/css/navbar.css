@@ -19,6 +19,10 @@
     margin-bottom: 2px;
 }
 
+.account-link:hover {
+    color: #FFF;
+}
+
 #logout {
     background-color: red;
     color: white;

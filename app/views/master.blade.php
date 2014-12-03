@@ -5,6 +5,7 @@
 		{{ HTML::style("/css/bootstrap.min.css") }}
 		{{ HTML::style("/css/font-awesome.min.css") }}
 		{{ HTML::style("/css/navbar.css") }}
+		{{ HTML::style("/css/main.css") }}
 		<style>
 			body {
 				padding-top: 70px;
