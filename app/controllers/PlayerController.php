@@ -45,6 +45,12 @@ class PlayerController extends \BaseController {
 	{
 		$player = Player::with('lastKnownTeam.lastKnownPlayers.lastKnownTeam')->find($id);
 		
+		if( !$player ){
+			return View::make('search-results', [
+				'results' => null
+			]);
+		}
+
 		$ratingProfile = RatingProfile::whereSportId($player->sport_id)
 							->whereName('defender')
 							->get()

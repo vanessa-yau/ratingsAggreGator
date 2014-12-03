@@ -13,3 +13,11 @@
     padding: 0.5em;
     border: 1px solid #EBEBEB;
 }
+
+.league {
+    text-align: center;
+}
+.league-badge {
+    max-width: 100px;
+    max-height: 100px;
+}

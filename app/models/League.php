@@ -12,9 +12,7 @@ class League extends Eloquent {
         return $this->hasMany('Team', 'last_known_league_id');
     }
     
-    // need to check this relationship
-    // public function players() {
-    //     return $this->hasMany('Player');
-    // }
-
+    public function getUrlAttribute() {
+        return URL::route('leagues.show', $this->id);
+    }
 }
