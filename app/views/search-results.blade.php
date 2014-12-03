@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="search-results">
-	@if($results->count() > 0)
+	@if( $results != null )
     	<div class="row">
 	    	@foreach ($results as $result)
 	            <a href="{{ $result->url }}">

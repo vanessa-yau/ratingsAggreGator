@@ -3,15 +3,13 @@
 	<head>
 		<meta name="google-site-verification" content="eWX91WMfaSNh4VZ96tjKofyVpthPLTm-5hB2NWL_nu8" />
 		<title>Ratingator</title>
-		{{ HTML::style("/css/bootstrap.min.css") }}
-		{{ HTML::style("/css/font-awesome.min.css") }}
+		<!-- changed script and stylesheet sources to use CDNs, also available in /public -->
+		{{ HTML::style("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css") }}
+		{{ HTML::style("http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css") }}
+		{{ HTML::style("http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css") }}
 		{{ HTML::style("/css/navbar.css") }}
 		{{ HTML::style("/css/main.css") }}
-		<style>
-			body {
-				padding-top: 70px;
-			}
-		</style>
+		
 		@yield('style')
 	</head>
 	<body>
@@ -26,23 +24,13 @@
 		@yield('modals')
 
 		<!-- scripts -->
-		<script src="/js/jquery.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
-		<script src="/js/search.js"></script>
-		<script src="/js/Chart.js"></script>
-		<script src="/js/google-analytics.js"></script>
-		<script src="/js/validation.js"></script>
-
-		<!-- Load jQuery from Google's CDN -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"> </script>
-		
-	    <!-- Load slightly customised version of jQuery UI CSS  -->
-	    <link rel="stylesheet" href="/css/jquery-ui.css" />
-		 
-	    <!-- Load jQuery UI Main JS  -->
-	    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"> </script>
+	    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/Chart.js/0.2.0/Chart.min.js"></script>
 	    
-	    <!-- Load SCRIPT.JS which will create datepicker for input field -->
+		<script src="/js/search.js"></script>
+		<script src="/js/google-analytics.js"></script>
 	    <script src="/js/datepicker.js"></script>
 		
 		<!-- feedback using uservoice -->
