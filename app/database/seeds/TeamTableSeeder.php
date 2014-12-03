@@ -3,7 +3,7 @@ class TeamTableSeeder extends Seeder {
 
     public function run()
     {
-        //Delete table content
+        // Delete table content
         DB::table('teams')->truncate();
 
         //Open the file from the 'storage' subfolder in 'app' 

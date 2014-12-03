@@ -68,9 +68,8 @@ function validateRegistrationForm() {
 	var password 		= $('#password').val();
 	var retypePassword 	= $('#confirm-password').val();
 	var email			= $('#email_address').val();	
-	var retypeEmail 	= $('#confirm_email_address')
 	var country			= $('#country').val();
-	var townCity		= $('#town-city').val();
+	var city			= $('#city').val();
 
 	
 	//Validate first name field
@@ -214,20 +213,21 @@ function validateRegistrationForm() {
 		$('#country').parent().removeClass('has-success');
 		$('#country').parent().addClass('has-error');
 		$('#country_help').text("Please select a country");
+		$('#country').append("<option selected disabled style=display:none;>" + "Choose a country" + "</option>");
 	}
 
 
 	//Validate town/city field
-	if (townCity != "") {
-			$('#town-city').parent().removeClass('has-error');
-			$('#town-city').parent().addClass('has-success');
-			$('#town_city_help').text("");
+	if (city != "") {
+			$('#city').parent().removeClass('has-error');
+			$('#city').parent().addClass('has-success');
+			$('#city_help').text("");
 	}
 	else {
 	
-		$('#town-city').parent().removeClass('has-success');
-		$('#town-city').parent().addClass('has-error');
-		$('#town_city_help').text("Please enter a town or city");
+		$('#city').parent().removeClass('has-success');
+		$('#city').parent().addClass('has-error');
+		$('#city_help').text("Please enter a town or city");
 	}
 	
 	return $('#registration_form .has-error').length == 0;

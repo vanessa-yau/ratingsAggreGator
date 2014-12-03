@@ -53,17 +53,6 @@
 
     </div>
 
-    <div class="form-control-group">
-        <label class="control-label" for="confirm_email_address">Confirm Email Address</label>
-        <input  type="email" 
-                class="form-control" 
-                id="confirm_email_address" 
-                name="confirm_email_address" 
-                placeholder="Confirm Email Address"
-            >
-        <p class ="user_help" id="confirm_email_address_help"></p>
-    </div>
-
     <br />
 
     <div class="form-control-group">
@@ -75,14 +64,14 @@
             @foreach(Countries::getList('en', 'php', 'cldr') as $countryId => $countryName)
                 <option value="{{{ $countryId }}}">{{{$countryName}}}</option>
             @endforeach
-            <p class="country_help" id="country_help"></p>
+            <p class="user_help" id="country_help">Bring it on bitch</p>
         </select>
     </div>
 
     <div class="form-control-group">
         <label class="control-label" for="city">Town/City</label>
         <input type="text" class="form-control" id="city" name="city" placeholder="City">
-        <p class ="user_help" id="password_help"></p>
+        <p class ="user_help" id="city_help"></p>
     </div>
 
     <div class="form-actions">

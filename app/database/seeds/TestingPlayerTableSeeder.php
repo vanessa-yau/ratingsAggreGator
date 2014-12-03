@@ -4,7 +4,7 @@ class TestingPlayerTableSeeder extends Seeder {
     public function run()
     {
         //Delete table content
-        DB::table('ratings')->truncate();
+        //DB::table('ratings')->truncate();
 
         $skillIds = [];
 
