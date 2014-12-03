@@ -11,17 +11,12 @@
 |
 */
 
-Route::get('/',  [
-    'as' => 'home',
-    'uses' => 'RatingController@mostPopularPlayers'
-]);
-
-Route::get('/landing', function() {
+Route::get('/', function() {
     return View::make('home', [
-        'players' => Player::mostPopular(),
-        'teams' => Team::all()
+        'players' => Player::mostPopular()
     ]);
 });
+
 
 Route::get('/register', [
     'as' => 'users.create',
@@ -37,8 +32,16 @@ Route::get('profile', function() {
     return View::make('player-profile');
 });
 
+Route::get('test', function() {
+    return View::make('magpie');
+});
+
 // Auto generate all CRUD routes to your controllers
 Route::resource('attributes', 'AttributeController');
+
+Route::resource('leagues', 'LeagueController');
+
+Route::resource('teams', 'TeamController');
 
 Route::resource('players', 'PlayerController');
 

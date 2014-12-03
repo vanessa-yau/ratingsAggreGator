@@ -9,7 +9,7 @@ class League extends Eloquent {
     }
 
     public function teams() {
-        return $this->hasMany('Team');
+        return $this->hasMany('Team', 'last_known_league_id');
     }
     
     // need to check this relationship

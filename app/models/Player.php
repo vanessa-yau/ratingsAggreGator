@@ -139,6 +139,11 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
         return $players;
     }
 
+    /**
+     * Returns the 09 most popularly voted players on the current date
+     *
+     * @return Response
+     */
     public static function mostPopular() {
         // retrieve all players and sort by the number of ratings
         $players = Player::byPopularity();

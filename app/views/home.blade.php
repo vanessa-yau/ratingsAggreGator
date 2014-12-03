@@ -7,6 +7,8 @@
 @section('content')
 
 	<div>
+		@include('magpie')
+		<marquee>{{ getRss("football") }}</marquee>
 		<h3>Most Rated Players</h3>
 	</div>
 	<div align="center">
@@ -21,18 +23,5 @@
 			@endforeach
 		</div> <!-- close row -->
 	</div> <!-- close most rated players div -->
-	@if(1==2)
-		<div>
-			<h3>All Teams</h3>
-		</div>
-		<div align="center">
-			<div class="row">
-				@foreach($teams as $team)
-					<div class="col-xs-12 col-sm-6 col-lg-4">
-						<p>{{ $team->name }}</p>
-					</div>
-				@endforeach
-			</div> <!-- close row -->
-		</div> <!-- close most rated players div -->
-	@endif
+	
 @stop
