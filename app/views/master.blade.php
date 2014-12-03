@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta name="google-site-verification" content="eWX91WMfaSNh4VZ96tjKofyVpthPLTm-5hB2NWL_nu8" />
 		<title>Ratings AggreGator</title>
 		{{ HTML::style("/css/bootstrap.min.css") }}
 		{{ HTML::style("/css/font-awesome.min.css") }}
@@ -11,7 +12,7 @@
 				padding-top: 70px;
 			}
 		</style>
-		@yield('style')	
+		@yield('style')
 	</head>
 	<body>
 		@include('navbar')
