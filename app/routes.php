@@ -37,6 +37,10 @@ Route::get('profile', function() {
     return View::make('player-profile');
 });
 
+Route::get('test', function() {
+    return View::make('magpie');
+});
+
 // Auto generate all CRUD routes to your controllers
 Route::resource('attributes', 'AttributeController');
 
