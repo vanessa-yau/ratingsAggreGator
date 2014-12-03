@@ -8,7 +8,7 @@
     <div id="error-pointer"></div>
     <div class="row well">
         <h3>Player Information</h3>
-        <div class="row">
+        <div class="row" data-player-id="{{{$player->id}}}" data-player-name="{{{$player->name}}} id="player">
             <div class="col-sm-2"> 
                 <p><img id="profile-image" src="{{{ $player->image_url }}}" alt="Profile Image"></p>
             </div>
@@ -122,9 +122,11 @@
                     <ul>
                         
                         <li> <a 
-                            href="https://twitter.com/share" 
-                            class="twitter-share-button" data-text="I just rated someone on ratingator.com" 
-                            data-via="ratingator">
+                                href="https://twitter.com/share" 
+                                class="twitter-share-button" 
+                                id ="tweet-button"
+                                data-count="vertical"
+                            >
                             Tweet 
                         </a> </li>
                     </ul>
@@ -372,27 +374,14 @@
 
 
     <script>
-        !function(d,s,id){
-            var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
-            if(!d.getElementById(id)){
-                js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';
-                fjs.parentNode.insertBefore(js,fjs);
-            }
-        }
-        (document, 'script', 'twitter-wjs');
+
+
+        var playerName = $('#player').attr('data-player-name');
+        var rating = "[rating]"; // TODO!!
+        $('#tweet-button' ).attr( "data-text", "I just rated " + playerName + rating + " on" );
+
+        window.twttr=(function(d,s,id){var t,js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return}js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);return window.twttr||(t={_e:[],ready:function(f){t._e.push(f)}})}(document,"script","twitter-wjs"));
+
     </script>
-
-    <script type="text/javascript">
-        /*<![CDATA[*/
-        gloader.load(["glow","1","glow.dom"],{onLoad:function(glow){glow.dom.get("html").addClass("blq-js")}});
-        gloader.load(["glow","1","glow.dom"],{onLoad:function(glow){glow.ready(function(){if (glow.env.gecko){var gv = glow.env.version.split(".");for (var i=gv.length;i<4;i++){gv[i]=0;}if((gv[0]==1 && gv[1]==9 && gv[2]==0)||(gv[0]==1 && gv[1]<9)||(gv[0]<1)){glow.dom.get("body").addClass("firefox-older-than-3-5");}}});}});
-
-        window.disableFacebookSDK=true;
-        if (window.location.pathname.indexOf('+')>=0){window.disableFacebookSDK=true;}
-
-        /*]]>*/
-    </script>
-
-
 
 @stop

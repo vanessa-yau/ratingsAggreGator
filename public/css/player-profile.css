@@ -68,3 +68,15 @@ h3 {
 .comment label {
     text-align: left;
 }
+
+.tweet-button {
+    text-align: right;
+}
+
+.share ul{
+  list-style: none;
+}
+
+.share li{
+  display: inline;
+}
