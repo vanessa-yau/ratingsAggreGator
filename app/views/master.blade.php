@@ -9,11 +9,7 @@
 		{{ HTML::style("http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css") }}
 		{{ HTML::style("/css/navbar.css") }}
 		{{ HTML::style("/css/main.css") }}
-		<style>
-			body {
-				padding-top: 70px;
-			}
-		</style>
+		
 		@yield('style')
 	</head>
 	<body>
