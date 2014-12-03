@@ -2,21 +2,27 @@ $(function () {
 	// For the moment - get a good, un-ajax search working,
 	// then worry about building in the ajax search
 	// 2014-11-21
-	// $("#search-form").submit(search);
+	
+
 	$(".search-form").submit(function (e) {
 		e.preventDefault();
 		$('#search-icon').removeClass().addClass("fa fa-circle-o-notch fa-spin");
 
 		// turn spaces into + for lovely URLs
 		var query = $(this).find('[name=search-box]').val();
+
+		//Remove preceding and trailing whitespace on the search query	
 		query = $.trim(query);
-		console.log("query is....")
+		
+		//Check that the query has one or more alphabetic letters in it
 		if (query != "" && query != null) {
 			query = query.replace(' ', '+');
 
 		// transition to the required page
 			window.location = ('/search/' + query);
 		}
+
+		//Block the search if no alphabetic characters
 		return false;
 	});
 });
