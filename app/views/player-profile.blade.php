@@ -7,16 +7,29 @@
 @section('content')
     <div id="error-pointer"></div>
     <div class="row well">
-        <h3>Player Information</h3>
         <div class="row" data-player-id="{{{$player->id}}}" data-player-name="{{{$player->name}}}" id="player">
-            <div class="col-sm-2"> 
-                <p><img id="profile-image" src="{{{ $player->image_url }}}" alt="Profile Image"></p>
-            </div>
-            <div class="col-sm-10">
-                <p><strong>Name: </strong>{{ $player->name }}</p>
-                <p><strong>Nationality: </strong>{{ $player->nationality }}</p>
-                <p><strong>Height: </strong>{{ $player->height }}m</p>
-                <p><strong>Weight: </strong>{{ $player->weight }}kg</p>
+            <div class="col-sm-12">
+                <div class="col-sm-6">
+                    <h3>Player Information</h3>
+                    <div class="col-sm-4"> 
+                        <p><img id="profile-image" src="{{{ $player->image_url }}}" alt="Profile Image"></p>
+                    </div>
+                    <div class="col-sm-8">
+                        <p><strong>Name: </strong>{{ $player->name }}</p>
+                        <p><strong>Nationality: </strong>{{ $player->nationality }}</p>
+                        <p><strong>Height: </strong>{{ $player->height }}m</p>
+                        <p><strong>Weight: </strong>{{ $player->weight }}kg</p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="col-sm-8 chart">
+                        <canvas id="ratingBySkill"></canvas>
+                    </div>
+                    <div class="col-sm-4 legend">
+                        <h5><strong>Average Rating by Skill</strong></h5>
+                        <strong><div id="barLegend"></div></strong>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -117,7 +130,7 @@
                     @endforeach
                 </div> <!-- end row skills row -->
 
-                <div class="share buttons">
+                <div class="share-buttons">
                     
                     <ul>
                         
@@ -156,7 +169,7 @@
             </div>
             <div class="col-sm-4 legend">
                 <h5><strong>Your Rating vs The Average</strong></h5>
-                <strong><div id="legendDiv"></div></strong>
+                <strong><div id="radarLegend"></div></strong>
             </div>
         </div>
     </div>
@@ -190,18 +203,26 @@
 @stop
 
 @section('js')
-    <script src="/js/charts/yourRatingVsAverageRating.js"></script>
+    <script src="/js/charts/createChart.js"></script>
     <script>
     // hide ajax response message ASAP.
     $('#response-message').hide();
 
     $(function(){
+        // create globals we need.
+        window.ajaxData = getRating();
+
         if($('.stat-panel').length == 0){
             $('.chart-section').hide();
             $('.existing-ratings').hide();
         }
 
-        function radarChart() {
+        // function to switch tabs.
+        function activateTab(tab){
+            $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+        };
+
+        function chart(canvas, chartType, legendDiv) {
             var chartLabels = [];
             var averageData = [];
             var userData = [];
@@ -211,23 +232,23 @@
 
                 // get the average stat value, remove '/5' and turn into number.
                 var statVal = $(this).find('h3').text();
-                var statVal = statVal.substring(0, statVal.length-2);
-                var statVal = Number(statVal);
+                statVal = statVal.substring(0, statVal.length-2);
+                statVal = Number(statVal);
                 averageData.push(statVal);
             });
             
             // get the rating the user just submitted.
-            ajaxData = getRating();
             $.each(ajaxData.ratings, function(index) {
                 userData.push(ajaxData.ratings[index]);
             });
 
-            // create new chart on canvas with id "yourRating".
-            createRadarChart(chartLabels, averageData, userData, "yourRating");
+            // create new chart on canvas with id specified.
+            createChart(chartLabels, averageData, userData, canvas, legendDiv, chartType);
         }
 
-        // create initial chart without user ratings
-        radarChart();
+        // create initial charts on page load.
+        chart("yourRating", "Radar", "radarLegend");
+        chart("ratingBySkill", "Bar", "barLegend");
 
         $('.rating-stars span').click(function(){
             // add stars to star-icon clicked
@@ -350,7 +371,8 @@
                     $this.parents('.row').slideUp(300);
 
                     // recreate chart to take into account user ratings.
-                    radarChart();
+                    chart("yourRating", "Radar", "radarLegend");
+                    chart("ratingBySkill", "Bar", "barLegend");
                 },
                 error: function(e){
                     // display error message.

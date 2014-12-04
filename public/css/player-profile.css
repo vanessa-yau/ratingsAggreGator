@@ -73,10 +73,11 @@ h3 {
     text-align: right;
 }
 
-.share ul{
-  list-style: none;
+.share-buttons ul{
+    list-style: none;
+    padding-left: 0;
 }
 
-.share li{
+.share-buttons li{
   display: inline;
 }

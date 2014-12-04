@@ -53,6 +53,7 @@ function createChart(labelArray, averageData, userData, canvas, legendDiv, chart
 
     // creates the new chart on the canvas supplied in the ctx.
     // options array as second argument.  see chartjs docs.
-    var radar = new Chart(ctx).chartType(data, options);
-    document.getElementById(legendDiv).innerHTML = radar.generateLegend();
+    var chart = (new Chart(ctx))[chartType](data, options);
+
+    document.getElementById(legendDiv).innerHTML = chart.generateLegend();
 }
