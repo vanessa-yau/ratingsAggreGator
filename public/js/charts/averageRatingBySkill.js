@@ -1,4 +1,4 @@
-function createChart(labelArray, averageData, userData, canvas, legendDiv, chartType) {
+function createBarChart(labelArray, averageData, yourData, canvas) {
     // this function takes an array of strings for labels, two arrays of numbers for
     // values the user entered and average values, and an id of the canvas.
 
@@ -21,7 +21,7 @@ function createChart(labelArray, averageData, userData, canvas, legendDiv, chart
         ]
     };
 
-    if(userData[0] != 0){
+    if(yourData[0] != 0){
         data.datasets.push({
             label: "Your Rating",
             fillColor: "rgba(255,0,0,0.2)",
@@ -30,7 +30,7 @@ function createChart(labelArray, averageData, userData, canvas, legendDiv, chart
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(151,187,205,1)",
-            data: userData
+            data: yourData
         });
     }
 
@@ -53,6 +53,6 @@ function createChart(labelArray, averageData, userData, canvas, legendDiv, chart
 
     // creates the new chart on the canvas supplied in the ctx.
     // options array as second argument.  see chartjs docs.
-    var radar = new Chart(ctx).chartType(data, options);
-    document.getElementById(legendDiv).innerHTML = radar.generateLegend();
+    var radar = new Chart(ctx).Bar(data, options);
+    document.getElementById("barLegend").innerHTML = radar.generateLegend();
 }
