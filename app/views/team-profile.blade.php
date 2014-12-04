@@ -1,26 +1,7 @@
 @extends('master')
 
 @section('style')
-    <style>
-        .team-info {
-            border-bottom-color: grey;
-            border-bottom-width: 2px;
-            border-bottom-style: solid;
-        }
-        .team-badge {
-            max-width: 100px;
-            max-height: 100px;
-            margin-bottom: 10px;
-        }
-        .player-thumbnail {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-        .player-image {
-            max-width: 100px;
-            max-height: 100px;
-        }
-    </style>
+    {{ HTML::style("/css/team-profile.css") }}
 @stop
 
 @section('content')
@@ -34,7 +15,6 @@
         </div>
         <div class="col-sm-2">
             <img class="team-badge pull-right" src="/images/gator.jpg" alt="{{{ $team->name }}} badge missing.">
-            <button class="hide-players btn btn-large btn-primary pull-right">Hide Players</button>
         </div>
     </div>
 
