@@ -16,7 +16,7 @@
         <ul class="nav nav-tabs" role="tablist" id="tab-list">
             <li class="active"><a href="#overview" role="tab" data-toggle="tab">Details <i class="fa fa-user"></i></a></li>
             <li><a href="#ratings" role="tab" data-toggle="tab">Stats <i class="fa fa-bar-chart"></i></a></li>
-            @if(Auth::user()->id == $user->id)
+            @if(Auth::id() == $user->id)
                 <li><a href="#settings" role="tab" data-toggle="tab">Settings <i class="fa fa-cog"></i></a></li>
             @endif
         </ul>
@@ -28,7 +28,7 @@
             <div class="tab-pane" id="ratings">
                 @include('userProfile.userRatings')
             </div>
-            @if(Auth::user()->id == $user->id)
+            @if(Auth::id() == $user->id)
                 <div class="tab-pane" id="settings">
                     @include('userProfile.userSettings')
                 </div>
@@ -77,7 +77,7 @@
         }
 
         // disable form inputs on load
-        $('input:not(input[name="search-box"])').attr('disabled', true);
+        $('.settings').find('input').attr('disabled', true);
 
         // icon generator
         var email = "{{ $user->email_address }}";
@@ -87,6 +87,7 @@
 
         // when edit button is clicked, make user settings fields editable and change button
         $('#edit-button').click(function() {
+            // if we are saving new information, treat as save button and do ajax stuff
             if($('#edit-button').hasClass('saving')){
                 $.ajax({
                     type: "PUT",
@@ -102,11 +103,13 @@
                         // display success message and update form values.
                         var message = "Your settings have been saved!";
                         showSuccessMessage(message);
+                        // set inputs in settings form to contain new infomration on success.
                         $('input[name="name"]').val(json['first_name']);
                         $('input[name="surname"]').val(json['surname']);
                         $('input[name="username"]').val(json['username']);
                         $('input[name="email"]').val(json['email_address']);
                         $('input[name="passcheck"]').val("");
+                        // update information in page elements to new information on success
                         $('.user-username').text(" "+json['username']);
                         $('.user-country').text(" "+json['country_code']);
                         $('.user-name').text(" "+json['first_name']+" "+json['surname']);
@@ -124,6 +127,7 @@
                     }
                 }); // end of ajax request
             } else {
+                // if we are not saving new information, treat as edit button
                 $('input:not(input[name="search-box"])').attr('disabled', false);
                 $('#edit-icon').removeClass().addClass('fa fa-save');
                 $(this).removeClass()

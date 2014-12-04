@@ -42,6 +42,11 @@
             <button type="submit" class="btn btn-primary">
                 <i class="glyphicon glyphicon-user"></i> Login
             </button>
+            <a href="/register">
+                <button type="button" class="btn btn-success">
+                        <i class="glyphicon glyphicon-plus"></i> Register
+                </button>
+            </a>
         </div>
     </form>
 @endif
