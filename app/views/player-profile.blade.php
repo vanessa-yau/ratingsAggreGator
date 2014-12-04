@@ -133,16 +133,16 @@
                 <div class="share-buttons">
                     
                     <ul>
-                        
-                        <li> <a 
+                        <li> 
+                            <a 
                                 href="https://twitter.com/share" 
-                                class="twitter-share-button" 
-                                id ="tweet-button"
-                                data-count="vertical"
-                            >
-                            Tweet 
-                        </a> </li>
+                                class="twitter-share-button"
+                                data-size="large"
+                                >
+                            </a>
+                        </li>
                     </ul>
+
                 </div>
 
                 <input type="hidden" id="player_id" value="1">
@@ -395,10 +395,7 @@
 
 
     <script>
-        var playerName = $('#player').attr('data-player-name');
-        var rating = "[rating]"; // TODO!!
-        $('#tweet-button' ).attr( "data-text", "I just rated " + playerName + rating + " on" );
-
+        $( "title" ).remove();
         window.twttr=(function(d,s,id){var t,js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return}js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);return window.twttr||(t={_e:[],ready:function(f){t._e.push(f)}})}(document,"script","twitter-wjs"));
     </script>
 

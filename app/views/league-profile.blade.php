@@ -1,26 +1,7 @@
 @extends('master')
 
 @section('style')
-    <style>
-        .league-info {
-            border-bottom-color: grey;
-            border-bottom-width: 2px;
-            border-bottom-style: solid;
-        }
-        .team-badge {
-            max-width: 100px;
-            max-height: 100px;
-            margin-bottom: 10px;
-        }
-        .team-thumbnail {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-        .team-image {
-            max-width: 100px;
-            max-height: 100px;
-        }
-    </style>
+    {{ HTML::style("/css/league-profile.css") }}
 @stop
 
 @section('content')

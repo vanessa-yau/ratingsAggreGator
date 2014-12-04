@@ -15,13 +15,12 @@ Route::get('/', function() {
     ( League::count() > 0 ) 
         ? $leagues = League::all() 
         : $leagues = null;
-        
+
     return View::make('home', [
         'players' => Player::mostPopular(),
         'leagues' => $leagues
     ]);
 });
-
 
 Route::get('/register', [
     'as' => 'users.create',
