@@ -33,7 +33,7 @@
             <div class="col-sm-6">
                 <br />
                 <p>These settings are important, please enter your password so we know it's you.</p>
-                <div class="input-group">
+                <div class="input-group settings">
                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                     <input type="password" name="passcheck" class="form-control" placeholder="password">
                 </div>

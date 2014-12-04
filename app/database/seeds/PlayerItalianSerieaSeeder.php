@@ -36,7 +36,7 @@ class PlayerItalianSerieaSeeder extends Seeder {
                     $teamModel->last_known_league_id = $league->id;
                     $teamModel->save();
                 }
-                
+
                 // uncomment for viewing teams inserted via a route
                 //echo $team['name'] . "<br>";
                 foreach ($team['players'] as $player) {
@@ -59,6 +59,3 @@ class PlayerItalianSerieaSeeder extends Seeder {
         } // end if
     } // end func
 } // end class
-
-
-
