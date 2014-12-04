@@ -126,7 +126,6 @@
                                 class="twitter-share-button"
                                 data-size="large"
                                 >
-                                YOL0
                             </a>
                         </li>
                     </ul>
