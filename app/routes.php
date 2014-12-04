@@ -15,6 +15,7 @@ Route::get('/', function() {
     ( League::count() > 0 ) 
         ? $leagues = League::all() 
         : $leagues = null;
+        
     return View::make('home', [
         'players' => Player::mostPopular(),
         'leagues' => $leagues
@@ -27,7 +28,7 @@ Route::get('/register', [
     'uses' => 'UserController@create'
 ]);
 
-Route::group(array('before' => 'env'), function()
+Route::group(['before' => 'env'], function()
 {
     Route::get('/admin/{anomaly}', [
         'as' => 'admin',
@@ -38,10 +39,6 @@ Route::group(array('before' => 'env'), function()
         'as' => 'anomalousPlayers.delete',
         'uses' => 'PlayerController@deleteAnomalousNames'
     ]);
-});
-
-Route::get('profile', function() {
-    return View::make('player-profile');
 });
 
 Route::get('test', function() {
@@ -64,7 +61,7 @@ Route::resource('users', 'UserController');
 //Returns a collection of the most recent Tweets posted by the user indicated by the screen_name or user_id parameters.
 Route::get('/userTimeLine', function()
 {
-    return Twitter::getUserTimeline(array('screen_name' => 'iamsamgoml', 'count' => 20, 'format' => 'array'));
+    return Twitter::getUserTimeline(['screen_name' => 'iamsamgoml', 'count' => 20, 'format' => 'array']);
 });
 
 
@@ -72,20 +69,20 @@ Route::get('/userTimeLine', function()
 
 Route::get('/homeTimeLine', function()
 {
-    return Twitter::getHomeTimeline(array('count' => 20, 'format' => 'json'));
+    return Twitter::getHomeTimeline(['count' => 20, 'format' => 'json']);
 });
 
 //Returns the X most recent mentions (tweets containing a users's @screen_name) for the authenticating user.
 
 Route::get('/mentionsTimeLine', function()
 {
-    return Twitter::getMentionsTimeline(array('count' => 20, 'format' => 'json'));
+    return Twitter::getMentionsTimeline(['count' => 20, 'format' => 'json']);
 });
 
 //Updates the authenticating user's current status, also known as tweeting.
 Route::get('/postTweet', function()
 {
-    return Twitter::postTweet(array('status' => 'Laravel is beautiful', 'format' => 'json'));
+    return Twitter::postTweet(['status' => 'Laravel is beautiful', 'format' => 'json']);
 });
 
 Route::get('/twitter/login', function()
@@ -95,7 +92,7 @@ Route::get('/twitter/login', function()
     $force_login = FALSE;
     $callback_url = 'http://' . $_SERVER['HTTP_HOST'] . '/twitter/callback';
     // Make sure we make this request w/o tokens, overwrite the default values in case of login.
-    Twitter::set_new_config(array('token' => '', 'secret' => ''));
+    Twitter::set_new_config(['token' => '', 'secret' => '']);
     $token = Twitter::getRequestToken($callback_url);
     if( isset( $token['oauth_token_secret'] ) ) {
         $url = Twitter::getAuthorizeURL($token, $sign_in_twitter, $force_login);
@@ -113,10 +110,10 @@ Route::get('/twitter/callback', function() {
     // You should set this route on your Twitter Application settings as the callback
     // https://apps.twitter.com/app/YOUR-APP-ID/settings
     if(Session::has('oauth_request_token')) {
-        $request_token = array(
+        $request_token = [
             'token' => Session::get('oauth_request_token'),
             'secret' => Session::get('oauth_request_token_secret'),
-        );
+        ];
 
         Twitter::set_new_config($request_token);
 
@@ -162,25 +159,20 @@ Route::get('logout', [
 ]);
 
 
-Route::get(
-    'search/{query}',
-    array(
-        'as' => 'players.search',
-        'uses' => 'PlayerController@search'
-    )
-);
+Route::get('search/{query}', [
+    'as' => 'players.search',
+    'uses' => 'PlayerController@search'
+]);
 
-Route::get('hello', array(
-        'as' => 'hello',
-        'uses' => 'PlayerController@getRandomPlayers'
-    )
-);
+Route::get('hello', [
+    'as' => 'hello',
+    'uses' => 'PlayerController@getRandomPlayers'
+]);
 
-// Route::get('test', array(
+// Route::get('test', [
 //         'as' => 'test',
 //         'uses' => 'ImageController@go'
-//     )
-// );
+// ]);
 
 Route::get('/countries', function()
 {
