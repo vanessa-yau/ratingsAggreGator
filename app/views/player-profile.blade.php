@@ -52,7 +52,7 @@
     <!-- ratings form -->
     <div class="row well">
         <h3>Rate {{ $player->name }}</h3>
-        <h5>In the this game:</h5>
+        <h5>In this game:</h5>
         <div class="col-md-12">
       
             <form 
