@@ -72,7 +72,7 @@
     </div>
 
     <div class="form-actions">
-        <button type ="submit" class="btn btn-success btn-large">Register</button>
+        <button type ="submit" class="btn btn-success btn-large"><i class="glyphicon glyphicon-plus"></i> Register</button>
     </div>
 
 </form>
