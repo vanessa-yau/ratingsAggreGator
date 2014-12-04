@@ -1,5 +1,5 @@
 <?php
-class PlayerItalianSerieaSeeder extends Seeder {
+class PlayerFrenchLigue1Seeder extends Seeder {
 
     public function run()
     {
@@ -8,19 +8,19 @@ class PlayerItalianSerieaSeeder extends Seeder {
 
         $football = Sport::whereName('football')->first();
 
-        $raw = File::get(storage_path() . '/italianSerieA.json');
+        $raw = File::get(storage_path() . '/frenchLigue1.json');
         $json = json_decode($raw, true);
 
         if ($json) {
             // add new league to league table
-            if (! League::whereName('Italian Serie A')->count() ) {
+            if (! League::whereName('French Ligue 1')->count() ) {
                 $league = League::create([
-                    'name' => 'Italian Serie A',
+                    'name' => 'French Ligue 1',
                     'sport_id' => $football->id
                 ]);
             }
             else {
-                $league = League::whereName('Italian Serie A')->first();
+                $league = League::whereName('French Ligue 1')->first();
             }
 
             // add teams

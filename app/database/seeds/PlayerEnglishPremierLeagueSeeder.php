@@ -25,7 +25,6 @@ class PlayerEnglishPremierLeagueSeeder extends Seeder {
 
             // add teams
             foreach ($json as $team) {
-
                 // create team model
                 if (! Team::whereName($team['name'])->count() )
                     $teamModel = Team::create([
