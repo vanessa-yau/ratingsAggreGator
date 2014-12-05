@@ -37,7 +37,6 @@
                 name="confirm-password"
                 placeholder="Confirm Password"
             >
-        
         <p class ="user_help" id="password_help"></p>
     </div>
 
@@ -47,7 +46,7 @@
                 class="form-control" 
                 id="email_address" 
                 name="email_address" 
-                placeholder="Email Address"
+                placeholder="someone@somewhere.com"
         >
         <p class ="user_help" id="email_address_help"></p>
 
@@ -79,5 +78,5 @@
 @stop
 
 @section('js')
-    <script src="/js/validation.js"></script>
+    <script src="/js/register-validation.js"></script>
 @stop
