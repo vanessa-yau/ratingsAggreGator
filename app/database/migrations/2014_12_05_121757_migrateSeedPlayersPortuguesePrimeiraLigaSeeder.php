@@ -39,11 +39,10 @@ class MigrateSeedPlayersPortuguesePrimeiraLigaSeeder extends Migration {
             }
 
             // add teams
-            ( file_exists("/images/teamBadges/".$team['name'].".png") )
-                ?   $teamBadge = "/images/teamBadges/".$team['name'].".png"
-                :   $teamBadge = "/images/teamBadges/placeholder.png";
-
             foreach ($json as $team) {
+                ( file_exists("/images/teamBadges/".$team['name'].".png") )
+                    ?   $teamBadge = "/images/teamBadges/".$team['name'].".png"
+                    :   $teamBadge = "/images/teamBadges/placeholder.png";
                 // create team model
                 if (! Team::whereName($team['name'])->count() ) {
                     // check if the team badge exists if not use generic image badge
