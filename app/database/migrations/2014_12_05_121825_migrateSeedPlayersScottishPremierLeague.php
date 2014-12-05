@@ -41,7 +41,7 @@ class MigrateSeedPlayersScottishPremierLeague extends Migration {
 
             // add teams
             foreach ($json as $team) {
-                ( file_exists("/images/teamBadges/".$team['name'].".png") )
+                ( file_exists("./public/images/teamBadges/".$team['name'].".png") )
                     ?   $teamBadge = "/images/teamBadges/".$team['name'].".png"
                     :   $teamBadge = "/images/teamBadges/placeholder.png";
                 // create team model
