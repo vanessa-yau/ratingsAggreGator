@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAccessTokenColumnToUsersTable extends Migration {
+class AddOauthTokenSecretColumnToUsersTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -14,7 +14,7 @@ class AddAccessTokenColumnToUsersTable extends Migration {
 	{
 		Schema::table('users', function($table)
 		{
-		    $table->string('access_token', 100);
+			$table->string('oauth_token_secret')->nullable();
 		});
 	}
 
@@ -27,7 +27,7 @@ class AddAccessTokenColumnToUsersTable extends Migration {
 	{
 		Schema::table('users', function($table)
 		{
-			$table->dropColumn('access_token');
+			$table->dropColumn('oauth_token_secret');
 		});
 	}
 

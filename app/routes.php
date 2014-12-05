@@ -106,6 +106,7 @@ Route::get('/twitter/login', function()
 });
 
 Route::get('/twitter/callback', function() {
+    
     // You should set this route on your Twitter Application settings as the callback
     // https://apps.twitter.com/app/YOUR-APP-ID/settings
     if(Session::has('oauth_request_token')) {
@@ -123,6 +124,7 @@ Route::get('/twitter/callback', function() {
 
         // getAccessToken() will reset the token for you
         $token = Twitter::getAccessToken( $oauth_verifier );
+        // return $token;
         if( !isset( $token['oauth_token_secret'] ) ) {
             return Redirect::to('/')->with('flash_error', 'We could not log you in on Twitter.');
         }
@@ -130,6 +132,7 @@ Route::get('/twitter/callback', function() {
         $credentials = Twitter::query('account/verify_credentials');
         if( is_object( $credentials ) && !isset( $credentials->error ) ) {
             // $credentials contains the Twitter user object with all the info about the user.
+            
             // Add here your own user logic, store profiles, create new users on your tables...you name it!
             // Typically you'll want to store at least, user id, name and access tokens
             // if you want to be able to call the API on behalf of your users.
@@ -137,9 +140,29 @@ Route::get('/twitter/callback', function() {
             // This is also the moment to log in your users if you're using Laravel's Auth class
             // Auth::login($user) should do the trick.
 
+            $twitterID = $credentials->id;
+            $screenName = $credentials->screen_name;
+
+                $user = User::create(array(
+                    'first_name'        => 1,
+                    'surname'           => 1,
+                    'username'          => 1,
+                    'password'          => 1,
+                    'email_address'     => 1,
+                    'country_code'      => 1,
+                    'city'              => 1,
+                    'twitter_id'        => $twitterID,
+                    'screen_name'       => $screenName,
+                    'oauth_token'       => $token['oauth_token'],
+                    'oauth_token_secret'=> $token['oauth_token_secret']
+                    // 'access_token'      => $token
+
+            ));
+            return Auth::login($user);
+
             return Redirect::to('/')->with('flash_notice', "Congrats! You've successfully signed in!");
         }
-        return Redirect::to('/')->with('flash_error', 'Crab! Something went wrong while signing you up!');
+       return Redirect::to('/')->with('flash_error', 'Crab! Something went wrong while signing you up!');
     }
 });
 
