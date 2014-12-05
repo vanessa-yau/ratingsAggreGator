@@ -30,7 +30,7 @@ class MigrateSeedPlayersPortuguesePrimeiraLigaSeeder extends Migration {
                 $league = League::create([
                     'name' => 'Portuguese Primeira Liga',
                     'sport_id' => $football->id,
-                    'badge_image_url' => '/images/leagues/placeholder.png'
+                    'badge_image_url' => '/images/leagues/primeiraLiga.png'
                 ]);
             }
             else {

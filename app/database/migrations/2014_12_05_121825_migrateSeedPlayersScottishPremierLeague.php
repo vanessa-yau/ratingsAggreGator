@@ -31,7 +31,7 @@ class MigrateSeedPlayersScottishPremierLeague extends Migration {
                 $league = League::create([
                     'name' => 'Scottish Premiership',
                     'sport_id' => $football->id,
-                    'badge_image_url' => '/images/leagues/placeholder.png'
+                    'badge_image_url' => '/images/leagues/scottishPremiership.png'
                 ]);
             }
             else {
