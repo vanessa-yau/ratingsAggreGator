@@ -14,7 +14,7 @@
             </h3>
         </div>
         <div class="col-sm-2">
-            <img class="team-badge pull-right" src="/images/gator.jpg" alt="{{{ $team->name }}} badge missing.">
+            <img class="team-badge pull-right" src="{{{ $team->badge_image_url }}}" alt="{{{ $team->name }}} badge missing.">
         </div>
     </div>
 
