@@ -20,4 +20,11 @@ class Team extends Eloquent {
     public function getUrlAttribute() {
         return URL::route('teams.show', $this->id);
     }
+
+    // laravel magic call using $team->badge_image_url
+    public function getBadgeImageUrlAttribute($url = null) {
+        return $url
+            ? $url
+            : "/images/gator.jpg";
+    }
 }

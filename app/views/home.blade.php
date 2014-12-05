@@ -26,12 +26,12 @@
 	
 	<!-- leagues -->
 	<div class="row">
-		<h3>We are following:</h3>
+		<h3>Leagues we are following:</h3>
 		@foreach( $leagues as $league )
 		<div class="col-sm-3 league">
 			<a href="{{{ $league->url }}}">
 				<p>
-					<img class="league-badge" src="/images/leagues/englishpremier.jpg" alt="img not found">
+					<img class="league-badge" src="{{{ $league->badge_image_url }}}" alt="img not found">
 					{{{ $league->name }}}
 				</p>
 			</a>
