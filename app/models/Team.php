@@ -14,10 +14,17 @@ class Team extends Eloquent {
 	}
 
     public function leagues() {
-        return $this->belongsTo('League');
+        return $this->belongsTo('League', 'last_known_league_id');
     }
 
     public function getUrlAttribute() {
         return URL::route('teams.show', $this->id);
+    }
+
+    // laravel magic call using $team->badge_image_url
+    public function getBadgeImageUrlAttribute($url = null) {
+        return $url
+            ? $url
+            : "/images/gator.jpg";
     }
 }

@@ -41,6 +41,7 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
         return URL::route('players.show', $this->id);
     }
 
+    // laravel magic call using $player->badge_image_url
     public function getImageUrlAttribute($url = null) {
         return $url 
             ? $url
