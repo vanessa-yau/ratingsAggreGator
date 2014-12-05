@@ -49,14 +49,14 @@ class MigrateSeedPlayersFrenchLigue extends Migration {
                 
                     // check if the team badge exists if not use generic image badge
                     ( file_exists("./public/images/teamBadges/".$teamModel->id.".png") )
-                        ?   $teamModel->badge_image_url = (public_path()."/images/teamBadges/".$teamModel->id.".png")
+                        ?   $teamModel->badge_image_url = "/images/teamBadges/".$teamModel->id.".png"
                         :   $teamModel->badge_image_url = "/images/teamBadges/placeholder.png";
                     $teamModel->save();
                 }
                 else {
                     $teamModel = Team::whereName($team['name'])->first();
                     $teamModel->last_known_league_id = $league->id;
-                    $teamModel->badge_image_url = (public_path()."/images/teamBadges/".$teamModel->id.".png");
+                    $teamModel->badge_image_url = "/images/teamBadges/".$teamModel->id.".png";
                     $teamModel->save();
                 }
                 // here push the $team['name'] values into an array
