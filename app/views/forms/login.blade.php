@@ -49,7 +49,7 @@
             </a>
             <a href="/twitter/login">
                 <button type="button" class="btn btn-success">
-                    <i class="fa fa-twitter"></i>Sign In With Twitter                
+                    <i class="fa fa-twitter"></i> Sign In With Twitter                
                 </button>
             </a>
 
