@@ -3,16 +3,17 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MigrateSeedPlayersEnglishPremierLeague extends Migration {
+class MigrateSeedPlayersSpanishLaLiga extends Migration {
+
 	/**
 	 * Run the migrations.
 	 *
 	 * @return void
 	 */
-    public function getFile(){
-        // return read and decoded file.
-        return json_decode(File::get(storage_path() . '/PlayerEnglishPremierLeagueSeeder.json'), true);   
-    }
+	public function getFile(){
+	    // return read and decoded file.
+	    return json_decode(File::get(storage_path() . '/spanishLaLigaScraper.json'), true);   
+	}
 
 	public function up()
 	{
@@ -25,16 +26,16 @@ class MigrateSeedPlayersEnglishPremierLeague extends Migration {
         // use decoded json file, (if there is one provided)
         if ($json) {
             // add new league to league table
-            if (! League::whereName('English Premier League')->count() ) {
+            if (! League::whereName('Spanish La Liga')->count() ) {
                 $league = League::create([
-                    'name' => 'English Premier League',
+                    'name' => 'Spanish La Liga',
                     'sport_id' => $football->id,
-                    'badge_image_url' => '/images/leagues/englishPremier.jpg'
+                    'badge_image_url' => '/images/leagues/laLiga.jpg'
                 ]);
             }
             else {
             	// else, assign the league to <value> to we can use it
-                $league = League::whereName('English Premier League')->first();
+                $league = League::whereName('Spanish La Liga')->first();
             }
 
             // add teams
@@ -86,7 +87,7 @@ class MigrateSeedPlayersEnglishPremierLeague extends Migration {
 	public function down()
 	{
 		// find the league
-		$league = League::whereName('English Premier League')->first();
+		$league = League::whereName('Spanish La Liga')->first();
 
         //get file to reverse insertions.
         $json = $this->getFile();
@@ -120,5 +121,6 @@ class MigrateSeedPlayersEnglishPremierLeague extends Migration {
         } // end foreach
         // then delete the league (that may have) been created
         $league->delete();
-	} // end func
-} // end class	
+	}
+
+}

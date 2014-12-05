@@ -3,20 +3,21 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MigrateSeedPlayersEnglishPremierLeague extends Migration {
+class MigrateSeedPlayersGermanBundesliga extends Migration {
+
 	/**
 	 * Run the migrations.
 	 *
 	 * @return void
 	 */
-    public function getFile(){
-        // return read and decoded file.
-        return json_decode(File::get(storage_path() . '/PlayerEnglishPremierLeagueSeeder.json'), true);   
-    }
+	public function getFile(){
+	    // return read and decoded file.
+	    return json_decode(File::get(storage_path() . '/PlayerGermanBundesligaSeeder.json'), true);   
+	}
 
 	public function up()
 	{
-        $teamNames = [];
+		$teamNames = [];
 		$football = Sport::whereName('football')->first();
 
 		// read the json to be seeded
@@ -25,16 +26,16 @@ class MigrateSeedPlayersEnglishPremierLeague extends Migration {
         // use decoded json file, (if there is one provided)
         if ($json) {
             // add new league to league table
-            if (! League::whereName('English Premier League')->count() ) {
+            if (! League::whereName('German Bundesliga')->count() ) {
                 $league = League::create([
-                    'name' => 'English Premier League',
+                    'name' => 'German Bundesliga',
                     'sport_id' => $football->id,
-                    'badge_image_url' => '/images/leagues/englishPremier.jpg'
+                    'badge_image_url' => '/images/leagues/germanBundesliga.jpg'
                 ]);
             }
             else {
             	// else, assign the league to <value> to we can use it
-                $league = League::whereName('English Premier League')->first();
+                $league = League::whereName('German Bundesliga')->first();
             }
 
             // add teams
@@ -86,7 +87,7 @@ class MigrateSeedPlayersEnglishPremierLeague extends Migration {
 	public function down()
 	{
 		// find the league
-		$league = League::whereName('English Premier League')->first();
+		$league = League::whereName('German Bundesliga')->first();
 
         //get file to reverse insertions.
         $json = $this->getFile();
@@ -120,5 +121,6 @@ class MigrateSeedPlayersEnglishPremierLeague extends Migration {
         } // end foreach
         // then delete the league (that may have) been created
         $league->delete();
-	} // end func
-} // end class	
+	}
+
+}
