@@ -30,7 +30,7 @@ class MigrateSeedPlayersFrenchLigue extends Migration {
                 $league = League::create([
                     'name' => 'French Ligue',
                     'sport_id' => $football->id,
-                    'badge_image_url' => '/images/leagues/placeholder.png'
+                    'badge_image_url' => '/images/leagues/frenchLigue.png'
                 ]);
             }
             else {
