@@ -37,12 +37,12 @@ class DatabaseSeeder extends Seeder {
         $this->call('TeamTableSeeder');
         // below are the teams to seed, which you un/comment out each time
         // see the docs/comment above
-        $this->call('PlayerEnglishPremierLeagueSeeder');
-        $this->call('PlayerSpanishLaLigaSeeder');
-        $this->call('PlayerGermanBundesligaSeeder');
-        $this->call('PlayerItalianSerieaSeeder');
-        $this->call('PlayerFrenchLigue1Seeder');
-        $this->call('PlayerPortuguesePrimeiraLigaSeeder');       
+        // $this->call('PlayerEnglishPremierLeagueSeeder');
+        // $this->call('PlayerSpanishLaLigaSeeder');
+        // $this->call('PlayerGermanBundesligaSeeder');
+        // $this->call('PlayerItalianSerieaSeeder');
+        // $this->call('PlayerFrenchLigue1Seeder');
+        // $this->call('PlayerPortuguesePrimeiraLigaSeeder');       
         //$this->call('TestingPlayerTableSeeder');
     }
 }

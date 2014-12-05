@@ -14,7 +14,7 @@ class Team extends Eloquent {
 	}
 
     public function leagues() {
-        return $this->belongsTo('League');
+        return $this->belongsTo('League', 'last_known_league_id');
     }
 
     public function getUrlAttribute() {

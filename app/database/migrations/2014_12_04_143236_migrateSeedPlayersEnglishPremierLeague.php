@@ -13,14 +13,18 @@ class MigrateSeedPlayersEnglishPremierLeague extends Migration {
 	 *
 	 * @return void
 	 */
+    public function getFile(){
+        // return read and decoded file.
+        return json_decode(File::get(storage_path() . '/PlayerEnglishPremierLeagueSeeder.json'), true);   
+    }
+
 	public function up()
 	{
 
 		$football = Sport::whereName('football')->first();
 
 		// read the json to be seeded
-		$raw = File::get(storage_path() . '/PlayerEnglishPremierLeagueSeeder.json');
-        $json = json_decode($raw, true);
+        $json = $this->getFile();
 
         // use decoded json file, (if there is one provided)
         if ($json) {
@@ -28,18 +32,14 @@ class MigrateSeedPlayersEnglishPremierLeague extends Migration {
             if (! League::whereName('English Premier League')->count() ) {
                 $league = League::create([
                     'name' => 'English Premier League',
-                    'sport_id' => $football->id
+                    'sport_id' => $football->id,
+                    'badge_image_url' => '/images/leagues/englishPremier.jpg'
                 ]);
             }
             else {
             	// else, assign the league to <value> to we can use it
                 $league = League::whereName('English Premier League')->first();
             }
-
-            // array to hold teamNames from foreach loop so we can access
-            // them for migrate rollback/down
-            // put the array values into a text file, because we can't use globals
-            // in migrations: http://stackoverflow.com/questions/10107296/php-global-array-not-working
 
             // add teams
             foreach ($json as $team) {
@@ -60,22 +60,23 @@ class MigrateSeedPlayersEnglishPremierLeague extends Migration {
 
                 // uncomment for viewing teams inserted via a route
                 //echo $team['name'] . "<br>";
-                // foreach ($team['players'] as $player) {
-                //     $values = array_only($player, ['name']);
-                //     if ( array_key_exists('name', $values) && $values['name']) {
-                //         $playerModel = $football->players()->create([
-                //             'name' => $player['name'],
-                //             'nationality' => $player['nat'],
-                //             'height' => $player['height'],
-                //             'weight' => $player['weight'],
-                //             // carbon can convert this to
-                //             // yyyy-mm-dd 
-                //             // currently is dd-mm-yyyy   
-                //             //'dob' => $player['dob'],
-                //             'last_known_team' => $teamModel->id
-                //         ]);
-                //     } // end if
-                // } // end foreach
+
+                foreach ($team['players'] as $player) {
+                    $values = array_only($player, ['name']);
+                    if ( array_key_exists('name', $values) && $values['name']) {
+                        $playerModel = $football->players()->create([
+                            'name' => $player['name'],
+                            'nationality' => $player['nat'],
+                            'height' => $player['height'],
+                            'weight' => $player['weight'],
+                            // carbon can convert this to
+                            // yyyy-mm-dd 
+                            // currently is dd-mm-yyyy   
+                            //'dob' => $player['dob'],
+                            'last_known_team' => $teamModel->id
+                        ]);
+                    } // end if
+                } // end foreach
 	        } // end foreach
             print_r($this->teamNames);  
         } // end if
@@ -89,23 +90,39 @@ class MigrateSeedPlayersEnglishPremierLeague extends Migration {
 	public function down()
 	{
 		// find the league
-		$league = League::whereName('English Premier League');
+		$league = League::whereName('English Premier League')->first();
+
+        //get file to reverse insertions.
+        $json = $this->getFile();
 
 		// Find the teams which are in the league
-		foreach($this->teamNames as $teamName ) {
-			var_dump($teamName);
-			$team = Team::whereName( $teamName )->first();
-			$team->delete();
-		}
-		// Vanessa's not convinced ^
+		foreach ($json as $team) {
+            // if the team exists
+            if ( Team::whereName($team['name'])->count() ){
+                // and if team exists only in one league
+                if(Team::whereName($team['name'])->first()->leagues()->count() > 1){
+                //  disassociate team with said league
+                    echo Team::whereName($team['name'])->first()->id;
+                    
+                } else {
+                    // otherwise, the team is only in one league and can be safely deleted.
+                    $team = Team::whereName($team['name'])->whereLastKnownLeagueId($league->id)->first();
 
-		// delete players
+                    $players = Player::whereLastKnownTeam($team->id)->get();
+                    foreach($players as $player){
+                        // if a player is in any of the teams just deleted, disassociate them from the team.
+                        $player->last_known_team = -1;
+                        $player->save();
+                        echo($player->name . "\n");
+                    }
 
-
-		// delete the teams
-
-		
-		// then delete the league (that may have) been created
-		$league->delete();
-	}
+                    // finally delete team after players disassociated
+                    $team->delete();
+                    echo($team->name . " deleted ===========================================\n");
+                } // end if
+            } // end if
+        } // end foreach
+        // then delete the league (that may have) been created
+        $league->delete();
+	} // end func
 } // end class	
