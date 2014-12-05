@@ -39,16 +39,24 @@ class MigrateSeedPlayersSpanishLaLiga extends Migration {
             }
 
             // add teams
+            ( file_exists("/images/teamBadges/".$team['name'].".png") )
+                ?   $teamBadge = "/images/teamBadges/".$team['name'].".png"
+                :   $teamBadge = "/images/teamBadges/placeholder.png";
+
             foreach ($json as $team) {
                 // create team model
-                if (! Team::whereName($team['name'])->count() )
+                if (! Team::whereName($team['name'])->count() ) {
+                    // check if the team badge exists if not use generic image badge
                     $teamModel = Team::create([
                         'name' => $team['name'],
-                        'last_known_league_id' => $league->id
+                        'last_known_league_id' => $league->id,
+                        'badge_image_url' => $teamBadge
                     ]);
+                }
                 else {
                     $teamModel = Team::whereName($team['name'])->first();
                     $teamModel->last_known_league_id = $league->id;
+                    $teamModel->badge_image_url = $teamBadge;
                     $teamModel->save();
                 }
                 // here push the $team['name'] values into an array
