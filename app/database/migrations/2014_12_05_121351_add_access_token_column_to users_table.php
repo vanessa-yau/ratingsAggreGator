@@ -14,7 +14,7 @@ class AddAccessTokenColumnToUsersTable extends Migration {
 	{
 		Schema::table('users', function($table)
 		{
-		    $table->string('access_token', 255);
+		    $table->string('access_token', 100);
 		});
 	}
 
