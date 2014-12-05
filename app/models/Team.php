@@ -22,9 +22,9 @@ class Team extends Eloquent {
     }
 
     // laravel magic call using $team->badge_image_url
-    public function getBadgeImageUrlAttribute($url = null) {
-        return $url
-            ? $url
-            : "/images/gator.jpg";
-    }
+    // public function getBadgeImageUrlAttribute($url = null) {
+    //     return $url
+    //         ? $url
+    //         : "/images/gator.jpg";
+    // }
 }

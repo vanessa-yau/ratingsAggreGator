@@ -9,7 +9,7 @@
     <div class="row league-info">
         <div class="col-sm-12">
             <h2>
-                <img class="team-badge" src="/images/gator.jpg" alt="{{{ $league->name }}} badge missing.">
+                <img class="team-badge" src="{{{ $league->badge_image_url }}}" alt="{{{ $league->name }}} badge missing.">
                 <strong>{{{ $league->name }}}</strong>
             </h2>
         </div>
@@ -23,7 +23,7 @@
         @foreach( $league->teams as $team )
             <div class="col-sm-3 team-thumbnail">
                 <a href="{{ $team->url }}">
-                    <img class="team-image" src="/images/gator.jpg" alt="{{{ $team->name }}} profile image missing.">
+                    <img class="team-image" src="{{{ $team->badge_image_url }}}" alt="{{{ $team->name }}} profile image missing.">
                     <p class="name">{{{ $team->name }}}</p>
                 </a>
             </div>
