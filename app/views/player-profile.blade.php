@@ -200,7 +200,16 @@
                                         {{{ $teamMate->name }}}
                                     </p>
                                     <div class="team-mate-image">
-                                        <img class="thumbnail" src="{{ $teamMate->image_url }}" alt="Profile Image">
+                                        <!-- background image -->
+                                        <div style="position: absolute; left:10px; right:10px; z-index:0">
+                                            <img class="thumbnail" src="{{ $teamMate->image_url }}" alt="{{{ $teamMate->name }}} profile image missing">
+                                        </div>
+                                        @if( $team )
+                                            <!-- foreground image -->
+                                            <div style="position: absolute; left:30px; right:30px; z-index:0">
+                                                <img class="thumbnail" src="{{ $team->badge_image_url }}" alt="{{{ $team->name }}} badge image missing">
+                                            </div>
+                                        @endif
                                     </div>
                                     <p>{{{ $teamMate->lastKnownTeam->name }}}</p>
                                 </div>

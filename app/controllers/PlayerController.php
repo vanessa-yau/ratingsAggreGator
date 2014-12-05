@@ -60,7 +60,11 @@ class PlayerController extends \BaseController {
 							->skills()
 							->get();
 
-		return View::make('player-profile', compact('player', 'skills' ));
+		( $player->last_known_team )
+			? 	$team = Team::find($player->last_known_team)
+			: 	$team = null;
+
+		return View::make('player-profile', compact('player', 'skills' ,'team'));
 	}
 
 	public function showAnomalousNames($anomaly)
