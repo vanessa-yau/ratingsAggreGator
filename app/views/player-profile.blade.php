@@ -5,6 +5,18 @@
 @stop
 
 @section('content')
+    <!-- breadcrumbs -->
+    <!-- <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <ol class="breadcrumb">
+                <li><a href="{{ URL::to('/') }}">Home</a></li>
+                <li><a href="{{{ $league->url }}}"> {{{ $league->name }}} </a></li>
+                <li><a href="{{{ $team->url }}}"> {{{ $team->name }}} </a></li>
+                <li class="active"><a href="{{{ $player->url }}}"> {{{ $player->name }}} </a></li>
+            </ol>
+        </div>
+    </div> -->
+
     <div id="error-pointer"></div>
     <div class="row well">
         <div class="row" data-player-id="{{{$player->id}}}" data-player-name="{{{$player->name}}}" id="player">
