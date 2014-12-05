@@ -10,6 +10,14 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+Route::get('renameTeams', function(){
+    $teams = Team::whereId(1);
+    foreach( $teams as $team ){
+        rename( public_path()."/images/teamBadges/".$team->name.".png", public_path()."/images/teamBadges/".$team->id.".png");
+    }
+
+});
+
 
 Route::get('/', function() {
     ( League::count() > 0 ) 
