@@ -25,16 +25,16 @@ class MigrateSeedPlayersEnglishPremierLeague extends Migration {
         // use decoded json file, (if there is one provided)
         if ($json) {
             // add new league to league table
-            if (! League::whereName('English Premier League')->count() ) {
+            if (! League::whereName('Barclays Premier League')->count() ) {
                 $league = League::create([
-                    'name' => 'English Premier League',
+                    'name' => 'Barclays Premier League',
                     'sport_id' => $football->id,
-                    'badge_image_url' => '/images/leagues/englishPremier.jpg'
+                    'badge_image_url' => '/images/leagues/barclaysPremier.jpg'
                 ]);
             }
             else {
             	// else, assign the league to <value> to we can use it
-                $league = League::whereName('English Premier League')->first();
+                $league = League::whereName('Barclays Premier League')->first();
             }
 
             // add teams
@@ -86,7 +86,7 @@ class MigrateSeedPlayersEnglishPremierLeague extends Migration {
 	public function down()
 	{
 		// find the league
-		$league = League::whereName('English Premier League')->first();
+		$league = League::whereName('Barclays Premier League')->first();
 
         //get file to reverse insertions.
         $json = $this->getFile();

@@ -20,7 +20,7 @@
 						<img class="thumbnail" src="{{ $player->image_url }}" alt="Profile Image">
 					</a>
 				</div>
-			@endforeach
+			@endforeach 
 		</div> <!-- close most rated players div -->
 	</div> <!-- close row -->
 	
@@ -31,7 +31,7 @@
 		<div class="col-sm-3 league">
 			<a href="{{{ $league->url }}}">
 				<p>
-					<img class="league-badge" src="{{{ $league->badge_image_url }}}" alt="img not found">
+					<img class="league-badge" src="{{{ $league->badge_image_url }}}" alt="img not found"><br />
 					{{{ $league->name }}}
 				</p>
 			</a>
