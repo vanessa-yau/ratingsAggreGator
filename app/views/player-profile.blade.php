@@ -10,8 +10,12 @@
         <div class="col-xs-12 col-md-12">
             <ol class="breadcrumb">
                 <li><a href="{{ URL::to('/') }}">Home</a></li>
-                <li><a href="#"> {{{ $player->name }}} </a></li>
-                <li><a href="#"> {{{ $player->name }}} </a></li>
+                @if( $league )
+                    <li><a href="{{{ $league->url }}}"> {{{ $league->name }}} </a></li>
+                @endif
+                @if( $team )
+                    <li><a href="{{{ $team->url }}}"> {{{ $team->name }}} </a></li>
+                @endif
                 <li class="active"><a href="{{{ $player->url }}}"> {{{ $player->name }}} </a></li>
             </ol>
         </div>
