@@ -23,6 +23,13 @@
                         <span class="input-group-addon">Email</i></span>
                         <input type="text" name="email" class="form-control" placeholder="email address" value="{{ Auth::user()->email_address }}">
                     </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon">Enable Tweets</i></span>
+                        <select>
+                            <option value="true" {{ Auth::user()->tweets_enabled ? 'selected' : '' }}>Yes</option>
+                            <option value="false" {{ Auth::user()->tweets_enabled ? '' : 'selected' }}>No</option>
+                        </select>
                 </div>
                 <div class="col-sm-6 well">
                     <p>Some more settings are coming soon.  Patience is a virtue.</p>
