@@ -134,32 +134,47 @@ Route::get('/twitter/callback', function() {
         $credentials = Twitter::query('account/verify_credentials');
         if( is_object( $credentials ) && !isset( $credentials->error ) ) {
             // $credentials contains the Twitter user object with all the info about the user.
-            
+            // !kint::dump($credentials);return;
             // Add here your own user logic, store profiles, create new users on your tables...you name it!
             // Typically you'll want to store at least, user id, name and access tokens
             // if you want to be able to call the API on behalf of your users.
 
             // This is also the moment to log in your users if you're using Laravel's Auth class
             // Auth::login($user) should do the trick.
-            return var_dump($credentials);
-            die;
-            // $twitterID = $credentials->id;
+            // return var_dump($credentials);
+            // die;
+            $twitterID = $credentials->id;
 
-            //     $user = User::create(array(
-            //         'first_name'        => someone,
-            //         'surname'           => some surname,
-            //         'username'          => $credentials->screen_name,
-            //         'password'          => password,
-            //         'email_address'     => someone@somedomain.com,
-            //         'country_code'      => some country code,
-            //         'city'              => some city,
-            //         'twitter_id'        => $twitterID,
-            //         'screen_name'       => $screenName,
-            //         'oauth_token'       => $token['oauth_token'],
-            //         'oauth_token_secret'=> $token['oauth_token_secret']
-            //         // 'access_token'      => $token
+            // determine if we need to create a new user or not
+            // to do this, first check to see if a user with the
+            // given twitter id exists in the users table, if so,
+            // then just log them in. if not, create a new user.
+            if (! ($user = User::whereTwitterID($twitterID)->first() )) {
 
-            // ));
+                $nameTokens = explode(' ', $credentials->name);
+                $firstName = array_key_exists(0, $nameTokens)
+                    ? $nameTokens[0]
+                    : '';
+                
+                $lastName = array_key_exists(1, $nameTokens)
+                    ? $nameTokens[1]
+                    : '';                
+
+                $user = User::create(array(
+                    'first_name'        => $firstName,
+                    'surname'           => $lastName,
+                    'username'          => $credentials->screen_name,
+                    'password'          => Hash::make( Hash::make(null) ),
+                    'twitter_id'        => $twitterID,
+                    // 'screen_name'       => $screenName,
+                    'oauth_token'       => $token['oauth_token'],
+                    'oauth_token_secret'=> $token['oauth_token_secret']
+                    // 'access_token'      => $token
+                ));
+            }
+
+            // only get here if we have either a) found an existing user, or
+            // b) created one - time to now log them in!
             Auth::login($user);
 
             //return Redirect::to('/postTweet');

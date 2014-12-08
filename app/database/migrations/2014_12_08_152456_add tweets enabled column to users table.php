@@ -14,7 +14,7 @@ class AddTweetsEnabledColumnToUsersTable extends Migration {
 	{
 		Schema::table('users', function($table)
 		{
-		    $table->string('tweets_enabled')->default('Yes');
+		    $table->boolean('tweets_enabled')->default(true);
 		});	
 	}
 
