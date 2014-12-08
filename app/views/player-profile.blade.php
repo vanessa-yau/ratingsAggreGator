@@ -222,7 +222,7 @@
                 @endforeach
                 <div class="row">
                     <div class="col-sm-12 pagination-links">
-                        paginate
+                        
                     </div>
                 </div>
             @endif
