@@ -153,12 +153,15 @@
                                 href="https://twitter.com/share" 
                                 class="twitter-share-button"
                                 data-size="large"
+                                data-via="ratingator"
+                                data-text="hi"
+                                target="_blank"
                                 >
                             </a>
                         </li>
                     </ul>
 
-                </div>
+                </div> -->
 
                 <input type="hidden" id="player_id" value="1">
                 <div class="form-group">
@@ -393,6 +396,29 @@
                     // recreate chart to take into account user ratings.
                     chart("yourRating", "Radar", "radarLegend");
                     chart("ratingBySkill", "Bar", "barLegend");
+
+                    // If the currently authenticated user has enabled tweets then 
+                    // calculate the mean of our ratings so that we can put it in the tweet!
+                    @if(Auth::user()->tweets_enabled)
+                        var mean = 0;
+                        var count = 0;
+                        for(var rating in data.ratings) {
+                            mean += data.ratings[rating];
+                            count++;
+                        }
+                        mean /= count;
+
+
+                        //Create a twitter button and pre-fill it then click it behind the scenes
+                        //and open the button in a new window incase the user wishes to submit the tweet
+                        var $hiddenTwitterButton = $('<a>')
+                            .attr('href', 'https://twitter.com/share?text=' +
+                                'I just rated {{{ $player->name }}} an average of ' + 
+                                mean + '! How do you rate them?')
+                            .attr('target', '_blank');
+
+                        $hiddenTwitterButton[0].click();
+                    @endif
                 },
                 error: function(e){
                     // display error message.
@@ -408,15 +434,10 @@
                     $this.parents('.row').slideDown(300);
                 }, 30000);
             }); // end of ajax request
+
         }); // end of submit event handler
 
     }); // end document function script
-    </script>
-
-
-    <script>
-        $( "title" ).remove();
-        window.twttr=(function(d,s,id){var t,js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return}js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);return window.twttr||(t={_e:[],ready:function(f){t._e.push(f)}})}(document,"script","twitter-wjs"));
     </script>
 
 @stop

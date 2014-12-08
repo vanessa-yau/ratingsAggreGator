@@ -14,7 +14,7 @@
 		<h3>Most Rated Players</h3>
 		<div align="center">
 			@foreach($players as $player)
-				<div class="col-sm-6 col-md-4 col-lg-3">
+				<div class="col-xs-12 col-sm-6 col-lg-4">
 					<a href="{{ $player->url }}">
 						<span class="name">{{ $player->name }}</span>
 						<img class="thumbnail" src="{{ $player->image_url }}" alt="Profile Image">
@@ -28,7 +28,7 @@
 	<div class="row">
 		<h3>Leagues we are following:</h3>
 		@foreach( $leagues as $league )
-		<div class="col-sm-2 league">
+		<div class="col-sm-3 league">
 			<a href="{{{ $league->url }}}">
 				<p>
 					<img class="league-badge" src="{{{ $league->badge_image_url }}}" alt="img not found"><br />

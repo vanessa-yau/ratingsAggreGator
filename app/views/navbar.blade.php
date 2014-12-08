@@ -22,7 +22,7 @@
                         <li>@include('/forms/search')</li>
                     </a>
                     @if( Auth::user() )
-                        <a type="button" class="btn btn-block account-link" href="{{ Auth::user()->url }}">
+                        <a type="button" class="btn btn-block account-link" href="Auth::user()->url">
                             <li>
                                 My Account <span class="glyphicon glyphicon-cog"></span>
                             </li>

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddScreenNameColumnToUsersTable extends Migration {
+class AddTweetsEnabledColumnToUsersTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -14,8 +14,8 @@ class AddScreenNameColumnToUsersTable extends Migration {
 	{
 		Schema::table('users', function($table)
 		{
-		    $table->string('screen_name', 100);
-		});
+		    $table->boolean('tweets_enabled')->default(true);
+		});	
 	}
 
 	/**
@@ -27,7 +27,7 @@ class AddScreenNameColumnToUsersTable extends Migration {
 	{
 		Schema::table('users', function($table)
 		{
-			$table->dropColumn('screen_name');
+			$table->dropColumn('tweets_enabled');
 		});
 	}
 
