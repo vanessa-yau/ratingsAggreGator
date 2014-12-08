@@ -105,7 +105,7 @@
                                 <span class="glyphicon glyphicon-star-empty"></span>
                                 <span class="glyphicon glyphicon-star-empty"></span>
                             </div>
-                        </div>
+                        </div> 
                     @endforeach
                 </div> <!-- end row skills row -->
 
@@ -191,40 +191,31 @@
 
     <div class="player-thumbnails">
         <div class="row well">
-            <h3>Other Team Members</h3>
+            @if( $team )
+                <h3>
+                    <a href="{{{ $team->url }}}">
+                        <img src="{{{ $team->badge_image_url }}}" alt="{{{ $team->name }}} badge missing">
+                        {{{ $team->name }}}
+                    </a> Members
+                </h3>
+            @endif
             @if( $team->lastKnownPlayers() )
-                @foreach($team->lastKnownPlayers as $teamMate)
+                @foreach( $team->lastKnownPlayers()->get() as $teamMate )
                     @if( $player->id != $teamMate->id )
                         <div class="col-sm-4 col-md-2">
-                            <a href="{{ URL::route('players.show', $player->id) }}"></a>
-                            <a href="/players/{{ $teamMate->id }}">
+                            <a href="{{ $teamMate->url }}">
                                 <div class="thumbnail">
                                     <p class="team-mate-name">
                                         {{{ $teamMate->name }}}
                                     </p>
                                     <div class="team-mate-image">
-                                        <!-- background image -->
-                                        <div style="position: absolute; left:10px; right:10px; z-index:0">
-                                            <img class="thumbnail" src="{{ $teamMate->image_url }}" alt="{{{ $teamMate->name }}} profile image missing">
-                                        </div>
-                                        @if( $team )
-                                            <!-- foreground image -->
-                                            <div style="position: absolute; left:30px; right:30px; z-index:0">
-                                                <img class="thumbnail" src="{{ $team->badge_image_url }}" alt="{{{ $team->name }}} badge image missing">
-                                            </div>
-                                        @endif
+                                        <img class="thumbnail profile" src="{{ $teamMate->image_url }}" alt="{{{ $teamMate->name }}} profile image missing">
                                     </div>
-                                    <p>{{{ $teamMate->lastKnownTeam->name }}}</p>
                                 </div>
                             </a>
                         </div>
                     @endif
                 @endforeach
-                <div class="row">
-                    <div class="col-sm-12 pagination-links">
-                        
-                    </div>
-                </div>
             @endif
         </div>
     </div>

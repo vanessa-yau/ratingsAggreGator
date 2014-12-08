@@ -52,7 +52,6 @@ class PlayerController extends \BaseController {
 		}
 
 		$ratingProfile = RatingProfile::whereSportId($player->sport_id)
-							->whereName('defender')
 							->get()
 							->first();
 
@@ -62,7 +61,8 @@ class PlayerController extends \BaseController {
 
 		// if the player belongs to a team get the team
 		if ( $player->last_known_team ) {
-			$team = Team::find($player->last_known_team);
+			$team = Team::find( $player->last_known_team );
+
 			// if the team belongs to a league then find the information about the league
 			if( $team->last_known_league_id ){
 				// since leagues are unique assume we can get the first league
@@ -71,6 +71,7 @@ class PlayerController extends \BaseController {
 		}
 		else {
 			$team = null;
+			$lastKnownPlayers = null;
 			$league = null;
 		}
 
