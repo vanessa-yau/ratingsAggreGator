@@ -9,7 +9,8 @@ class TeamController extends \BaseController {
 	 */
 	public function index()
 	{
-		return 'This needs content';
+		$teams = Team::with('lastKnownPlayers')->get();
+		return View::make('teams', compact('teams'));
 	}
 
 

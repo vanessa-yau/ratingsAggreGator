@@ -1,0 +1,15 @@
+.team-players {
+    display: none;
+}
+
+img {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.panel .glyphicon-chevron-down{
+    padding-top: 1em;
+}
+.panel .glyphicon-chevron-up {
+    padding-top: 1em;
+}
