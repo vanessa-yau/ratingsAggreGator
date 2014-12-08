@@ -88,16 +88,21 @@ Route::get('/twitter/login', function()
 {
     // the SIGN IN WITH TWITTER  button should point to this route
 
+    //Clear any data from the session
     Session::clear();
     $sign_in_twitter = TRUE;
     $force_login = FALSE;
+
+    //Define the callback url
     $callback_url = 'http://' . $_SERVER['HTTP_HOST'] . '/twitter/callback';
+
     // Make sure we make this request w/o tokens, overwrite the default values in case of login.
     Twitter::set_new_config(['token' => '', 'secret' => '']);
     $token = Twitter::getRequestToken($callback_url);
     if( isset( $token['oauth_token_secret'] ) ) {
         $url = Twitter::getAuthorizeURL($token, $sign_in_twitter, $force_login);
 
+        //Add oauth state and oauth tokens into the session data
         Session::put('oauth_state', 'start');
         Session::put('oauth_request_token', $token['oauth_token']);
         Session::put('oauth_request_token_secret', $token['oauth_token_secret']);
@@ -109,8 +114,11 @@ Route::get('/twitter/login', function()
 
 Route::get('/twitter/callback', function() {
     
-    // You should set this route on your Twitter Application settings as the callback
+    // this route is defined on the twitter application settings as the callback route 
+
     // https://apps.twitter.com/app/YOUR-APP-ID/settings
+
+    //Check we have an oauth request token
     if(Session::has('oauth_request_token')) {
         $request_token = [
             'token' => Session::get('oauth_request_token'),
@@ -126,7 +134,9 @@ Route::get('/twitter/callback', function() {
 
         // getAccessToken() will reset the token for you
         $token = Twitter::getAccessToken( $oauth_verifier );
-        // return $token;
+        
+        //check if token contains the oauth token secret
+        //if not then redirect user to home page with an error
         if( !isset( $token['oauth_token_secret'] ) ) {
             return Redirect::to('/')->with('flash_error', 'We could not log you in on Twitter.');
         }
@@ -134,15 +144,10 @@ Route::get('/twitter/callback', function() {
         $credentials = Twitter::query('account/verify_credentials');
         if( is_object( $credentials ) && !isset( $credentials->error ) ) {
             // $credentials contains the Twitter user object with all the info about the user.
-            // !kint::dump($credentials);return;
-            // Add here your own user logic, store profiles, create new users on your tables...you name it!
-            // Typically you'll want to store at least, user id, name and access tokens
-            // if you want to be able to call the API on behalf of your users.
 
-            // This is also the moment to log in your users if you're using Laravel's Auth class
-            // Auth::login($user) should do the trick.
-            // return var_dump($credentials);
-            // die;
+            // !kint::dump($credentials);return;
+          
+            //obtain users id (from twitters database)
             $twitterID = $credentials->id;
 
             // determine if we need to create a new user or not
@@ -177,15 +182,17 @@ Route::get('/twitter/callback', function() {
             // b) created one - time to now log them in!
             Auth::login($user);
 
-            //return Redirect::to('/postTweet');
+            // Redirect user to home page with a success message
             return Redirect::to('/')->with('flash_notice', "Congrats! You've successfully signed in!");
         }
+            // Redirect user to home page with an error message
        return Redirect::to('/')->with('flash_error', 'Crab! Something went wrong while signing you up!');
     }
 });
 
 Route::get('twitter/error', function(){
-    // Something went wrong, add your own error handling here
+    // An error occured
+    //TODO: Add some error handling here
 });
 
 Route::post('login', [
