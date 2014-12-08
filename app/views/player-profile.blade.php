@@ -192,8 +192,8 @@
     <div class="player-thumbnails">
         <div class="row well">
             <h3>Other Team Members</h3>
-            @if( $player->lastKnownTeam )
-                @foreach($player->lastKnownTeam->lastKnownPlayers as $teamMate)
+            @if( $team->lastKnownPlayers() )
+                @foreach($team->lastKnownPlayers as $teamMate)
                     @if( $player->id != $teamMate->id )
                         <div class="col-sm-4 col-md-2">
                             <a href="{{ URL::route('players.show', $player->id) }}"></a>

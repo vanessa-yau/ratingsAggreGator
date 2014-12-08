@@ -39,7 +39,7 @@
                             <div class="panel-body league-teams">
                                 <div class="row">
                                     @foreach( $league->teams as $team )
-                                        <div class="col-xs-12 col-sm-6 col-lg-4">
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
                                             <a href="{{ $team->url }}"><p>{{ $team->name }}</p></a>
                                         </div>
                                     @endforeach

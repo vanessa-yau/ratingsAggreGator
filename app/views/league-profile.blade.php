@@ -31,7 +31,7 @@
             <h4>Teams</h4>
         </div>
         @foreach( $league->teams as $team )
-            <div class="col-sm-3 team-thumbnail">
+            <div class="col-sm-6 col-md-3 col-lg-2 team-thumbnail">
                 <a href="{{ $team->url }}">
                     <img class="team-image" src="{{{ $team->badge_image_url }}}" alt="{{{ $team->name }}} profile image missing.">
                     <p class="name">{{{ $team->name }}}</p>

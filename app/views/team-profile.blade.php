@@ -37,7 +37,7 @@
             <h4>Featuring</h4>
         </div>
         @foreach( $team->last_known_players as $player )
-            <div class="col-sm-3 player-thumbnail">
+            <div class="col-sm-6 col-md-3 col-lg-2 player-thumbnail">
                 <a href="{{ $player->url }}">
                     <img class="player-image" src="{{{ $player->image_url }}}" alt="{{{ $player->name }}} profile image missing.">
                     <p class="name">{{{ $player->name }}}</p>
