@@ -1,3 +1,3 @@
 DELETE 
-FROM `ratingsaggregator`.`players` 
+FROM `players` 
 WHERE `name` = 'name'
