@@ -1,3 +1,1 @@
-DELETE 
-FROM `players` 
-WHERE `name` = 'name'
+use ratingsaggregator delete from players where name ='name';
