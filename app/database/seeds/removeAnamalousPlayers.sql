@@ -1,1 +1,5 @@
-use ratingsaggregator delete from players where name ='name';
+use ratingsaggregator 
+DELETE 
+FROM players 
+WHERE name 
+LIKE '%name%';
