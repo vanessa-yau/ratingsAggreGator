@@ -60,11 +60,21 @@ class PlayerController extends \BaseController {
 							->skills()
 							->get();
 
-		( $player->last_known_team )
-			? 	$team = Team::find($player->last_known_team)
-			: 	$team = null;
+		// if the player belongs to a team get the team
+		if ( $player->last_known_team ) {
+			$team = Team::find($player->last_known_team);
+			// if the team belongs to a league then find the information about the league
+			if( $team->last_known_league_id ){
+				// since leagues are unique assume we can get the first league
+				$league = League::find($team->last_known_league_id)->first();
+			}
+		}
+		else {
+			$team = null;
+			$league = null;
+		}
 
-		return View::make('player-profile', compact('player', 'skills' ,'team'));
+		return View::make('player-profile', compact('player', 'skills' ,'team', 'league'));
 	}
 
 	public function showAnomalousNames($anomaly)
