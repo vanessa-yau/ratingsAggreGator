@@ -23,6 +23,7 @@
                         <span class="input-group-addon">Email</i></span>
                         <input type="text" name="email" class="form-control" placeholder="email address" value="{{ Auth::user()->email_address }}">
                     </div>
+                    <br />
                 </div>
                 <div class="col-sm-6 well">
                     <p>Some more settings are coming soon.  Patience is a virtue.</p>

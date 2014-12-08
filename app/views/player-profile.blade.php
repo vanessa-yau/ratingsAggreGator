@@ -26,18 +26,17 @@
         <div class="row" data-player-id="{{{$player->id}}}" data-player-name="{{{$player->name}}}" id="player">
             <div class="col-sm-12">
                 <div class="col-sm-6">
-                    <h3>Player Information</h3>
+                    <h3>{{ $player->name }}</h3>
                     <div class="col-sm-4"> 
                         <p><img id="profile-image" src="{{{ $player->image_url }}}" alt="Profile Image"></p>
                     </div>
                     <div class="col-sm-8">
-                        <p><strong>Name: </strong>{{ $player->name }}</p>
                         <p><strong>Nationality: </strong>{{ $player->nationality }}</p>
                         <p><strong>Height: </strong>{{ $player->height }}m</p>
                         <p><strong>Weight: </strong>{{ $player->weight }}kg</p>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6 chart-section header-chart">
                     <div class="col-sm-8 chart">
                         <canvas id="ratingBySkill"></canvas>
                     </div>
@@ -81,7 +80,6 @@
     <!-- ratings form -->
     <div class="row well">
         <h3>Rate {{ $player->name }}</h3>
-        <h5>In this game:</h5>
         <div class="col-md-12">
       
             <form 
@@ -94,8 +92,26 @@
 
                 <input type="hidden" name="player_id" id="player_id" value="{{ $player->id }}">
               
+                <div class="row skills">
+                    <h5>Using these criteria:</h5>
+                    <!-- different attributes to rate a player on -->
+                    @foreach( $skills as $skill)
+                        <div class="form-group">
+                            <label class="skill-label">{{ ucfirst($skill->name) }}</label>
+                            <div class="col-sm-10 rating-stars" data-skill="{{ $skill->id }}">
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            </div>
+                        </div>
+                    @endforeach
+                </div> <!-- end row skills row -->
+
                 <!-- row for team y vs team x -->  
                 <div class="row">
+                <h5>In this game:</h5>
                     <!-- enter/select match -->
                     <div class="form-group match">
                         <!-- select teams -->
@@ -128,23 +144,6 @@
                         </div> <!-- end col -->
                     </div> <!-- end form group -->
                 </div> <!-- end row div -->
-
-                <div class="row skills">
-                    <h5>Using these criteria:</h5>
-                    <!-- different attributes to rate a player on -->
-                    @foreach( $skills as $skill)
-                        <div class="form-group">
-                            <label>{{ ucfirst($skill->name) }}</label>
-                            <div class="col-sm-10 rating-stars" data-skill="{{ $skill->id }}">
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                            </div>
-                        </div>
-                    @endforeach
-                </div> <!-- end row skills row -->
 
                 <div class="share-buttons">
                     
@@ -193,8 +192,8 @@
     <div class="player-thumbnails">
         <div class="row well">
             <h3>Other Team Members</h3>
-            @if( $player->lastKnownTeam )
-                @foreach($player->lastKnownTeam->lastKnownPlayers as $teamMate)
+            @if( $team->lastKnownPlayers() )
+                @foreach($team->lastKnownPlayers as $teamMate)
                     @if( $player->id != $teamMate->id )
                         <div class="col-sm-4 col-md-2">
                             <a href="{{ URL::route('players.show', $player->id) }}"></a>
@@ -221,6 +220,11 @@
                         </div>
                     @endif
                 @endforeach
+                <div class="row">
+                    <div class="col-sm-12 pagination-links">
+                        
+                    </div>
+                </div>
             @endif
         </div>
     </div>

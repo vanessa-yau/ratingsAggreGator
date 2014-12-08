@@ -81,12 +81,14 @@ Route::get('/mentionsTimeLine', function()
 //Updates the authenticating user's current status, also known as tweeting.
 Route::get('/postTweet', function()
 {
-    return Twitter::postTweet(['status' => 'Laravel is beautiful', 'format' => 'json']);
+    return Twitter::postTweet(['status' => 'Test Tweet2', 'format' => 'json']);
 });
 
 Route::get('/twitter/login', function()
 {
     // the SIGN IN WITH TWITTER  button should point to this route
+
+    Session::clear();
     $sign_in_twitter = TRUE;
     $force_login = FALSE;
     $callback_url = 'http://' . $_SERVER['HTTP_HOST'] . '/twitter/callback';
@@ -139,27 +141,28 @@ Route::get('/twitter/callback', function() {
 
             // This is also the moment to log in your users if you're using Laravel's Auth class
             // Auth::login($user) should do the trick.
+            return var_dump($credentials);
+            die;
+            // $twitterID = $credentials->id;
 
-            $twitterID = $credentials->id;
-            $screenName = $credentials->screen_name;
+            //     $user = User::create(array(
+            //         'first_name'        => someone,
+            //         'surname'           => some surname,
+            //         'username'          => $credentials->screen_name,
+            //         'password'          => password,
+            //         'email_address'     => someone@somedomain.com,
+            //         'country_code'      => some country code,
+            //         'city'              => some city,
+            //         'twitter_id'        => $twitterID,
+            //         'screen_name'       => $screenName,
+            //         'oauth_token'       => $token['oauth_token'],
+            //         'oauth_token_secret'=> $token['oauth_token_secret']
+            //         // 'access_token'      => $token
 
-                $user = User::create(array(
-                    'first_name'        => 1,
-                    'surname'           => 1,
-                    'username'          => 1,
-                    'password'          => 1,
-                    'email_address'     => 1,
-                    'country_code'      => 1,
-                    'city'              => 1,
-                    'twitter_id'        => $twitterID,
-                    'screen_name'       => $screenName,
-                    'oauth_token'       => $token['oauth_token'],
-                    'oauth_token_secret'=> $token['oauth_token_secret']
-                    // 'access_token'      => $token
+            // ));
+            Auth::login($user);
 
-            ));
-            return Auth::login($user);
-
+            //return Redirect::to('/postTweet');
             return Redirect::to('/')->with('flash_notice', "Congrats! You've successfully signed in!");
         }
        return Redirect::to('/')->with('flash_error', 'Crab! Something went wrong while signing you up!');
