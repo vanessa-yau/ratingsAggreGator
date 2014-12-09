@@ -162,4 +162,17 @@ class PlayerController extends \BaseController {
 
 		return Player::whereIn('id', $randomPlayerIds)->get();
 	}
+
+	public function getAllPlayersOfTeam() {
+		$tottPlayers = [];
+		foreach (Player::whereLastKnownTeam(6)->get() as $player) {
+			//echo $player->name . "\n"
+			array_push($tottPlayers, $player->name);
+		}
+		// write to a json file
+		$jsonTottToFile = fopen('app/storage/tottPlayers.json', 'w');
+		fwrite($jsonTottToFile, json_encode($tottPlayers));
+		fclose($jsonTottToFile);
+		return;
+	}
 }

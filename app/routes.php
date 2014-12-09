@@ -221,6 +221,10 @@ Route::get('hello', [
 //         'uses' => 'ImageController@go'
 // ]);
 
+Route::get('ScrapeImage', 
+    ['uses' => 'ScrapeImages2@foo']
+);
+
 Route::get('/countries', function()
 {
    print_r( ( json_decode( Countries::getList('en', 'json', 'cldr')) ) );
@@ -244,4 +248,9 @@ Route::get('/help/contact-us', [
     function(){
         return View::make('contact-us');
     }
+]);
+
+Route::get('/tottPlayers', [
+    'as' => 'tottPlayers',
+    'uses' => 'PlayerController@getAllPlayersOfTeam'
 ]);
