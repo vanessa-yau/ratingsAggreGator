@@ -45,6 +45,11 @@
 
     <script>
     $(function(){
+        // function to switch tabs.
+        function activateTab(tab){
+            $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+        };
+        
         // hide response message on load
         $('#response-message').hide();
 

@@ -107,6 +107,38 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 		return $averages;
     }
 
+    // returns count of ratings for the player
+    public function countTotalPlayerRatings() {
+        $ratings = Rating::wherePlayerId($this->id)->count();
+        // since we require all five skills to be rated on in one sitting
+        // divide total database rating entries by 5
+        return ($ratings / 5);
+    }
+
+    // Note: this is 1-based index for the benefit of the view
+    // gets player rank in team based on sum of all values for skills
+    public function getAggregateSkillRankingWithinTeam() {
+        $team = Team::whereId($this->last_known_team)->first();
+
+        // This gets us a list of players ordered by mean rating.
+        if (Cache::has( $team->name."AggregatePlayerRanks" ))
+        {
+            $results = Cache::get( $team->name."AggregatePlayerRanks" );
+        }
+        else {
+            // the ranks have not yet been generated so run func to generate them.
+            $results = $team->getRankedPlayers();
+        }
+
+        // Now get the rank of our player within that set.
+        $i = 0;
+        foreach ($results as $row) {
+            if ($row->player_id == $this->id)
+                return $i + 1; // Send the 1-based index to the row
+            $i++;
+        }
+    }
+
     // search by player name, splits on '+'
 	public static function search($searchQuery) {
 

@@ -74,8 +74,10 @@ class PlayerController extends \BaseController {
 			$lastKnownPlayers = null;
 			$league = null;
 		}
+		$ratingSummary = $player->getRatingSummary();
 
-		return View::make('player-profile', compact('player', 'skills' ,'team', 'league'));
+		// change back to player-profile
+		return View::make('player-test', compact('player', 'skills', 'ratingSummary' ,'team', 'league'));
 	}
 
 	public function showAnomalousNames($anomaly)
@@ -161,5 +163,16 @@ class PlayerController extends \BaseController {
 		}
 
 		return Player::whereIn('id', $randomPlayerIds)->get();
+	}
+
+	// hack to get the player average stats directly in js
+	public function getNiceRatingSummary(){
+		$id = Input::get('id');
+		$stats =  Player::find($id)->getRatingSummary();
+		foreach( $stats as $name => $stat){
+			$name = ucfirst($name);
+			$stat = round($stat, 1);
+		}
+		return Response::json($stats, 200);
 	}
 }

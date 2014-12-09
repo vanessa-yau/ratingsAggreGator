@@ -1,4 +1,5 @@
 <?php
+use Carbon\Carbon;
 
 class Team extends Eloquent {
 
@@ -27,4 +28,47 @@ class Team extends Eloquent {
     //         ? $url
     //         : "/images/gator.jpg";
     // }
+
+    // get the average ratings for each team member
+    public function getAverageRatings(){
+        //
+    }
+
+    public function getRankedPlayers() {
+        // Note backticks accepted in mysql
+        // for <<<EOT ... EOT (like double quotes)
+        // see http://php.net/manual/en/language.types.string.php
+        $results = DB::select(
+            <<<EOT
+                SELECT 
+                    player_id, 
+                    sum(value)/count(1) as `mean_rating`, 
+                    player_name
+                FROM   
+                ( 
+                    SELECT  
+                        players.id as `player_id`, 
+                        ratings.value, 
+                        ratings.id as `ratings.id`,
+                        players.name as `player_name`
+                    FROM PLAYERS
+                    # use left outer join to get rated and unrated entries
+                    # in the ratings table for this team
+                    LEFT OUTER JOIN ratings
+                    ON ratings.player_id = players.id
+                    WHERE players.last_known_team = ?
+                ) AllRatingsForliverpoolPlayers 
+                #alias above required for returning table in subquery
+                GROUP BY player_id
+                ORDER BY mean_rating DESC
+EOT
+, array($this->id)
+        );
+        
+        // THIS WILL BECOME VERY SLOW WITH LOTS OF RATINGS --- WE CAN CACHE IT
+        $teamRank = $this->name."AggregatePlayerRanks";
+        $expiresAt = Carbon::now()->addDays(1);
+        Cache::put($teamRank, $results, $expiresAt);
+        return $results;
+    }
 }

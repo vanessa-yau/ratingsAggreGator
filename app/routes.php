@@ -44,6 +44,11 @@ Route::get('test', function() {
     return View::make('magpie');
 });
 
+Route::get('/averageRatingSummary',[
+    'as' => 'players.niceRatingSummary',
+    'uses' => 'PlayerController@getNiceRatingSummary'
+]);
+
 // Auto generate all CRUD routes to your controllers
 Route::resource('attributes', 'AttributeController');
 
