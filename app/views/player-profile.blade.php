@@ -399,27 +399,30 @@
                     chart("yourRating", "Radar", "radarLegend");
                     chart("ratingBySkill", "Bar", "barLegend");
 
-                    // If the currently authenticated user has enabled tweets then 
-                    // calculate the mean of our ratings so that we can put it in the tweet!
-                    @if(Auth::user()->tweets_enabled)
-                        var mean = 0;
-                        var count = 0;
-                        for(var rating in data.ratings) {
-                            mean += data.ratings[rating];
-                            count++;
-                        }
-                        mean /= count;
+                    // Ensures page will not break if a user is not logged in
+                    @if(Auth::check())
+                        // If the currently authenticated user has enabled tweets then 
+                        // calculate the mean of our ratings so that we can put it in the tweet!
+                        @if(Auth::user()->tweets_enabled)
+                            var mean = 0;
+                            var count = 0;
+                            for(var rating in data.ratings) {
+                                mean += data.ratings[rating];
+                                count++;
+                            }
+                            mean /= count;
 
 
-                        //Create a twitter button and pre-fill it then click it behind the scenes
-                        //and open the button in a new window incase the user wishes to submit the tweet
-                        var $hiddenTwitterButton = $('<a>')
-                            .attr('href', 'https://twitter.com/share?text=' +
-                                'I just rated {{{ $player->name }}} an average of ' + 
-                                mean + '! How do you rate them?')
-                            .attr('target', '_blank');
+                            //Create a twitter button and pre-fill it then click it behind the scenes
+                            //and open the button in a new window incase the user wishes to submit the tweet
+                            var $hiddenTwitterButton = $('<a>')
+                                .attr('href', 'https://twitter.com/share?text=' +
+                                    'I just rated {{{ $player->name }}} an average of ' + 
+                                    mean + '! How do you rate them?')
+                                .attr('target', '_blank');
 
-                        $hiddenTwitterButton[0].click();
+                            $hiddenTwitterButton[0].click();
+                        @endif
                     @endif
                 },
                 error: function(e){
