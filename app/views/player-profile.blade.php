@@ -145,23 +145,6 @@
                     </div> <!-- end form group -->
                 </div> <!-- end row div -->
 
-                <div class="row skills">
-                    <h5>Using these criteria:</h5>
-                    <!-- different attributes to rate a player on -->
-                    @foreach( $skills as $skill)
-                        <div class="form-group">
-                            <label>{{ ucfirst($skill->name) }}</label>
-                            <div class="col-sm-10 rating-stars" data-skill="{{ $skill->id }}">
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                            </div>
-                        </div>
-                    @endforeach
-                </div> <!-- end row skills row -->
-
                <!--  <div class="share-buttons">
                     
                     <ul>
