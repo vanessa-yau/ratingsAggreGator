@@ -132,10 +132,17 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 
         // Now get the rank of our player within that set.
         $i = 0;
+        // results: player_id, mean_rating, player_name
         foreach ($results as $row) {
-            if ($row->player_id == $this->id)
-                return $i + 1; // Send the 1-based index to the row
-            $i++;
+            if( $row->player_id == $this->id ){
+                // the player hasn't been rated
+                if ($row->mean_rating == null)
+                    return -1;
+                else{
+                    ++$i;
+                    return $i; // Send the 1-based index to the row
+                }
+            }
         }
     }
 

@@ -38,6 +38,7 @@ class Team extends Eloquent {
         // Note backticks accepted in mysql
         // for <<<EOT ... EOT (like double quotes)
         // see http://php.net/manual/en/language.types.string.php
+        // param1 is sql query, param2 is ? args
         $results = DB::select(
             <<<EOT
                 SELECT 
@@ -62,7 +63,7 @@ class Team extends Eloquent {
                 GROUP BY player_id
                 ORDER BY mean_rating DESC
 EOT
-, array($this->id)
+, [$this->id]
         );
         
         // THIS WILL BECOME VERY SLOW WITH LOTS OF RATINGS --- WE CAN CACHE IT
@@ -70,5 +71,9 @@ EOT
         $expiresAt = Carbon::now()->addDays(1);
         Cache::put($teamRank, $results, $expiresAt);
         return $results;
+    }
+
+    public function getTotalNumRatings() {
+        //
     }
 }

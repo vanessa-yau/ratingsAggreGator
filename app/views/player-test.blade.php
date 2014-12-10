@@ -38,26 +38,33 @@
                         <p><img id="profile-image" src="{{{ $player->image_url }}}" alt="Profile Image"></p>
                     </div>
                     <div class="col-sm-8">
-                        <!-- player ranking in team by aggregate ratings -->
-                        <p class="player-team-rank">
-                            Ranked #{{{ $player->getAggregateSkillRankingWithinTeam() }}} 
-                            player in <a href="{{{ $team->url }}}">{{{ $team->name }}} FC</a>
-                        </p>
+                        @if( $player->getAggregateSkillRankingWithinTeam() != -1 )
+                            <!-- player ranking in team by aggregate ratings -->
+                            <p class="player-team-rank">
+                                Ranked #{{{ $player->getAggregateSkillRankingWithinTeam() }}} 
+                                player in <a href="{{{ $team->url }}}">{{{ $team->name }}} FC</a>
+                            </p>
+                        @else
+                            <p>({{{$player->name}}} has no ratings. Rate them below)</p>
+                        @endif
                         <p><strong>Nationality: </strong>{{ $player->nationality }}</p>
                         <p><strong>Height: </strong>{{ $player->height }}m</p>
                         <p><strong>Weight: </strong>{{ $player->weight }}kg</p>
                         
                     </div>
                 </div>
-                <div class="col-sm-6 chart-section header-chart">
-                    <div class="col-sm-8 chart">
-                        <canvas id="ratingBySkill"></canvas>
+                <!-- Only display average ratings if ratings for this player exist -->
+                @if( $player->getAggregateSkillRankingWithinTeam() != -1 )
+                    <div class="col-sm-6 chart-section header-chart">
+                        <div class="col-sm-8 chart">
+                            <canvas id="ratingBySkill"></canvas>
+                        </div>
+                        <div class="col-sm-4 legend">
+                            <h5><strong>Average Rating by Skill</strong></h5>
+                            <strong><div id="barLegend"></div></strong>
+                        </div>
                     </div>
-                    <div class="col-sm-4 legend">
-                        <h5><strong>Average Rating by Skill</strong></h5>
-                        <strong><div id="barLegend"></div></strong>
-                    </div>
-                </div>
+                @endif
             </div>
         </div>
     </div>
@@ -141,15 +148,18 @@
 
     <div class="row well chart-section">
         <h3>Statistics</h3>
-        <div class="col-sm-6">
-            <div class="col-sm-8 chart">
-                <canvas id="yourRating"></canvas>
+        <!-- Your Ratings -->
+        @if( $player->getAggregateSkillRankingWithinTeam() != -1 )
+            <div class="col-sm-6">
+                <div class="col-sm-8 chart">
+                    <canvas id="yourRating"></canvas>
+                </div>
+                <div class="col-sm-4 legend">
+                    <h5><strong>Your Rating vs The Average</strong></h5>
+                    <strong><div id="radarLegend"></div></strong>
+                </div>
             </div>
-            <div class="col-sm-4 legend">
-                <h5><strong>Your Rating vs The Average</strong></h5>
-                <strong><div id="radarLegend"></div></strong>
-            </div>
-        </div>
+        @endif
     </div>
 
     <!-- rest of team -->    

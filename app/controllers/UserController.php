@@ -19,6 +19,13 @@ class UserController extends \BaseController {
 				'login'
 			]
 		]);
+
+		$this->afterFilter('plusone', [
+			'only' => [
+				'index',
+				'show'
+			]
+		]);
 	}
 
 	/**
@@ -129,7 +136,6 @@ class UserController extends \BaseController {
 			return Response::json(["The password you entered does not match our records.  Sorry about that."], 400);
 		}
 	}
-
 
 	/**
 	 * Remove the specified resource from storage.

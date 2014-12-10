@@ -2,6 +2,15 @@
 
 class TeamController extends \BaseController {
 
+	public function __construct() {
+		$this->afterFilter('plusone', [
+			'only' => [
+				'index',
+				'show'
+			]
+		]);
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
