@@ -30,6 +30,7 @@
                             <option value="true" {{ Auth::user()->tweets_enabled ? 'selected' : '' }}>Yes</option>
                             <option value="false" {{ Auth::user()->tweets_enabled ? '' : 'selected' }}>No</option>
                         </select>
+                    </div>
                 </div>
                 <div class="col-sm-6 well">
                     <p>Some more settings are coming soon.  Patience is a virtue.</p>
