@@ -58,6 +58,7 @@ Route::resource('ratings', 'RatingController');
 Route::resource('users', 'UserController');
 
 //Returns a collection of the most recent Tweets posted by the user indicated by the screen_name or user_id parameters.
+
 Route::get('/userTimeLine', function()
 {
     return Twitter::getUserTimeline(['screen_name' => 'iamsamgoml', 'count' => 20, 'format' => 'array']);
@@ -84,33 +85,10 @@ Route::get('/postTweet', function()
     return Twitter::postTweet(['status' => 'Test Tweet2', 'format' => 'json']);
 });
 
-Route::get('/twitter/login', function()
-{
-    // the SIGN IN WITH TWITTER  button should point to this route
-
-    //Clear any data from the session
-    Session::clear();
-    $sign_in_twitter = TRUE;
-    $force_login = FALSE;
-
-    //Define the callback url
-    $callback_url = 'http://' . $_SERVER['HTTP_HOST'] . '/twitter/callback';
-
-    // Make sure we make this request w/o tokens, overwrite the default values in case of login.
-    Twitter::set_new_config(['token' => '', 'secret' => '']);
-    $token = Twitter::getRequestToken($callback_url);
-    if( isset( $token['oauth_token_secret'] ) ) {
-        $url = Twitter::getAuthorizeURL($token, $sign_in_twitter, $force_login);
-
-        //Add oauth state and oauth tokens into the session data
-        Session::put('oauth_state', 'start');
-        Session::put('oauth_request_token', $token['oauth_token']);
-        Session::put('oauth_request_token_secret', $token['oauth_token_secret']);
-
-        return Redirect::to($url);
-    }
-    return Redirect::to('twitter/error');
-});
+Route::get('/twitter/login', [
+    'as' => 'twitter.login',
+    'uses' => 'TwitterController@twitterLogin'
+]);  
 
 Route::get('/twitter/callback', function() {
     
