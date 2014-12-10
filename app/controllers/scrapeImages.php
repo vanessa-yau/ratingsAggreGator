@@ -1,6 +1,6 @@
 <?php
 
-class TeamController extends \BaseController {
+class scrapeImages extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,8 +9,7 @@ class TeamController extends \BaseController {
 	 */
 	public function index()
 	{
-		$teams = Team::with('lastKnownPlayers')->get();
-		return View::make('teams', compact('teams'));
+		//
 	}
 
 
@@ -44,17 +43,7 @@ class TeamController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$team = Team::find($id);
-		if( $team ){
-			( $team->last_known_league_id != 0 )
-				?	$league = League::find($team->last_known_league_id)
-				: 	$league = null;
-			return View::make('team-profile', compact('team', 'league'));
-		} 
-		else {
-			return View::make('search-results', [ 'results' => null ]);
-		}
-
+		//
 	}
 
 

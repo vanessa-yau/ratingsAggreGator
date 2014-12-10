@@ -105,7 +105,7 @@
                                 <span class="glyphicon glyphicon-star-empty"></span>
                                 <span class="glyphicon glyphicon-star-empty"></span>
                             </div>
-                        </div> 
+                        </div>
                     @endforeach
                 </div> <!-- end row skills row -->
 
@@ -145,7 +145,24 @@
                     </div> <!-- end form group -->
                 </div> <!-- end row div -->
 
-                <div class="share-buttons">
+                <div class="row skills">
+                    <h5>Using these criteria:</h5>
+                    <!-- different attributes to rate a player on -->
+                    @foreach( $skills as $skill)
+                        <div class="form-group">
+                            <label>{{ ucfirst($skill->name) }}</label>
+                            <div class="col-sm-10 rating-stars" data-skill="{{ $skill->id }}">
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            </div>
+                        </div>
+                    @endforeach
+                </div> <!-- end row skills row -->
+
+               <!--  <div class="share-buttons">
                     
                     <ul>
                         <li> 
@@ -397,27 +414,30 @@
                     chart("yourRating", "Radar", "radarLegend");
                     chart("ratingBySkill", "Bar", "barLegend");
 
-                    // If the currently authenticated user has enabled tweets then 
-                    // calculate the mean of our ratings so that we can put it in the tweet!
-                    @if(Auth::user()->tweets_enabled)
-                        var mean = 0;
-                        var count = 0;
-                        for(var rating in data.ratings) {
-                            mean += data.ratings[rating];
-                            count++;
-                        }
-                        mean /= count;
+                    // Ensures page will not break if a user is not logged in
+                    @if(Auth::check())
+                        // If the currently authenticated user has enabled tweets then 
+                        // calculate the mean of our ratings so that we can put it in the tweet!
+                        @if(Auth::user()->tweets_enabled)
+                            var mean = 0;
+                            var count = 0;
+                            for(var rating in data.ratings) {
+                                mean += data.ratings[rating];
+                                count++;
+                            }
+                            mean /= count;
 
 
-                        //Create a twitter button and pre-fill it then click it behind the scenes
-                        //and open the button in a new window incase the user wishes to submit the tweet
-                        var $hiddenTwitterButton = $('<a>')
-                            .attr('href', 'https://twitter.com/share?text=' +
-                                'I just rated {{{ $player->name }}} an average of ' + 
-                                mean + '! How do you rate them?')
-                            .attr('target', '_blank');
+                            //Create a twitter button and pre-fill it then click it behind the scenes
+                            //and open the button in a new window incase the user wishes to submit the tweet
+                            var $hiddenTwitterButton = $('<a>')
+                                .attr('href', 'https://twitter.com/share?text=' +
+                                    'I just rated {{{ $player->name }}} an average of ' + 
+                                    mean + '! How do you rate them?')
+                                .attr('target', '_blank');
 
-                        $hiddenTwitterButton[0].click();
+                            $hiddenTwitterButton[0].click();
+                        @endif
                     @endif
                 },
                 error: function(e){

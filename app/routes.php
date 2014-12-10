@@ -216,10 +216,14 @@ Route::get('hello', [
     'uses' => 'PlayerController@getRandomPlayers'
 ]);
 
-// Route::get('test', [
-//         'as' => 'test',
-//         'uses' => 'ImageController@go'
-// ]);
+Route::get('test', [
+        'as' => 'test',
+        'uses' => 'ScrapeImages2@test'
+]);
+
+Route::get('ScrapeImage', 
+    ['uses' => 'ScrapeImages2@foo']
+);
 
 Route::get('/countries', function()
 {
@@ -244,4 +248,9 @@ Route::get('/help/contact-us', [
     function(){
         return View::make('contact-us');
     }
+]);
+
+Route::get('/tottPlayers', [
+    'as' => 'tottPlayers',
+    'uses' => 'PlayerController@getAllPlayersOfTeam'
 ]);

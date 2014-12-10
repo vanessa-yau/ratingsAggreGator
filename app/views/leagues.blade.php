@@ -1,24 +1,7 @@
 @extends('master')
 
 @section('style')
-    <style>
-        .league-teams {
-            display: none;
-        }
-
-        img {
-            max-width: 50px;
-            max-height: 50px;
-        }
-
-        .panel .glyphicon-chevron-down{
-            padding-top: 1em;
-        }
-        .panel .glyphicon-chevron-up {
-            padding-top: 1em;
-        }
-
-    </style>
+     {{ HTML::style("/css/leagues.css") }}
 @stop
 
 @section('content')
@@ -30,7 +13,7 @@
                     <div class="col-sm-12">
                         <div class="panel panel-default" data-id="{{{ $league->id }}}">
                             <div class="panel-heading league">
-                                <img src="/images/leagues/englishpremier.jpg" alt="...">
+                                <img src="{{ $league->badge_image_url }}" alt="...">
                                 <span>
                                     <strong class="league-name">{{{ $league->name }}}</strong> 
                                     <i class="glyphicon glyphicon-chevron-down pull-right"></i>
@@ -39,7 +22,7 @@
                             <div class="panel-body league-teams">
                                 <div class="row">
                                     @foreach( $league->teams as $team )
-                                        <div class="col-xs-12 col-sm-6 col-lg-4">
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
                                             <a href="{{ $team->url }}"><p>{{ $team->name }}</p></a>
                                         </div>
                                     @endforeach
