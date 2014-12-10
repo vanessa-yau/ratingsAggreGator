@@ -90,83 +90,10 @@ Route::get('/twitter/login', [
     'uses' => 'TwitterController@twitterLogin'
 ]);  
 
-Route::get('/twitter/callback', function() {
-    
-    // this route is defined on the twitter application settings as the callback route 
-
-    // https://apps.twitter.com/app/YOUR-APP-ID/settings
-
-    //Check we have an oauth request token
-    if(Session::has('oauth_request_token')) {
-        $request_token = [
-            'token' => Session::get('oauth_request_token'),
-            'secret' => Session::get('oauth_request_token_secret'),
-        ];
-
-        Twitter::set_new_config($request_token);
-
-        $oauth_verifier = FALSE;
-        if(Input::has('oauth_verifier')) {
-            $oauth_verifier = Input::get('oauth_verifier');
-        }
-
-        // getAccessToken() will reset the token for you
-        $token = Twitter::getAccessToken( $oauth_verifier );
-        
-        //check if token contains the oauth token secret
-        //if not then redirect user to home page with an error
-        if( !isset( $token['oauth_token_secret'] ) ) {
-            return Redirect::to('/')->with('flash_error', 'We could not log you in on Twitter.');
-        }
-
-        $credentials = Twitter::query('account/verify_credentials');
-        if( is_object( $credentials ) && !isset( $credentials->error ) ) {
-            // $credentials contains the Twitter user object with all the info about the user.
-
-            // !kint::dump($credentials);return;
-          
-            //obtain users id (from twitters database)
-            $twitterID = $credentials->id;
-
-            // determine if we need to create a new user or not
-            // to do this, first check to see if a user with the
-            // given twitter id exists in the users table, if so,
-            // then just log them in. if not, create a new user.
-            if (! ($user = User::whereTwitterID($twitterID)->first() )) {
-
-                $nameTokens = explode(' ', $credentials->name);
-                $firstName = array_key_exists(0, $nameTokens)
-                    ? $nameTokens[0]
-                    : '';
-                
-                $lastName = array_key_exists(1, $nameTokens)
-                    ? $nameTokens[1]
-                    : '';                
-
-                $user = User::create(array(
-                    'first_name'        => $firstName,
-                    'surname'           => $lastName,
-                    'username'          => $credentials->screen_name,
-                    'password'          => Hash::make( Hash::make(null) ),
-                    'twitter_id'        => $twitterID,
-                    // 'screen_name'       => $screenName,
-                    'oauth_token'       => $token['oauth_token'],
-                    'oauth_token_secret'=> $token['oauth_token_secret']
-                    // 'access_token'      => $token
-                ));
-            }
-
-            // only get here if we have either a) found an existing user, or
-            // b) created one - time to now log them in!
-            Auth::login($user);
-
-            // Redirect user to home page with a success message
-            return Redirect::to('/')->with('flash_notice', "Congrats! You've successfully signed in!");
-        }
-            // Redirect user to home page with an error message
-       return Redirect::to('/')->with('flash_error', 'Crab! Something went wrong while signing you up!');
-    }
-});
+Route::get('/twitter/callback', [
+    'as' => 'twitter.callback',
+    'uses' => 'TwitterController@callback'
+]); 
 
 Route::get('twitter/error', function(){
     // An error occured
