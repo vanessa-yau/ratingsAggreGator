@@ -57,33 +57,25 @@ Route::resource('ratings', 'RatingController');
 
 Route::resource('users', 'UserController');
 
-//Returns a collection of the most recent Tweets posted by the user indicated by the screen_name or user_id parameters.
+Route::get('/userTimeline', [
+    'as' => 'twitter.userTimeline',
+    'uses' => 'TwitterController@getUserTimeline'
+]); 
 
-Route::get('/userTimeLine', function()
-{
-    return Twitter::getUserTimeline(['screen_name' => 'iamsamgoml', 'count' => 20, 'format' => 'array']);
-});
+Route::get('/homeTimeline', [
+    'as' => 'twitter.homeTimeline',
+    'uses' => 'TwitterController@getHomeTimeline'
+]); 
 
+Route::get('/mentionsTimeline', [
+    'as' => 'twitter.mentionsTimeline',
+    'uses' => 'TwitterController@getMentionsTimeline'
+]);
 
-//Returns a collection of the most recent Tweets and retweets posted by the authenticating user and the users they follow.
-
-Route::get('/homeTimeLine', function()
-{
-    return Twitter::getHomeTimeline(['count' => 20, 'format' => 'json']);
-});
-
-//Returns the X most recent mentions (tweets containing a users's @screen_name) for the authenticating user.
-
-Route::get('/mentionsTimeLine', function()
-{
-    return Twitter::getMentionsTimeline(['count' => 20, 'format' => 'json']);
-});
-
-//Updates the authenticating user's current status, also known as tweeting.
-Route::get('/postTweet', function()
-{
-    return Twitter::postTweet(['status' => 'Test Tweet2', 'format' => 'json']);
-});
+Route::get('/postTweet', [
+    'as' => 'twitter.postTweet',
+    'uses' => 'TwitterController@postTweet'
+]); 
 
 Route::get('/twitter/login', [
     'as' => 'twitter.login',
