@@ -87,7 +87,7 @@ class PlayerController extends \BaseController {
 		$ratingSummary = $player->ratingSummary;
 
 		// change back to player-profile
-		return View::make('player-test', compact('player', 'skills', 'ratingSummary' ,'team', 'league'));
+		return View::make('player-profile', compact('player', 'skills', 'ratingSummary' ,'team', 'league'));
 	}
 
 	public function showAnomalousNames($anomaly)
