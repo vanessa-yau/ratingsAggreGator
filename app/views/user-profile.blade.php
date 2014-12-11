@@ -51,7 +51,7 @@
     <script>
     $(function(){
         // icon generator
-        var email = "{{ $user->email_address }}";
+        var email = "{{ $user->email }}";
         var data = new Identicon(email, 128).toString();
         // insert into image
         $('.profile-image').attr("src", 'data:image/png;base64,'+data);

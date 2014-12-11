@@ -1,5 +1,5 @@
 <?php
-class Conversation extends extends Pichkrement\Messenger\Models\Conversation implements UserInterface, RemindableInterface {
+class Conversation extends Pichkrement\Messenger\Models\Conversation {
 
     protected $table = 'conversations';
 
@@ -16,7 +16,7 @@ class Conversation extends extends Pichkrement\Messenger\Models\Conversation imp
     public function users(){
         return $this->belongsToMany('\Pichkrement\Messenger\Models\User');
     }
-    
+
     public function foo(){
         return $this->messages()->orderBy('created_at', 'DESC')->first();
     }

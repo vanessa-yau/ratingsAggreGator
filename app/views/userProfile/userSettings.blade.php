@@ -21,7 +21,7 @@
                     <br />
                     <div class="input-group">
                         <span class="input-group-addon">Email</i></span>
-                        <input type="text" name="email" class="form-control" placeholder="email address" value="{{ Auth::user()->email_address }}">
+                        <input type="text" name="email" class="form-control" placeholder="email address" value="{{ Auth::user()->email }}">
                     </div>
                     <br />
                     <div class="input-group">

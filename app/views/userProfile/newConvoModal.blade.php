@@ -15,8 +15,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2">
-                        {{ Form::open(['url' => '/conversation']) }}
-
+                        {{ Form::open(['url' => '/conversations', 'method' => 'POST']) }}
                             <div class="row">
                                 {{ Form::text('recipient', '', ['class' => 'form-control', 'placeholder' => 'Username', 'id' => 'username', 'autofocus' => true] )}}
                                 {{ Form::hidden('userID', $user->id, ['id' => 'userID']) }}

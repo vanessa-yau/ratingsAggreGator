@@ -1,12 +1,12 @@
 <?php
-class Message extends extends Pichkrement\Messenger\Models\Message implements UserInterface, RemindableInterface {
+class Message extends Pichkrement\Messenger\Models\Message {
 
     protected $table = 'messages';
 
     protected $fillable = [
-    'user_id', 
-    'content',
-    'conversation_id'
+        'user_id', 
+        'content',
+        'conversation_id'
     ];
 
     public function conversation(){

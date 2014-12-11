@@ -31,7 +31,18 @@ class ConversationsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		// create a new conversation associated with the current user and their intended recipient
+		$username = Input::get('username');
+		$user = User::whereUsername($username)->first();
+		if($user) {
+			$conversation = Conversation::create([ 'name' => (Auth::user()->username."/".$username) ]);
+			$conversation->users()->attach(Auth::user()->id);
+			$conversation->addUser([$user->email]);
+
+			return Response::json(["Conversation with ".$username." started!"], 200);
+		} else {
+			return Response::json(["The user you have specifed does not exist.  Sorry about that."], 400);
+		}
 	}
 
 
