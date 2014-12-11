@@ -113,7 +113,6 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
         $criteria = explode('+', $searchQuery);		
 		
 		$query = Player::orderBy('name');
-
 		foreach($criteria as $criterion)
 		{	
 			$query->orWhere('name', 'LIKE', '%' . $criterion .'%');
