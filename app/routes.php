@@ -57,6 +57,8 @@ Route::resource('ratings', 'RatingController');
 
 Route::resource('users', 'UserController');
 
+Route::resource('conversations', 'ConversationsController');
+
 Route::get('/userTimeline', [
     'as' => 'twitter.userTimeline',
     'uses' => 'TwitterController@getUserTimeline'
@@ -103,7 +105,7 @@ Route::get('logout', [
 ]);
 
 
-Route::get('search/{query}', [
+Route::get('search/{query?}', [
     'as' => 'players.search',
     'uses' => 'PlayerController@search'
 ]);
