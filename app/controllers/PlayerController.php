@@ -137,8 +137,9 @@ class PlayerController extends \BaseController {
 	 * @return Response
 	 *
 	 */
-	public function search($searchQuery) {
-
+	public function search($searchQuery = null) {
+		if (!$searchQuery)
+			$searchQuery = Input::get('query');
 		//Call the search function in the Player model
 
 		// if ($searchQuery == null || $searchQuery =="") {
