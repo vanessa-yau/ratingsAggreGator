@@ -187,4 +187,15 @@ class PlayerController extends \BaseController {
 		fclose($jsonTottToFile);
 		return;
 	}
+
+	// hack to get the player average stats directly in js
+    public function getNiceRatingSummary(){
+        $id = Input::get('id');
+        $stats =  Player::find($id)->ratingSummary;
+        foreach( $stats as $name => $stat){
+            $name = ucfirst($name);
+            $stat = round($stat, 1);
+        }
+        return Response::json($stats, 200);
+    }
 }
