@@ -50,6 +50,11 @@
 
     <script>
     $(function(){
+        // function to switch tabs.
+        function activateTab(tab){
+            $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+        };
+
         // icon generator
         var email = "{{ $user->email }}";
         var data = new Identicon(email, 128).toString();

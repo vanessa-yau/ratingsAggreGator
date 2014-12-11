@@ -2,6 +2,16 @@
 
 class PlayerController extends \BaseController {
 
+	public function __construct() {
+		// page views counter filter
+		$this->afterFilter('plusone', [
+			'only' => [
+				'index',
+				'show'
+			]
+		]);
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -74,8 +84,10 @@ class PlayerController extends \BaseController {
 			$lastKnownPlayers = null;
 			$league = null;
 		}
+		$ratingSummary = $player->ratingSummary;
 
-		return View::make('player-profile', compact('player', 'skills' ,'team', 'league'));
+		// change back to player-profile
+		return View::make('player-test', compact('player', 'skills', 'ratingSummary' ,'team', 'league'));
 	}
 
 	public function showAnomalousNames($anomaly)
@@ -93,6 +105,7 @@ class PlayerController extends \BaseController {
 
 		return "$anomaly delorted";
 	}
+
 
 
 	/**
@@ -163,7 +176,6 @@ class PlayerController extends \BaseController {
 
 		return Player::whereIn('id', $randomPlayerIds)->get();
 	}
-
 	public function getAllPlayersOfTeam() {
 		$tottPlayers = [];
 		foreach (Player::whereLastKnownTeam(6)->get() as $player) {
@@ -176,4 +188,15 @@ class PlayerController extends \BaseController {
 		fclose($jsonTottToFile);
 		return;
 	}
+
+	// hack to get the player average stats directly in js
+    public function getNiceRatingSummary(){
+        $id = Input::get('id');
+        $stats =  Player::find($id)->ratingSummary;
+        foreach( $stats as $name => $stat){
+            $name = ucfirst($name);
+            $stat = round($stat, 1);
+        }
+        return Response::json($stats, 200);
+    }
 }
