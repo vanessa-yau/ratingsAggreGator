@@ -163,6 +163,13 @@ Route::post('register', [
     'uses' => 'UserController@store'
 ]);
 
+// about the project, *in progress*
+Route::get('/about', function()
+{
+    return 'About RatinGator...';
+});
+
+
 Route::get('/tottPlayers', [
     'as' => 'tottPlayers',
     'uses' => 'PlayerController@getAllPlayersOfTeam'
