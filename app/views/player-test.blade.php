@@ -21,50 +21,51 @@
         </div>
     </div>
 
-    <div>
-        
-    </div>
-
     <!-- Player stats and average ratings based on all ratings-->
-    <div class="row well">
+    <div class="row player-info">
         <!-- do not delete the data attributes below, used in js -->
         <div class="row" data-player-id="{{{$player->id}}}" data-player-name="{{{$player->name}}}" id="player">
             <div class="col-sm-12">
-                <div class="col-sm-6">
-                    <h3>
-                        <strong>{{ $player->name }}</strong>
-                    </h3>
-                    <div class="col-sm-4"> 
-                        <p><img id="profile-image" src="{{{ $player->image_url }}}" alt="Profile Image"></p>
-                    </div>
-                    <div class="col-sm-8">
-                        @if( $player->getAggregateSkillRankingWithinTeam() != -1 )
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3>
+                            <strong>{{ $player->name }}</strong>
+                        </h3>
+                        <div class="col-sm-4"> 
+                            <p><img id="profile-image" src="{{{ $player->image_url }}}" alt="Profile Image"></p>
+                        </div>
+                        <div class="col-sm-8">
                             <!-- player ranking in team by aggregate ratings -->
                             <p class="player-team-rank">
-                                Ranked #{{{ $player->getAggregateSkillRankingWithinTeam() }}} 
-                                player in <a href="{{{ $team->url }}}">{{{ $team->name }}} FC</a>
+                                @if( $player->rankInTeam != -1 )
+                                    Ranked #<span class="player-team-ranking">{{ $player->rankInTeam }}</span>
+                                     player in 
+                                    <a href="{{{ $team->url }}}">{{{ $team->name }}} FC</a>
+                                @endif
                             </p>
-                        @else
-                            <p>({{{$player->name}}} has no ratings. Rate them below)</p>
-                        @endif
-                        <p><strong>Nationality: </strong>{{ $player->nationality }}</p>
-                        <p><strong>Height: </strong>{{ $player->height }}m</p>
-                        <p><strong>Weight: </strong>{{ $player->weight }}kg</p>
-                        
+                            <p><strong>Nationality: </strong>{{ $player->nationality }}</p>
+                            <p><strong>Height: </strong>{{ $player->height }}m</p>
+                            <p><strong>Weight: </strong>{{ $player->weight }}kg</p>
+                            
+                        </div>
                     </div>
+                    <!-- Only display average ratings if ratings for this player exist -->
+                    @if( $player->rankInTeam != -1 )
+                        <div class="col-sm-6 chart-section header-chart">
+                            <div class="col-sm-8 chart">
+                                <canvas id="ratingBySkill"></canvas>
+                            </div>
+                            <div class="col-sm-4 legend">
+                                <h5><strong>Average Rating by Skill</strong></h5>
+                                <strong><div id="barLegend"></div></strong>
+                            </div>
+                        </div>
+                    @else
+                        <div class="col-sm-6">
+                            <p>chart placeholder</p>
+                        </div>
+                    @endif
                 </div>
-                <!-- Only display average ratings if ratings for this player exist -->
-                @if( $player->getAggregateSkillRankingWithinTeam() != -1 )
-                    <div class="col-sm-6 chart-section header-chart">
-                        <div class="col-sm-8 chart">
-                            <canvas id="ratingBySkill"></canvas>
-                        </div>
-                        <div class="col-sm-4 legend">
-                            <h5><strong>Average Rating by Skill</strong></h5>
-                            <strong><div id="barLegend"></div></strong>
-                        </div>
-                    </div>
-                @endif
             </div>
         </div>
     </div>
@@ -79,12 +80,11 @@
         <span id="message-text"></span>
     </div>
 
-    <!-- panels here -->
     <!-- ratings form -->
-    <div class="row well">
-        <h3>Rate {{ $player->name }}</h3>
-        <div class="col-md-12">
-      
+    <div class="row">
+        <div class="col-sm-12 rate-form">
+            <h3>Rate {{{ $player->name }}}</h3>
+            
             <form 
                 class="form-horizontal rate-player-form" 
                 role="form"
@@ -94,14 +94,16 @@
             >
 
                 <input type="hidden" name="player_id" id="player_id" value="{{ $player->id }}">
-              
+                
+                <h4>Using these criteria:</h4>
                 <div class="row skills">
-                    <h5>Using these criteria:</h5>
-                    <!-- different attributes to rate a player on -->
+                    <!-- skills -->
                     @foreach( $skills as $skill)
                         <div class="form-group">
-                            <label class="skill-label">{{ ucfirst($skill->name) }}</label>
-                            <div class="col-sm-10 rating-stars" data-skill="{{ $skill->id }}">
+                            <div class="col-sm-3 skill-label">
+                                <label>{{ ucfirst($skill->name) }}</label>
+                            </div>
+                            <div class="col-sm-9 rating-stars" data-skill="{{ $skill->id }}">
                                 <span class="glyphicon glyphicon-star-empty"></span>
                                 <span class="glyphicon glyphicon-star-empty"></span>
                                 <span class="glyphicon glyphicon-star-empty"></span>
@@ -110,9 +112,32 @@
                             </div>
                         </div>
                     @endforeach
-                </div> <!-- end row skills row -->
 
-                <!-- row for team y vs team x -->  
+                    <!-- game context against <team> -->
+                    <div class=" col-sm-12">
+                        <!-- row for team y vs team x -->
+                        <h4>
+                            Playing in 
+                            <div class="btn-group">
+                                <button class="btn btn-large btn-primary">{{{ $team->name }}}</button>
+                            </div>
+                             against 
+                            <div class="btn-group dropdown">
+                                <button class="btn btn-primary btn-large dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                    Select a team
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                    @foreach( Team::whereLastKnownLeagueId($league->id)->orderBy('name','asc')->get() as $otherTeam)
+                                        @unless( $otherTeam->id == $team->id )
+                                            <li role="presentation"><a href="#">{{{ $otherTeam->name }}}</a></li>
+                                        @endunless
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </h4>
+                    </div>
+                </div> <!-- end row skills row -->
                 
                 <!--  <div class="share-buttons">
                     <ul>
@@ -130,7 +155,6 @@
                     </ul>
                 </div> -->
 
-                <input type="hidden" id="player_id" value="1">
                 <div class="form-group">
                     <div class="col-sm-12">
                     <input 
@@ -141,28 +165,78 @@
                     >
                     </div>
                 </div>
-
             </form>
+        </div> <!-- end col-sm-9 rate-form -->
+    </div>    
+    <!-- Your Ratings -->
+    <div class="row userRating">
+        <div class="col-sm-8 chart">
+            <canvas id="yourRating"></canvas>
         </div>
-    </div> <!-- end row well div -->
-
-    <div class="row well chart-section">
-        <h3>Statistics</h3>
-        <!-- Your Ratings -->
-        @if( $player->getAggregateSkillRankingWithinTeam() != -1 )
-            <div class="col-sm-6">
-                <div class="col-sm-8 chart">
-                    <canvas id="yourRating"></canvas>
+        <div class="col-sm-4 legend">
+            <h4><strong>Your Rating vs The Average</strong></h4>
+            <strong><div id="radarLegend"></div></strong>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Statistics</h3>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <button class="btn btn-primary btn-block page-views-badge" type="button">
+                        <span class="badge">
+                            @if( PageCounter::getCounter()->counter )
+                                {{ PageCounter::getCounter()->counter + 1 }} 
+                            @else
+                                1
+                            @endif
+                        </span> Page Views
+                    </button>
                 </div>
-                <div class="col-sm-4 legend">
-                    <h5><strong>Your Rating vs The Average</strong></h5>
-                    <strong><div id="radarLegend"></div></strong>
+                <div class="col-xs-12 col-sm-6">
+                    <button class="btn btn-success btn-block ratings-badge" type="button">
+                        <span class="badge">
+                            {{ $player->ratingCount }}
+                        </span> Ratings for {{{$player->name}}}
+                    </button>
                 </div>
             </div>
-        @endif
+        </div> <!-- end col-sm-6 -->
+    </div> <!-- end row -->
+    
+    <!-- rest of team -->
+    <div class="player-thumbnails">
+        <div class="row well">
+            @if( $team )
+                <h3>
+                    <a href="{{{ $team->url }}}">
+                        <img src="{{{ $team->badge_image_url }}}" alt="{{{ $team->name }}} badge missing">
+                        {{{ $team->name }}}
+                    </a> Members
+                </h3>
+            @endif
+            @if( $team->lastKnownPlayers() )
+                @foreach( $team->lastKnownPlayers()->get() as $teamMate )
+                    @if( $player->id != $teamMate->id )
+                        <div class="col-sm-4 col-md-2">
+                            <a href="{{ $teamMate->url }}">
+                                <div class="thumbnail">
+                                    <p class="team-mate-name">
+                                        {{{ $teamMate->name }}}
+                                    </p>
+                                    <div class="team-mate-image">
+                                        <img class="thumbnail profile" src="{{ $teamMate->image_url }}" alt="{{{ $teamMate->name }}} profile image missing">
+                                    </div>
+                                </div>
+                            </a>
+                        </div> <!-- end col-sm-4 col-md-2 -->
+                    @endif
+                @endforeach
+            @endif
+        </div>
     </div>
-
-    <!-- rest of team -->    
+</div>
 
 @stop
 
@@ -173,6 +247,9 @@
     $('#response-message').hide();
 
     $(function(){
+        // create globals we need.
+        // This must be at the top of the script for the charts to load properly.
+        window.ajaxData = getRating();
 
         var ratingSummary;
         // get "nice" averages data for charts (instead of grabbing panel info)
@@ -188,16 +265,12 @@
                 // set ratingSummary as a variable to create charts below
                 ratingSummary = json;
                 // create initial charts on page load.
-                chart("yourRating", "Radar", "radarLegend");
                 chart("ratingBySkill", "Bar", "barLegend");
             },
             error: function(e) {
                 console.log(e);
             }
         });
-
-        // create globals we need.
-        window.ajaxData = getRating();
 
         function chart(canvas, chartType, legendDiv) {
             var chartLabels = [];
@@ -224,6 +297,7 @@
             createChart(chartLabels, averageData, userData, canvas, legendDiv, chartType);
         }
 
+        // toggle filled in stars
         $('.rating-stars span').click(function(){
             // add stars to star-icon clicked
             $(this).removeClass('glyphicon-star-empty')
@@ -242,8 +316,8 @@
 
         function getRating() {
             ajaxData = {
-                player_id:  $('#player_id').val(),
-                ratings:    {}
+                player_id: $('#player_id').val(),
+                ratings: {}
             };
 
             $('.rating-stars').each(function () {
@@ -311,16 +385,26 @@
                     $.each(json, function(skill, value) {
                         $('.' + skill).text(Number(value).toFixed(1) + '/5');
                     });
+                    
+                    // update stats on the view
+                    // recheck the player rank and change text to match
+                    // if the span with the rank exists, update the number
+                    // else generate the content of '.player-team-rank'
+                    if( $('.player-team-rank > .badge') ){
+                        $('.player-team-rank').find('.badge').text('Ranked #{{{ $player->rankInTeam }}}');
+                    }
+                    else {
+                        $('.player-team-rank').replaceWith('Ranked {{ $player->rankInTeam }} player in {{{ $team->name }}} FC');
+                    }
 
-                    // recolour panels if stats change averages.
-                    colourStatPanels();
-
+                    // update number of ratings for this player
+                    $('.ratings-badge').find('.badge').text("{{{ $player->ratingCount + 1 }}}");
                     // hide the form
-                    $this.parents('.row').slideUp(300);
-
-                    // recreate chart to take into account user ratings.
+                    $('.rate-form').parents('.row').slideUp(300);
+                    
+                    // recreate and show charts
+                    $('.userRating').show();
                     chart("yourRating", "Radar", "radarLegend");
-                    chart("ratingBySkill", "Bar", "barLegend");
 
                     // Ensures page will not break if a user is not logged in
                     @if(Auth::check())

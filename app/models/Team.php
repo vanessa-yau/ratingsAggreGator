@@ -68,7 +68,7 @@ EOT
         
         // THIS WILL BECOME VERY SLOW WITH LOTS OF RATINGS --- WE CAN CACHE IT
         $teamRank = $this->name."AggregatePlayerRanks";
-        $expiresAt = Carbon::now()->addDays(1);
+        $expiresAt = Carbon::now()->addMinutes(10);
         Cache::put($teamRank, $results, $expiresAt);
         return $results;
     }

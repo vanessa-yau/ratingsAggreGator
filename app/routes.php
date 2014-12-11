@@ -69,7 +69,7 @@ Route::group(['before' => 'env'], function()
 });
 
 Route::get('test', function() {
-    return View::make('magpie');
+    return Player::find(148);
 });
 
 Route::get('/averageRatingSummary',[

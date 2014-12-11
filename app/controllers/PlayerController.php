@@ -3,6 +3,7 @@
 class PlayerController extends \BaseController {
 
 	public function __construct() {
+		// page views counter filter
 		$this->afterFilter('plusone', [
 			'only' => [
 				'index',
@@ -83,7 +84,7 @@ class PlayerController extends \BaseController {
 			$lastKnownPlayers = null;
 			$league = null;
 		}
-		$ratingSummary = $player->getRatingSummary();
+		$ratingSummary = $player->ratingSummary;
 
 		// change back to player-profile
 		return View::make('player-test', compact('player', 'skills', 'ratingSummary' ,'team', 'league'));
@@ -177,7 +178,7 @@ class PlayerController extends \BaseController {
 	// hack to get the player average stats directly in js
 	public function getNiceRatingSummary(){
 		$id = Input::get('id');
-		$stats =  Player::find($id)->getRatingSummary();
+		$stats =  Player::find($id)->ratingSummary;
 		foreach( $stats as $name => $stat){
 			$name = ucfirst($name);
 			$stat = round($stat, 1);

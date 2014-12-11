@@ -14,6 +14,14 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 
     protected $hidden = ['ratings'];
 
+    // add some dynamic attributes that will be added to the model when 
+    // it gets converted into its JSON representation
+    protected $appends = [
+        'ratingSummary',
+        'ratingCount',
+        'rankInTeam'
+    ];
+
 	/**
 	 * The database table used by the model.
 	 *
@@ -96,7 +104,7 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
     }
 
     // returns an array of averages for all skills a player is rated on
-    public function getRatingSummary() {
+    public function getRatingSummaryAttribute() {
     	$ratedSkills = $this->getRatedSkills();
 
 		$averages = [];
@@ -108,7 +116,7 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
     }
 
     // returns count of ratings for the player
-    public function countTotalPlayerRatings() {
+    public function getRatingCountAttribute() {
         $ratings = Rating::wherePlayerId($this->id)->count();
         // since we require all five skills to be rated on in one sitting
         // divide total database rating entries by 5
@@ -117,13 +125,13 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
 
     // Note: this is 1-based index for the benefit of the view
     // gets player rank in team based on sum of all values for skills
-    public function getAggregateSkillRankingWithinTeam() {
+    public function getRankInTeamAttribute() {
         $team = Team::whereId($this->last_known_team)->first();
 
         // This gets us a list of players ordered by mean rating.
-        if (Cache::has( $team->name."AggregatePlayerRanks" ))
+        if (Cache::has( $team->name."PlayerRanks" ))
         {
-            $results = Cache::get( $team->name."AggregatePlayerRanks" );
+            $results = Cache::get( $team->name."PlayerRanks" );
         }
         else {
             // the ranks have not yet been generated so run func to generate them.
@@ -142,6 +150,10 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
                     ++$i;
                     return $i; // Send the 1-based index to the row
                 }
+            }
+            // else this isn't the player we are looking for
+            else {
+                ++$i;
             }
         }
     }
