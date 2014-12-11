@@ -142,6 +142,12 @@ Route::get('/about/meet-the-team', [
     }
 ]);
 
+// about the project, *in progress*
+Route::get('/about', function()
+{
+    return 'About RatinGator...';
+});
+
 Route::get('/help/contact-us', [
     'as' => 'contact-us',
     function(){
