@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-4">
             <h2>Details</h2>
-            <ul class="list-group">
+            <ul class="list-group user-details">
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-sm-4">
@@ -11,7 +11,7 @@
                         <div class="col-sm-8">
                             <strong>Username:</strong><span class="user-username"> {{ $user->username }}</span><br />
                             <strong>Name:</strong><span class="user-name"> {{ $user->first_name }} {{ $user->surname }}</span><br />
-                            <strong>Email:</strong><span class="user-email"> <a href="mailto:{{ $user->email_address }}">{{ $user->email_address }}</a></span><br />
+                            <strong>Email:</strong><span class="user-email"> <a href="mailto:{{ $user->email }}">{{ $user->email_address }}</a></span><br />
                             <strong>Country:</strong><span class="user-country"> {{ $user->country_code }}</span><br />
                         </div>
                     </div>

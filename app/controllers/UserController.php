@@ -63,7 +63,7 @@ class UserController extends \BaseController {
 			'surname' 			=> Input::get('surname'),
 			'username' 			=> Input::get('username'),
 			'password' 			=> Hash::make(Input::get('password')),
-			'email_address' 	=> Input::get('email_address'),
+			'email' 			=> Input::get('email_address'),
 			'country_code' 		=> Input::get('country'),
 			'city' 				=> Input::get('city'),
 		));
@@ -129,7 +129,7 @@ class UserController extends \BaseController {
 		    $user->first_name = $userData['first_name'];
 		    $user->surname = $userData['surname'];
 		    $user->username = $userData['username'];
-		    $user->email_address = $userData['email_address'];
+		    $user->email = $userData['email_address'];
 		    $user->save();
 		    return $user;
 		} else {

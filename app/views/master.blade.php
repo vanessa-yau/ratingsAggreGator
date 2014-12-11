@@ -9,6 +9,8 @@
 		{{ HTML::style("http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css") }}
 		{{ HTML::style("/css/navbar.css") }}
 		{{ HTML::style("/css/main.css") }}
+		{{ HTML::style("http://fonts.googleapis.com/css?family=PT+Sans:regular,bold") }}
+
 		
 		@yield('style')
 	</head>
@@ -83,9 +85,14 @@
 
 			// Autoprompt for Satisfaction and SmartVote (only displayed under certain conditions)
 			UserVoice.push(['autoprompt', {}]);
+
+			@include('layouts.routes');
+
 		</script>
 
-		@yield('js')
+		@section('js')
+
+		@show
 
 	</body>
 <!-- </html> -->

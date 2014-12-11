@@ -145,8 +145,6 @@
                     </div> <!-- end form group -->
                 </div> <!-- end row div -->
 
-                
-
                <!--  <div class="share-buttons">
                     
                     <ul>

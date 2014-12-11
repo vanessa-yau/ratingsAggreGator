@@ -149,8 +149,9 @@ class PlayerController extends \BaseController {
 	 * @return Response
 	 *
 	 */
-	public function search($searchQuery) {
-
+	public function search($searchQuery = null) {
+		if (!$searchQuery)
+			$searchQuery = Input::get('query');
 		//Call the search function in the Player model
 
 		// if ($searchQuery == null || $searchQuery =="") {
@@ -174,15 +175,16 @@ class PlayerController extends \BaseController {
 
 		return Player::whereIn('id', $randomPlayerIds)->get();
 	}
-
-	// hack to get the player average stats directly in js
-	public function getNiceRatingSummary(){
-		$id = Input::get('id');
-		$stats =  Player::find($id)->ratingSummary;
-		foreach( $stats as $name => $stat){
-			$name = ucfirst($name);
-			$stat = round($stat, 1);
+	public function getAllPlayersOfTeam() {
+		$tottPlayers = [];
+		foreach (Player::whereLastKnownTeam(6)->get() as $player) {
+			//echo $player->name . "\n"
+			array_push($tottPlayers, $player->name);
 		}
-		return Response::json($stats, 200);
+		// write to a json file
+		$jsonTottToFile = fopen('app/storage/tottPlayers.json', 'w');
+		fwrite($jsonTottToFile, json_encode($tottPlayers));
+		fclose($jsonTottToFile);
+		return;
 	}
 }

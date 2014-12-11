@@ -25,6 +25,7 @@ class MigrateSeedPlayersEnglishPremierLeague extends Migration {
         // use decoded json file, (if there is one provided)
         if ($json) {
             // add new league to league table
+            // note that the *official* name of the EPL is Barclays...
             if (! League::whereName('Barclays Premier League')->count() ) {
                 $league = League::create([
                     'name' => 'Barclays Premier League',

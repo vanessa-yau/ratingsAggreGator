@@ -1,68 +1,51 @@
-$(function () { 
-	// For the moment - get a good, un-ajax search working,
-	// then worry about building in the ajax search
-	// 2014-11-21
-	
+/* JS File */
 
-	$(".search-form").submit(function (e) {
-		e.preventDefault();
-		$('#search-icon').removeClass().addClass("fa fa-circle-o-notch fa-spin");
+// Start Ready
+$(document).ready(function() {  
 
-		// turn spaces into + for lovely URLs
-		var query = $(this).find('[name=search-box]').val();
-
-		//Remove preceding and trailing whitespace on the search query	
-		query = $.trim(query);
-		
-		//Check that the query has one or more alphabetic letters in it
-		if (query != "" && query != null) {
-			query = query.replace(' ', '+');
-
-		// transition to the required page
-			window.location = ('/search/' + query);
-		}
-
-		//Block the search if no alphabetic characters
-		return false;
+	// Icon Click Focus
+	$('div.icon').click(function(){
+		$('input#search').focus();
 	});
+
+	// Live Search
+	// On Search Submit and Get Results
+	function search(query_value) {
+		
+		query_value = $.trim(query_value);
+
+		if(query_value){
+			query_value = query_value.replace(' ', '+');
+			$.ajax({
+				type: "GET",
+				url: window.routes.players.search,
+				data: { query: query_value },
+				cache: false,
+				success: function(html){
+					$("ul#results").html(html);
+				}
+			});
+		}return false;    
+	}
+
+	$("input#search").on("keyup", function(e) {
+		// Set Timeout
+		clearTimeout($.data(this, 'timer'));
+
+		// Set Search String
+		var search_string = $(this).val();
+
+		// Do Search
+		if (search_string == '') {
+			$("ul#results").fadeOut();
+			$('h4#results-text').fadeOut();
+		}else{
+			$("ul#results").fadeIn();
+			$('h4#results-text').fadeIn();
+			$(this).data('timer', setTimeout(function () {
+				search(search_string);
+			}, 100));
+		};
+	});
+
 });
-
-// function search(e) {
-
-// 	var searchQuery = $('.search-box').val();
-// 	console.log("search query is: " + searchQuery);
-// 	var formObj = $(this);
-// 	var formURL = formObj.attr("action");
-// 	$.ajax({
-// 		url: "/players/search",
-// 		type: 'GET',
-// 		data: { 'search-box': $('#search-box').val() },
-
-// 		success: function(data, textStatus, jqXHR) {
-
-// 			$('#container')
-// 				.empty()
-// 				.append(
-// 					$(data).find('.search-results')
-// 				);
-
-// 		},
-// 		error:function(x,e) {
-
-// 			console.log(x);
-// 			if(x.status==0){
-// 				alert('You are offline!!\n Please Check Your Network.');
-// 			}else if(x.status==404){
-// 				alert('Requested URL not found.');
-// 			}else if(x.status==500){
-// 				alert('Internel Server Error.');
-// 			}else if(e=='parsererror'){
-// 				alert('Error.\nParsing JSON Request failed.');
-// 			}else if(e=='timeout'){
-// 				alert('Request Time out.');
-// 			}else {
-// 				alert('Unknow Error.\n'+x.responseText);
-// 			}
-// 		}  
-// 	});
-// };
