@@ -10,22 +10,50 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
-Route::get('/', function() {
-    ( League::count() > 0 ) 
-        ? $leagues = League::all() 
-        : $leagues = null;
-
-    return View::make('home', [
-        'players' => Player::mostPopular(),
-        'leagues' => $leagues
-    ]);
+// to gather data about page views
+Route::filter('plusone', function() {
+    PageCounter::plusOne();
 });
 
-Route::get('/register', [
-    'as' => 'users.create',
-    'uses' => 'UserController@create'
-]);
+Route::group(['after' => 'plusone'], function() {
+    Route::get('/',function() {
+        ( League::count() > 0 ) 
+            ? $leagues = League::all() 
+            : $leagues = null;
+
+        return View::make('home', [
+            'players' => Player::mostPopular(),
+            'leagues' => $leagues
+        ]);
+    });
+
+    Route::get('/register', [
+        'as' => 'users.create',
+        'uses' => 'UserController@create'
+    ]);
+
+
+    Route::get('search/{query}', [
+        'as' => 'players.search',
+        'uses' => 'PlayerController@search'
+    ]);
+
+    // navbar footer routes
+    Route::get('/about/meet-the-team', [
+        'as' => 'meet-the-team',
+        function(){
+            return View::make('meet-the-team');
+        }
+    ]);
+
+    Route::get('/help/contact-us', [
+        'as' => 'contact-us',
+        function(){
+            return View::make('contact-us');
+        }
+    ]);
+    
+});
 
 Route::group(['before' => 'env'], function()
 {
@@ -41,8 +69,13 @@ Route::group(['before' => 'env'], function()
 });
 
 Route::get('test', function() {
-    return View::make('magpie');
+    return Player::find(148);
 });
+
+Route::get('/averageRatingSummary',[
+    'as' => 'players.niceRatingSummary',
+    'uses' => 'PlayerController@getNiceRatingSummary'
+]);
 
 // Auto generate all CRUD routes to your controllers
 Route::resource('attributes', 'AttributeController');
@@ -105,10 +138,6 @@ Route::get('logout', [
 ]);
 
 
-Route::get('search/{query?}', [
-    'as' => 'players.search',
-    'uses' => 'PlayerController@search'
-]);
 
 Route::get('hello', [
     'as' => 'hello',
@@ -134,26 +163,12 @@ Route::post('register', [
     'uses' => 'UserController@store'
 ]);
 
-// navbar footer routes
-Route::get('/about/meet-the-team', [
-    'as' => 'meet-the-team',
-    function(){
-        return View::make('meet-the-team');
-    }
-]);
-
 // about the project, *in progress*
 Route::get('/about', function()
 {
     return 'About RatinGator...';
 });
 
-Route::get('/help/contact-us', [
-    'as' => 'contact-us',
-    function(){
-        return View::make('contact-us');
-    }
-]);
 
 Route::get('/tottPlayers', [
     'as' => 'tottPlayers',

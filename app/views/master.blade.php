@@ -4,13 +4,13 @@
 		<meta name="google-site-verification" content="eWX91WMfaSNh4VZ96tjKofyVpthPLTm-5hB2NWL_nu8" />
 		<title>Ratingator</title>
 		<!-- changed script and stylesheet sources to use CDNs, also available in /public -->
+		{{ HTML::style("/css/search-results.css")}}
 		{{ HTML::style("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css") }}
 		{{ HTML::style("http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css") }}
 		{{ HTML::style("http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css") }}
 		{{ HTML::style("/css/navbar.css") }}
 		{{ HTML::style("/css/main.css") }}
 		{{ HTML::style("http://fonts.googleapis.com/css?family=PT+Sans:regular,bold") }}
-
 		
 		@yield('style')
 	</head>

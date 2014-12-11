@@ -74,7 +74,7 @@ class RatingController extends \BaseController {
         	// remember that this session has already had a rating
         	// Session::put('rated' . $player->id, true);
 
-        	return $player->getRatingSummary();
+        	return $player->ratingSummary;
         }
 	}
 
