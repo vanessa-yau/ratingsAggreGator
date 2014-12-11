@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-4">
             <h2>Details</h2>
-            <ul class="list-group">
+            <ul class="list-group user-details">
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-sm-4">

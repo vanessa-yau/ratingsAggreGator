@@ -90,7 +90,9 @@
 
 		</script>
 
-		@yield('js')
+		@section('js')
+
+		@show
 
 	</body>
 <!-- </html> -->

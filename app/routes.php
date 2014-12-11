@@ -57,6 +57,8 @@ Route::resource('ratings', 'RatingController');
 
 Route::resource('users', 'UserController');
 
+Route::resource('conversations', 'ConversationController');
+
 Route::get('/userTimeline', [
     'as' => 'twitter.userTimeline',
     'uses' => 'TwitterController@getUserTimeline'
