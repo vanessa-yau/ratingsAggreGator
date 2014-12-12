@@ -13,7 +13,8 @@ class AddDutchLeagueBadges extends Migration {
 	public function up()
 	{
 		// dutch teams
-		$teams = Team::whereLastKnownLeagueId(8)->get();
+		$league = League::whereName('Dutch Eredivisie')->first();
+		$teams = Team::whereLastKnownLeagueId($league->id)->get();
 		
 		foreach ( $teams as $team ) {
 			// check if the team badge exists if not use generic image badge
@@ -33,12 +34,13 @@ class AddDutchLeagueBadges extends Migration {
 	public function down()
 	{
 		// dutch teams
-		$teams = Team::whereLastKnownLeagueId(8)->get();
+		$league = League::whereName('Dutch Eredivisie')->first();
+		$teams = Team::whereLastKnownLeagueId($league->id)->get();
 		// remove the badges
 		foreach ( $teams as $team ){
 			$team->badge_image_url = "/images/teamBadges/placeholder.png";
+			$team->save();
 		} // end for each
 		// save each one
-		$team->save();
 	} // end func
 } // end class

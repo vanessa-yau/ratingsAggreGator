@@ -31,9 +31,9 @@ class DatabaseOverhaul20141121 extends Migration {
 		Schema::drop('skills');
 		Schema::create('attributes', function($table)
 		{
-			  $table->increments('id');
-        $table->string('skill', 100);
-        $table->timestamps();
+			$table->increments('id');
+        	$table->string('skill', 100);
+        	$table->timestamps();
 		});
 	}
 } // close class	

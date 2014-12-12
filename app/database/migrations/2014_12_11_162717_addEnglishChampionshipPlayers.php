@@ -131,6 +131,6 @@ class AddEnglishChampionshipPlayers extends Migration {
             } // end if
         } // end foreach
         // then delete the league (that may have) been created
-        $league->delete();
+        $league->truncate();
 	} // end func
 }

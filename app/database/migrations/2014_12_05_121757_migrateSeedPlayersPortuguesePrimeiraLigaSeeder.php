@@ -121,13 +121,13 @@ class MigrateSeedPlayersPortuguesePrimeiraLigaSeeder extends Migration {
                     }
 
                     // finally delete team after players disassociated
-                    $team->delete();
+                    $team->truncate();
                     echo($team->name . " deleted ===========================================\n");
                 } // end if
             } // end if
         } // end foreach
         // then delete the league (that may have) been created
-        $league->delete();
+        $league->truncate();
 	}
 
 }

@@ -29,7 +29,7 @@ class MigrateSeedSportFootball extends Migration {
 		// if football is found, delete it
 		if (Sport::whereName('football')) {
 			$football = Sport::whereName('football');
-			$football->delete();
+			$football->truncate();
 		} // end if
 	} // end func
 } // end class
