@@ -1,10 +1,10 @@
 @if(Auth::user())
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-            <strong class="user-username">{{ Auth::user()->username }}</strong> <span class="caret"></span>
+            <strong class="user-username">{{{ Auth::user()->username }}}</strong> <span class="caret"></span>
         </a>
         <ul class="dropdown-menu" role="menu">
-            <a href="{{ Auth::user()->url }}" class="btn btn-block account-link">
+            <a href="{{{ Auth::user()->url }}}" class="btn btn-block account-link">
                 <li>
                     My Account <span class="glyphicon glyphicon-cog"></span>
                 </li>
