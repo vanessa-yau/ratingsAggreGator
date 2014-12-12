@@ -1,5 +1,5 @@
 <?php 
-Clockwork::info($results);
+echo Clockwork::info($results);
 ?>
 		<div class="results">
 			<ul>

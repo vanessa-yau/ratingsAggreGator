@@ -33,7 +33,7 @@ Route::group(['after' => 'plusone'], function() {
     ]);
 
 
-    Route::get('search/{query}', [
+    Route::get('search/{query?}', [
         'as' => 'players.search',
         'uses' => 'PlayerController@search'
     ]);

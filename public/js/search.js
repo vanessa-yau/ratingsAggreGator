@@ -16,6 +16,7 @@ $(document).ready(function() {
 
 		if(query_value){
 			query_value = query_value.replace(' ', '+');
+			console.log("query is:" + query_value);
 			$.ajax({
 				type: "GET",
 				url: window.routes.players.search,
