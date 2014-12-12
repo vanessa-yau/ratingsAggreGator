@@ -38,7 +38,8 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
     }
 
     public function games() {
-        return $this->belongsToMany('Game');
+        return $this->belongsToMany('Game')
+            ->withTimestamps();
     }
 
     public function lastKnownTeam() {
@@ -46,7 +47,10 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
     }
 
     public function getUrlAttribute() {
-        return URL::route('players.show', $this->id);
+        return URL::route('players.show', [
+            $this->id, 
+            Str::slug($this->name) 
+        ]);
     }
 
     // laravel magic call using $player->badge_image_url

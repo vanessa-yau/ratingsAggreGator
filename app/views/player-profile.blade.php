@@ -94,6 +94,7 @@
             >
 
                 <input type="hidden" name="player_id" id="player_id" value="{{ $player->id }}">
+                <input type="hidden" name="team1_id" id="team1_id" value="{{ $team->id }}">
                 
                 <h4>Using these criteria:</h4>
                 <div class="row skills">
@@ -114,27 +115,31 @@
                     @endforeach
 
                     <!-- game context against <team> -->
-                    <div class=" col-sm-12">
-                        <!-- row for team y vs team x -->
+                    <div class="col-sm-12">
+                        <!-- row for player's team x vs team y -->
                         <h4>
                             Playing in 
                             <div class="btn-group">
                                 <button class="btn btn-large btn-primary">{{{ $team->name }}}</button>
                             </div>
                              against 
-                            <div class="btn-group dropdown">
-                                <button class="btn btn-primary btn-large dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                    Select a team
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                    @foreach( Team::whereLastKnownLeagueId($league->id)->orderBy('name','asc')->get() as $otherTeam)
-                                        @unless( $otherTeam->id == $team->id )
-                                            <li role="presentation"><a href="#">{{{ $otherTeam->name }}}</a></li>
-                                        @endunless
-                                    @endforeach
-                                </ul>
-                            </div>
+                             <!-- drop down to select team y -->
+                            <select class="btn btn-primary" name="opposingTeam" id="opposingTeam">
+                                <option value="-1">Select a team</option>
+                                @foreach( Team::whereLastKnownLeagueId($league->id)->orderBy('name','asc')->get() as $otherTeam)
+                                    @unless( $otherTeam->id == $team->id )
+                                        <option value="{{{ $otherTeam->id }}}">{{{ $otherTeam->name }}}</option>
+                                    @endunless
+                                @endforeach
+                            </select>
+                            on 
+                            <input 
+                                class="btn btn-default"
+                                id="datepicker"
+                                name="date"
+                                type="datetime"
+                                placeholder="Enter a date: dd/mm/yyyy"
+                            >
                         </h4>
                     </div>
                 </div> <!-- end row skills row -->
@@ -237,7 +242,6 @@
         </div>
     </div>
 </div>
-
 @stop
 
 @section('js')
@@ -317,6 +321,9 @@
         function getRating() {
             ajaxData = {
                 player_id: $('#player_id').val(),
+                team1_id: $('#team1_id').val(),
+                team2_id: $('#opposingTeam').val(), // to match db col name
+                date: $('#datepicker').val(),
                 ratings: {}
             };
 
@@ -449,6 +456,12 @@
         }); // end of submit event handler
 
     }); // end document function script
+
+    // restrict date range for match_date restricted to a month before and today
+    $( "#datepicker" ).datepicker({ 
+        minDate: -30, maxDate: "+0D",
+        dateFormat: 'yy/mm/dd'
+    });
     </script>
 
 @stop

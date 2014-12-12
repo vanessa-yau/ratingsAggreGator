@@ -31,15 +31,54 @@ class RatingController extends \BaseController {
 	 */
 	public function store()
 	{
-		// get player info inputs from form
-		$player = Player::find( Input::get('player_id') );
-		$ratings = Input::get('ratings');
 
+		$ratingGraph = $this->prepareGraph();
+		return $ratingGraph['ok']
+			? $this->saveGraph($ratingGraph)
+			: Response::make($ratingGraph['messages'], 400);
+
+	}
+
+	// walks across our object graph and saves every branch
+	public function saveGraph($graph) {
+		$graph['saver']();
+		
+		return $graph['gameBranch']['player'];
+	}
+
+	// prepares all of the object graph (ratings / game?) but
+	// does not write to the DB!
+	public function prepareGraph($values = null) {
+		if (!$values)
+			$values = Input::all();
+
+		$ratingsBranch = $this->prepareRatingsBranch($values);
+		$gameBranch = $this->prepareGameBranch($values);
+
+		return [
+			'ok' => $ratingsBranch['ok'] && $gameBranch['ok'],
+			'messages' => $ratingsBranch['messages']->merge($gameBranch['messages']),
+			'saver' => function() use ($ratingsBranch, $gameBranch) {
+				$ratingsBranch['saver']();
+				$gameBranch['saver']();
+			},
+			'ratingsBranch' => $ratingsBranch,
+			'gameBranch' => $gameBranch
+		];
+	}
+
+	public function prepareRatingsBranch($values = null) {
+		if (!$values)
+			Input::all();
+
+		$values = array_only($values, ['ratings', 'player_id']);
+		
+		// build the validator
 		$validationRulesArray = [];
         $ratingsMappedAgainstSkillName = [];
-        $ratingNames = Skill::whereIn('id', array_keys($ratings))->get();
+        $ratingNames = Skill::whereIn('id', array_keys($values['ratings']))->get();
 
-		foreach ($ratings as $ratingId => $rating) {
+		foreach ($values['ratings'] as $ratingId => $rating) {
 
 			// determine the name of the skill
 			$skillName = $ratingNames->find($ratingId)->name;
@@ -51,33 +90,44 @@ class RatingController extends \BaseController {
 			$ratingsMappedAgainstSkillName[$skillName] = $rating;
 		}
 
-		$validator = Validator::make($ratingsMappedAgainstSkillName
-			, $validationRulesArray);
+		// run validators.
+		$validator = Validator::make($ratingsMappedAgainstSkillName, $validationRulesArray);
+		$models = [];
+		if ($validator->passes()) {
+			foreach ($values['ratings'] as $skill_id => $value) {
+        		
+        		$model = new Rating;
+        		$model->fill([
+        			'player_id'			=> $values['player_id'],
+		            'originating_ip'    => $_SERVER['REMOTE_ADDR'],
+		            'skill_id'	 		=> $skill_id,
+		            'value' 			=> $value,
+		            'game_id' 			=> 1,
+		            'user_id'			=> Auth::check()
+		            							? Auth::id()
+		            							: -1
+		        ]);
 
-        // if validation passes, run query to insert and return newly created rating.
-        if ($validator->fails()) {
-        	return Response::json( $validator->messages(), 400);
-        } else {
-        	foreach ($ratings as $skill_id => $value) {
-        		//if (!Session::has('rated' . $player->id))
-	        		$player->ratings()->create([
-			            'originating_ip'    => $_SERVER['REMOTE_ADDR'],
-			            'skill_id'	 		=> $skill_id,
-			            'value' 			=> $value,
-			            'game_id' 			=> 1,
-			            'user_id'			=> Auth::check()
-			            							? Auth::id()
-			            							: -1
-			        ]);
+        		$models[] = $model;
         	}
+		}
 
-        	// remember that this session has already had a rating
-        	// Session::put('rated' . $player->id, true);
-
-        	return $player->ratingSummary;
-        }
+		return [
+			'ok' => $validator->passes(),
+			'messages' => $validator->messages(),
+			'ratings' => $models,
+			'saver' => function () use ($models) {
+				foreach($models as $model) {
+					$model->save();
+				}
+			}
+		];
 	}
 
+	public function prepareGameBranch($values = null) {
+		$gameController = new GameController;
+		return $gameController->prepareGraph($values);
+	}
 
 
 	/**

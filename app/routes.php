@@ -84,7 +84,14 @@ Route::resource('leagues', 'LeagueController');
 
 Route::resource('teams', 'TeamController');
 
-Route::resource('players', 'PlayerController');
+Route::resource('players', 'PlayerController', [
+    'except' => ['show']
+]);
+
+Route::get('players/{id}/{slug?}', [
+    'as' => 'players.show',
+    'uses' => 'PlayerController@show'
+]);
 
 Route::resource('ratings', 'RatingController');
 

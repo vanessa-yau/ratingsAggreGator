@@ -16,4 +16,8 @@ class Sport extends Eloquent implements UserInterface, RemindableInterface {
     public function players() {
     	return $this->hasMany('Player');
     }
+
+    public function games() {
+        return $this->hasMany('Game');
+    }
 }

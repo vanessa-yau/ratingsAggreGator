@@ -18,7 +18,4 @@ class Game_Player extends Eloquent implements UserInterface, RemindableInterface
      */
     protected $table = 'game_player';
 
-   
-
-    }
 }
