@@ -9,10 +9,10 @@
                             <img class="profile-image" src="/images/profile_images/placeholder.png" alt="profile identicon">
                         </div>
                         <div class="col-sm-8">
-                            <strong>Username:</strong><span class="user-username"> {{ $user->username }}</span><br />
-                            <strong>Name:</strong><span class="user-name"> {{ $user->first_name }} {{ $user->surname }}</span><br />
-                            <strong>Email:</strong><span class="user-email"> <a href="mailto:{{ $user->email }}">{{ $user->email_address }}</a></span><br />
-                            <strong>Country:</strong><span class="user-country"> {{ $user->country_code }}</span><br />
+                            <strong>Username:</strong><span class="user-username"> {{{ $user->username }}}</span><br />
+                            <strong>Name:</strong><span class="user-name"> {{{ $user->first_name }}} {{{ $user->surname }}}</span><br />
+                            <strong>Email:</strong><span class="user-email"> <a href="mailto:{{ $user->email }}">{{{ $user->email_address }}}</a></span><br />
+                            <strong>Country:</strong><span class="user-country"> {{{ $user->country_code }}}</span><br />
                         </div>
                     </div>
                 </li>
