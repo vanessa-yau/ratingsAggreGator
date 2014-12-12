@@ -13,7 +13,8 @@ class AddEngChampBadges extends Migration {
 	public function up()
 	{
 		// english championship teams
-		$teams = Team::whereLastKnownLeagueId(11)->get();
+		$league = League::whereName('English Football League Championship')->first();
+		$teams = Team::whereLastKnownLeagueId($league->id)->get();
 		
 		foreach ( $teams as $team ) {
 			// check if the team badge exists if not use generic image badge
@@ -32,6 +33,9 @@ class AddEngChampBadges extends Migration {
 	 */
 	public function down()
 	{
+		$league = League::whereName('English Football League Championship')->first();
+		$teams = Team::whereLastKnownLeagueId($league->id)->get();
+		
 		// english championship teams
 		$teams = Team::whereLastKnownLeagueId(11)->get();
 		// remove the badges
