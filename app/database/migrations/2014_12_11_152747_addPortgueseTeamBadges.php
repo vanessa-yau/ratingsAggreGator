@@ -39,8 +39,8 @@ class AddPortgueseTeamBadges extends Migration {
 		// remove the badges
 		foreach ( $teams as $team ){
 			$team->badge_image_url = "/images/teamBadges/placeholder.png";
+			$team->save();
 		} // end for each
 		// save each one
-		$team->save();
 	} // end func
 }
