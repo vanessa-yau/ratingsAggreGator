@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<!-- google web tools verification. -->
 		<meta name="google-site-verification" content="eWX91WMfaSNh4VZ96tjKofyVpthPLTm-5hB2NWL_nu8" />
 		<title>Ratingator</title>
 		<!-- changed script and stylesheet sources to use CDNs, also available in /public -->
