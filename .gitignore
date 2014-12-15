@@ -11,4 +11,3 @@ Thumbs.db
 *.pem
 phpIni.*
 cache
-/public/images/profile_images/*.jpg
