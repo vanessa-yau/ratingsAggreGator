@@ -39,6 +39,7 @@ class Team extends Eloquent {
         // for <<<EOT ... EOT (like double quotes)
         // see http://php.net/manual/en/language.types.string.php
         // param1 is sql query, param2 is ? args
+        // table names must be completely in lower case
         $results = DB::select(
             <<<EOT
                 SELECT 
