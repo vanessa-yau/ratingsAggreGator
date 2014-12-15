@@ -32,6 +32,9 @@ class ConversationsController extends \BaseController {
 	public function store()
 	{
 		// create a new conversation associated with the current user and their intended recipient
+		//$convArray = Auth::user()->conversations()->get()->toArray();
+		//var_dump($convArray);
+
 		$username = Input::get('username');
 		$user = User::whereUsername($username)->first();
 		if($user) {
