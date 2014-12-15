@@ -53,13 +53,13 @@ class Team extends Eloquent {
                         ratings.id as `ratings.id`,
                         players.name as `player_name`
                     FROM PLAYERS
-                    # use left outer join to get rated and unrated entries
-                    # in the ratings table for this team
+                    /* use left outer join to get rated and unrated entries */
+                    /* in the ratings table for this team */
                     LEFT OUTER JOIN ratings
                     ON ratings.player_id = players.id
                     WHERE players.last_known_team = ?
                 ) AllRatingsForliverpoolPlayers 
-                #alias above required for returning table in subquery
+                /* alias above required for returning table in subquery */
                 GROUP BY player_id
                 ORDER BY mean_rating DESC
 EOT

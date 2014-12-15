@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <h3>
-                            <strong>{{ $player->name }}</strong>
+                            <strong>{{{ $player->name }}}</strong>
                         </h3>
                         <div class="col-sm-4"> 
                             <p><img id="profile-image" src="{{{ $player->image_url }}}" alt="Profile Image"></p>
