@@ -446,8 +446,6 @@
                             }
                             mean /= count;
 
-                            //Create a twitter button and pre-fill it then click it behind the scenes
-                            //and open the button in a new window incase the user wishes to submit the tweet
                             var $hiddenTwitterButton = $('<a>')
                                 .attr('href', 'https://twitter.com/share?text=' +
                                     'I just rated {{{ $player->name }}} an average of ' + 

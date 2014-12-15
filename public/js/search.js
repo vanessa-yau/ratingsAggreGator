@@ -13,6 +13,8 @@ $(document).ready(function() {
 	function search(query_value) {
 		
 		query_value = $.trim(query_value);
+		// if (e.type == "keyup" );
+		// 	alert( "hi" );
 
 		if(query_value){
 			query_value = query_value.replace(' ', '+');
