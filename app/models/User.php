@@ -16,7 +16,10 @@ class User extends Pichkrement\Messenger\Models\User implements UserInterface, R
 	protected $table = 'users';
 
     public function getUrlAttribute() {
-        return URL::route('users.show',  Auth::user()->id);
+        return URL::route('users.show', [
+            $this->id, 
+            Str::slug($this->username) 
+        ]);
     }
 
     public function ratings() {
