@@ -9,31 +9,26 @@
 		@include('magpie')
 		<marquee class="ticker">{{ getRss("football") }}</marquee>
 	</div>
+	<div class="jumbotron">
 	<div class="row">
 		<div class="col-sm-6">
 			<h3>Most Rated Players</h3>
-			<div align="center">
-				@foreach($players as $player)
-					<div class="col-xs-12 col-sm-6 col-lg-4">
-						<a href="{{ $player->url }}">
-							<span class="name">{{ $player->name }}</span>
-							<img class="thumbnail" src="{{ $player->image_url }}" alt="Profile Image">
-						</a>
-					</div>
-				@endforeach 
-			</div> <!-- close most rated players div -->
-		</div>
-		<div class="col-sm-6">
-			<h3>Your Teams</h3>
-			<div align="center">
-				User teams here.
-			</div> <!-- close most rated players div -->
-		</div>
+		<div align="center">
+			@foreach($players as $player)
+				<div class="col-xs-12 col-sm-6 col-lg-4">
+					<a href="{{ $player->url }}">
+						<span class="name">{{ $player->name }}</span>
+						<img class="thumbnail" src="{{ $player->image_url }}" alt="Profile Image">
+					</a>
+				</div>
+			@endforeach 
+		</div> <!-- close most rated players div -->
 	</div> <!-- close row -->
+	</div><!-- close jumbotron -->
 	
 	<!-- leagues -->
 	<div class="row">
-		<h3>Leagues We Track</h3>
+		<h3>Leagues We Track <span class="label label-default">More soon!</span></h3>
 		@foreach( $leagues as $league )
 		<div class="col-sm-2 league">
 			<a href="{{{ $league->url }}}">
@@ -56,3 +51,4 @@
 		});
 	</script>
 @stop
+

@@ -6,22 +6,22 @@
                 <div class="col-sm-6">
                     <div class="input-group">
                         <span class="input-group-addon">Name</span>
-                        <input type="text" name="name" class="form-control" placeholder="name" value="{{ Auth::user()->first_name }}">
+                        <input type="text" name="name" class="form-control" placeholder="name" value="{{{ Auth::user()->first_name }}}">
                     </div>
                     <br />
                     <div class="input-group">
                         <span class="input-group-addon">Surname</span>
-                        <input type="text" name="surname" class="form-control" placeholder="surname" value="{{ Auth::user()->surname }}">
+                        <input type="text" name="surname" class="form-control" placeholder="surname" value="{{{ Auth::user()->surname }}}">
                     </div>
                     <br />
                     <div class="input-group">
                         <span class="input-group-addon">Username</span>
-                        <input type="text" name="username" class="form-control" placeholder="username" value="{{ Auth::user()->username }}">
+                        <input type="text" name="username" class="form-control" placeholder="username" value="{{{ Auth::user()->username }}}">
                     </div>
                     <br />
                     <div class="input-group">
                         <span class="input-group-addon">Email</i></span>
-                        <input type="text" name="email" class="form-control" placeholder="email address" value="{{ Auth::user()->email }}">
+                        <input type="text" name="email" class="form-control" placeholder="email address" value="{{{ Auth::user()->email }}}">
                     </div>
                     <br />
                     <div class="input-group">
