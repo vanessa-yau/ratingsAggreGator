@@ -12,6 +12,9 @@
 		{{ HTML::style("/css/main.css") }}
 		{{ HTML::style("http://fonts.googleapis.com/css?family=PT+Sans:regular,bold") }}
 		
+		<!-- To ensure proper rendering and touch zooming -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
 		@yield('style')
 	</head>
 	<body>

@@ -17,6 +17,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ URL::route('meet-the-team') }}">Meet the Team</a></li>
                     <li><a href="{{ URL::route('contact-us') }}">Contact Us</a></li>
+                    <li><a href="{{ URL::route('about') }}">About</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
