@@ -22,31 +22,32 @@
     </div>
 
     <!-- Player stats and average ratings based on all ratings-->
-    <div class="row player-info">
+    <div class="player-info">
         <!-- do not delete the data attributes below, used in js -->
         <div class="row" data-player-id="{{{$player->id}}}" data-player-name="{{{$player->name}}}" id="player">
             <div class="col-sm-12">
+                <!-- player info -->
                 <div class="row">
                     <div class="col-sm-6">
-                        <h3>
-                            <strong>{{{ $player->name }}}</strong>
-                        </h3>
-                        <div class="col-sm-4"> 
-                            <p><img id="profile-image" src="{{{ $player->image_url }}}" alt="Profile Image"></p>
-                        </div>
-                        <div class="col-sm-8">
-                            <!-- player ranking in team by aggregate ratings -->
-                            <p class="player-team-rank">
-                                @if( $player->rankInTeam != -1 )
-                                    Ranked #<span class="player-team-ranking">{{ $player->rankInTeam }}</span>
-                                     player in 
-                                    <a href="{{{ $team->url }}}">{{{ $team->name }}} FC</a>
-                                @endif
-                            </p>
-                            <p><strong>Nationality: </strong>{{ $player->nationality }}</p>
-                            <p><strong>Height: </strong>{{ $player->height }}m</p>
-                            <p><strong>Weight: </strong>{{ $player->weight }}kg</p>
-                            
+                        <h3><strong>{{{ $player->name }}}</strong></h3>
+                        <div class="row">
+                            <div class="col-sm-4"> 
+                                <p><img id="profile-image" src="{{{ $player->image_url }}}" alt="Profile Image"></p>
+                            </div>
+                            <div class="col-sm-8">
+                                <!-- player ranking in team by aggregate ratings -->
+                                <p class="player-team-rank">
+                                    @if( $player->rankInTeam != -1 )
+                                        Ranked #<span class="player-team-ranking">{{ $player->rankInTeam }}</span>
+                                         player in 
+                                        <a href="{{{ $team->url }}}">{{{ $team->name }}} FC</a>
+                                    @endif
+                                </p>
+                                <p><strong>Nationality: </strong>{{ $player->nationality }}</p>
+                                <p><strong>Height: </strong>{{ $player->height }}m</p>
+                                <p><strong>Weight: </strong>{{ $player->weight }}kg</p>
+                                
+                            </div>
                         </div>
                     </div>
                     <!-- Only display average ratings if ratings for this player exist -->
@@ -212,16 +213,20 @@
     
     <!-- rest of team -->
     <div class="player-thumbnails">
-        <div class="row well">
-            @if( $team )
-                <h3>
-                    <a href="{{{ $team->url }}}">
-                        <img src="{{{ $team->badge_image_url }}}" alt="{{{ $team->name }}} badge missing">
-                        {{{ $team->name }}}
-                    </a> Members
-                </h3>
-            @endif
-            @if( $team->lastKnownPlayers() )
+        <div class="row">
+            <div class="col-sm-12">
+                @if( $team )
+                    <h3>
+                        <a href="{{{ $team->url }}}">
+                            <img src="{{{ $team->badge_image_url }}}" alt="{{{ $team->name }}} badge missing">
+                            {{{ $team->name }}}
+                        </a> Members
+                    </h3>
+                @endif
+            </div>
+        </div>
+        @if( $team->lastKnownPlayers() )
+            <div class="row">
                 @foreach( $team->lastKnownPlayers()->get() as $teamMate )
                     @if( $player->id != $teamMate->id )
                         <div class="col-sm-4 col-md-2">
@@ -238,8 +243,8 @@
                         </div> <!-- end col-sm-4 col-md-2 -->
                     @endif
                 @endforeach
-            @endif
-        </div>
+            </div>
+        @endif
     </div>
 </div>
 @stop

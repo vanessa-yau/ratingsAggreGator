@@ -1,3 +1,11 @@
+/* rest of team */
+.player-thumbnails {
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top-style: solid;
+    border-top-width: 1px;
+}
+
 /* css to override the player rank*/
 .player-team-rank {
     font-size: 14px;
