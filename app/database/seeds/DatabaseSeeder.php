@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder {
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-        $this->call('SkillTableSeeder');
+        // $this->call('SkillTableSeeder');
         // $this->call('SportTableSeeder');
         //the old player seedle, only a few hard-coded players in here
         //$this->call('PlayerTableSeeder');
