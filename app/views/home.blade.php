@@ -11,7 +11,8 @@
 	</div>
 	<div class="jumbotron">
 	<div class="row">
-		<h3>Most Rated Players <span class="label label-default">Live!</span></h3>
+		<div class="col-sm-6">
+			<h3>Most Rated Players</h3>
 		<div align="center">
 			@foreach($players as $player)
 				<div class="col-xs-12 col-sm-6 col-lg-4">
@@ -27,9 +28,9 @@
 	
 	<!-- leagues -->
 	<div class="row">
-		<h3>Leagues we are following <span class="label label-default">More soon!</span></h3>
+		<h3>Leagues We Track <span class="label label-default">More soon!</span></h3>
 		@foreach( $leagues as $league )
-		<div class="col-sm-3 league">
+		<div class="col-sm-2 league">
 			<a href="{{{ $league->url }}}">
 				<p>
 					<img class="league-badge" src="{{{ $league->badge_image_url }}}" alt="img not found"><br />
