@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
+    <div class="container">
         <!-- logo and shrink menu icon -->
         <div class="navbar-header">
             <a href="{{ URL::to('/') }}">
@@ -19,7 +19,9 @@
             <!-- <div class="visible-xs-inline"> -->
                 <ul class="collapsed-options nav navbar-nav">
                     <li>@include('/forms/search')</li>
-                    @include('/forms/login')
+                    <li class="pull-right">
+                        @include('/forms/login')
+                    </li>
                 </ul>
             <!-- </div> -->
         </div><!-- /.navbar-collapse -->

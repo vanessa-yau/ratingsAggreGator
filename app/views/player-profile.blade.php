@@ -32,7 +32,7 @@
                         <h3>
                             <strong>{{{ $player->name }}}</strong>
                         </h3>
-                        <div class="col-sm-4"> 
+                        <div class="col-sm-4 profile-img-col"> 
                             <p><img id="profile-image" src="{{{ $player->image_url }}}" alt="Profile Image"></p>
                         </div>
                         <div class="col-sm-8">
@@ -236,15 +236,15 @@
             <div class="row">
                 @foreach( $team->lastKnownPlayers()->get() as $teamMate )
                     @if( $player->id != $teamMate->id )
-                        <div class="col-sm-4 col-md-2">
+                        <div class="col-sm-4 col-md-2 team-mate-col">
                             <a href="{{ $teamMate->url }}">
                                 <div class="thumbnail">
                                     <p class="team-mate-name">
                                         {{{ $teamMate->name }}}
                                     </p>
-                                    <div class="team-mate-image">
+                                    <!-- <div class="team-mate-image"> -->
                                         <img class="thumbnail profile" src="{{ $teamMate->image_url }}" alt="{{{ $teamMate->name }}} profile image missing">
-                                    </div>
+                                    <!-- </div> -->
                                 </div>
                             </a>
                         </div> <!-- end col-sm-4 col-md-2 -->

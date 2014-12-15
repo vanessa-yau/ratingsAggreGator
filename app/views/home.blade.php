@@ -12,7 +12,6 @@
 	<div class="row">
 		<div class="col-sm-6">
 			<h3>Most Rated Players</h3>
-		<div align="center">
 			@foreach($players as $player)
 				<div class="col-xs-12 col-sm-6 col-lg-4">
 					<a href="{{ $player->url }}">
@@ -22,24 +21,28 @@
 				</div>
 			@endforeach 
 		</div> <!-- close most rated players div -->
-	</div> <!-- close row -->
-	
+
+		<div class="col-sm-6">
+		    <div class="row">
+		        <h3>Your Teams</h3>
+		        User teams here.
+		    </div>
+		</div> <!-- close most rated players div -->
+	</div>
 	<!-- leagues -->
-	<div class="well well-lg">
-		<div class="row">
-			<h3>Leagues we are following <span class="label label-default">More soon!</span></h3>
-			@foreach( $leagues as $league )
-			<div class="col-sm-3 league">
+	<div class="row">
+		<h3>Leagues we are following <span class="label label-default">More soon!</span></h3>
+		@foreach( $leagues as $league )
+			<div class="col-xs-12 col-sm-4 col-lg-2 league">
 				<a href="{{{ $league->url }}}">
 					<p>
 						<img class="league-badge" src="{{{ $league->badge_image_url }}}" alt="img not found"><br />
 						{{{ $league->name }}}
 					</p>
 				</a>
-			</div> <!-- end col -->
-			@endforeach
-		</div> <!-- end row -->
-	</div> <!-- end well -->
+			</div> <!-- end col-sm-3 league -->
+		@endforeach
+	</div> <!-- end row -->
 @stop
 
 @section('js')

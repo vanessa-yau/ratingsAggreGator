@@ -12,7 +12,12 @@
     font-weight: bold;
 }
 
+.profile-img-col {
+    padding-left: 0px;
+}
+
 #profile-image {
+    text-align: left;
     max-width: 100%;
     max-height: 100%;
 }
@@ -55,14 +60,15 @@ h3 {
 
 /* Other players images */
 .thumbnail {
+    border: none;
     text-align: center;
 }
-
-.team-mate-image {
-    height: 125px;
+.team-mate-name }{
+    border: none;
+    margin: none;
 }
-
 .thumbnail img {
+    border: none;
     max-height: 125px;
     max-width: 100%;
     vertical-align: middle;
