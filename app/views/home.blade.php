@@ -10,7 +10,8 @@
 		<marquee class="ticker">{{ getRss("football") }}</marquee>
 	</div>
 	<div class="row">
-		<h3>Most Rated Players <span class="label label-default">Live!</span></h3>
+		<div class="col-sm-6">
+			<h3>Most Rated Players</h3>
 		<div align="center">
 			@foreach($players as $player)
 				<div class="col-xs-12 col-sm-6 col-lg-4">

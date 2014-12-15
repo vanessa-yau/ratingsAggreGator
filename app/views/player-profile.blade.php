@@ -22,10 +22,11 @@
     </div>
 
     <!-- Player stats and average ratings based on all ratings-->
-    <div class="row player-info">
+    <div class="player-info">
         <!-- do not delete the data attributes below, used in js -->
         <div class="row" data-player-id="{{{$player->id}}}" data-player-name="{{{$player->name}}}" id="player">
             <div class="col-sm-12">
+                <!-- player info -->
                 <div class="row">
                     <div class="col-sm-6">
                         <h3>
@@ -219,16 +220,20 @@
     
     <!-- rest of team -->
     <div class="player-thumbnails">
-        <div class="row well">
-            @if( $team )
-                <h3>
-                    <a href="{{{ $team->url }}}">
-                        <img src="{{{ $team->badge_image_url }}}" alt="{{{ $team->name }}} badge missing">
-                        {{{ $team->name }}}
-                    </a> Members
-                </h3>
-            @endif
-            @if( $team->lastKnownPlayers() )
+        <div class="row">
+            <div class="col-sm-12">
+                @if( $team )
+                    <h3>
+                        <a href="{{{ $team->url }}}">
+                            <img src="{{{ $team->badge_image_url }}}" alt="{{{ $team->name }}} badge missing">
+                            {{{ $team->name }}}
+                        </a> Members
+                    </h3>
+                @endif
+            </div>
+        </div>
+        @if( $team->lastKnownPlayers() )
+            <div class="row">
                 @foreach( $team->lastKnownPlayers()->get() as $teamMate )
                     @if( $player->id != $teamMate->id )
                         <div class="col-sm-4 col-md-2">
@@ -245,8 +250,8 @@
                         </div> <!-- end col-sm-4 col-md-2 -->
                     @endif
                 @endforeach
-            @endif
-        </div>
+            </div>
+        @endif
     </div>
 </div>
 @stop
