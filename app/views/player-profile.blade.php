@@ -37,15 +37,22 @@
                         <div class="col-sm-8">
                             <!-- player ranking in team by aggregate ratings -->
                             <p class="player-team-rank">
-                                @if( $player->rankInTeam != -1 )
-                                    Ranked #<span class="player-team-ranking">{{ $player->rankInTeam }}</span>
-                                     player in 
-                                    <a href="{{{ $team->url }}}">{{{ $team->name }}} FC</a>
-                                @endif
+                                    <button class="btn btn-primary" type="button">
+                                        <span class="badge">
+                                        @if( $player->rankInTeam != -1 )
+                                        <a href="{{{ $team->url }}}">
+                                            Ranked #<span class="player-team-ranking">{{ $player->rankInTeam }}
+                                         player in {{{ $team->name }}} FC
+                                        </a>
+                                        @else
+                                            Player not yet rated
+                                        @endif
+                                        </span>
+                                    </button>
                             </p>
-                            <p><strong>Nationality: </strong>{{ $player->nationality }}</p>
-                            <p><strong>Height: </strong>{{ $player->height }}m</p>
-                            <p><strong>Weight: </strong>{{ $player->weight }}kg</p>
+                            <p><strong>Nationality: </strong><span class="badge">{{ $player->nationality }}</span></p>
+                            <p><strong>Height: </strong><span class="badge">{{ $player->height }}m</span></p>
+                            <p><strong>Weight: </strong><span class="badge">{{ $player->weight }}kg</span></p>
                             
                         </div>
                     </div>

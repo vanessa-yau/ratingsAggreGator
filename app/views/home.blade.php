@@ -9,7 +9,6 @@
 		@include('magpie')
 		<marquee class="ticker">{{ getRss("football") }}</marquee>
 	</div>
-	<div class="jumbotron">
 	<div class="row">
 		<h3>Most Rated Players <span class="label label-default">Live!</span></h3>
 		<div align="center">
@@ -23,22 +22,23 @@
 			@endforeach 
 		</div> <!-- close most rated players div -->
 	</div> <!-- close row -->
-	</div><!-- close jumbotron -->
 	
 	<!-- leagues -->
-	<div class="row">
-		<h3>Leagues we are following <span class="label label-default">More soon!</span></h3>
-		@foreach( $leagues as $league )
-		<div class="col-sm-3 league">
-			<a href="{{{ $league->url }}}">
-				<p>
-					<img class="league-badge" src="{{{ $league->badge_image_url }}}" alt="img not found"><br />
-					{{{ $league->name }}}
-				</p>
-			</a>
-		</div>
-		@endforeach
-	</div>
+	<div class="well well-lg">
+		<div class="row">
+			<h3>Leagues we are following <span class="label label-default">More soon!</span></h3>
+			@foreach( $leagues as $league )
+			<div class="col-sm-3 league">
+				<a href="{{{ $league->url }}}">
+					<p>
+						<img class="league-badge" src="{{{ $league->badge_image_url }}}" alt="img not found"><br />
+						{{{ $league->name }}}
+					</p>
+				</a>
+			</div> <!-- end col -->
+			@endforeach
+		</div> <!-- end row -->
+	</div> <!-- end well -->
 @stop
 
 @section('js')
