@@ -67,6 +67,12 @@ class UserController extends \BaseController {
 			'country_code' 		=> Input::get('country'),
 			'city' 				=> Input::get('city'),
 		));
+
+		Auth::attempt([
+			'username' => $user->username,
+			'password' => $user->password
+		]);
+		return $user;
 	}
 
 
