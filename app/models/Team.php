@@ -52,7 +52,7 @@ class Team extends Eloquent {
                         ratings.value, 
                         ratings.id as `ratings.id`,
                         players.name as `player_name`
-                    FROM PLAYERS
+                    FROM players
                     /* use left outer join to get rated and unrated entries */
                     /* in the ratings table for this team */
                     LEFT OUTER JOIN ratings
