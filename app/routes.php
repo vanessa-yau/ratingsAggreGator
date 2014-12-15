@@ -48,11 +48,17 @@ Route::group(['after' => 'plusone'], function() {
 
     Route::get('/help/contact-us', [
         'as' => 'contact-us',
-        function(){
+        function() {
             return View::make('contact-us');
         }
     ]);
-    
+
+    Route::get('/about', [
+        'as' => 'about',
+        function() {
+            return View::make('about');
+        }    
+    ]);
 });
 
 Route::group(['before' => 'env'], function()
@@ -169,13 +175,6 @@ Route::post('register', [
     'as' => 'user.store',
     'uses' => 'UserController@store'
 ]);
-
-// about the project, *in progress*
-Route::get('/about', function()
-{
-    return 'About RatinGator...';
-});
-
 
 Route::get('/tottPlayers', [
     'as' => 'tottPlayers',

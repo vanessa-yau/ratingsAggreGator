@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<!-- google web tools verification. -->
 		<meta name="google-site-verification" content="eWX91WMfaSNh4VZ96tjKofyVpthPLTm-5hB2NWL_nu8" />
+		
+		<!-- To ensure proper rendering and touch zooming -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
 		<title>Ratingator</title>
+		
 		<!-- changed script and stylesheet sources to use CDNs, also available in /public -->
-		{{ HTML::style("/css/search-results.css")}}
+		{{-- search-results.css clashing with other html elems/tags... --}}
+		{{--  {{ HTML::style("/css/search-results.css") }} --}}
 		{{ HTML::style("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css") }}
 		{{ HTML::style("http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css") }}
 		{{ HTML::style("http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css") }}
@@ -12,12 +19,27 @@
 		{{ HTML::style("/css/main.css") }}
 		{{ HTML::style("http://fonts.googleapis.com/css?family=PT+Sans:regular,bold") }}
 		
+		
 		@yield('style')
 	</head>
 	<body>
 		@include('navbar')
 		
 		<div class="container">
+			@if (Session::has('message'))
+				<div class="row">
+					<div class="col-sm-12">
+						<!-- <bootstrap error response here> -->
+						<div class="alert alert-danger alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert">
+							  	<span aria-hidden="true">&times;</span>
+							  	<span class="sr-only">Close</span>
+							</button>
+							<strong><i class="glyphicon glyphicon-exclamation-sign"></i> Error: </strong>{{{ Session::get('message') }}}
+						</div>
+					</div>
+				</div>
+			@endif
 			@yield('content')
 		</div>
 

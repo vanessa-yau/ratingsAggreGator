@@ -9,9 +9,9 @@ class User extends Pichkrement\Messenger\Models\User implements UserInterface, R
 
 	use UserTrait, RemindableTrait;
 
-	protected $guarded = array('id');
+	protected $guarded = ['id'];
 
-    protected $hidden = array('password');
+    protected $hidden = ['password'];
 
 	protected $table = 'users';
 

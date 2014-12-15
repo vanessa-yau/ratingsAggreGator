@@ -3,16 +3,15 @@ class UserTableSeeder extends Seeder {
 
     public function run()
     {
-        //Delete table content
-        DB::table('users')->truncate();
-
-        //Create new user
-        User::create(array(
-           // don't expose these values
-            'username' => 'scrubwatch',
-            'password' => Hash::make('pass1'),
-            'created_at' => new DateTime,
-            'updated_at' => new DateTime
-        ));
+        //reset 'Scrubwatch' user in database.
+        $user = User::whereUsername("scrubwatch")->first();
+        $user->username = 'scrubwatch';
+        $user->first_name = 'Scrub';
+        $user->surname = 'Watch';
+        $user->password = '$2y$10$OniWZ/wrKV.9NMUim5Y/zeEVUnFusbM51LxpjxEr6ZGsqAjEusc72';
+        $user->email = 'scrubwatch@domain.com';
+        $user->country_code = 'GB';
+        $user->city = 'Cardiff';
+        $user->save();
     }
 }

@@ -30,10 +30,10 @@ class DatabaseSeeder extends Seeder {
         // $this->call('SportTableSeeder');
         //the old player seedle, only a few hard-coded players in here
         //$this->call('PlayerTableSeeder');
-        // $this->call('UserTableSeeder');
+        $this->call('UserTableSeeder');
         // $this->call('RatingsTableSeeder');
-        // $this->call('RatingsProfileTableSeeder');
-        // $this->call('ProfileSkillTableSeeder');
+        $this->call('RatingsProfileTableSeeder');
+        $this->call('ProfileSkillTableSeeder');
         // $this->call('TeamTableSeeder');
         // below are the teams to seed, which you un/comment out each time
         // see the docs/comment above
