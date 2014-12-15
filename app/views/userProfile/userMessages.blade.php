@@ -71,8 +71,12 @@
                 .removeClass()
                 .addClass('alert alert-dismissible alert-success');
             $('#message-type').text('Success: ');
+            var message = "";
+            for (var key in message) {
+                message += ("<p>" + message[key] + "</p>");
+            };
             $('#message-text').html(message);
-            $('#response-message').show();
+            $responseMessage.show();
         }
 
         $('.new-convo-button').click(function(){

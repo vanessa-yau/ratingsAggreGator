@@ -101,7 +101,14 @@ Route::get('players/{id}/{slug?}', [
 
 Route::resource('ratings', 'RatingController');
 
-Route::resource('users', 'UserController');
+Route::get('users/{id}/{slug?}', [
+    'as' => 'users.show',
+    'uses' => 'UserController@show'
+]);
+
+Route::resource('users', 'UserController', [
+    'except' => ['show']
+]);
 
 Route::resource('conversations', 'ConversationsController');
 
