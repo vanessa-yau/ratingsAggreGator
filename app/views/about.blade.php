@@ -10,7 +10,7 @@
 
             <p><strong>Rating Aggregator</strong> is a platform where your favourite sports players and teams are <strong>subjectively rated</strong> on their skills during a game, by <strong>you</strong>.</p>
 
-            <p><i>Your opinion matters. No longer the journalists player ratings or computer generated stats.</i></p>
+            <p><em>Your opinion matters. No longer the journalists player ratings or computer generated stats.</em></p>
         </div>
         
         <div class="row">
@@ -20,12 +20,13 @@
 
         <div class="row">
             <h1>What do I rate these players on?</h1>
-            <p>All sorts of <strong>skills</stong>, e.g. shooting, tackling. It's a star-based "out of five" rating.</p>
+            <p>All sorts of <strong>skills</strong>, <em>e.g. shooting, tackling.</em> It's a star-based "out of five" rating.</p>
         </div>
 
         <div class="row">
             <h1>Why?</h1>
-
+            <p>Start rating players, build up your profile, and you'll see how your opinions on a player match up against the mainstream.</p>
+            <p>Maybe you've been right about someone all along, or you haven't noticed something everyone else does about their game.</p>
         </div>
     </div>
 @stop

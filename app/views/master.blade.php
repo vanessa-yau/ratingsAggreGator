@@ -2,9 +2,15 @@
 <html>
 	<head>
 		<meta name="google-site-verification" content="eWX91WMfaSNh4VZ96tjKofyVpthPLTm-5hB2NWL_nu8" />
+		
+		<!-- To ensure proper rendering and touch zooming -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
 		<title>Ratingator</title>
+		
 		<!-- changed script and stylesheet sources to use CDNs, also available in /public -->
-		{{ HTML::style("/css/search-results.css")}}
+		{{-- search-results.css clashing with other html elems/tags... --}}
+		{{--  {{ HTML::style("/css/search-results.css") }} --}}
 		{{ HTML::style("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css") }}
 		{{ HTML::style("http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css") }}
 		{{ HTML::style("http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css") }}
@@ -12,8 +18,6 @@
 		{{ HTML::style("/css/main.css") }}
 		{{ HTML::style("http://fonts.googleapis.com/css?family=PT+Sans:regular,bold") }}
 		
-		<!-- To ensure proper rendering and touch zooming -->
-		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		@yield('style')
 	</head>
