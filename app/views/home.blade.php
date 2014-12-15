@@ -5,7 +5,6 @@
 @stop
 
 @section('content')
-
 	<div class="row">
 		@include('magpie')
 		<marquee class="ticker">{{ getRss("football") }}</marquee>

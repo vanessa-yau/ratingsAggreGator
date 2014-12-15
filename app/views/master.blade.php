@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<!-- google web tools verification. -->
 		<meta name="google-site-verification" content="eWX91WMfaSNh4VZ96tjKofyVpthPLTm-5hB2NWL_nu8" />
 		
 		<!-- To ensure proper rendering and touch zooming -->
@@ -25,6 +26,20 @@
 		@include('navbar')
 		
 		<div class="container">
+			@if (Session::has('message'))
+				<div class="row">
+					<div class="col-sm-12">
+						<!-- <bootstrap error response here> -->
+						<div class="alert alert-danger alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert">
+							  	<span aria-hidden="true">&times;</span>
+							  	<span class="sr-only">Close</span>
+							</button>
+							<strong><i class="glyphicon glyphicon-exclamation-sign"></i> Error: </strong>{{{ Session::get('message') }}}
+						</div>
+					</div>
+				</div>
+			@endif
 			@yield('content')
 		</div>
 

@@ -36,11 +36,11 @@ function register(e) {
 					'city'			: $('#city').val(),
 			},		
 
-			success: function(data, textStatus, jqXHR) {
+			success: function(json) {
 				//Redirect user to home page if login was successful
 				window.location = '/';
 			},
-			error: function(jqXHR, textStatus, errorThrown) {
+			error: function(json) {
 				//throw error
 			   	var responseText = $.parseJSON(e.responseText);
 	                showErrorMessage(responseText);

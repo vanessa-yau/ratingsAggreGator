@@ -25,7 +25,7 @@
                             target="_blank" 
                             href="https://www.facebook.com/pages/Ratingator/1418546275032761?ref=br_rs" 
                         >
-                            <i class="fa fa-facebook"></i>
+                            <i class="fa fa-facebook"></i> Facebook
                         </a>
                     </li>
                     <li>
@@ -33,7 +33,7 @@
                             target="_blank" 
                             href="https://twitter.com/ratingator" 
                         >
-                            <i class="fa fa-twitter"></i>
+                            <i class="fa fa-twitter"></i> Twitter
                         </a>
                     </li>
                     <li><a href="#"><span class="glyphicon glyphicon-chevron-up"></span> Back to Top</a></li>
