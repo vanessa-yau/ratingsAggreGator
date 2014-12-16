@@ -4,7 +4,7 @@
         <div class="navbar-header">
             <a href="{{ URL::to('/') }}">
                 <img class="site-logo" src="/images/gator.png" alt="...">
-                <span class="site-name">ratingator</span>
+                <span class="site-name">RATINGATOR</span>
             </a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>

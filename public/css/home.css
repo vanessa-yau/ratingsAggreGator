@@ -80,8 +80,35 @@ body {
     margin-bottom: 20px;
 }
 
+.about-site {
+    background-color: rgba(0,0,0,0.50);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.site-name {
+    color: #FFFFFF;
+    font-size: 11pt;
+}
+
+.user-username {
+    color: white;
+}
+
+.caret {
+    color: white;
+}
+
+.dropdown-toggle {
+    background-color: black !important;
+}
+
+.dropdown-menu {
+    background-color: transparent;
+}
+
 .navbar {
     margin-bottom: 0;
-    background-color: #333333;
+    background-color: #000000;
     border-color: #5c5c5c;
 }
