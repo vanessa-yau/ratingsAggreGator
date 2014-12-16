@@ -65,8 +65,9 @@ h3 {
 }
 .team-mate-name }{
     border: none;
-    margin: none;
+    margin: 0px;
 }
+
 .thumbnail img {
     border: none;
     max-height: 125px;
@@ -75,6 +76,7 @@ h3 {
     /* little hack to make images horizontal center aligned */
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 0;
 }
 
 .rating-stars span {

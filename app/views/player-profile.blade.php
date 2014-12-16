@@ -218,40 +218,44 @@
         </div> <!-- end col-sm-6 -->
     </div> <!-- end row -->
     
-    <!-- rest of team -->
-    <div class="player-thumbnails">
-        <div class="row">
-            <div class="col-sm-12">
-                @if( $team )
-                    <h3>
-                        <a href="{{{ $team->url }}}">
-                            <img src="{{{ $team->badge_image_url }}}" alt="{{{ $team->name }}} badge missing">
-                            {{{ $team->name }}}
-                        </a> Members
-                    </h3>
+    <div class="row">
+        <div class="col-sm-12">
+            <!-- rest of team -->
+            <div class="player-thumbnails">
+                <div class="row">
+                    <div class="col-sm-12">
+                        @if( $team )
+                            <h3>
+                                <a href="{{{ $team->url }}}">
+                                    <img src="{{{ $team->badge_image_url }}}" alt="{{{ $team->name }}} badge missing">
+                                    {{{ $team->name }}}
+                                </a> Members
+                            </h3>
+                        @endif
+                    </div>
+                </div>
+                @if( $team->lastKnownPlayers() )
+                    <div class="row">
+                        @foreach( $team->lastKnownPlayers()->get() as $teamMate )
+                            @if( $player->id != $teamMate->id )
+                                <div class="col-sm-4 col-md-2">
+                                    <a href="{{ $teamMate->url }}">
+                                        <div class="thumbnail">
+                                            <!-- <div class="team-mate-image"> -->
+                                                <img class="thumbnail profile" src="{{ $teamMate->image_url }}" alt="{{{ $teamMate->name }}} profile image missing">
+                                            <!-- </div> -->
+                                            <p class="team-mate-name">
+                                                {{{ $teamMate->name }}}
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div> <!-- end col-sm-4 col-md-2 -->
+                            @endif
+                        @endforeach
+                    </div>
                 @endif
             </div>
         </div>
-        @if( $team->lastKnownPlayers() )
-            <div class="row">
-                @foreach( $team->lastKnownPlayers()->get() as $teamMate )
-                    @if( $player->id != $teamMate->id )
-                        <div class="col-sm-4 col-md-2 team-mate-col">
-                            <a href="{{ $teamMate->url }}">
-                                <div class="thumbnail">
-                                    <p class="team-mate-name">
-                                        {{{ $teamMate->name }}}
-                                    </p>
-                                    <!-- <div class="team-mate-image"> -->
-                                        <img class="thumbnail profile" src="{{ $teamMate->image_url }}" alt="{{{ $teamMate->name }}} profile image missing">
-                                    <!-- </div> -->
-                                </div>
-                            </a>
-                        </div> <!-- end col-sm-4 col-md-2 -->
-                    @endif
-                @endforeach
-            </div>
-        @endif
     </div>
 </div>
 @stop
