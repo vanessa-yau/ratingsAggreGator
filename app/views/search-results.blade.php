@@ -33,7 +33,7 @@
 	    		{{ $results->links() }}
 	    	</div>
 	    </div>
-	    	@if (count($results) === 1)
+	    	@if (count($results) === 0)
 	    		<div class="col-xs-12 col-sm-6 col-lg-4">
 	    		<h2> There are no results for that player. </h2>
 	    		</div>
