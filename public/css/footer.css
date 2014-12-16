@@ -10,6 +10,10 @@ footer .fa-facebook {
     color: #3b5998;
 }
 
+#navbar {
+    color: #FFFFFF !important;
+}
+
 footer {
     margin-top: 1em;
 }

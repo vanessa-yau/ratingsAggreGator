@@ -3,7 +3,7 @@
         <!-- logo and shrink menu icon -->
         <div class="navbar-header">
             <a href="{{ URL::to('/') }}">
-                <img class="site-logo" src="/images/gator.jpg" alt="...">
+                <img class="site-logo" src="/images/gator.png" alt="...">
                 <span class="site-name">ratingator</span>
             </a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
