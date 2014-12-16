@@ -55,6 +55,7 @@
 			</div>
 		</div>
 	</div> <!-- end row -->
+	<!-- background image taken from http://amagico.com/images/img7/football-field-at-night-hd-background-wallpaper-35.jpeg&h=HAQEsV3Rf -->
 @stop
 
 @section('js')
