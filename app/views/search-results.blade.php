@@ -1,7 +1,6 @@
 @extends('master')
 
 @section('style')
-	{{ HTML::style("/css/search-results.css") }}
 
 @section('content')
 	<div class="search-results">
@@ -9,19 +8,17 @@
         	@foreach ($results as $result)
             <a href="{{ $result->url }}">
 	        	<div class="col-xs-12 col-sm-6 col-lg-4">
-	        		<div class="row well">
-	        			<div class="col-sm-4">
+	        		<div class="row">
 						<!-- Make a thumbnail for each of the players found by the search -->
 	                        <img class="profile-image" src="{{{ $result->image_url }}}" alt="Image of player">
-	        			</div>
-	        			<div class="col-sm-8">
 	                    	<h4>
-	                    		<strong>{{{ $result->name }}}</strong>
+	                    		<p> <strong> {{{ $result->name }}} </strong> </p>
+	                    		<p> <strong> {{{ $result->nationality }}} </strong> </p>  
+	                    		<p> <strong> {{{ 'plays for'}}}</strong> </p>        		
 	                    	</h4>
 	                    	<p>
-            					{{{ $result->nationality }}}<br />               		
+            					
 	                    	</p>
-	        			</div>
 	                </div>
 	        	</div>
             </a>
@@ -34,7 +31,7 @@
 	    </div>
 	    	@if (count($results) === 0)
 	    		<div class="col-xs-12 col-sm-6 col-lg-4">
-	    			<h2> There are no results for that player. </h2>
+	    			<h4> There are no results for your search. </h4>
 	    		</div>
 	    	</div>
 	    	@endif
