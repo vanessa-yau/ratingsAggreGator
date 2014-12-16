@@ -13,7 +13,10 @@ class League extends Eloquent {
     }
     
     public function getUrlAttribute() {
-        return URL::route('leagues.show', $this->id);
+        return URL::route('leagues.show', [
+            $this->id,
+        Str::slug($this->name)
+        ]);
     }
 
     // laravel magic call using $league->badge_image_url
