@@ -32,7 +32,7 @@
                         <h3>
                             <strong>{{{ $player->name }}}</strong>
                         </h3>
-                        <div class="col-sm-4"> 
+                        <div class="col-sm-4 profile-img-col"> 
                             <p><img id="profile-image" src="{{{ $player->image_url }}}" alt="Profile Image"></p>
                         </div>
                         <div class="col-sm-8">
