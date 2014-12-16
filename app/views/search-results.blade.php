@@ -19,8 +19,7 @@
 	                    		<strong>{{{ $result->name }}}</strong>
 	                    	</h4>
 	                    	<p>
-            					{{{ $result->nationality }}}<br />
-	                    		
+            					{{{ $result->nationality }}}<br />               		
 	                    	</p>
 	        			</div>
 	                </div>
@@ -35,7 +34,7 @@
 	    </div>
 	    	@if (count($results) === 0)
 	    		<div class="col-xs-12 col-sm-6 col-lg-4">
-	    		<h2> There are no results for that player. </h2>
+	    			<h2> There are no results for that player. </h2>
 	    		</div>
 	    	</div>
 	    	@endif
