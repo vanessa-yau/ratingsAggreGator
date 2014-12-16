@@ -42,13 +42,15 @@
             <button type="submit" class="btn btn-primary">
                 <i class="glyphicon glyphicon-user"></i> Login
             </button>
-            <a href="/register">
-                <button type="button" class="btn btn-success">
-                        <i class="glyphicon glyphicon-plus"></i> Register
-                </button>
-            </a>
+            @unless( Route::current()->getURI() == 'register')
+                <a href="/register">
+                    <button type="button" class="btn btn-primary">
+                            <i class="glyphicon glyphicon-plus"></i> Register
+                    </button>
+                </a>
+            @endunless
             <a href="/twitter/login">
-                <button type="button" class="btn btn-success">
+                <button type="button" class="btn btn-primary btn-twitter">
                     <i class="fa fa-twitter"></i> Sign In
                 </button>
             </a>

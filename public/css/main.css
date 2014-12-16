@@ -1,8 +1,12 @@
 body {
-    padding-top: 70px;
+    padding-top: 50px;
     min-width: 413px;
 }
 
 a:link {
     text-decoration: none;
+}
+
+.breadcrumb {
+    margin-top: 20px;
 }

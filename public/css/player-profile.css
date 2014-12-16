@@ -17,6 +17,7 @@
 }
 
 #profile-image {
+    text-align: left;
     max-width: 100%;
     max-height: 100%;
 }
@@ -62,11 +63,6 @@ h3 {
     border: none;
     text-align: center;
 }
-
-.team-mate-image {
-    height: 125px;
-}
-
 .team-mate-name }{
     border: none;
     margin: 0px;

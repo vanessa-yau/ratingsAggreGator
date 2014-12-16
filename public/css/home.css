@@ -1,3 +1,27 @@
+.background-image {
+    background-image: url(/images/test-backgrounds/1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body {
+    color: #FFFFFF;
+}
+
+.player-tumbnails {
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.player-tumbnails a {
+    color: #FFFFFF;
+}
+
+.overlay {
+    background-image: url(/images/test-backgrounds/overlay.png);
+    background-repeat: repeat;
+}
+
 .rated-players {
     text-align: center;
 }
@@ -12,19 +36,79 @@
 }
 
 .ticker {
-    background-color: #F5F5F5;
-    border-radius: 5px;
+    background-color: rgba(0,0,0,0.50);
+    border-radius: 10px;
     padding: 0.5em;
-    border: 1px solid #EBEBEB;
+    color: #ffffff;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.ticker a {
+    color: #ffffff;
+}
+
+.label {
+    background-color: #000000
 }
 
 .league {
     text-align: center;
 }
+
+.league a {
+    color: #FFFFFF;
+}
+
 .league-badge {
     height: 100px;
 }
 
 .league p {
     margin-bottom: 1em;   
+}
+
+.league-list {
+    background-color: rgba(0,0,0,0.50);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.rated-players-list {
+    background-color: rgba(0,0,0,0.50);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.about-site {
+    background-color: rgba(0,0,0,0.50);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.site-name {
+    color: #FFFFFF;
+    font-size: 11pt;
+}
+
+.user-username {
+    color: white;
+}
+
+.caret {
+    color: white;
+}
+
+.dropdown-toggle {
+    background-color: black !important;
+}
+
+.dropdown-menu {
+    background-color: transparent;
+}
+
+.navbar {
+    margin-bottom: 0;
+    background-color: #000000;
+    border-color: #5c5c5c;
 }
