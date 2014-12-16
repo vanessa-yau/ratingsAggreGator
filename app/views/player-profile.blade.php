@@ -38,18 +38,12 @@
                         <div class="col-sm-8">
                             <!-- player ranking in team by aggregate ratings -->
                             <p class="player-team-rank">
-                                    <button class="btn btn-primary" type="button">
-                                        <span class="badge">
-                                        @if( $player->rankInTeam != -1 )
-                                        <a href="{{{ $team->url }}}">
-                                            Ranked #<span class="player-team-ranking">{{ $player->rankInTeam }}
-                                         player in {{{ $team->name }}} FC
-                                        </a>
-                                        @else
-                                            Player not yet rated
-                                        @endif
-                                        </span>
-                                    </button>
+                                <button class="btn btn-primary" type="button">
+                                    <span class="badge">
+                                    <a href="{{{ $team->url }}}">
+                                        <span class="player-team-ranking">{{ $player->rankInTeam }}</span> player in {{{ $team->name }}} FC
+                                    </a>
+                                </button>
                             </p>
                             <p><strong>Nationality: </strong><span class="badge">{{ $player->nationality }}</span></p>
                             <p><strong>Height: </strong><span class="badge">{{ $player->height }}m</span></p>
@@ -57,22 +51,17 @@
                             
                         </div>
                     </div>
-                    <!-- Only display average ratings if ratings for this player exist -->
-                    @if( $player->rankInTeam != -1 )
-                        <div class="col-sm-6 chart-section header-chart">
-                            <div class="col-sm-8 chart">
-                                <canvas id="ratingBySkill"></canvas>
-                            </div>
-                            <div class="col-sm-4 legend">
-                                <h5><strong>Average Rating by Skill</strong></h5>
-                                <strong><div id="barLegend"></div></strong>
-                            </div>
+
+                    <!-- Average Ratings shown if ratings for this player exist -->
+                    <div class="col-sm-6 chart-section header-chart" data-rank="{{{ $player->rankInTeam }}}">
+                        <div class="col-sm-8 chart">
+                            <canvas id="ratingBySkill"></canvas>
                         </div>
-                    @else
-                        <div class="col-sm-6">
-                            <p>chart placeholder</p>
+                        <div class="col-sm-4 legend">
+                            <h5><strong>Average Rating by Skill</strong></h5>
+                            <strong><div id="barLegend"></div></strong>
                         </div>
-                    @endif
+                    </div>
                 </div>
             </div>
         </div>
@@ -265,6 +254,8 @@
     <script>
     // hide ajax response message ASAP.
     $('#response-message').hide();
+    // hide chart headings ASAP
+    $('.header-chart').hide();
 
     $(function(){
         // create globals we need.
@@ -284,13 +275,20 @@
             success: function(json){
                 // set ratingSummary as a variable to create charts below
                 ratingSummary = json;
-                // create initial charts on page load.
-                chart("ratingBySkill", "Bar", "barLegend");
+                $('#ratingBySkill').hide();
+                // to avoid random labels for charts when a player has not been rated yet
+                // chart only when necessary.
+                if( $('.header-chart').data('rank') != "Unranked" ){
+                    chart("ratingBySkill", "Bar", "barLegend");
+                    // create initial chart on page load.
+                    $('.header-chart').show();
+                }
             },
             error: function(e) {
                 console.log(e);
             }
         });
+
 
         function chart(canvas, chartType, legendDiv) {
             var chartLabels = [];
@@ -413,13 +411,10 @@
                     // recheck the player rank and change text to match
                     // if the span with the rank exists, update the number
                     // else generate the content of '.player-team-rank'
-                    if( $('.player-team-rank > .badge') ){
-                        $('.player-team-rank').find('.badge').text('Ranked #{{{ $player->rankInTeam }}}');
-                    }
-                    else {
-                        $('.player-team-rank').replaceWith('Ranked {{ $player->rankInTeam }} player in {{{ $team->name }}} FC');
-                    }
-
+                    $('.header-chart').data('rank', json['rankInTeam']);
+                    $('.player-team-ranking').text(json['rankInTeam']);
+                    chart("ratingBySkill", "Bar", "barLegend");
+                    
                     // update number of ratings for this player
                     $('.ratings-badge').find('.badge').text("{{{ $player->ratingCount + 1 }}}");
                     // hide the form

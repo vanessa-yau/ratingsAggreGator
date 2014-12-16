@@ -149,10 +149,10 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
             if( $row->player_id == $this->id ){
                 // the player hasn't been rated
                 if ($row->mean_rating == null)
-                    return -1;
+                    return "Unranked";
                 else{
                     ++$i;
-                    return $i; // Send the 1-based index to the row
+                    return "Ranked: #".$i; // Send the 1-based index to the row
                 }
             }
             // else this isn't the player we are looking for
@@ -168,6 +168,7 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
         $criteria = explode('+', $searchQuery);		
 		
 		$query = Player::orderBy('name');
+
 		foreach($criteria as $criterion)
 		{	
 			$query->orWhere('name', 'LIKE', '%' . $criterion .'%');

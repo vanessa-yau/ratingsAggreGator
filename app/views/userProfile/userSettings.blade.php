@@ -119,7 +119,7 @@
                         $('.user-country').text(" "+json['country_code']);
                         $('.user-name').text(" "+json['first_name']+" "+json['surname']);
                         $('.user-email').html(' <a href="mailto:"'+json["email_address"]+'">'+json["email_address"]+'</a>');
-                        $('input:not(input[name="search-box"])').attr('disabled', true);
+                        $('input:not(input[name="query"])').attr('disabled', true);
                         $(this).removeClass()
                                .addClass('btn btn-warning pull-right')
                                .html('<i class="fa fa-pencil"></i> Edit');
