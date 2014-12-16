@@ -52,7 +52,6 @@
 	    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	    
-		<script src="/js/search.js"></script>
 		<script src="/js/Chart.min.js"></script>
 		<script src="/js/google-analytics.js"></script>
 	    <script src="/js/datepicker.js"></script>
@@ -117,4 +116,4 @@
 		@show
 
 	</body>
-<!-- </html> -->
+</html> 
