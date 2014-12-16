@@ -102,6 +102,11 @@ Route::get('players/{id}/{slug?}', [
     'uses' => 'PlayerController@show'
 ]);
 
+Route::get('teams/{id}/{slug?}', [
+    'as' => 'teams.show',
+    'uses' => 'TeamController@show'
+]);
+
 Route::resource('ratings', 'RatingController');
 
 Route::get('users/{id}/{slug?}', [
