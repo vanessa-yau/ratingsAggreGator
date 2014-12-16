@@ -276,7 +276,6 @@
                 // to avoid random labels for charts when a player has not been rated yet
                 // chart only when necessary.
                 if( $('.header-chart').data('rank') != "Unranked" ){
-                    console.log("rank is not unranked!");
                     chart("ratingBySkill", "Bar", "barLegend");
                     // create initial chart on page load.
                     $('.header-chart').show();

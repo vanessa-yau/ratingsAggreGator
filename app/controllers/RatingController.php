@@ -33,6 +33,10 @@ class RatingController extends \BaseController {
 	{
 
 		$ratingGraph = $this->prepareGraph();
+		// var_dump($ratingGraph['ratingsBranch']['ratings']);
+		// var_dump($ratingGraph['gameBranch']['models']);
+		// die();
+
 		return $ratingGraph['ok']
 			? $this->saveGraph($ratingGraph)
 			: Response::make($ratingGraph['messages'], 400);
@@ -79,7 +83,6 @@ class RatingController extends \BaseController {
         $ratingNames = Skill::whereIn('id', array_keys($values['ratings']))->get();
 
 		foreach ($values['ratings'] as $ratingId => $rating) {
-
 			// determine the name of the skill
 			$skillName = $ratingNames->find($ratingId)->name;
 

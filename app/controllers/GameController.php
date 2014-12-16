@@ -34,9 +34,6 @@ class GameController extends \BaseController {
 			'date'
 		]);
 
-
-		Clockwork::info($values);
-
 		$validator = $this->buildValidator($values);
 		$models = [];
 		$player = Player::find( Input::get('player_id') );
@@ -58,28 +55,28 @@ class GameController extends \BaseController {
 	    	}
 		}
 
+		// about anonymous function and use
+		// see http://php.net/manual/en/language.namespaces.php
 		return [
 			'ok' => $validator->passes(),
 			'messages' => $validator->messages(),
 			'game' => $game,
 			'player' => $player,
-			'saver' => function () use ($models, $player) {
+			'saver' => function () use ($game, $player) {
 				$team = $player->lastKnownTeam;
-				foreach($models as $game) {
-					$game->save();
+				
+				$game->save();
 
-					// associate the player in this game
-					// only if the 
-					$needsAttaching = Game_Player::whereGameId($game->id)
-						->wherePlayerId($player->id)
-						->count() == 0;
+				// associate the player in this game
+				$needsAttaching = Game_Player::whereGameId($game->id)
+					->wherePlayerId($player->id)
+					->count() == 0;
 
-					if ($needsAttaching)
-						$player->games()->attach($game->id, [
-							'team_id' => $team->id,
-							'league_id' => $team->last_known_league_id
-						]);
-				}
+				if ($needsAttaching)
+					$player->games()->attach($game->id, [
+						'team_id' => $team->id,
+						'league_id' => $team->last_known_league_id
+					]);
 			}
 		];
 	}
