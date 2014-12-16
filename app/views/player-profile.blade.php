@@ -254,9 +254,7 @@
     <script>
     // hide ajax response message ASAP.
     $('#response-message').hide();
-    // hide chart headings ASAP
-    $('.header-chart').hide();
-
+   
     $(function(){
         // create globals we need.
         // This must be at the top of the script for the charts to load properly.
@@ -275,13 +273,17 @@
             success: function(json){
                 // set ratingSummary as a variable to create charts below
                 ratingSummary = json;
-                $('#ratingBySkill').hide();
                 // to avoid random labels for charts when a player has not been rated yet
                 // chart only when necessary.
                 if( $('.header-chart').data('rank') != "Unranked" ){
+                    console.log("rank is not unranked!");
                     chart("ratingBySkill", "Bar", "barLegend");
                     // create initial chart on page load.
                     $('.header-chart').show();
+                }
+                else{
+                    // hide chart headings ASAP
+                    $('.header-chart').hide();
                 }
             },
             error: function(e) {
@@ -408,16 +410,19 @@
                     });
                     
                     // update stats on the view
-                    // recheck the player rank and change text to match
-                    // if the span with the rank exists, update the number
-                    // else generate the content of '.player-team-rank'
-                    $('.header-chart').data('rank', json['rankInTeam']);
                     $('.player-team-ranking').text(json['rankInTeam']);
-                    $('.header-chart').show();
-                    chart("ratingBySkill", "Bar", "barLegend");
-                    
                     // update number of ratings for this player
-                    $('.ratings-badge').find('.badge').text("{{{ $player->ratingCount + 1 }}}");
+                    $('.ratings-badge').find('.badge').text(json['ratingCount']);
+
+                    // show the header-chart if it is not already shown (this is first rating)
+                    $('.header-chart')
+                        .data('rank', json['rankInTeam']);
+
+                    // if the chart does not exist draw the chart
+                    if( $('.header-chart').data('rank') != 'Unranked'){
+                        chart("ratingBySkill", "Bar", "barLegend");
+                    }
+                    
                     // hide the form
                     $('.rate-form').parents('.row').slideUp(300);
                     
