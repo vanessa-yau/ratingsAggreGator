@@ -15,8 +15,11 @@
 		{{ HTML::style("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css") }}
 		{{ HTML::style("http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css") }}
 		{{ HTML::style("http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css") }}
-		{{ HTML::style("/css/navbar.css") }}
-		{{ HTML::style("/css/main.css") }}
+
+		{{--  Uncomment to use local versions, CDN'd via AMZ CloudFront --}}
+		{{-- {{ HTML::style("/css/navbar.css") }} --}}
+		{{ HTML::style("https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-231074448314/css/navbar.css") }}
+		{{-- {{ HTML::style("/css/main.css") }} --}}
 		{{ HTML::style("http://fonts.googleapis.com/css?family=PT+Sans:regular,bold") }}
 		
 		
@@ -52,10 +55,15 @@
 	    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 	    
-		<script src="/js/search.js"></script>
-		<script src="/js/Chart.min.js"></script>
-		<script src="/js/google-analytics.js"></script>
-	    <script src="/js/datepicker.js"></script>
+		{{--  Uncomment to use local versions, CDN'd via AMZ CloudFront --}}
+	    {{-- <script src="/js/search.js"></script> --}}
+	    <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-231074448314/js/search.js"></script>
+		{{-- <script src="/js/Chart.min.js"></script> --}}
+		<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-231074448314/js/Chart.min.js"></script>
+		{{-- <script src="/js/google-analytics.js"></script> --}}
+		<script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-231074448314/js/google-analytics.js"></script>
+	    {{-- <script src="/js/datepicker.js"></script> --}}
+	    <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-231074448314/js/datepicker.js"></script>
 		
 		<!-- feedback using uservoice -->
 		<script>
