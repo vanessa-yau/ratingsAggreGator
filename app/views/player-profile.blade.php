@@ -413,6 +413,7 @@
                     // else generate the content of '.player-team-rank'
                     $('.header-chart').data('rank', json['rankInTeam']);
                     $('.player-team-ranking').text(json['rankInTeam']);
+                    $('.header-chart').show();
                     chart("ratingBySkill", "Bar", "barLegend");
                     
                     // update number of ratings for this player
