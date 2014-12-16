@@ -205,7 +205,7 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
         $players = Player::byPopularity();
 
         // restrict the list to the top 10
-        $players = $players->slice(0,9);
+        $players = $players->slice(0,6);
         return $players;
     }
 }
