@@ -29,12 +29,12 @@
         	@endforeach
 	    </div>
 	    <div class="row">
-	    	<div class="col-xs-12 col-sm-6 col-lg-4">
+	    	<div class="col-sm-12 pagination-links">
 	    		{{ $results->links() }}
 	    	</div>
 	    </div>
 	    	@if (count($results) === 1)
-	    		<div class="">
+	    		<div class="col-xs-12 col-sm-6 col-lg-4">
 	    		<h2> There are no results for that player. </h2>
 	    		</div>
 	    	</div>

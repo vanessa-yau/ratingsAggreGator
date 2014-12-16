@@ -7,7 +7,7 @@
     action="{{ URL::route('players.search') }}"
 >
     <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Players by Name" name="search" id="search" autocomplete="off">
+        <input type="text" class="form-control" placeholder="Search Players by Name" name="search-box" id="search-box" autocomplete="off">
         <ul id="results"></ul>
     </div>
 </form>
