@@ -1,54 +1,47 @@
-/* JS File */
+// $(document).ready(function() {  
 
-// Start Ready
-$(document).ready(function() {  
+// 	$("#search-form").on("submit", function(e) {
 
-	// Icon Click Focus
-	$('div.icon').click(function(){
-		$('input#search').focus();
-	});
+// 		// e.preventDefault();
+// 		console.log('foo');
+// 		// Set Timeout
+// 		clearTimeout($.data(this, 'timer'));
 
-	// Live Search
-	// On Search Submit and Get Results
-	function search(query_value) {
-		
-		query_value = $.trim(query_value);
-		// if (e.type == "keyup" );
-		// 	alert( "hi" );
+// 		// Set Search String
+// 		var search_string = $('#search').val();
 
-		if(query_value){
-			query_value = query_value.replace(' ', '+');
-			console.log("query is:" + query_value);
-			$.ajax({
-				type: "GET",
-				url: window.routes.players.search,
-				data: { query: query_value },
-				cache: false,
-				success: function(html){
-					$("ul#results").html(html);
-				}
-			});
-		}return false;    
+// 		console.log("query is:" + search_string);
+// 		// Do Search
+// 		$(this).data('timer', setTimeout(function () {
+// 			search(search_string);
+// 		}, 100));
+// 		return false;
+// 	});
+
+
+// });
+
+// Live Search
+// On Search Submit and Get Results
+function search(query_value) {
+	
+	var query_value = $.trim(query_value);
+	// if (e.type == "keyup" );
+	// 	alert( "hi" );
+
+	if(query_value){
+		query_value = query_value.replace(' ', '+');
+		console.log("query is:" + query_value);
+		$.ajax({
+			type: "GET",
+			url: '/search/',
+			data: { query: query_value },
+			cache: false,
+			success: function(json){
+				// window.location = ('/search/' + query_value);
+				// console.log(json);
+			}
+		});
 	}
-
-	$("input#search").on("keyup", function(e) {
-		// Set Timeout
-		clearTimeout($.data(this, 'timer'));
-
-		// Set Search String
-		var search_string = $(this).val();
-
-		// Do Search
-		if (search_string == '') {
-			$("ul#results").fadeOut();
-			$('h4#results-text').fadeOut();
-		}else{
-			$("ul#results").fadeIn();
-			$('h4#results-text').fadeIn();
-			$(this).data('timer', setTimeout(function () {
-				search(search_string);
-			}, 100));
-		};
-	});
-
-});
+	return false;    
+}
