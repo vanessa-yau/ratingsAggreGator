@@ -62,6 +62,7 @@ body {
 
 .league-badge {
     height: 100px;
+    max-width: 100px;
 }
 
 .league p {
