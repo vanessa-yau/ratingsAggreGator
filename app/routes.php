@@ -61,6 +61,7 @@ Route::group(['after' => 'plusone'], function() {
     ]);
 });
 
+// tiny local-only enabled tool to delete anomalous name entries, e.g. blanks and name='Name'
 Route::group(['before' => 'env'], function()
 {
     Route::get('/admin/{anomaly}', [
@@ -102,12 +103,22 @@ Route::get('players/{id}/{slug?}', [
     'uses' => 'PlayerController@show'
 ]);
 
-Route::resource('ratings', 'RatingController');
+Route::get('teams/{id}/{slug?}', [
+    'as' => 'teams.show',
+    'uses' => 'TeamController@show'
+]);
+
+Route::get('leagues/{id}/{slug?}', [
+    'as' => 'leagues.show',
+    'uses' =>'LeagueController@show'
+]);
 
 Route::get('users/{id}/{slug?}', [
     'as' => 'users.show',
     'uses' => 'UserController@show'
 ]);
+
+Route::resource('ratings', 'RatingController');
 
 Route::resource('users', 'UserController', [
     'except' => ['show']
@@ -160,18 +171,12 @@ Route::get('logout', [
     'uses' => 'UserController@logout'
 ]);
 
-
-
 Route::get('hello', [
     'as' => 'hello',
     'uses' => 'PlayerController@getRandomPlayers'
 ]);
 
-// Route::get('test', [
-//         'as' => 'test',
-//         'uses' => 'ScrapeImages2@test'
-// ]);
-
+// PHP curl image scraper, bugged as of 16/12/14
 Route::get('ScrapeImage', 
     ['uses' => 'ScrapeImages2@foo']
 );
@@ -184,9 +189,4 @@ Route::get('/countries', function()
 Route::post('register', [
     'as' => 'user.store',
     'uses' => 'UserController@store'
-]);
-
-Route::get('/tottPlayers', [
-    'as' => 'tottPlayers',
-    'uses' => 'PlayerController@getAllPlayersOfTeam'
 ]);

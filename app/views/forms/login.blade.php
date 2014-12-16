@@ -51,7 +51,7 @@
             @endunless
             <a href="/twitter/login">
                 <button type="button" class="btn btn-primary btn-twitter">
-                    <i class="fa fa-twitter"></i> Sign In                
+                    <i class="fa fa-twitter"></i> Sign In
                 </button>
             </a>
 

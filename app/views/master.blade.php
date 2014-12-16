@@ -49,20 +49,19 @@
 
 				@yield('modals')
 
-				<!-- scripts -->
-				<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"> </script>
-			    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-				<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-			    
-				<script src="/js/search.js"></script>
-				<script src="/js/Chart.min.js"></script>
-				<script src="/js/google-analytics.js"></script>
-			    <script src="/js/datepicker.js"></script>
-				
-				<!-- feedback using uservoice -->
-				<script>
-					// Include the UserVoice JavaScript SDK (only needed once on a page)
-					UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/sAVp37mPzXUf1Txkw2o6Q.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
+		<!-- scripts -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"> </script>
+	    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	    
+		<script src="/js/Chart.min.js"></script>
+		<script src="/js/google-analytics.js"></script>
+	    <script src="/js/datepicker.js"></script>
+		
+		<!-- feedback using uservoice -->
+		<script>
+			// Include the UserVoice JavaScript SDK (only needed once on a page)
+			UserVoice=window.UserVoice||[];(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/sAVp37mPzXUf1Txkw2o6Q.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})();
 
 					//
 					// UserVoice Javascript SDK developer documentation:
@@ -120,4 +119,4 @@
 			</body>
 		</div>
 	</div>
-<!-- </html> -->
+</html>
