@@ -19,6 +19,7 @@ class ChangeFileExtensionLeagueBadges extends Migration {
 
 		foreach ($leagues as $league) {
 			$league->badge_image_url = str_replace(".jpg", ".png", $league->badge_image_url);
+			$league->save();
 		}
 	}
 

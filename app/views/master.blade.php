@@ -19,7 +19,7 @@
 		{{--  Uncomment to use local versions, CDN'd via AMZ CloudFront --}}
 		{{-- {{ HTML::style("/css/navbar.css") }} --}}
 		{{ HTML::style("https://s3-us-west-2.amazonaws.com/elasticbeanstalk-us-west-2-231074448314/css/navbar.css") }}
-		{{-- {{ HTML::style("/css/main.css") }} --}}
+		{{ HTML::style("/css/main.css") }}
 		{{ HTML::style("http://fonts.googleapis.com/css?family=PT+Sans:regular,bold") }}
 		
 		
