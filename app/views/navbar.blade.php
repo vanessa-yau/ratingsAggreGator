@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
+    <div class="container">
         <!-- logo and shrink menu icon -->
         <div class="navbar-header">
             <a href="{{ URL::to('/') }}">

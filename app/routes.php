@@ -74,9 +74,12 @@ Route::group(['before' => 'env'], function()
     ]);
 });
 
-Route::get('test', function() {
-    return Player::find(148);
-});
+Route::get('test', [
+    'as' => 'test',
+    function() {
+        return View::make('test-home');
+    }
+]);
 
 Route::get('/averageRatingSummary',[
     'as' => 'players.niceRatingSummary',
@@ -164,10 +167,10 @@ Route::get('hello', [
     'uses' => 'PlayerController@getRandomPlayers'
 ]);
 
-Route::get('test', [
-        'as' => 'test',
-        'uses' => 'ScrapeImages2@test'
-]);
+// Route::get('test', [
+//         'as' => 'test',
+//         'uses' => 'ScrapeImages2@test'
+// ]);
 
 Route::get('ScrapeImage', 
     ['uses' => 'ScrapeImages2@foo']
