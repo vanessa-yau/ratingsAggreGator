@@ -136,6 +136,7 @@
                                 name="date"
                                 type="datetime"
                                 placeholder="Enter a date: dd/mm/yyyy"
+                                value="{{ Carbon\Carbon::now()->format('Y/m/d') }}"
                             >
                         </h4>
                     </div>
@@ -276,7 +277,6 @@
                 // to avoid random labels for charts when a player has not been rated yet
                 // chart only when necessary.
                 if( $('.header-chart').data('rank') != "Unranked" ){
-                    console.log("rank is not unranked!");
                     chart("ratingBySkill", "Bar", "barLegend");
                     // create initial chart on page load.
                     $('.header-chart').show();

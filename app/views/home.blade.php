@@ -24,8 +24,8 @@
 			@endforeach 
 		</div> <!-- close most rated players div -->
 		<div class="col-sm-5 col-sm-offset-1 about-site">
-			<h3 id="aboutUsHeading">About Us</h3>
-			<p class="lead"><strong>Rating Aggregator</strong> is a platform where your favourite sports players and teams are <strong>subjectively rated</strong> on their skills during a game, by <strong>you</strong>.</p>
+			<h3>About Us</h3>
+			<p class="lead"><strong>Ratingator</strong> is a platform where your favourite sports players and teams are <strong>subjectively rated</strong> on their skills during a game, by <strong>you</strong>.</p>
 
 			<br />
 			<h4>Who Can I Rate?</h4>
@@ -55,6 +55,7 @@
 			</div>
 		</div>
 	</div> <!-- end row -->
+	<!-- background image taken from http://amagico.com/images/img7/football-field-at-night-hd-background-wallpaper-35.jpeg&h=HAQEsV3Rf -->
 @stop
 
 @section('js')

@@ -154,6 +154,7 @@ class PlayerController extends \BaseController {
 		if (!$searchQuery)
 			$searchQuery = Input::get('query');
 			$results = Player::search($searchQuery);
+
 			return View::make('search-results', compact('results'));	
 	}
 
