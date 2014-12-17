@@ -6,6 +6,13 @@
 		
 		<!-- To ensure proper rendering and touch zooming -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<!--keywords for search engines -->
+		<meta name="keywords" content="Football, Sport, Ratings, Ratingator">
+
+		<!-- description of webpage -->
+		<meta name="description" content="Subjectively rate sports players">
+
 		
 		<title>Ratingator</title>
 		
@@ -15,8 +22,6 @@
 		{{ HTML::style("http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css") }}
 		{{ HTML::style("http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css") }}
 		{{ HTML::style("http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css") }}
-		{{ HTML::style("/css/bodyPaddingOverride.css") }}
-
 
 		{{--  Uncomment to use local versions, CDN'd via AMZ CloudFront --}}
 		{{-- {{ HTML::style("/css/navbar.css") }} --}}
