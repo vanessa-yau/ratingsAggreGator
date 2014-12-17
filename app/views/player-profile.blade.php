@@ -136,6 +136,7 @@
                                 name="date"
                                 type="datetime"
                                 placeholder="Enter a date: dd/mm/yyyy"
+                                value="{{ Carbon\Carbon::now()->format('Y/m/d') }}"
                             >
                         </h4>
                     </div>
