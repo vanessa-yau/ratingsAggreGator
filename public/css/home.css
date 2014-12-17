@@ -8,6 +8,10 @@ body {
     color: #FFFFFF;
 }
 
+#aboutUsHeading {
+    font-family: 'Ramabhadra', sans-serif;
+}
+
 .player-tumbnails {
     text-align: center;
     color: #FFFFFF;
@@ -112,4 +116,12 @@ body {
     background-color: #000000;
     border-color: #5c5c5c;
     color: #ffffff;
+}
+
+#navbar a {
+    color: white !important;
+}
+
+.font-effect-distressed-wood {
+
 }

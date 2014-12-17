@@ -24,7 +24,7 @@
 			@endforeach 
 		</div> <!-- close most rated players div -->
 		<div class="col-sm-5 col-sm-offset-1 about-site">
-			<h3>About Us</h3>
+			<h3 id="aboutUsHeading">About Us</h3>
 			<p class="lead"><strong>Rating Aggregator</strong> is a platform where your favourite sports players and teams are <strong>subjectively rated</strong> on their skills during a game, by <strong>you</strong>.</p>
 
 			<br />
