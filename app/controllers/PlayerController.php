@@ -158,17 +158,6 @@ class PlayerController extends \BaseController {
 			return View::make('search-results', compact('results'));	
 	}
 
-	// returns a random selection of players
-	public function getRandomPlayers() {
-		$totalNumPlayers = Player::all()->count();
-		$randomPlayerIds = [];
-
-		for( $i=0 ; $i<10 ; $i++ ){
-			array_push( $randomPlayerIds, rand(1, $totalNumPlayers) );
-		}
-
-		return Player::whereIn('id', $randomPlayerIds)->get();
-	}
 	public function getAllPlayersOfTeam() {
 		$tottPlayers = [];
 		foreach (Player::whereLastKnownTeam(6)->get() as $player) {
