@@ -14,7 +14,7 @@
 	                    	<h4>
 	                    		<p> <strong> {{{ $result->name }}} </strong> </p>
 	                    		<p> <strong> {{{ $result->nationality }}} </strong> </p>  
-	                    		<p> <strong> {{{ Team::find($result->last_known_team)->first()->name }}}</strong> </p>        		
+	                    		<p> <strong> {{{ Team::find($result->last_known_team)->name }}}</strong> </p>        		
 	                    	</h4>
 	                    	<p>
             					
