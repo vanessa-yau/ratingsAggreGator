@@ -24,16 +24,20 @@
 			@endforeach 
 		</div> <!-- close most rated players div -->
 		<div class="col-sm-5 col-sm-offset-1 about-site">
-			<h3>About Us</h3>
-			<p class="lead"><strong>Ratingator</strong> is a platform where your favourite sports players and teams are <strong>subjectively rated</strong> on their skills during a game, by <strong>you</strong>.</p>
+			@if(Auth::check())
+				<h3>Your Teams</h3>
+			@else
+				<h3>About Us</h3>
+				<p class="lead"><strong>Ratingator</strong> is a platform where your favourite sports players and teams are <strong>subjectively rated</strong> on their skills during a game, by <strong>you</strong>.</p>
 
-			<br />
-			<h4>Who Can I Rate?</h4>
-			<p>Currently, association football players, from their respective teams, in respective leagues.</p>
-			<br />
-			<h4>What do I rate these players on?</h4>
-			<p>All sorts of <strong>skills</strong>, <em>e.g. shooting, tackling.</em> It's a star-based "out of five" rating.</p>
-			<br />
+				<br />
+				<h4>Who Can I Rate?</h4>
+				<p>Currently, association football players, from their respective teams, in respective leagues.</p>
+				<br />
+				<h4>What do I rate these players on?</h4>
+				<p>All sorts of <strong>skills</strong>, <em>e.g. shooting, tackling.</em> It's a star-based "out of five" rating.</p>
+				<br />
+			@endif
 		</div>
 	</div> <!-- close row -->
 	
