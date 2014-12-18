@@ -125,3 +125,10 @@ body {
 .font-effect-distressed-wood {
 
 }
+
+/* force the about-site div to be the same height
+ * as the most rated players div
+ */
+.about-site {
+    height: 436px;
+}

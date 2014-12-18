@@ -135,3 +135,7 @@ h3 {
 .well {
     margin-top: 1%;
 }
+
+.header-chart {
+    display: none;
+}
