@@ -13,8 +13,9 @@
 	                        <img class="profile-image" src="{{{ $result->image_url }}}" alt="Image of player">
 	                    	<h4>
 	                    		<p> <strong> {{{ $result->name }}} </strong> </p>
-	                    		<p> <strong> {{{ $result->nationality }}} </strong> </p>  
-	                    		<p> <strong> {{{ Team::find($result->last_known_team)->name }}}</strong> </p>        		
+	                    		<p> <strong> {{{ $result->nationality }}} </strong> </p>
+	                    		<p> <strong> Plays for: {{{ Team::find($result->last_known_team)->name }}}</strong> </p>        		
+  
 	                    	</h4>
 	                    	<p>
             					
