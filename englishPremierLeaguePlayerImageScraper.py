@@ -3,6 +3,7 @@
 # both for scraping
 import requests
 import urllib2
+import urllib
 from bs4 import BeautifulSoup
 # just for console output - not needed in production
 # <production>
@@ -32,8 +33,10 @@ for name in data:
 	# find the image with class=photo
 	imgs = soup.find_all('img', {'class':"photo"})
 	# download the image
-	for img in imgs:
-		print img
+	#for img in imgs:
+	urllib.urlretrieve(imgs, "C:/wamp/www/ratingsAggreGator/public/images/profile_images_testScrape/test.jpg")
+
+
 
 json_data.close()
 

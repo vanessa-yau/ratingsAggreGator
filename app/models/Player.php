@@ -53,6 +53,13 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
         ]);
     }
 
+    public function getUrlAttributeSearch() {
+    return URL::route('players.search', [
+            $this->id,
+            Str::slug($this->name)
+        ]);
+    }
+
     // laravel magic call using $player->badge_image_url
     public function getImageUrlAttribute($url = null) {
         return $url 

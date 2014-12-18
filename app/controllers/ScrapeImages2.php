@@ -102,7 +102,7 @@ class ScrapeImages2 extends \BaseController {
 		Log::info($player->name);
 		fwrite($this->STDERR, $player->name . "\n");
 
-		$filename = "C:/wamp/www/ratingsAggreGator/public/images/profile_images/" . $player->id . ".jpg";
+		$filename = "C:/wamp/www/ratingsAggreGator/public/images/profile_images_testScrape/" . $player->id . ".jpg";
 	    echo $filename . "<br/>";
 	    if (file_exists($filename)) {
 	    	fwrite($this->STDERR, "Already have player image -- continuing...\n");
