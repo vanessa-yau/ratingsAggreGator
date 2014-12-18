@@ -10,19 +10,20 @@
 	    	<div class="row">
 	        	@foreach ($results as $result)
 		            <a href="{{ $result->url }}">
-			        	<div class="col-xs-12 col-sm-6 col-lg-4">
+			        	<div class="col-xs-12 col-sm-6 col-lg-4 player-card">
 			        		<div class="row">
 								<!-- Make a thumbnail for each of the players found by the search -->
+								<div class="col-sm-4 player-image">
 			                        <img class="profile-image" src="{{{ $result->image_url }}}" alt="Image of player">
-			                    	<h4>
-			                    		<p> <strong> {{{ $result->name }}} </strong> </p>
-			                    		<p> <strong> {{{ $result->nationality }}} </strong> </p>
-			                    		<p> <strong> Plays for: {{{ Team::find($result->last_known_team)->name }}}</strong> </p>        		
-		  
-			                    	</h4>
-			                    	<p>
-		            					
-			                    	</p>
+			                    </div>
+			                    <div class="col-sm-8 player-info">
+		                    		<strong>{{{ $result->name }}} </strong>
+		                    		<br />
+		                    		<strong>{{{ $result->nationality }}} </strong>
+		                    		<br />
+		                    		<strong>{{{ Team::find($result->last_known_team)->name }}}</strong>
+		                    		<br />
+								</div>
 			                </div>
 			        	</div>
 		            </a>
