@@ -14,7 +14,7 @@ class AddTeamColumnToUserTable extends Migration {
 	{
 		Schema::table('users', function($table)
 		{
-		    $table->int('favourite_team');
+		    $table->integer('favourite_team');
 		});	
 	}
 
