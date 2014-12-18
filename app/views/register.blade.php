@@ -70,11 +70,22 @@
         <p class ="user_help" id="city_help"></p>
     </div>
 
+    <div class="form-control-group">
+        <label class="control-label" for="favourite-team">Favourite Team</label>
+        <select id="favourite-team" name="favourite-team" class="form-control">
+
+            <option selected disable style="display:none;">Select...</option>
+            @foreach($teams as $team)
+                <option value="{{{ $team->id}}}">{{{$team->name}}}</option>
+            @endforeach
+        </select>
+    </div>
+
     <div class="form-actions">
         <button type ="submit" class="btn btn-success btn-large"><i class="glyphicon glyphicon-plus"></i> Register</button>
     </div>
 
-</form>
+    </form>
 @stop
 
 @section('js')
