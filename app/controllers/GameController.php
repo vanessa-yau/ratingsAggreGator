@@ -25,6 +25,8 @@ class GameController extends \BaseController {
 	}
 
 	public function prepareGraph($values = []) {
+		// magic! Don't understand it myself (ask Nathan)
+		// 
 		if (!$values)
 			Input::all();
 		
@@ -39,6 +41,7 @@ class GameController extends \BaseController {
 		$player = Player::find( Input::get('player_id') );
 		$game = null;
 		if ($validator->passes()) {
+			// check for team1 vs team2 or team2 vs team1
 			$game = Game::whereDate($values['date'])
 	    		->whereTeam1Id($values['team1_id'])
 	    		->whereTeam2Id($values['team2_id'])
@@ -48,6 +51,7 @@ class GameController extends \BaseController {
 	    		})
 	    		->first();
 
+	    	// if the game does not exist, prepare the new model.
 	    	if (!$game) {
 	    		$game = new Game;
 	    		$values['sport_id'] = $player->sport->id;
@@ -65,9 +69,11 @@ class GameController extends \BaseController {
 			'saver' => function () use ($game, $player) {
 				$team = $player->lastKnownTeam;
 				
+				//write the prepared game model to the database
 				$game->save();
 
-				// associate the player in this game
+				// associate the player in this game if there is not 
+				// already an exiting record of this player in this game
 				$needsAttaching = Game_Player::whereGameId($game->id)
 					->wherePlayerId($player->id)
 					->count() == 0;
@@ -89,6 +95,7 @@ class GameController extends \BaseController {
 	 */
 	public function store()
 	{
+		// prepare the game model and save if ok.
 		$graph = $this->prepareGraph();
 		return $graph['ok']
 			? $graph['game']
