@@ -155,7 +155,7 @@ class PlayerController extends \BaseController {
 			$searchQuery = Input::get('query');
 			$results = Player::search($searchQuery);
 
-			return View::make('search-results', compact('results'));	
+			return View::make('search-results', compact('results', 'searchQuery'));	
 	}
 
 	public function getAllPlayersOfTeam() {

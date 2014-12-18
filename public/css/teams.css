@@ -7,9 +7,28 @@ img {
     max-height: 50px;
 }
 
+.panel {
+    background-color: rgba(0,0,0,0.50);
+    border-radius: 10px;
+    border-color: #CCC;
+}
+
+.panel-heading {
+    background-color: rgba(0,0,0,0.50) !important;
+    border-radius: 10px;
+    border-color: #CCC;
+}
+
+.team-name{
+    color: #FFF;
+    margin-left: 1em;
+}
+
 .panel .glyphicon-chevron-down{
     padding-top: 1em;
+    color: #FFF;
 }
 .panel .glyphicon-chevron-up {
     padding-top: 1em;
+    color: #FFF;
 }

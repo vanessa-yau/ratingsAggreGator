@@ -23,7 +23,7 @@
                                 <div class="row">
                                     @foreach( $team->lastKnownPlayers as $player )
                                         <div class="col-xs-12 col-sm-6 col-md-3">
-                                            <a href="{{ $player->url }}"><p>{{ $player->name }}</p></a>
+                                            <a href="{{ $player->url }}"><p><strong>{{ $player->name }}</strong></p></a>
                                         </div>
                                     @endforeach
                                 </div> <!-- close row -->

@@ -6,6 +6,7 @@
 
 @section('content')
 	<div class="search-results">
+		<h2>Search Results for "{{{ strtoupper($searchQuery) }}}"</h2>
     		@if($results->count() > 0)
 	    	<div class="row">
 	        	@foreach ($results as $result)
