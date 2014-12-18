@@ -7,9 +7,9 @@
 
 @section('content')
     <div class="container">
-        <h1>the ratingator team</h1>
         <!-- hacked and inelegant -->
-        <div class="row placeholders">
+        <div class="row placeholders page-content">
+            <h1>The Ratingator Team</h1>
             <div class="col-xs-6 col-sm-3 placeholder">
                 <img src="https://avatars0.githubusercontent.com/u/310636?v=3&s=460" class="img-responsive" alt="Generic placeholder thumbnail">
                 <h4>Jake</h4>

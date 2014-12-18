@@ -9,5 +9,8 @@
     <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Players by Name" name="query" id="query" autocomplete="off">
         <ul id="results"></ul>
+        <div class="input-group-addon">
+            <i class="glyphicon glyphicon-search"></i>
+        </div>
     </div>
 </form>

@@ -1,12 +1,73 @@
+html{
+  height: 100%;
+}
+
 body {
     padding-top: 50px;
     min-width: 413px;
+    min-height: 100%;
+    color: #FFFFFF;
+}
+
+.background-image {
+    background-image: url(/images/test-backgrounds/1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.text-muted {
+    color: #CCCCCC;
+}
+
+.overlay {
+    background-image: url(/images/test-backgrounds/overlay.png);
+    background-repeat: repeat;
 }
 
 a:link {
     text-decoration: none;
+    color: #FFFFFF;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #FFFFFF;
 }
 
 .breadcrumb {
+    background-color: rgba(0,0,0,0.50);
+    border-radius: 10px;
     margin-top: 20px;
+}
+
+.site-name {
+    color: #FFFFFF;
+    font-size: 11pt;
+}
+
+#navbar a {
+    color: white !important;
+}
+
+.user-username {
+    color: white;
+}
+
+.caret {
+    color: white;
+}
+
+.dropdown-toggle {
+    background-color: black !important;
+}
+
+.dropdown-menu {
+    background-color: transparent;
+}
+
+.navbar {
+    margin-bottom: 0;
+    background-color: #000000;
+    border-color: #5c5c5c;
+    color: #ffffff;
 }
