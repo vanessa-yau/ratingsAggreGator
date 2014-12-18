@@ -261,6 +261,9 @@
         // This must be at the top of the script for the charts to load properly.
         window.ajaxData = getRating();
 
+        // create the chart but only show it after a successful rating
+        // chart("yourRating", "Radar", "radarLegend");
+
         var ratingSummary;
         // get "nice" averages data for charts (instead of grabbing panel info)
         // must be generated before charts
@@ -274,16 +277,13 @@
             success: function(json){
                 // set ratingSummary as a variable to create charts below
                 ratingSummary = json;
-                // to avoid random labels for charts when a player has not been rated yet
-                // chart only when necessary.
+                // draw chart if player ranked
                 if( $('.header-chart').data('rank') != "Unranked" ){
+                    // generate the chart
                     chart("ratingBySkill", "Bar", "barLegend");
-                    // create initial chart on page load.
+                    // show the div
                     $('.header-chart').show();
-                }
-                else{
-                    // hide chart headings ASAP
-                    $('.header-chart').hide();
+
                 }
             },
             error: function(e) {
@@ -334,6 +334,8 @@
                 .removeClass('glyphicon-star');
         });
 
+        // grabs all info from the rating form
+        // turns stars into a count for each skill
         function getRating() {
             ajaxData = {
                 player_id: $('#player_id').val(),
@@ -400,35 +402,23 @@
                 url: decodeURI("{{ URL::route('ratings.store') }}"),
                 data: data,
                 success: function(json){
+                    ratingSummary = json['ratingSummary'];
+                
                     // display success message.
                     var message = "Your rating has been submitted, Thanks!"
                     showSuccessMessage(message);
 
-                    // change rating values on page to new values.
-                    $.each(json, function(skill, value) {
-                        $('.' + skill).text(Number(value).toFixed(1) + '/5');
-                    });
-                    
-                    // update stats on the view
-                    $('.player-team-ranking').text(json['rankInTeam']);
-                    // update number of ratings for this player
-                    $('.ratings-badge').find('.badge').text(json['ratingCount']);
-
-                    // show the header-chart if it is not already shown (this is first rating)
-                    $('.header-chart')
-                        .data('rank', json['rankInTeam']);
-
-                    // if the chart does not exist draw the chart
-                    if( $('.header-chart').data('rank') != 'Unranked'){
-                        chart("ratingBySkill", "Bar", "barLegend");
-                    }
-                    
                     // hide the form
                     $('.rate-form').parents('.row').slideUp(300);
-                    
+
+                    updateStats(json);
+
                     // recreate and show charts
                     $('.userRating').show();
                     chart("yourRating", "Radar", "radarLegend");
+                    chart("ratingBySkill", "Bar", "barLegend");
+                    // show the div
+                    $('.header-chart').show();
 
                     // Check to see if user is logged in
                     @if(Auth::check())
@@ -456,20 +446,20 @@
                     @else
                         //If the user is not logged in then carry out the same tweet process as above
                         var mean = 0;
-                            var count = 0;
-                            for(var rating in data.ratings) {
-                                mean += data.ratings[rating];
-                                count++;
-                            }
-                            mean /= count;
+                        var count = 0;
+                        for(var rating in data.ratings) {
+                            mean += data.ratings[rating];
+                            count++;
+                        }
+                        mean /= count;
 
-                            var $hiddenTwitterButton = $('<a>')
-                                .attr('href', 'https://twitter.com/share?text=' +
-                                    'I just rated {{{ $player->name }}} an average of ' + 
-                                    mean + '! How do you rate them?')
-                                .attr('target', '_blank');
+                        var $hiddenTwitterButton = $('<a>')
+                            .attr('href', 'https://twitter.com/share?text=' +
+                                'I just rated {{{ $player->name }}} an average of ' + 
+                                mean + '! How do you rate them?')
+                            .attr('target', '_blank');
 
-                            $hiddenTwitterButton[0].click();
+                        $hiddenTwitterButton[0].click();
                     @endif
                 },
                 error: function(e){
@@ -486,8 +476,16 @@
                     $this.parents('.row').slideDown(300);
                 }, 30000);
             }); // end of ajax request
-
         }); // end of submit event handler
+
+        function updateStats(json) {
+            // update rank and rating count for this player
+            $('.player-team-ranking').text(json['rankInTeam']);
+            $('.ratings-badge').find('.badge').text(json['ratingCount']);
+
+            // show the header-chart if it is not already shown (this is first rating)
+            $('.header-chart').data('rank', json['rankInTeam']);
+        }
 
     }); // end document function script
 
