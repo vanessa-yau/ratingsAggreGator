@@ -1,6 +1,7 @@
 <?php
 use Carbon\Carbon;
 
+
 class Team extends Eloquent {
 
 	protected $guarded = array('id');
@@ -79,5 +80,13 @@ EOT
 
     public function getTotalNumRatings() {
         //
+    }
+
+    //returns a list of all teams stored in the database
+    public static function getList() {
+        $teams = DB::table('teams')
+            ->orderBy('name')
+            ->get();
+        return $teams;
     }
 }
