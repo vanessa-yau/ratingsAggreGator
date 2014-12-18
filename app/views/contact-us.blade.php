@@ -7,7 +7,7 @@
 @section('content')
     <div class="container">
         <!-- help menu -->
-        <div class="row contact">
+        <div class="row page-content">
             <div class="col-sm-12">
                 <h1>How can we help?</h1>
                 <div class="row">
