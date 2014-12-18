@@ -11,4 +11,3 @@
         <ul id="results"></ul>
     </div>
 </form>
-
