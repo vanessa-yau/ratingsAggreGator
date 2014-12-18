@@ -84,7 +84,9 @@ EOT
 
     //returns a list of all teams stored in the database
     public static function getList() {
-        $teams = Team::all();
+        $teams = DB::table('teams')
+            ->orderBy('name')
+            ->get();
         return $teams;
     }
 }
