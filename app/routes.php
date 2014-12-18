@@ -171,11 +171,6 @@ Route::get('logout', [
     'uses' => 'UserController@logout'
 ]);
 
-Route::get('hello', [
-    'as' => 'hello',
-    'uses' => 'PlayerController@getRandomPlayers'
-]);
-
 // PHP curl image scraper, bugged as of 16/12/14
 Route::get('ScrapeImage', 
     ['uses' => 'ScrapeImages2@foo']
