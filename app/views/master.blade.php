@@ -128,6 +128,16 @@
 
 			@include('layouts.routes');
 
+			var reapplyTexture = function () {
+				$('.overlay').height( $('html').height()-100 ) ;
+			};
+
+			$(function () {
+				reapplyTexture();
+			});
+
+			$('body').on('resize', reapplyTexture );
+
 		</script>
 
 		@section('js')

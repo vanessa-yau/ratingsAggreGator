@@ -119,7 +119,8 @@ class UserController extends \BaseController {
 			'surname',
 			'username',
 			'email_address',
-			'password'
+			'password',
+			'favourite_team'
 		);
 
 		$validator = Validator::make($userData, [
@@ -127,7 +128,8 @@ class UserController extends \BaseController {
 			'surname' => 'required',
 			'username' => 'required|unique:users,username,'.Auth::id(),
 			'email_address' => 'required|email',
-			'password' => 'required'
+			'password' => 'required',
+			'favourite_team' => 'exists:teams,id'
 		]);
 
 		if ($validator->fails()) {
@@ -137,6 +139,7 @@ class UserController extends \BaseController {
 		    $user->surname = $userData['surname'];
 		    $user->username = $userData['username'];
 		    $user->email = $userData['email_address'];
+		    $user->favourite_team = $userData['favourite_team'];
 		    $user->save();
 		    return $user;
 		} else {

@@ -21,9 +21,14 @@ Route::group(['after' => 'plusone'], function() {
             ? $leagues = League::all() 
             : $leagues = null;
 
+        (Auth::check())
+            ? $team = Team::find(Auth::user()->favourite_team)
+            : $team = null;
+
         return View::make('home', [
             'players' => Player::mostPopular(),
-            'leagues' => $leagues
+            'leagues' => $leagues,
+            'team' => $team
         ]);
     });
 

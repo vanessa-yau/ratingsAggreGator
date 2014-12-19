@@ -29,6 +29,7 @@ body {
 .overlay {
     background-image: url(/images/test-backgrounds/overlay.png);
     background-repeat: repeat;
+    /*height: 100%;*/
 }
 
 a:link {
