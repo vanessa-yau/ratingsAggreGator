@@ -12,7 +12,7 @@
     </div>
 
     <div class="row page-content">
-        <div>
+        <div class="col-sm-12">
             <ul class="nav nav-tabs" role="tablist" id="tab-list">
                 <li class="active"><a href="#overview" role="tab" data-toggle="tab">Details <i class="fa fa-user"></i></a></li>
                 <li><a href="#ratings" role="tab" data-toggle="tab">Stats <i class="fa fa-bar-chart"></i></a></li>

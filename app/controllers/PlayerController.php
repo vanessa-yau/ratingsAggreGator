@@ -151,11 +151,13 @@ class PlayerController extends \BaseController {
 	 *
 	 */
 	public function search($searchQuery = null) {
-		if (!$searchQuery)
-			$searchQuery = Input::get('query');
-			$results = Player::search($searchQuery);
+		
+		$searchQuery = Input::get('query');
+		$results = Player::search($searchQuery);
 
-			return View::make('search-results', compact('results', 'searchQuery'));	
+		//Return a view containing the results and the users search query
+		//passing the search query to the view will help with pagination
+		return View::make('search-results', compact('results', 'searchQuery'));	
 	}
 
 	public function getAllPlayersOfTeam() {

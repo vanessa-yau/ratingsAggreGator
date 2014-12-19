@@ -30,9 +30,9 @@
 	        	@endforeach
 		    </div>
 		    <div class="row">
-		    	<div class="col-sm-12 pagination-links">
-		    	{{ $results->appends(array('query' => $searchQuery))->links() }}
-
+		    	<div class="col-sm-12 pagination-links"> 
+			    	{{-- Append the results and paginate them--}}
+			    	{{ $results->appends(array('query' => $searchQuery))->links() }}
 		    	</div>
 		    </div>
 	    @else

@@ -169,22 +169,14 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
         }
     }
 
-    // search by player name, splits on '+'
+    // Function to search for a player by their name
 	public static function search($searchQuery) {
-
-        // $criteria = explode('+', $searchQuery);	
-
-        // $query = Player::whereRaw("MATCH (name) AGAINST ('?') IN NATURAL LANGUAGE MODE", 
-            // array($searchQuery) );
+        
+        //Conduct a full-text search on the database using the search query
         $query = Player::whereRaw("MATCH (name) AGAINST (? IN NATURAL LANGUAGE MODE)",
             array($searchQuery) );
-		// return $query;
-		// $query = Player::orderBy('name');
 
-		// foreach($criteria as $criterion)
-		// {	
-		// 	$query->orWhere('name', 'LIKE', '%' . $criterion .'%');
-		// }    
+        //Paginate and send the results back to the controller
         return $query->paginate(6);
 	}
 
