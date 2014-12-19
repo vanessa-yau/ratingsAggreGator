@@ -187,8 +187,8 @@
             <h3>Statistics</h3>
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
-                    <button class="btn btn-primary btn-block page-views-badge" type="button">
-                        <span class="badge">
+                    <button class="btn btn-primary btn-block page-views-button" type="button">
+                        <span class="page-counter-badge">
                             @if( PageCounter::getCounter()->counter )
                                 {{ PageCounter::getCounter()->counter + 1 }} 
                             @else
@@ -230,9 +230,9 @@
                             @if( $player->id != $teamMate->id )
                                 <div class="col-sm-4 col-md-2">
                                     <a href="{{ $teamMate->url }}">
-                                        <div class="thumbnail">
+                                        <div class="team-mate-image">
                                             <!-- <div class="team-mate-image"> -->
-                                                <img class="thumbnail profile" src="{{ $teamMate->image_url }}" alt="{{{ $teamMate->name }}} profile image missing">
+                                                <img class="profile" src="{{ $teamMate->image_url }}" alt="{{{ $teamMate->name }}} profile image missing">
                                             <!-- </div> -->
                                             <p class="team-mate-name">
                                                 {{{ $teamMate->name }}}
