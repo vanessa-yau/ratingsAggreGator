@@ -1,17 +1,24 @@
 html{
-  height: 100%;
+  min-height: 100%;
+  position: relative;
 }
 
 body {
     padding-top: 50px;
     min-width: 413px;
-    min-height: 100%;
     color: #FFFFFF;
+    background-color: black;
+    margin-bottom: 60px;
 }
 
 .background-image {
+    background-color: black;
     background-image: url(/images/test-backgrounds/1.jpg);
     background-repeat: no-repeat;
+    
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
 }
 

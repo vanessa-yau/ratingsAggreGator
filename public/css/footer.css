@@ -2,14 +2,22 @@
 footer .navbar {
     background-color: transparent;
     border-bottom-color: transparent;
+    border: none;
 }
+
 footer .fa-twitter {
     color: #55acee;
 }
+
 footer .fa-facebook {
     color: #3b5998;
 }
 
 footer {
     margin-top: 1em;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
 }

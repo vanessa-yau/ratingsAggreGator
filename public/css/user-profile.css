@@ -2,6 +2,22 @@
     padding-right: 1em;
 }
 
+body {
+    background-color: black;
+    background-image: url(/images/test-backgrounds/1.jpg);
+    background-repeat: no-repeat;
+    
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.background-image {
+    background-image: none;
+    background-color: transparent;
+}
+
 .profile-image {
     width: 80px;
     height: 80px;
