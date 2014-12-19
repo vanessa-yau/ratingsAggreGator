@@ -172,14 +172,19 @@ class Player extends Eloquent implements UserInterface, RemindableInterface {
     // search by player name, splits on '+'
 	public static function search($searchQuery) {
 
-        $criteria = explode('+', $searchQuery);		
-		
-		$query = Player::orderBy('name');
+        // $criteria = explode('+', $searchQuery);	
 
-		foreach($criteria as $criterion)
-		{	
-			$query->orWhere('name', 'LIKE', '%' . $criterion .'%');
-		}    
+        // $query = Player::whereRaw("MATCH (name) AGAINST ('?') IN NATURAL LANGUAGE MODE", 
+            // array($searchQuery) );
+        $query = Player::whereRaw("MATCH (name) AGAINST (? IN NATURAL LANGUAGE MODE)",
+            array($searchQuery) );
+		// return $query;
+		// $query = Player::orderBy('name');
+
+		// foreach($criteria as $criterion)
+		// {	
+		// 	$query->orWhere('name', 'LIKE', '%' . $criterion .'%');
+		// }    
         return $query->paginate(6);
 	}
 
