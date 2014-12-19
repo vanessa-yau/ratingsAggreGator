@@ -22,7 +22,6 @@
 		                    		<br />
 		                    		<strong>{{{ $result->nationality }}} </strong>
 		                    		<br />
-		                    		<strong>{{{ Team::find($result->last_known_team)->name }}}</strong>
 		                    		<br />
 								</div>
 			                </div>
@@ -32,7 +31,8 @@
 		    </div>
 		    <div class="row">
 		    	<div class="col-sm-12 pagination-links">
-		    		{{ $results->links() }}
+		    	{{ $results->appends(array('query' => $searchQuery))->links() }}
+
 		    	</div>
 		    </div>
 	    @else
