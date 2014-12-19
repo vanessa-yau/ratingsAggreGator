@@ -4,7 +4,7 @@
     <div class="container">
         <div class="col-xs-12">
             <!-- Static navbar -->
-            <nav class="navbar navbar-default navbar-static-bottom drop-up" role="navigation">
+            <nav class="navbar navbar-default navbar-static-bottom" role="navigation">
                 <div id="bottomNav" class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
