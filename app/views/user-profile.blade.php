@@ -11,13 +11,13 @@
   <strong id="message-type"></strong><span id="message-text"></span>
 </div>
 
-<div class="row">
+<div class="row page-content">
     <div>
         <ul class="nav nav-tabs" role="tablist" id="tab-list">
             <li class="active"><a href="#overview" role="tab" data-toggle="tab">Details <i class="fa fa-user"></i></a></li>
             <li><a href="#ratings" role="tab" data-toggle="tab">Stats <i class="fa fa-bar-chart"></i></a></li>
             @if(Auth::check() && Auth::id() == $user->id)
-                <li><a href="#messages" role="tab" data-toggle="tab">Messages <i class="fa fa-envelope"></i></a></li>
+                <!-- <li><a href="#messages" role="tab" data-toggle="tab">Messages <i class="fa fa-envelope"></i></a></li> -->
                 <li><a href="#settings" role="tab" data-toggle="tab">Settings <i class="fa fa-cog"></i></a></li>
             @endif
         </ul>
@@ -30,9 +30,9 @@
                 @include('userProfile.userRatings')
             </div>
             @if(Auth::check() && Auth::id() == $user->id)
-                <div class="tab-pane" id="messages">
-                    @include('userProfile.userMessages')
-                </div>
+                <!-- <div class="tab-pane" id="messages"> -->
+                    {{-- @include('userProfile.userMessages') --}}
+                <!-- </div> -->
                 <div class="tab-pane" id="settings">
                     @include('userProfile.userSettings')
                 </div>

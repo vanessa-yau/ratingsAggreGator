@@ -35,6 +35,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-bottom: 1em;
 }
 
 .skill-label {
@@ -59,7 +60,7 @@ h3 {
 }
 
 /* Other players images */
-.thumbnail {
+.team-mate-image {
     border: none;
     text-align: center;
 }
@@ -68,7 +69,7 @@ h3 {
     margin: 0px;
 }
 
-.thumbnail img {
+.team-mate-image img {
     border: none;
     max-height: 125px;
     max-width: 100%;

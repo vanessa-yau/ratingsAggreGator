@@ -230,9 +230,9 @@
                             @if( $player->id != $teamMate->id )
                                 <div class="col-sm-4 col-md-2">
                                     <a href="{{ $teamMate->url }}">
-                                        <div class="thumbnail">
+                                        <div class="team-mate-image">
                                             <!-- <div class="team-mate-image"> -->
-                                                <img class="thumbnail profile" src="{{ $teamMate->image_url }}" alt="{{{ $teamMate->name }}} profile image missing">
+                                                <img class="profile" src="{{ $teamMate->image_url }}" alt="{{{ $teamMate->name }}} profile image missing">
                                             <!-- </div> -->
                                             <p class="team-mate-name">
                                                 {{{ $teamMate->name }}}
