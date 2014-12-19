@@ -2,8 +2,8 @@
     <div class="col-sm-12">
         <h2>Settings</h2>
         <div class="row">
-            <div class="form-group settings">
-                <div class="col-sm-6">
+            <div class="form-group">
+                <div class="col-sm-6 settings">
                     <div class="input-group">
                         <span class="input-group-addon">Name</span>
                         <input type="text" name="name" class="form-control" placeholder="name" value="{{{ Auth::user()->first_name }}}">
@@ -25,14 +25,14 @@
                     </div>
                     <br />
                     <div class="input-group">
-                        <span class="input-group-addon">Enable Tweets</i></span>
-                        <select>
+                        Would you like enable automatic Twitter integration?
+                        <select class="twitter">
                             <option value="true" {{ Auth::user()->tweets_enabled ? 'selected' : '' }}>Yes</option>
                             <option value="false" {{ Auth::user()->tweets_enabled ? '' : 'selected' }}>No</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-6 well">
+                <div class="col-sm-6">
                     <p>Some more settings are coming soon.  Patience is a virtue.</p>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                     <input type="password" name="passcheck" class="form-control" placeholder="password">
                 </div>
                 <br />
-                <button class="btn btn-warning pull-right" id="edit-button"><i class="fa fa-pencil" id="edit-icon"></i> Edit</button>
+                <button class="btn btn-warning btn-block pull-right" id="edit-button"><i class="fa fa-pencil" id="edit-icon"></i> Edit</button>
             </div>
         </div>
     </div>

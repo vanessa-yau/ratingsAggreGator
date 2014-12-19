@@ -6,6 +6,7 @@
 
 @section('content')
 	<div class="search-results">
+		<h2>Search Results for "{{{ strtoupper($searchQuery) }}}"</h2>
     		@if($results->count() > 0)
 	    	<div class="row">
 	        	@foreach ($results as $result)
@@ -21,7 +22,6 @@
 		                    		<br />
 		                    		<strong>{{{ $result->nationality }}} </strong>
 		                    		<br />
-		                    		<strong>{{{ Team::find($result->last_known_team)->name }}}</strong>
 		                    		<br />
 								</div>
 			                </div>
@@ -31,7 +31,8 @@
 		    </div>
 		    <div class="row">
 		    	<div class="col-sm-12 pagination-links">
-		    		{{ $results->links() }}
+		    	{{ $results->appends(array('query' => $searchQuery))->links() }}
+
 		    	</div>
 		    </div>
 	    @else

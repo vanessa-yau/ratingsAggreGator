@@ -1,0 +1,26 @@
+.wrapper {
+    text-align: center;
+}
+
+.button {
+    position: absolute:
+    top: 50%;
+}
+
+h3 {
+	text-align: center;
+}
+
+/*.background-image {
+    background-image: url(/images/test-backgrounds/1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+*/
+/*html { 
+  background: url(/images/test-backgrounds/1.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}*/
