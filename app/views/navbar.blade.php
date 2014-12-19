@@ -19,9 +19,34 @@
             <!-- <div class="visible-xs-inline"> -->
                 <ul class="collapsed-options nav navbar-nav">
                     <li>@include('/forms/search')</li>
-                    <li class="pull-right">
-                        @include('/forms/login')
-                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                        @if(Auth::check())
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <strong class="user-username">{{{ Auth::user()->username }}}</strong> <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{{ Auth::user()->url }}}" class="btn btn-block btn-primary btn-my-account">
+                                            My Account <span class="glyphicon glyphicon-cog"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ URL::route('users.logout')}}" class="btn btn-block btn-danger btn-logout">
+                                            Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @else
+                            <li>
+                                @include('/forms/login-modal')
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                    Sign In or Sign Up
+                                </button>
+                            </li>
+                        @endif
                 </ul>
             <!-- </div> -->
         </div><!-- /.navbar-collapse -->

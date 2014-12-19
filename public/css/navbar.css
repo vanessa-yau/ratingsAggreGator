@@ -16,22 +16,53 @@
     border: 0;
 }
 
-.account-link {
-    background-color: darkgreen;
-    color: white;
-    margin-bottom: 2px;
+.btn-my-account {
+    color: white !important;
+    font-weight: bold !important;
+    margin-bottom: 5px;
+}
+.btn-my-account:hover {
+    background-color: #2e6da4 !important;
 }
 
-.account-link:hover {
-    color: #FFF;
+.btn-logout {
+    color: white !important;
+    font-weight: bold !important;
 }
-
-#logout {
-    background-color: red;
-    color: white;
+.btn-logout:hover {
+    background-color: #d43f3a !important;
 }
 
 .btn-twitter {
-    background-color: #55acee;
-    border-color:#2496EC;
+    font-weight: bold;
+}
+
+
+/* styling for login modal to come */
+/* change the cross icon to a paler colour */
+.close {
+    color: white !important;
+}
+.modal-title {
+    color: white;
+}
+.modal-header {
+    background-color: #252525;
+}
+.modal-body {
+    background-color: #252525;
+}
+.modal-footer {
+    background-color: #252525;
+}
+
+/* modal buttons */
+.btn-sign-in {
+    font-weight: bold;
+    margin-right: 1em;
+}
+.btn-sign-up {
+    background-color: #4cae4c;
+    border-color: #4AA84A;
+    font-weight: bold;
 }
