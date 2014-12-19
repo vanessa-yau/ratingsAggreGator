@@ -123,11 +123,27 @@ h3 {
 }
 
 /* override default font sizes for badges */
-.page-views-badge {
+.page-views-button {
     font-size: 14pt;
+    color: white;
+}
+
+.page-counter-badge {
+    background-color: white;
+    color: #337AB7;
+    border-radius: 10px;
+    min-width: 10px;
+    margin-right: 5px;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 7px;
+    text-align: center;
+    white-space: nowrap;
 }
 .ratings-badge {
     font-size: 14pt;
+    color: white;
 }
 .badge {
     font-size: 14pt;
@@ -135,6 +151,10 @@ h3 {
 
 .well {
     margin-top: 1%;
+}
+
+.btn-primary .badge {
+    background-color: transparent;
 }
 
 .header-chart {

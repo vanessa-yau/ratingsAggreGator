@@ -187,8 +187,8 @@
             <h3>Statistics</h3>
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
-                    <button class="btn btn-primary btn-block page-views-badge" type="button">
-                        <span class="badge">
+                    <button class="btn btn-primary btn-block page-views-button" type="button">
+                        <span class="page-counter-badge">
                             @if( PageCounter::getCounter()->counter )
                                 {{ PageCounter::getCounter()->counter + 1 }} 
                             @else
