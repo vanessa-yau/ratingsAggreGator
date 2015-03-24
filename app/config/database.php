@@ -60,7 +60,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'ratingsaggregator',
 			'username'  => 'root',
-			'password'  => '$crubw@tch',
+			'password'  => '$crubwatch12',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
