@@ -57,7 +57,8 @@ return array(
 
 		'mysql_live' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
+			// This was 'localhost...'
+			'host'      => 'vpc-f1c77294',
 			'database'  => 'ratingsaggregator',
 			'username'  => 'root',
 			'password'  => '$crubwatch12',
